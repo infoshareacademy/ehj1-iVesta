@@ -1,10 +1,9 @@
 # ehj1-iVesta
 ## Table of contents
-* [About project](#About project)
+* [About](#About)
 * [Technologies](#Technologies)
 
-
-## About project
+## About
 Project is a fleet management application.
 - Menu with options
 - Json file as input of vehicles and drivers
