@@ -1,10 +1,16 @@
 package Services;
 
-public class CarService {
+public class CarService implements Service{
     public CarService() {
     }
 
-    //TODO
-    public void printCars() {
+    //TODO implementacja metody
+    @Override
+    public void printElements() {
+    }
+
+    //TODO implementacja metody
+    @Override
+    public void addElement() {
     }
 }

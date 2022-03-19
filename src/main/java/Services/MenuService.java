@@ -27,13 +27,13 @@ public class MenuService {
     public void handleMainManu(int item) {
         if (item == 1) {
             System.out.println("Samochody");
-            carService.printCars();
+            carService.printElements();
         } else if (item == 2) {
             System.out.println("Kierowcy");
-            driverService.printDrivers();
+            driverService.printElements();
         } else if (item == 3) {
             System.out.println("Trasy");
-            routeService.printRoutes();
+            routeService.printElements();
         }
     }
 

@@ -1,9 +1,16 @@
 package Services;
 
-public class RouteService {
+public class RouteService implements Service {
     public RouteService() {
     }
-    //TODO
-    public void printRoutes() {
+
+    //TODO implementacja metody
+    @Override
+    public void printElements() {
+    }
+
+    //TODO implementacja metody
+    @Override
+    public void addElement() {
     }
 }

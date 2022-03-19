@@ -1,10 +1,16 @@
 package Services;
 
-public class DriverService {
+public class DriverService implements Service{
     public DriverService() {
     }
 
-    //TODO
-    public void printDrivers() {
+    //TODO implementacja metody
+    @Override
+    public void printElements() {
+    }
+
+    //TODO implementacja metody
+    @Override
+    public void addElement() {
     }
 }
