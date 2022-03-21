@@ -2,6 +2,7 @@
 ## Table of contents
 * [About](#About)
 * [Technologies](#Technologies)
+* [Setup](#Setup)
 
 ## About
 Project is a fleet management application.
@@ -16,3 +17,7 @@ Project is created with:
 * log4j
 * assertj
 * mySQL
+* junit
+
+## Setup
+* TODO: instrukcja uruchamiania aplikacji
