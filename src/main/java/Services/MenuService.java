@@ -25,15 +25,11 @@ public class MenuService {
     }
 
     public void handleMainManu(int item) {
-        if (item == 1) {
-            System.out.println("Samochody");
-            carService.printElements();
-        } else if (item == 2) {
-            System.out.println("Kierowcy");
-            driverService.printElements();
-        } else if (item == 3) {
-            System.out.println("Trasy");
-            routeService.printElements();
+        switch (item) {
+            case 1 -> carService.printElements();
+            case 2 -> driverService.printElements();
+            case 3 -> routeService.printElements();
+            default -> System.out.println("Wybrałeś zły numer z menu");
         }
     }
 
