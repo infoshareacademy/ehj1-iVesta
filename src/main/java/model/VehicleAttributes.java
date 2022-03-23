@@ -32,7 +32,7 @@ public class VehicleAttributes {
     private double hybridEnginePower;
 
     @JsonProperty("liczba-miejsc-ogole")
-    private int numberOfSits;
+    private int numberOfSeats;
 
     @JsonProperty("rodzaj-paliwa")
     private String fuelType;
@@ -48,7 +48,7 @@ public class VehicleAttributes {
                              double engineCapacity,
                              double enginePower,
                              double hybridEnginePower,
-                             int numberOfSits,
+                             int numberOfSeats,
                              String fuelType,
                              double fuelConsumption) {
         this.vehicleCategory = vehicleCategory;
@@ -59,7 +59,7 @@ public class VehicleAttributes {
         this.engineCapacity = engineCapacity;
         this.enginePower = enginePower;
         this.hybridEnginePower = hybridEnginePower;
-        this.numberOfSits = numberOfSits;
+        this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
     }
