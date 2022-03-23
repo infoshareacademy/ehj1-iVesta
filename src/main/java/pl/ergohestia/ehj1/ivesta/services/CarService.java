@@ -1,4 +1,4 @@
-package Services;
+package pl.ergohestia.ehj1.ivesta.services;
 
 public class CarService implements Service{
     public CarService() {
