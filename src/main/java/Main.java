@@ -1,11 +1,11 @@
 import com.fasterxml.jackson.databind.JsonNode;
-import repository.VehiclesLoading;
+import repository.VehiclesLoader;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        VehiclesLoading vehiclesInput = new VehiclesLoading();
+        VehiclesLoader vehiclesInput = new VehiclesLoader();
 
         String json = "";
 

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-public class VehiclesLoading {
+public class VehiclesLoader {
     private final ObjectMapper objectMapper = getDefaultObjectMapper();
 
     private ObjectMapper getDefaultObjectMapper(){

@@ -1,34 +1,39 @@
 package model;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class VehicleAttributes {
-    private String brand;
+    @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
-    private String type;
-    private String model;
-    private String variant;
-    private String version;
-    private String vehicleType;
-    private String vehicleSubType;
-    private String vehicleUsage;
-    private String vehicleOrigin;
-    private String namePlateType;
-    private String productionMethod;
-    private int productionYear;
-    private LocalDate countryFirstRegistrationDate;
-    private LocalDate countryLastRegistrationDate;
-    private LocalDate foreignRegistrationDate;
-    private double engineCapacity;
-    private double powerToWeightRatioForMotorcycles;
-    private double enginePower;
-    private double hybridEnginePower;
-    private int curbWeight;
-    private int vehicleReadyToRideWeight;
 
-    private int maxLoadCapacity;
+    @JsonProperty("model")
+    private String model;
+
+    @JsonProperty("rodzaj-pojazdu")
+    private String vehicleType;
+
+    @JsonProperty("sposob-produkcji")
+    private String productionMethod;
+
+    @JsonProperty("rok-produkcji")
+    private int productionYear;
+
+    @JsonProperty("pojemnosc-skokowa-silnika")
+    private double engineCapacity;
+
+    @JsonProperty("moc-netto-silnika")
+    private double enginePower;
+
+    @JsonProperty("moc-netto-silnika-hybrydowego")
+    private double hybridEnginePower;
+
+    @JsonProperty("liczba-miejsc-ogole")
     private int numberOfSits;
+
+    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
-
+    @JsonProperty("srednie-zuzycie-paliwa")
+    private double fuelConsumption;
 }
