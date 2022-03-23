@@ -1,7 +1,7 @@
-package Services;
+package services;
 
-public class CarService implements Service{
-    public CarService() {
+public class RouteService implements Service {
+    public RouteService() {
     }
 
     //TODO implementacja metody
