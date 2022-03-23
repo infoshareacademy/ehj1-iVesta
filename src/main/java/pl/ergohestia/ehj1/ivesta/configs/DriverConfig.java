@@ -9,8 +9,10 @@ public class DriverConfig {
 
     private static Path driverPath;
 
+    private static final String CSV_DELIMITER = ";";
+
     private static final CSVFormat DRIVERS_CSV_FORMAT = CSVFormat.RFC4180.builder()
-            .setDelimiter(";")
+            .setDelimiter(CSV_DELIMITER)
             .setHeader(DriverHeaders.class)
             .setSkipHeaderRecord(true)
             .build();
