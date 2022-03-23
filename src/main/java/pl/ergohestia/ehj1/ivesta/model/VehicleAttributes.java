@@ -1,4 +1,4 @@
-package model;
+package pl.ergohestia.ehj1.ivesta.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -10,7 +10,7 @@ public class VehicleAttributes {
     @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
 
-    @JsonProperty("model")
+    @JsonProperty("pl/ergohestia/ehj1/ivesta/model")
     private String model;
 
     @JsonProperty("rodzaj-pojazdu")

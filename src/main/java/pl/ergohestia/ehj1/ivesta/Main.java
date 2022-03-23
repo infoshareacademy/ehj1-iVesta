@@ -1,6 +1,6 @@
 package pl.ergohestia.ehj1.ivesta;
 
-import Services.MenuService;
+import pl.ergohestia.ehj1.ivesta.UI.MenuCLI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,18 +14,15 @@ public class Main {
     }
 
     private void run(){
-        MenuService menuService = new MenuService();
+        MenuCLI menuService = new MenuCLI();
 
         log.info("App starting.");
 
         SYSOUT.info("Witaj w aplikacji iVesta!");
 
         menuService.printMainMenu();
-        int menuItem = menuService.getMenuItem();
-        menuService.handleMainManu(menuItem);
+        menuService.handleMainMenu();
 
         log.info("Exit successful.");
     }
-
-
 }
