@@ -5,7 +5,6 @@ public class Main {
         MenuCLI menuService = new MenuCLI();
 
         menuService.printMainMenu();
-        int menuItem = menuService.getMenuItem();
-        menuService.handleMainManu(menuItem);
+        menuService.handleMainMenu();
     }
 }
