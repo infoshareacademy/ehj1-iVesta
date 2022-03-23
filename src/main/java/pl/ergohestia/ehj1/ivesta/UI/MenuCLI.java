@@ -1,5 +1,8 @@
 package pl.ergohestia.ehj1.ivesta.UI;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.Main;
 import pl.ergohestia.ehj1.ivesta.services.CarService;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
@@ -8,23 +11,26 @@ import java.util.Scanner;
 
 public class MenuCLI {
 
+    private static final Logger log = LoggerFactory.getLogger(MenuCLI.class);
+    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+
     CarService carService = new CarService();
     DriverService driverService = new DriverService();
     RouteService routeService = new RouteService();
 
     public void printMainMenu() {
-        System.out.println("Witaj w aplikacji iVesta!\n");
-        System.out.println("Wybierz jedną z poniższych opcji:");
-        System.out.println("1. Wyświetl kierowców.");
-        System.out.println("2. Wyświetl samochody.");
-        System.out.println("3. Zaplanuj trasę.");
+        SYSOUT.info("Witaj w aplikacji iVesta!\n");
+        SYSOUT.info("Wybierz jedną z poniższych opcji:");
+        SYSOUT.info("1. Wyświetl kierowców.");
+        SYSOUT.info("2. Wyświetl samochody.");
+        SYSOUT.info("3. Zaplanuj trasę.");
     }
 
     public int getMenuItem() {
         Scanner scanner = new Scanner(System.in);
         int item = 0;
         do {
-            System.out.print("Wybierz numer z menu: ");
+            SYSOUT.info("Wybierz numer z menu: ");
             if(!scanner.hasNextInt()){
                 scanner.next();
                 continue;
