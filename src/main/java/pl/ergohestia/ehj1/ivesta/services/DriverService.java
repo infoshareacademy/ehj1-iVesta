@@ -1,14 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import model.Driver;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import utils.DriversFileHeaders;
+import pl.ergohestia.ehj1.ivesta.model.Driver;
+import pl.ergohestia.ehj1.ivesta.utils.DriversFileHeaders;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
