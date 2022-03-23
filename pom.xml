@@ -25,7 +25,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>ehj1.ivesta.Main</mainClass>
+                            <mainClass>ehj1.ivesta.UI.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

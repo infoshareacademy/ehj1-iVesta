@@ -1,8 +1,10 @@
-import UI.MenuCLI;
+package UI;
+
+import services.MenuService;
 
 public class Main {
     public static void main(String[] args) {
-        MenuCLI menuService = new MenuCLI();
+        MenuService menuService = new MenuService();
 
         menuService.printMainMenu();
         menuService.handleMainMenu();

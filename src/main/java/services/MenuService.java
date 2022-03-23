@@ -1,12 +1,8 @@
-package UI;
-
-import services.CarService;
-import services.DriverService;
-import services.RouteService;
+package services;
 
 import java.util.Scanner;
 
-public class MenuCLI {
+public class MenuService {
 
     CarService carService = new CarService();
     DriverService driverService = new DriverService();
@@ -18,6 +14,15 @@ public class MenuCLI {
         System.out.println("1. Wyświetl kierowców.");
         System.out.println("2. Wyświetl samochody.");
         System.out.println("3. Zaplanuj trasę.");
+    }
+
+    public void serviceMainMenu(int item) {
+        switch (item) {
+            case 1 -> carService.printElements();
+            case 2 -> driverService.printElements();
+            case 3 -> routeService.printElements();
+            default -> handleMainMenu();
+        }
     }
 
     public int getMenuItem() {
@@ -33,15 +38,6 @@ public class MenuCLI {
         } while (item < 1);
 
         return item;
-    }
-
-    public void serviceMainMenu(int item) {
-        switch (item) {
-            case 1 -> carService.printElements();
-            case 2 -> driverService.printElements();
-            case 3 -> routeService.printElements();
-            default -> handleMainMenu();
-        }
     }
 
     public void handleMainMenu(){
