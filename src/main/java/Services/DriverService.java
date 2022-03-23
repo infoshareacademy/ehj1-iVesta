@@ -64,6 +64,8 @@ public class DriverService implements Service {
     //TODO implementacja metody
     @Override
     public void printElements() {
+        driversList.stream()
+                .forEach(System.out::println);
     }
 
     //TODO implementacja metody
