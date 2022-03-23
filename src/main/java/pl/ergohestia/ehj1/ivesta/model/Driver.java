@@ -1,4 +1,4 @@
-package model;
+package pl.ergohestia.ehj1.ivesta.model;
 
 import lombok.Getter;
 import lombok.Setter;

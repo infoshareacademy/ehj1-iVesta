@@ -1,4 +1,4 @@
-package Services;
+package pl.ergohestia.ehj1.ivesta.services;
 
 public class DriverService implements Service{
     public DriverService() {
