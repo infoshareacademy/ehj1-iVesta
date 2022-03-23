@@ -1,8 +1,12 @@
-package Services;
+package UI;
+
+import Services.CarService;
+import Services.DriverService;
+import Services.RouteService;
 
 import java.util.Scanner;
 
-public class MenuService {
+public class MenuCLI {
 
     CarService carService = new CarService();
     DriverService driverService = new DriverService();

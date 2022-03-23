@@ -1,8 +1,8 @@
-import Services.MenuService;
+import UI.MenuCLI;
 
 public class Main {
     public static void main(String[] args) {
-        MenuService menuService = new MenuService();
+        MenuCLI menuService = new MenuCLI();
 
         menuService.printMainMenu();
         int menuItem = menuService.getMenuItem();
