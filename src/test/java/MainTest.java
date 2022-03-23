@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import pl.ergohestia.ehj1.ivesta.Main;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
