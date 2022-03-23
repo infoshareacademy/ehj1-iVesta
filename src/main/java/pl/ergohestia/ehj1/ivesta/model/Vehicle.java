@@ -50,4 +50,29 @@ public class Vehicle {
     public Vehicle() {
     }
 
+    public Vehicle(String brand,
+                   String vehicleCategory,
+                   String model,
+                   String vehicleType,
+                   String productionMethod,
+                   String productionYear,
+                   double engineCapacity,
+                   double enginePower,
+                   double hybridEnginePower,
+                   int numberOfSeats,
+                   String fuelType,
+                   double fuelConsumption) {
+        this.brand = brand;
+        this.vehicleCategory = vehicleCategory;
+        this.model = model;
+        this.vehicleType = vehicleType;
+        this.productionMethod = productionMethod;
+        this.productionYear = productionYear;
+        this.engineCapacity = engineCapacity;
+        this.enginePower = enginePower;
+        this.hybridEnginePower = hybridEnginePower;
+        this.numberOfSeats = numberOfSeats;
+        this.fuelType = fuelType;
+        this.fuelConsumption = fuelConsumption;
+    }
 }
