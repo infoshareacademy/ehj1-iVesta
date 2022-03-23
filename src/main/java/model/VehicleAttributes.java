@@ -39,4 +39,28 @@ public class VehicleAttributes {
 
     @JsonProperty("srednie-zuzycie-paliwa")
     private double fuelConsumption;
+
+    public VehicleAttributes(String vehicleCategory,
+                             String model,
+                             String vehicleType,
+                             String productionMethod,
+                             int productionYear,
+                             double engineCapacity,
+                             double enginePower,
+                             double hybridEnginePower,
+                             int numberOfSits,
+                             String fuelType,
+                             double fuelConsumption) {
+        this.vehicleCategory = vehicleCategory;
+        this.model = model;
+        this.vehicleType = vehicleType;
+        this.productionMethod = productionMethod;
+        this.productionYear = productionYear;
+        this.engineCapacity = engineCapacity;
+        this.enginePower = enginePower;
+        this.hybridEnginePower = hybridEnginePower;
+        this.numberOfSits = numberOfSits;
+        this.fuelType = fuelType;
+        this.fuelConsumption = fuelConsumption;
+    }
 }

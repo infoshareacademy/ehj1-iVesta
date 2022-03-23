@@ -16,4 +16,10 @@ public class Vehicle {
 
     @JsonProperty("attributes")
     private VehicleAttributes attributes;
+
+    public Vehicle(Long id, String type, VehicleAttributes attributes) {
+        this.id = id;
+        this.type = type;
+        this.attributes = attributes;
+    }
 }
