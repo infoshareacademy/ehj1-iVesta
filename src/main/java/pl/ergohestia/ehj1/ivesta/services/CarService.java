@@ -1,7 +1,7 @@
-package services;
+package pl.ergohestia.ehj1.ivesta.services;
 
-public class RouteService implements Service {
-    public RouteService() {
+public class CarService implements Service{
+    public CarService() {
     }
 
     //TODO implementacja metody

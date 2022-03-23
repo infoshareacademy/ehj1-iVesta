@@ -1,8 +1,8 @@
-package UI;
+package pl.ergohestia.ehj1.ivesta.UI;
 
-import services.CarService;
-import services.DriverService;
-import services.RouteService;
+import pl.ergohestia.ehj1.ivesta.services.CarService;
+import pl.ergohestia.ehj1.ivesta.services.DriverService;
+import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.util.Scanner;
 
