@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class MenuCLI {
 
-    CarService carService = new CarService();
-    DriverService driverService = new DriverService();
-    RouteService routeService = new RouteService();
+    CarService carService;
+    DriverService driverService;
+    RouteService routeService;
 
     public int getMenuItem() {
         Scanner scanner = new Scanner(System.in);
