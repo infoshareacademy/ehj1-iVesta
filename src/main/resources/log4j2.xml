@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="30">
-    <Properties>
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n</Property>
-    </Properties>
-
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-8X{system} | %-5level %logger{1.} [%line] - %msg%n%throwable}{FATAL=black,ERROR=red,WARN=yellow,INFO=black,DEBUG=green,TRACE=cyan}" disableAnsi="false"/>
+            <PatternLayout pattern="%msg%n" disableAnsi="false"/>
         </Console>
         <RollingFile name="RollingFile" fileName="logs/currentLog.log" filePattern="logs/logs-%i.log.gz">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] | %-18marker | %-5level %logger [%line] - %msg%n%throwable"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] | %-5level %logger [%line] - %msg%n%throwable"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 KB" />
             </Policies>
@@ -18,8 +14,10 @@
     </Appenders>
     <Loggers>
         <Root level="all">
-            <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Root>
+        <Logger name ="SYSOUT" level="all" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
