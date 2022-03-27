@@ -59,7 +59,7 @@ public class VehicleAttributes {
         this.engineCapacity = engineCapacity;
         this.enginePower = enginePower;
         this.hybridEnginePower = hybridEnginePower;
-        this.numberOfSits = numberOfSeats;
+        this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
     }
