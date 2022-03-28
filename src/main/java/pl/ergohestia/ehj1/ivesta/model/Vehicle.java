@@ -46,6 +46,9 @@ public class Vehicle {
     @JsonProperty("srednie-zuzycie-paliwa")
     private double fuelConsumption;
 
+    @JsonProperty("max-ladownosc")
+    private double weightLimit;
+
 
     public Vehicle() {
     }
@@ -61,7 +64,8 @@ public class Vehicle {
                    double hybridEnginePower,
                    int numberOfSeats,
                    String fuelType,
-                   double fuelConsumption) {
+                   double fuelConsumption,
+                   double weightLimit) {
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
@@ -74,6 +78,7 @@ public class Vehicle {
         this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
+        this.weightLimit = weightLimit;
     }
 
     @Override
@@ -91,6 +96,7 @@ public class Vehicle {
                 ", numberOfSeats=" + numberOfSeats +
                 ", fuelType='" + fuelType + '\'' +
                 ", fuelConsumption=" + fuelConsumption +
+                ", weightLimit=" + weightLimit +
                 '}';
     }
 }

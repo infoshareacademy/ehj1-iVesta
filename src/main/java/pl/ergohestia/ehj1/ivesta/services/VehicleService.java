@@ -11,18 +11,32 @@ import java.util.List;
 
 public class VehicleService implements Service{
 
+    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+
     VehiclesLoader vehiclesLoader = new VehiclesLoader(Path.of("src/main/resources/input.json"));
 
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    VehicleValidator vehicleValidator;
+
 
     private final List<Vehicle> vehicleList;
 
     public VehicleService() {
         this.vehicleList = vehiclesLoader.getListOfVehicles();
+
     }
 
     public VehicleService(List<Vehicle> vehicleList){
         this.vehicleList = vehicleList;
+    }
+
+    public List<Vehicle> getValidVehicles(){
+        for (Vehicle vehicle : vehicleList) {
+            vehicleValidator = new VehicleValidator(vehicle);
+            if (!vehicleValidator.isVehicleValid()){
+                vehicleList.remove(vehicle);
+            }
+        }
+        return vehicleList;
     }
 
     public List<Vehicle> getVehiclesList(){
