@@ -1,49 +1,35 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
 import pl.ergohestia.ehj1.ivesta.model.Driver;
-import pl.ergohestia.ehj1.ivesta.utils.DriversFileHeaders;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-public class DriverService implements Service {
+public class DriverService extends DriverConfig implements Service<Driver> {
 
-    private static Path driversPath;
+    private static final Logger LOG = LoggerFactory.getLogger(MenuService.class);
+    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     private static List<Driver> driversList;
 
-    private static final CSVFormat DRIVERS_CSV_FORMAT = CSVFormat.RFC4180.builder()
-            .setSkipHeaderRecord(true)
-            .setHeader(DriversFileHeaders.class)
-            .build();
-
-    public DriverService(String driversPathStr) {
-        this.driversPath = Path.of(driversPathStr);
+    DriverService(String filePath) {
+        super(filePath);
     }
 
-    public List<Driver> importDrivers () {
-        try (FileReader fileReader = new FileReader(driversPath.toString());) {
+    public List<Driver> importDrivers() {
+        try (FileReader fileReader = new FileReader(super.driverPath.toString());) {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
                     .stream()
-                    .map(csvRecord -> {
-                        try {
-                            return convertToDriver(csvRecord);
-                        } catch (NoSuchElementException e) {
-                            //TODO log error;
-                            return null;
-                        }
-                    })
-                    .filter(driver -> driver!=null)
+                    .map(csvRecord -> convertToDriver(csvRecord))
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            //TODO log error
         }
         return driversList;
     }
@@ -60,15 +46,14 @@ public class DriverService implements Service {
         );
     }
 
-    //TODO implementacja metody
     @Override
     public void printElements() {
         driversList.stream()
                 .forEach(System.out::println);
     }
 
-    //TODO implementacja metody
     @Override
-    public void addElement() {
+    public void addElement(Driver driver) {
+        driversList.add(driver);
     }
 }
