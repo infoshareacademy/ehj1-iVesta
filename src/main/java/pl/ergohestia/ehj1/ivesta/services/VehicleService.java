@@ -21,6 +21,10 @@ public class VehicleService implements Service{
         this.vehicleList = vehiclesLoader.getListOfVehicles();
     }
 
+    public VehicleService(List<Vehicle> vehicleList){
+        this.vehicleList = vehicleList;
+    }
+
     public List<Vehicle> getVehiclesList(){
         return vehicleList;
     }

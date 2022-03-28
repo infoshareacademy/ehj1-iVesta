@@ -15,15 +15,14 @@ class VehicleServiceTest {
     void shouldGetVehiclesList() {
         //given
         sut = new VehicleService();
-        sut.addVehicleToList(new Vehicle());
-        sut.addVehicleToList(new Vehicle());
-        sut.addVehicleToList(new Vehicle());
+
 
         //when
         List<Vehicle> result = sut.getVehiclesList();
+        sut.printElements();
 
         //then
-        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.size()).isEqualTo(2);
     }
 
     @Test
@@ -36,7 +35,7 @@ class VehicleServiceTest {
         List<Vehicle> result = sut.getVehiclesList();
 
         //then
-        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.size()).isEqualTo(3);
     }
 
 }

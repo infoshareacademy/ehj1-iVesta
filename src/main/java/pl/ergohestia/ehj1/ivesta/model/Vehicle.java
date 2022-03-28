@@ -75,4 +75,22 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "brand='" + brand + '\'' +
+                ", vehicleCategory='" + vehicleCategory + '\'' +
+                ", model='" + model + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", productionMethod='" + productionMethod + '\'' +
+                ", productionYear='" + productionYear + '\'' +
+                ", engineCapacity=" + engineCapacity +
+                ", enginePower=" + enginePower +
+                ", hybridEnginePower=" + hybridEnginePower +
+                ", numberOfSeats=" + numberOfSeats +
+                ", fuelType='" + fuelType + '\'' +
+                ", fuelConsumption=" + fuelConsumption +
+                '}';
+    }
 }
