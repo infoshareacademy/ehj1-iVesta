@@ -11,7 +11,7 @@ public class MenuService {
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     VehicleService vehicleService = new VehicleService();
-    DriverService driverService = new DriverService();
+    DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
 
     public void printMainMenu() {

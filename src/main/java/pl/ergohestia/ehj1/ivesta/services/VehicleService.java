@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleService implements Service{
+public class VehicleService implements Service<Vehicle>{
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
@@ -53,8 +53,10 @@ public class VehicleService implements Service{
         vehicleList.forEach(x -> SYSOUT.info(String.valueOf(x)));
     }
 
-    //TODO implementacja metody
     @Override
-    public void addElement() {
+    public void addElement(Vehicle vehicle) {
+        vehicleList.add(vehicle);
     }
+
+
 }
