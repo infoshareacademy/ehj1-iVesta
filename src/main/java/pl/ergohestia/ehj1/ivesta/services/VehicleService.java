@@ -43,11 +43,6 @@ public class VehicleService implements Service<Vehicle>{
         return vehicleList;
     }
 
-    /*public void addVehicleToList(Vehicle vehicle){
-        vehicleList.add(vehicle);
-    }*/
-
-    //TODO implementacja metody
     @Override
     public void printElements() {
         vehicleList.forEach(x -> SYSOUT.info(String.valueOf(x)));
