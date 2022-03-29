@@ -13,9 +13,9 @@ public class MenuService {
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    CarService carService = new CarService();
-    DriverService driverService = new DriverService();
-    RouteService routeService = new RouteService();
+    CarService carService;
+    DriverService driverService;
+    RouteService routeService;
 
     public void printMainMenu() {
         SYSOUT.info("Witaj w aplikacji iVesta!\n");
