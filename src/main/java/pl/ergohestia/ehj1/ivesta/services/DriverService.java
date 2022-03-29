@@ -23,7 +23,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     }
 
     public List<Driver> importDrivers() {
-        try (FileReader fileReader = new FileReader(super.driverPath.toString());) {
+        try (FileReader fileReader = new FileReader(super.driverPath.toString())) {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
                     .stream()
