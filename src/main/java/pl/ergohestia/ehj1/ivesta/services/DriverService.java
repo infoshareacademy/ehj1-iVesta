@@ -28,22 +28,31 @@ public class DriverService extends DriverConfig implements Service<Driver> {
                     .parse(fileReader)
                     .stream()
                     .map(csvRecord -> convertToDriver(csvRecord))
+                    .filter(driver -> driver.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+            SYSOUT.error("Error while loading drivers CSV file: file does not exist.");
         }
         return driversList;
     }
 
     private static Driver convertToDriver(CSVRecord csvRecord) {
-        return new Driver(
-                csvRecord.get(0),
-                csvRecord.get(1),
-                csvRecord.get(2),
-                csvRecord.get(3),
-                csvRecord.get(4),
-                Integer.valueOf(csvRecord.get(5)),
-                Integer.valueOf(csvRecord.get(6))
-        );
+        Driver driver = new Driver(null,null,null,null,null,null,null);
+        try {
+            driver.setName(csvRecord.get(0));
+            driver.setLastName(csvRecord.get(1));
+            driver.setAddress(csvRecord.get(2));
+            driver.setPhoneNumber(csvRecord.get(3));
+            driver.setLicense(csvRecord.get(4));
+            driver.setNumberOfCourses(Integer.valueOf(csvRecord.get(5)));
+            driver.setNumberOfKilometres(Integer.valueOf(csvRecord.get(6)));
+        } catch (NumberFormatException e) {
+            SYSOUT.warn("Cannot read csv record: numerical columns have incorrect values.");
+        } catch (NullPointerException e) {
+            SYSOUT.warn("Cannot read csv record: columns without values have been found.");
+        }
+        return driver;
     }
 
     @Override
