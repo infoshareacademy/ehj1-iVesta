@@ -30,17 +30,6 @@ class VehiclesLoaderTest {
     }
 
     @Test
-    void shouldResultFromDefaultPathBeEqualToTestPath() {
-        // given
-        DefaultVehiclePath path = new DefaultVehiclePath();
-
-        // when
-
-        // then
-        assertThat(TEST_PATH).isEqualTo(path.vehiclePath);
-    }
-
-    @Test
     void shouldResultSizeFromDefaultBeEqualAsResultSizeFromParameter() {
         // given
         DefaultVehiclePath path = new DefaultVehiclePath("C:\\Users\\paszma1\\Downloads\\ehj1-iVesta\\src\\main\\resources\\input.json");
