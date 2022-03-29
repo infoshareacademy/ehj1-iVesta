@@ -45,17 +45,22 @@ public class VehicleService implements Service {
     @Override
     public void addElement() {
     }
+
     private Path getPath() {
-        SYSOUT.info("Czy pliki dotyczące pojazdu mają byc wczytane z domyślen ścieżki? \n T\\N");
-        String answer = scanner.nextLine();
-        if (answer.equalsIgnoreCase("t")) {
-            DefaultVehiclePath defaultPath = new DefaultVehiclePath();
-            return defaultPath.vehiclePath;
-        } else if (answer.equalsIgnoreCase("n")) {
-            SYSOUT.info("Proszę o podanie pełnej ścieżki z lokalizacją pliku: ");
-            answer = scanner.nextLine();
-            DefaultVehiclePath defaultPath = new DefaultVehiclePath(answer);
-            return defaultPath.vehiclePath;
+        try {
+            SYSOUT.info("Czy pliki dotyczące pojazdu mają byc wczytane z domyślen ścieżki? \n T\\N");
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("t")) {
+                DefaultVehiclePath defaultPath = new DefaultVehiclePath();
+                return defaultPath.vehiclePath;
+            } else if (answer.equalsIgnoreCase("n")) {
+                SYSOUT.info("Proszę o podanie pełnej ścieżki z lokalizacją pliku: ");
+                answer = scanner.nextLine();
+                DefaultVehiclePath defaultPath = new DefaultVehiclePath(answer);
+                return defaultPath.vehiclePath;
+            }
+        } catch (Exception e) {
+            SYSOUT.warn("Brak pliku w podanym katalogu! Sprawdź ponownie ścieżkę dostępu.");
         }
         return getVehiclePath();
     }
