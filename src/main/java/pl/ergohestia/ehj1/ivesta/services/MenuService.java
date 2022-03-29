@@ -12,6 +12,10 @@ public class MenuService {
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
+    VehicleService vehicleService = new VehicleService();
+    DriverService driverService = new DriverService("path");
+    RouteService routeService = new RouteService();
+
     private final Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
             "2. Wyświetl samochody.",
