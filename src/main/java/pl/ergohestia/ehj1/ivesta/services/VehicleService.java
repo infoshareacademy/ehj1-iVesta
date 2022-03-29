@@ -43,9 +43,9 @@ public class VehicleService implements Service<Vehicle>{
         return vehicleList;
     }
 
-    public void addVehicleToList(Vehicle vehicle){
+    /*public void addVehicleToList(Vehicle vehicle){
         vehicleList.add(vehicle);
-    }
+    }*/
 
     //TODO implementacja metody
     @Override
