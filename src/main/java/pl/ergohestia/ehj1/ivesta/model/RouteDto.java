@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Route {
+public class RouteDto {
 
     private String startCity;
     private String startAddress;
@@ -19,7 +19,7 @@ public class Route {
     private Integer cargoWeight;
     private Integer routeLength;
 
-    public Route(String startCity, String startAddress, String destinationCity, String destinationAddress, String driverName, String driverLastName, String assignedVehicle, String cargoType, Integer cargoWeight, Integer routeLength) {
+    public RouteDto(String startCity, String startAddress, String destinationCity, String destinationAddress, String driverName, String driverLastName, String assignedVehicle, String cargoType, Integer cargoWeight, Integer routeLength) {
         this.startCity = startCity;
         this.startAddress = startAddress;
         this.destinationCity = destinationCity;
@@ -32,6 +32,6 @@ public class Route {
         this.routeLength = routeLength;
     }
 
-    public Route() {
+    public RouteDto() {
     }
 }

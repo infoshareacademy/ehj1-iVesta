@@ -1,8 +1,8 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import pl.ergohestia.ehj1.ivesta.model.Route;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
-public class RouteService implements Service<Route>  {
+public class RouteService implements Service<RouteDto>  {
     public RouteService() {
     }
 
@@ -13,7 +13,7 @@ public class RouteService implements Service<Route>  {
 
     //TODO implementacja metody
     @Override
-    public void addElement(Route route) {
+    public void addElement(RouteDto routeDto) {
     }
 
 

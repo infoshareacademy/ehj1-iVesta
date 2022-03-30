@@ -1,5 +1,4 @@
 package pl.ergohestia.ehj1.ivesta.entities;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
