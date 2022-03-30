@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.model.Route;
-import pl.ergohestia.ehj1.ivesta.repository.RoutesLoader;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
@@ -37,7 +36,6 @@ public class MenuService {
 
     private void subMenuNo3() {
         logSubMenu(3);
-        // UI route serivce - wczyta dane, zwróci Route (Arek)
         Route route = routesLoader.loadRoute(System.in);
         log.debug("Loaded route: {}", route);
 
