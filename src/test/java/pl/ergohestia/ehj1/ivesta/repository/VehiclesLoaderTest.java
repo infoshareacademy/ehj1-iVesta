@@ -32,7 +32,7 @@ class VehiclesLoaderTest {
     @Test
     void shouldResultSizeFromDefaultBeEqualAsResultSizeFromParameter() {
         // given
-        DefaultVehiclePath path = new DefaultVehiclePath("C:\\Users\\paszma1\\Downloads\\ehj1-iVesta\\src\\main\\resources\\input.json");
+        DefaultVehiclePath path = new DefaultVehiclePath("src\\main\\resources\\input.json");
         VehiclesLoader newVehicle = new VehiclesLoader(path.vehiclePath);
         // when
         DefaultVehiclePath path2 = new DefaultVehiclePath();
