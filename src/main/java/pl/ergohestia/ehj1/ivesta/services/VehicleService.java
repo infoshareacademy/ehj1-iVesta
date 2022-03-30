@@ -2,6 +2,7 @@ package pl.ergohestia.ehj1.ivesta.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.Main;
 import pl.ergohestia.ehj1.ivesta.model.Vehicle;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class VehicleService implements Service<Vehicle>{
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private static final Logger log = LoggerFactory.getLogger(VehicleService.class);
 
     VehiclesLoader vehiclesLoader = new VehiclesLoader(Path.of("src/main/resources/input.json"));
 
@@ -33,6 +35,7 @@ public class VehicleService implements Service<Vehicle>{
         for (Vehicle vehicle : vehicleList) {
             vehicleValidator = new VehicleValidator(vehicle);
             if (!vehicleValidator.isVehicleValid()){
+                log.info(vehicle + "has been removed");
                 vehicleList.remove(vehicle);
             }
         }
