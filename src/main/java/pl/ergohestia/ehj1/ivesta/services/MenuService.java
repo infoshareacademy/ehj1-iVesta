@@ -39,8 +39,8 @@ public class MenuService {
 
     public void serviceMainMenu(int item) {
         switch (item) {
-            case 1 -> vehicleService.printElements();
-            case 2 -> driverService.printElements();
+            case 1 -> driverService.printElements();
+            case 2 -> vehicleService.printElements();
             case 3 -> routeService.printElements();
             default -> handleMainMenu();
         }
