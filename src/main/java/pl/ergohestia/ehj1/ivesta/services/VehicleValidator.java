@@ -22,7 +22,7 @@ public class VehicleValidator {
     public boolean isVehicleValid() {
         validateSeats();
         validateVehicleCategory();
-        validateWeightLLimit();
+        validateWeightLimit();
         validateYearProduction();
         validateVehicleType();
 
