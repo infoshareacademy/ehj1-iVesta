@@ -55,6 +55,10 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         return driver;
     }
 
+    public static List<Driver> getDriversList() {
+        return driversList;
+    }
+
     @Override
     public void printElements() {
         driversList.stream()
