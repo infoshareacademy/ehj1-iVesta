@@ -17,7 +17,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     private static final Logger LOG = LoggerFactory.getLogger(DriverService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private static List<Driver> driversList;
+    private List<Driver> driversList;
 
     public DriverService(String filePath) {
         super(filePath);
@@ -38,7 +38,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         return driversList;
     }
 
-    private static Driver convertToDriver(CSVRecord csvRecord) {
+    private Driver convertToDriver(CSVRecord csvRecord) {
         Driver driver = new Driver(null,null,null,null,null,null,null);
         try {
             driver.setName(csvRecord.get(0));
@@ -56,7 +56,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         return driver;
     }
 
-    public static List<Driver> getDriversList() {
+    public List<Driver> getDriversList() {
         return driversList;
     }
 
@@ -68,6 +68,11 @@ public class DriverService extends DriverConfig implements Service<Driver> {
 
     @Override
     public void addElement(Driver driver) {
-        driversList.add(driver);
+        if(driver != null) {
+            driversList.add(driver);
+        } else {
+            LOG.warn("Cannot add driver to the list: driver object is null.");
+            SYSOUT.warn("Driver addition to the list failed.");
+        }
     }
 }
