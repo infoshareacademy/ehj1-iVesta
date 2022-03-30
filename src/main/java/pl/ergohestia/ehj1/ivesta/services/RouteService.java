@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Route;
+import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,14 @@ public class RouteService implements Service<Route> {
 
     public void addRouteToList(Route route) {
         routeList.add(route);
+    }
+
+    public TransportType convertToTransportType(char input) {
+        return switch(input) {
+            case 'o' -> TransportType.PASSENGERS;
+            case 't' -> TransportType.CARGO;
+            default -> throw new IllegalStateException("Unexpected value: " + input);
+        };
     }
 
     //TODO implementacja metody
