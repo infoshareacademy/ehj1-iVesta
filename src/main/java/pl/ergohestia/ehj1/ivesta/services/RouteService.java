@@ -1,6 +1,5 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import pl.ergohestia.ehj1.ivesta.model.Driver;
 import pl.ergohestia.ehj1.ivesta.model.Route;
 
 public class RouteService implements Service<Route>  {
