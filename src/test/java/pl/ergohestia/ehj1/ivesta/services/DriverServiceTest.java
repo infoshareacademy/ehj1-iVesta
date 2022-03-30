@@ -13,7 +13,7 @@ class DriverServiceTest {
     private DriverService sut = new DriverService(TEST_FILE_PATH);
 
     @Test
-    void shouldReturnDriversListWhenCsvFileIsCorrect() {
+    void shouldReturnDriversListFromCsvWhenFileIsCorrect() {
         // given
 
         // when
@@ -25,7 +25,7 @@ class DriverServiceTest {
     }
 
     @Test
-    void shouldAddElement() {
+    void shouldAddElementToDriversList() {
         // given
         Driver testDriver = new Driver("test","test","test","test","test",1,1);
 
@@ -37,11 +37,5 @@ class DriverServiceTest {
         // then
         assertThat(result).isNotNull();
         assertThat(result.get(result.size()-1)).isEqualTo(testDriver);
-    }
-
-    private List<Driver> createTestList() {
-        Driver driver1 = new Driver("imie1","nazwisko1","adres1","0","licencja1",1,2);
-        Driver driver2 = new Driver("imie2","nazwisko2","adres2","0","licencja2",2,3);
-        return List.of(driver1, driver2);
     }
 }
