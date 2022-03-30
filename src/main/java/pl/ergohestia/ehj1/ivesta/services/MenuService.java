@@ -31,6 +31,9 @@ public class MenuService {
 
     private void subMenuNo3() {
         logSubMenu(3);
+        // UI route serivce - wczyta dane, zwróci Route (Arek)
+        // route serivce - dodaje drivera i auto (Michał)
+        // wypisanie wyniku (Michał)
     }
 
     private void logSubMenu(int index) {
