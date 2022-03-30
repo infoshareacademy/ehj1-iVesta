@@ -8,6 +8,7 @@ import lombok.Setter;
 
 public class RouteDto {
 
+    public Long id;
     private String startCity;
     private String startAddress;
     private String destinationCity;
@@ -30,8 +31,5 @@ public class RouteDto {
         this.cargoType = cargoType;
         this.cargoWeight = cargoWeight;
         this.routeLength = routeLength;
-    }
-
-    public RouteDto() {
     }
 }
