@@ -2,10 +2,11 @@ package pl.ergohestia.ehj1.ivesta.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-
+@ToString
 public class Route {
 
     private String startAddress;
