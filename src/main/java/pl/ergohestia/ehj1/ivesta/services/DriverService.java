@@ -63,7 +63,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     @Override
     public void printElements() {
         driversList.stream()
-                .forEach(System.out::println);
+                .forEach(n -> SYSOUT.info(n.toString()));
     }
 
     @Override
