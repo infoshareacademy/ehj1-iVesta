@@ -12,15 +12,15 @@ public class Route {
     private String startAddress;
     private String destinationAddress;
     private Integer routeLength;
-    private String cargoType;
-    private Integer cargoWeight;
+    private TransportType transportType;
+    private Integer transportVolume;
 
-    public Route(String startAddress, String destinationAddress, Integer routeLength, String cargoType, Integer cargoWeight) {
+    public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
         this.routeLength = routeLength;
-        this.cargoType = cargoType;
-        this.cargoWeight = cargoWeight;
+        this.transportType = transportType;
+        this.transportVolume = transportVolume;
     }
 
     public Route() {
