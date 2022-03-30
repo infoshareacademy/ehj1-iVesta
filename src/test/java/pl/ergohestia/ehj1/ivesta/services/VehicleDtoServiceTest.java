@@ -1,17 +1,15 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import lombok.ToString;
 import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
-import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.nio.file.Path;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class VehicleServiceTest {
+class VehicleDtoServiceTest {
     private VehicleService sut;
 
     @Test
@@ -21,7 +19,7 @@ class VehicleServiceTest {
 
 
         //when
-        List<Vehicle> result = sut.getVehiclesList();
+        List<VehicleDto> result = sut.getVehiclesList();
         sut.printElements();
 
         //then
@@ -34,8 +32,8 @@ class VehicleServiceTest {
         sut = new VehicleService();
 
         //when
-        sut.addElement(new Vehicle());
-        List<Vehicle> result = sut.getVehiclesList();
+        sut.addElement(new VehicleDto());
+        List<VehicleDto> result = sut.getVehiclesList();
 
         //then
         assertThat(result.size()).isEqualTo(3);

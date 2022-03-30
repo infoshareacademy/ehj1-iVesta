@@ -3,16 +3,14 @@ package pl.ergohestia.ehj1.ivesta.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
-import pl.ergohestia.ehj1.ivesta.Main;
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class VehicleService implements Service<Vehicle>{
+public class VehicleService implements Service<VehicleDto>{
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     Scanner scanner = new Scanner(System.in);
@@ -29,41 +27,41 @@ public class VehicleService implements Service<Vehicle>{
 
 
 
-    private final List<Vehicle> vehicleList;
+    private final List<VehicleDto> vehicleDtoList;
 
     public VehicleService() {
-        this.vehicleList = vehiclesLoader.getListOfVehicles();
+        this.vehicleDtoList = vehiclesLoader.getListOfVehicles();
 
     }
 
-    public VehicleService(List<Vehicle> vehicleList){
-        this.vehicleList = vehicleList;
+    public VehicleService(List<VehicleDto> vehicleDtoList){
+        this.vehicleDtoList = vehicleDtoList;
     }
 
-    public List<Vehicle> getValidVehicles(){
-        for (Vehicle vehicle : vehicleList) {
-            vehicleValidator = new VehicleValidator(vehicle);
+    public List<VehicleDto> getValidVehicles(){
+        for (VehicleDto vehicleDto : vehicleDtoList) {
+            vehicleValidator = new VehicleValidator(vehicleDto);
             if (!vehicleValidator.isVehicleValid()){
-                log.info(vehicle + "has been removed");
-                vehicleList.remove(vehicle);
+                log.info(vehicleDto + "has been removed");
+                vehicleDtoList.remove(vehicleDto);
             }
         }
-        return vehicleList;
+        return vehicleDtoList;
     }
 
-    public List<Vehicle> getVehiclesList(){
-        return vehicleList;
+    public List<VehicleDto> getVehiclesList(){
+        return vehicleDtoList;
     }
 
     @Override
     public void printElements() {
-        vehicleList.forEach(x -> SYSOUT.info(String.valueOf(x)));
+        vehicleDtoList.forEach(x -> SYSOUT.info(String.valueOf(x)));
     }
 
     //TODO implementacja metody
     @Override
-    public void addElement(Vehicle vehicle) {
-        vehicleList.add(vehicle);
+    public void addElement(VehicleDto vehicleDto) {
+        vehicleDtoList.add(vehicleDto);
     }
 
     private Path getPath() {
