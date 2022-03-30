@@ -2,7 +2,9 @@ package pl.ergohestia.ehj1.ivesta.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.model.Menu;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuService {
@@ -14,42 +16,76 @@ public class MenuService {
     DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
 
-    public void printMainMenu() {
-        SYSOUT.info("Witaj w aplikacji iVesta!\n");
-        SYSOUT.info("Wybierz jedną z poniższych opcji:");
-        SYSOUT.info("1. Wyświetl kierowców.");
-        SYSOUT.info("2. Wyświetl samochody.");
-        SYSOUT.info("3. Zaplanuj trasę.");
+    private final Menu mainMenu = new Menu(
+            "1. Wyświetl kierowców.",
+            "2. Wyświetl samochody.",
+            "3. Zaplanuj trasę.");
+
+    private void subMenuNo1() {
+        logSubMenu(1);
     }
 
-    public int getMenuItem() {
+    private void subMenuNo2() {
+        logSubMenu(2);
+    }
+
+    private void subMenuNo3() {
+        logSubMenu(3);
+    }
+
+    private void logSubMenu(int index) {
+        int menuIndex = index - 1;
+        String subMenuName = mainMenu.menuItems.get(menuIndex);
+        SYSOUT.info("Wybrałeś: " + subMenuName);
+        log.info("User correctly chose " + index + " in menu");
+    }
+
+    public void menu() {
+        printMenu(mainMenu.menuItems);
+        serviceMainMenu();
+    }
+
+    private void serviceMainMenu() {
+        int item;
+        while (true) {
+            item = getMenuItem();
+            switch (item) {
+                case 1 -> subMenuNo1();
+                case 2 -> subMenuNo2();
+                case 3 -> subMenuNo3();
+                default -> {
+                    log.info("User incorrectly wrote " + item + " in menu");
+                    continue;
+                }
+            }
+            break;
+        }
+    }
+
+    private void printMenu(List<String> menuItems) {
+        for (String item : menuItems) {
+            SYSOUT.info(item);
+        }
+    }
+
+    private int getMenuItem() {
         Scanner scanner = new Scanner(System.in);
         int item = 0;
+        String incorrecltyInput;
         do {
             SYSOUT.info("Wybierz numer z menu: ");
-            if(!scanner.hasNextInt()){
-                scanner.next();
+            if (!scanner.hasNextInt()) {
+                incorrecltyInput = scanner.next();
+                log.info("User incorrectly wrote " + incorrecltyInput + " in menu");
                 continue;
             }
             item = scanner.nextInt();
+            if (item < 1) {
+                log.info("User incorrectly wrote " + item + " in menu");
+            }
         } while (item < 1);
 
         return item;
     }
-
-    public void serviceMainMenu(int item) {
-        switch (item) {
-            case 1 -> vehicleService.printElements();
-            case 2 -> driverService.printElements();
-            case 3 -> routeService.printElements();
-            default -> handleMainMenu();
-        }
-    }
-
-    public void handleMainMenu(){
-        int menuItem = getMenuItem();
-        serviceMainMenu(menuItem);
-    }
-
 
 }

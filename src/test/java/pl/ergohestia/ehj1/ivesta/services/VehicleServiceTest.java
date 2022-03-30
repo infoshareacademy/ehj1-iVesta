@@ -31,7 +31,7 @@ class VehicleServiceTest {
         sut = new VehicleService();
 
         //when
-        sut.addVehicleToList(new Vehicle());
+        sut.addElement(new Vehicle());
         List<Vehicle> result = sut.getVehiclesList();
 
         //then
