@@ -19,7 +19,7 @@ public class MenuService {
     DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
 
-    private final Menu mainMenu = new Menu(
+    private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
             "2. Wyświetl samochody.",
             "3. Zaplanuj trasę.");
@@ -41,13 +41,13 @@ public class MenuService {
 
     private void logSubMenu(int index) {
         int menuIndex = index - 1;
-        String subMenuName = mainMenu.menuItems.get(menuIndex);
+        String subMenuName = mainMenu.getMenuItems().get(menuIndex);
         SYSOUT.info("Wybrałeś: " + subMenuName);
         log.info("User correctly chose " + index + " in menu");
     }
-
+    // TODO getter
     public void menu() {
-        printMenu(mainMenu.menuItems);
+        printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
     }
 
