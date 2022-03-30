@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.services.MenuService;
+import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
@@ -22,6 +23,8 @@ public class Main {
 
         menuService.menu();
 
+
         log.info("Exit successful.");
+
     }
 }
