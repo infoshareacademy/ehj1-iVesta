@@ -27,10 +27,10 @@ public class RouteService implements Service<Route> {
         routeList.add(route);
     }
 
-    public TransportType convertToTransportType(char input) {
+    public TransportType convertToTransportType(String input) {
         return switch(input) {
-            case 'o' -> TransportType.PASSENGERS;
-            case 't' -> TransportType.CARGO;
+            case "o" -> TransportType.PASSENGERS;
+            case "t" -> TransportType.CARGO;
             default -> throw new IllegalStateException("Unexpected value: " + input);
         };
     }
