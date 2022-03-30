@@ -7,8 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 
 import java.io.FileReader;
@@ -28,8 +27,8 @@ public class VehiclesLoader {
         this.path = path.toString();
     }
 
-    public List<Vehicle> getListOfVehicles() {
-        List<Vehicle> vehicleList = new ArrayList<>();
+    public List<VehicleDto> getListOfVehicles() {
+        List<VehicleDto> vehicleDtoList = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader(path)) {
@@ -40,13 +39,13 @@ public class VehiclesLoader {
                 JSONObject vehicleObject = (JSONObject) o;
                 JsonNode attributes = objectMapper.readTree(vehicleObject.toJSONString());
                 JsonNode node = objectMapper.readTree(String.valueOf(attributes.get(ATTRIBUTES)));
-                vehicleList.add(fromJson(node, Vehicle.class));
+                vehicleDtoList.add(fromJson(node, VehicleDto.class));
             }
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return vehicleList;
+        return vehicleDtoList;
     }
 
     public <A> A fromJson(JsonNode node, Class<A> classA) throws JsonProcessingException {

@@ -1,20 +1,20 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleValidator {
 
-    private Vehicle vehicle;
+    private VehicleDto vehicleDto;
     private List<String> notValidParameters;
 
     public VehicleValidator() {
     }
 
-    public VehicleValidator(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public VehicleValidator(VehicleDto vehicleDto) {
+        this.vehicleDto = vehicleDto;
         this.notValidParameters = new ArrayList<>();
         validateConfigOfYearAndMethodProduction();
     }
@@ -30,32 +30,32 @@ public class VehicleValidator {
     }
 
     public void validateSeats() {
-        if (!(vehicle.getNumberOfSeats() > 0)) {
+        if (!(vehicleDto.getNumberOfSeats() > 0)) {
             addParameterToList("Seats");
         }
     }
 
     public void validateYearProduction() {
-        String year = vehicle.getProductionYear();
+        String year = vehicleDto.getProductionYear();
         if (!(year.length() == 4) || !Service.isNumeric(year)) {
             addParameterToList("Production year");
         }
     }
 
     public void validateVehicleCategory() {
-        if (vehicle.getVehicleCategory() == null) {
+        if (vehicleDto.getVehicleCategory() == null) {
             addParameterToList("Vehicle category");
         }
     }
 
     public void validateWeightLimit(){
-        if(!(vehicle.getWeightLimit() > 0)){
+        if(!(vehicleDto.getWeightLimit() > 0)){
             addParameterToList("Max weight");
         }
     }
 
     public void validateVehicleType(){
-        if(vehicle.getVehicleType() == null){
+        if(vehicleDto.getVehicleType() == null){
             addParameterToList("Vehicle type");
         }
     }
@@ -69,11 +69,11 @@ public class VehicleValidator {
     }
 
     private void validateConfigOfYearAndMethodProduction() {
-        String productionMethod = vehicle.getProductionMethod();
-        String productionYear = vehicle.getProductionYear();
+        String productionMethod = vehicleDto.getProductionMethod();
+        String productionYear = vehicleDto.getProductionYear();
         if (Service.isNumeric(productionMethod)) {
-            vehicle.setProductionYear(productionMethod);
-            vehicle.setProductionMethod(productionYear);
+            vehicleDto.setProductionYear(productionMethod);
+            vehicleDto.setProductionMethod(productionYear);
         }
     }
 

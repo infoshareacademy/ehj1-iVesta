@@ -8,7 +8,9 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class Vehicle {
+public class VehicleDto {
+
+    private Long id;
 
     @JsonProperty("marka")
     private String brand;
@@ -50,22 +52,22 @@ public class Vehicle {
     private double weightLimit;
 
 
-    public Vehicle() {
+    public VehicleDto() {
     }
 
-    public Vehicle(String brand,
-                   String vehicleCategory,
-                   String model,
-                   String vehicleType,
-                   String productionMethod,
-                   String productionYear,
-                   double engineCapacity,
-                   double enginePower,
-                   double hybridEnginePower,
-                   int numberOfSeats,
-                   String fuelType,
-                   double fuelConsumption,
-                   double weightLimit) {
+    public VehicleDto(String brand,
+                      String vehicleCategory,
+                      String model,
+                      String vehicleType,
+                      String productionMethod,
+                      String productionYear,
+                      double engineCapacity,
+                      double enginePower,
+                      double hybridEnginePower,
+                      int numberOfSeats,
+                      String fuelType,
+                      double fuelConsumption,
+                      double weightLimit) {
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;

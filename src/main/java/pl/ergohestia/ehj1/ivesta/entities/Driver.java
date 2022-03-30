@@ -20,23 +20,27 @@ public class Driver {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "last_name")
     private String lastName;
 
     @Column
     private String address;
 
-    @Column
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Column
     private String license;
 
-    @Column
+    @Column(name = "number_of_columns")
     private Integer numberOfCourses;
 
-    @Column
+    @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
+
+    @OneToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
 }
 
 
