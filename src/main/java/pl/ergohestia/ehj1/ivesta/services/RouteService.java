@@ -34,6 +34,9 @@ public class RouteService implements Service {
     //TODO implementacja metody
 
     @Override
-    public void addElement() {
+    public void addElement(Route route) {
     }
+
+
+
 }
