@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class VehicleValidatorTest {
 
     VehicleValidator sut;
-    Vehicle testVehicle = new Vehicle("Peugeot", "A1", "201","osobowy", "1991", null, 2000, 69, 0, 6, "ON", 0,25);
+    Vehicle testVehicle = new Vehicle("Peugeot", "A1", "201","osobowy", "1991", "ASDFGH", 2000, 69, 0, 6, "ON", 0,25);
     Vehicle testVehicle1 = new Vehicle("Peugeot", null, "201","osobowy", null, "199", 2000, 69, 0, 0, "ON", 0,0);
 
     @Test

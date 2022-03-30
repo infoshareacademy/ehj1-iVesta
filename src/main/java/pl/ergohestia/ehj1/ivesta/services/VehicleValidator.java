@@ -55,7 +55,7 @@ public class VehicleValidator {
     }
 
     public void validateVehicleType(){
-        if(!(vehicle.getVehicleType() == null)){
+        if(vehicle.getVehicleType() == null){
             addParameterToList("Vehicle type");
         }
     }
