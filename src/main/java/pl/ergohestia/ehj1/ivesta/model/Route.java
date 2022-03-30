@@ -14,19 +14,24 @@ public class Route {
     private String destinationAddress;
     private String driverName;
     private String driverLastName;
+    private String assignedVehicle;
     private String cargoType;
     private Integer cargoWeight;
     private Integer routeLength;
 
-    public Route(String startCity, String startAddress, String destinationCity, String destinationAddress, String driverName, String driverLastName, String cargoType, Integer cargoWeight, Integer routeLength) {
+    public Route(String startCity, String startAddress, String destinationCity, String destinationAddress, String driverName, String driverLastName, String assignedVehicle, String cargoType, Integer cargoWeight, Integer routeLength) {
         this.startCity = startCity;
         this.startAddress = startAddress;
         this.destinationCity = destinationCity;
         this.destinationAddress = destinationAddress;
         this.driverName = driverName;
         this.driverLastName = driverLastName;
+        this.assignedVehicle = assignedVehicle;
         this.cargoType = cargoType;
         this.cargoWeight = cargoWeight;
         this.routeLength = routeLength;
+    }
+
+    public Route() {
     }
 }

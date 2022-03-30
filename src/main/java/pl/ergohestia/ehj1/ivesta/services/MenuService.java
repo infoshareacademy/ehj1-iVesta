@@ -2,6 +2,9 @@ package pl.ergohestia.ehj1.ivesta.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.services.CarService;
+import pl.ergohestia.ehj1.ivesta.services.DriverService;
+import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.util.Scanner;
 
@@ -10,9 +13,9 @@ public class MenuService {
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    VehicleService vehicleService = new VehicleService();
-    DriverService driverService = new DriverService();
-    RouteService routeService = new RouteService();
+    CarService carService;
+    DriverService driverService;
+    RouteService routeService;
 
     public void printMainMenu() {
         SYSOUT.info("Witaj w aplikacji iVesta!\n");
@@ -39,7 +42,7 @@ public class MenuService {
 
     public void serviceMainMenu(int item) {
         switch (item) {
-            case 1 -> vehicleService.printElements();
+            case 1 -> carService.printElements();
             case 2 -> driverService.printElements();
             case 3 -> routeService.printElements();
             default -> handleMainMenu();
