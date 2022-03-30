@@ -7,7 +7,7 @@ import pl.ergohestia.ehj1.ivesta.model.Route;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteService implements Service {
+public class RouteService implements Service<Route> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
