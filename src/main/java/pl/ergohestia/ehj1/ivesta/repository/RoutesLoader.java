@@ -35,7 +35,7 @@ public class RoutesLoader {
                 Integer cargoWeight = Integer.parseInt(routesLineSplitted[8]);
                 Integer routeLength = Integer.parseInt(routesLineSplitted[9]);
 
-                Route route = new Route(startCity, startAddress, destinationCity, destinationAddress, driverName, driverLastName, assignedVehicle, cargoType, cargoWeight, routeLength);
+                Route route = new Route(startAddress, destinationAddress, routeLength, cargoType, cargoWeight);
                 routeService.addRouteToList(route);
             }
         } catch (IOException e) {
