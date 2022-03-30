@@ -72,7 +72,7 @@ class VehicleValidatorTest {
         sut = new VehicleValidator(testVehicle1);
 
         //when
-        sut.validateWeightLLimit();
+        sut.validateWeightLimit();
 
         //then
         assertThat(sut.getNotValidParameters().size()).isEqualTo(1);
