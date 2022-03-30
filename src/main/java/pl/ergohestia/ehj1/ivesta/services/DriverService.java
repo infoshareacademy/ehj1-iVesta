@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DriverService extends DriverConfig implements Service<Driver> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MenuService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DriverService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     private static List<Driver> driversList;
