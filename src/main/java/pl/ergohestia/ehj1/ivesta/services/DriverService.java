@@ -46,8 +46,8 @@ public class DriverService extends DriverConfig implements Service<Driver> {
             driver.setAddress(csvRecord.get(2));
             driver.setPhoneNumber(csvRecord.get(3));
             driver.setLicense(csvRecord.get(4));
-            driver.setNumberOfCourses(Integer.valueOf(csvRecord.get(5)));
-            driver.setNumberOfKilometres(Integer.valueOf(csvRecord.get(6)));
+            driver.setNumberOfCourses(Math.abs(Integer.valueOf(csvRecord.get(5))));
+            driver.setNumberOfKilometres(Math.abs(Integer.valueOf(csvRecord.get(6))));
         } catch (NumberFormatException e) {
             SYSOUT.warn("Cannot read csv record: numerical columns have incorrect values.");
         } catch (NullPointerException e) {
@@ -69,6 +69,8 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     @Override
     public void addElement(Driver driver) {
         if(driver != null) {
+            driver.setNumberOfCourses(Math.abs(driver.getNumberOfCourses()));
+            driver.setNumberOfKilometres(Math.abs(driver.getNumberOfKilometres()));
             driversList.add(driver);
         } else {
             LOG.warn("Cannot add driver to the list: driver object is null.");
