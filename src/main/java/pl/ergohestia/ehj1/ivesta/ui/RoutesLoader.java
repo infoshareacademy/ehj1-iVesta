@@ -1,4 +1,4 @@
-package pl.ergohestia.ehj1.ivesta.repository;
+package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
