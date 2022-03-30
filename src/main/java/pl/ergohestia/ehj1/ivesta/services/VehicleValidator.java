@@ -48,14 +48,14 @@ public class VehicleValidator {
         }
     }
 
-    public void validateWeightLLimit(){
+    public void validateWeightLimit(){
         if(!(vehicle.getWeightLimit() > 0)){
             addParameterToList("Max weight");
         }
     }
 
     public void validateVehicleType(){
-        if(!(vehicle.getVehicleType() == null)){
+        if(vehicle.getVehicleType() == null){
             addParameterToList("Vehicle type");
         }
     }

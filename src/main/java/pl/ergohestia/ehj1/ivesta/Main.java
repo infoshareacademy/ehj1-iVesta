@@ -2,8 +2,7 @@ package pl.ergohestia.ehj1.ivesta;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.services.MenuService;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
+import pl.ergohestia.ehj1.ivesta.ui.MenuService;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
