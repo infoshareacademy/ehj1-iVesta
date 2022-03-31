@@ -6,7 +6,6 @@ import pl.ergohestia.ehj1.ivesta.model.Route;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.io.InputStream;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RoutesLoader {
@@ -25,23 +24,10 @@ public class RoutesLoader {
         String destinationAddress = scanner.nextLine();
 
         SYSOUT.info("Podaj długość trasy");
-        Integer routeLength = 0;
-        boolean correctData = false;
-        do {
-            try {
-                routeLength = scanner.nextInt();
-                if (routeLength <= 0) {
-                    SYSOUT.info("Podaj liczbę całkowitą dodatnią");
-                } else {
-                    correctData = true;
-                }
-            } catch (InputMismatchException e) {
-                SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
-                scanner.next();
-            }
-        } while (!correctData);
+        Integer routeLength = routeService.positiveIntegerValidator(scanner);
 
         SYSOUT.info("Podaj rodzaj przewozu (o - osoby, t - towary)");
+        boolean correctData = false;
         String transportTypeInput = "";
         do {
             transportTypeInput = scanner.next();
@@ -54,21 +40,7 @@ public class RoutesLoader {
         while (!correctData);
 
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
-        Integer transportVolume = 0;
-        correctData = false;
-        do {
-            try {
-                transportVolume = scanner.nextInt();
-                if (transportVolume <= 0) {
-                    SYSOUT.info("Podaj liczbę całkowitą dodatnią");
-                } else {
-                    correctData = true;
-                }
-            } catch (InputMismatchException e) {
-                SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
-                scanner.next();
-            }
-        } while (!correctData);
+        Integer transportVolume = routeService.positiveIntegerValidator(scanner);
 
         return new Route(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
     }
