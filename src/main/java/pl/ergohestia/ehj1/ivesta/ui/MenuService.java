@@ -7,6 +7,7 @@ import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +15,8 @@ public class MenuService {
 
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+
+    private InputStreamProvider in = new InputStreamProvider();
 
     VehicleService vehicleService = new VehicleService();
     DriverService driverService = new DriverService("path");
@@ -45,7 +48,7 @@ public class MenuService {
         SYSOUT.info("Wybrałeś: " + subMenuName);
         log.info("User correctly chose " + index + " in menu");
     }
-    // TODO getter
+
     public void menu() {
         printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
@@ -75,7 +78,7 @@ public class MenuService {
     }
 
     private int getMenuItem() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(in.getInputStream());
         int item = 0;
         String incorrecltyInput;
         do {
