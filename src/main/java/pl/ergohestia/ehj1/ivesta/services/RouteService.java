@@ -35,7 +35,6 @@ public class RouteService implements Service<Route> {
         };
     }
 
-    //TODO implementacja metody
     @Override
     public void printElements() {
         routeList.forEach(x -> SYSOUT.info(String.valueOf(x)));
@@ -46,7 +45,4 @@ public class RouteService implements Service<Route> {
     @Override
     public void addElement(Route route) {
     }
-
-
-
 }
