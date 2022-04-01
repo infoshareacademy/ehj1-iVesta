@@ -24,23 +24,13 @@ public class RoutesLoader {
         String destinationAddress = scanner.nextLine();
 
         SYSOUT.info("Podaj długość trasy");
-        Integer routeLength = routeService.positiveIntegerValidator(scanner);
+        Integer routeLength = routeService.loadPositiveNumber(scanner);
 
         SYSOUT.info("Podaj rodzaj przewozu (o - osoby, t - towary)");
-        boolean correctData = false;
-        String transportTypeInput = "";
-        do {
-            transportTypeInput = scanner.next();
-            if (transportTypeInput.equals("o") && transportTypeInput.equals("t")) {
-                System.out.println("Podaj prawidłową literę: o lub t");
-            } else {
-                correctData = true;
-            }
-        }
-        while (!correctData);
+        String transportTypeInput = routeService.loadTransportType(scanner);
 
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
-        Integer transportVolume = routeService.positiveIntegerValidator(scanner);
+        Integer transportVolume = routeService.loadPositiveNumber(scanner);
 
         return new Route(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
     }
