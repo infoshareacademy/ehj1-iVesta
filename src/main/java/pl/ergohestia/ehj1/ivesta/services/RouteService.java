@@ -21,7 +21,7 @@ public class RouteService implements Service<Route> {
         this.routeList = new ArrayList<>();
     }
 
-    public List<Route> getRoutesList() {
+    public List<Route> getRoutes() {
         return routeList;
     }
 
@@ -29,28 +29,36 @@ public class RouteService implements Service<Route> {
         routeList.add(route);
     }
 
-    public Integer positiveIntegerValidator(Scanner scanner) {
-        Integer positiveInteger = 0;
+    public Integer loadPositiveNumber(Scanner scanner) {
+        Integer positiveNumber = 0;
         boolean correctData = false;
-        do {
+        while (positiveNumber <= 0) {
             try {
-                positiveInteger = scanner.nextInt();
-                if (positiveInteger <= 0) {
+                positiveNumber = scanner.nextInt();
+                if (positiveNumber <= 0) {
                     SYSOUT.info("Podaj liczbę całkowitą dodatnią");
-                } else {
-                    correctData = true;
                 }
             } catch (InputMismatchException e) {
                 SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
                 scanner.next();
             }
-        } while (!correctData);
-        return positiveInteger;
+        }
+        return positiveNumber;
     }
 
+    public String loadTransportType(Scanner scanner) {
+        String transportTypeInput = "";
+        while(!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
+            transportTypeInput = scanner.next();
+            if (!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
+                System.out.println("Podaj prawidłową literę: o lub t");
+            }
+        }
+        return transportTypeInput;
+    }
 
     public TransportType convertToTransportType(String input) {
-        return switch(input) {
+        return switch (input) {
             case "o" -> TransportType.PASSENGERS;
             case "t" -> TransportType.CARGO;
             default -> throw new IllegalStateException("Unexpected value: " + input);
