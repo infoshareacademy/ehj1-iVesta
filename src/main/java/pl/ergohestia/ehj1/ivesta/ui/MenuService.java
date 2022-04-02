@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
+import pl.ergohestia.ehj1.ivesta.model.Route;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
@@ -18,6 +19,7 @@ public class MenuService {
     VehicleService vehicleService = new VehicleService();
     DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
+    RoutesLoader routesLoader = new RoutesLoader();
 
     private final Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
@@ -34,7 +36,9 @@ public class MenuService {
 
     private void subMenuNo3() {
         logSubMenu(3);
-        // UI route serivce - wczyta dane, zwróci RouteDto (Arek)
+        Route route = routesLoader.loadRoute(System.in);
+        log.debug("Loaded route: {}", route);
+
         // route serivce - dodaje drivera i auto (Michał)
         // wypisanie wyniku (Michał)
     }
