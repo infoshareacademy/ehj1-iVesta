@@ -7,6 +7,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.Main;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 
@@ -18,6 +21,7 @@ import java.util.List;
 
 public class VehiclesLoader {
 
+    private static final Logger log = LoggerFactory.getLogger(VehiclesLoader.class);
     private final ObjectMapper objectMapper = new ObjectMapper();
     private static final String ATTRIBUTES = "attributes";
 
@@ -43,7 +47,7 @@ public class VehiclesLoader {
             }
 
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            log.warn("Failed while loading file",e);
         }
         return vehicleDtoList;
     }

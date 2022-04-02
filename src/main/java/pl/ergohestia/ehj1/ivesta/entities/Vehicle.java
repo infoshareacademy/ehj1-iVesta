@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "vehicles")
 @Getter
 @Setter
+@ToString
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

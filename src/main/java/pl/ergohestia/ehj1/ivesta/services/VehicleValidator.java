@@ -30,33 +30,33 @@ public class VehicleValidator {
     }
 
     public void validateSeats() {
-        if (!(vehicleDto.getNumberOfSeats() > 0)) {
-            addParameterToList("Seats");
+        if (vehicleDto.getNumberOfSeats() <= 0) {
+            addParameterToNotValidParametersList("Seats");
         }
     }
 
     public void validateYearProduction() {
         String year = vehicleDto.getProductionYear();
-        if (!(year.length() == 4) || !Service.isNumeric(year)) {
-            addParameterToList("Production year");
+        if ((year.length() != 4) || !Service.isNumeric(year)) {
+            addParameterToNotValidParametersList("Production year");
         }
     }
 
     public void validateVehicleCategory() {
         if (vehicleDto.getVehicleCategory() == null) {
-            addParameterToList("Vehicle category");
+            addParameterToNotValidParametersList("Vehicle category");
         }
     }
 
     public void validateWeightLimit(){
-        if(!(vehicleDto.getWeightLimit() > 0)){
-            addParameterToList("Max weight");
+        if(vehicleDto.getWeightLimit() <= 0){
+            addParameterToNotValidParametersList("Max weight");
         }
     }
 
     public void validateVehicleType(){
         if(vehicleDto.getVehicleType() == null){
-            addParameterToList("Vehicle type");
+            addParameterToNotValidParametersList("Vehicle type");
         }
     }
 
@@ -64,7 +64,7 @@ public class VehicleValidator {
         return this.notValidParameters;
     }
 
-    private void addParameterToList(String parameter) {
+    private void addParameterToNotValidParametersList(String parameter) {
         this.notValidParameters.add(parameter);
     }
 
