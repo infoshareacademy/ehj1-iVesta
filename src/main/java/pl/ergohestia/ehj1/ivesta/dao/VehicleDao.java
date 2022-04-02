@@ -6,6 +6,7 @@ import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 public class VehicleDao implements Dao<VehicleDto> {
@@ -19,16 +20,20 @@ public class VehicleDao implements Dao<VehicleDto> {
     }
 
     @Override
-    public Collection<VehicleDto> findAll() {
+    public Collection<Vehicle> findAll() {
         return em.createNamedQuery("vehicle.findAll", Vehicle.class)
                 .getResultStream()
-                .map(vehicleAdapter::convertToVehicleDto)
                 .toList();
     }
 
+    private void saveVehicle(Vehicle vehicle){
+        em.persist(vehicle);
+    }
+
     @Override
+    @Transactional
     public void save(VehicleDto vehicleDto) {
-         em.persist(vehicleAdapter.convertToVehicle(vehicleDto));
+         saveVehicle(vehicleAdapter.convertToVehicle(vehicleDto));
     }
 
     @Override

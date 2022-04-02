@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
@@ -14,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class VehicleDto {
 
-    private Long id;
+    private UUID id;
 
     @JsonProperty("marka")
     private String brand;
@@ -55,7 +57,8 @@ public class VehicleDto {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-    public VehicleDto(String brand,
+    public VehicleDto(UUID id,
+                      String brand,
                       String vehicleCategory,
                       String model,
                       String vehicleType,
@@ -68,6 +71,7 @@ public class VehicleDto {
                       String fuelType,
                       double fuelConsumption,
                       double weightLimit) {
+        this.id = id;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;

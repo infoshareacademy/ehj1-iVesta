@@ -4,14 +4,16 @@ import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class VehicleDtoValidatorTest {
 
+    public static final UUID NON_EXISTING_UUID = UUID.fromString("111111-1111-1111-1111-111111111111");
     VehicleValidator sut;
-    VehicleDto testVehicleDto = new VehicleDto("Peugeot", "A1", "201","osobowy", "1991", "ASDFGH", 2000, 69, 0, 6, "ON", 0,25);
-    VehicleDto testVehicle1Dto = new VehicleDto("Peugeot", null, "201","osobowy", null, "199", 2000, 69, 0, 0, "ON", 0,0);
+    VehicleDto testVehicleDto = new VehicleDto(NON_EXISTING_UUID,"Peugeot", "A1", "201","osobowy", "1991", "ASDFGH", 2000, 69, 0, 6, "ON", 0,25);
+    VehicleDto testVehicle1Dto = new VehicleDto(NON_EXISTING_UUID,"Peugeot", null, "201","osobowy", null, "199", 2000, 69, 0, 0, "ON", 0,0);
 
     @Test
     void shouldGetValidVehicle() {

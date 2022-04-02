@@ -26,7 +26,7 @@ public class VehicleValidator {
         validateYearProduction();
         validateVehicleType();
 
-        return getNotValidParameters().size() == 0;
+        return getNotValidParameters().size() < 1;
     }
 
     public void validateSeats() {

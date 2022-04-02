@@ -3,50 +3,57 @@ package pl.ergohestia.ehj1.ivesta.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 
+import java.util.Collection;
 import java.util.List;
 
-public class VehicleService implements Service<VehicleDto>{
+public class VehicleService implements Service<VehicleDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private static final Logger LOG = LoggerFactory.getLogger(VehicleService.class);
 
-    private VehicleDao vehicleDao = new VehicleDao();
-    private VehiclesLoader vehiclesLoader;
-    private VehicleValidator vehicleValidator;
+    private final VehicleDao vehicleDao = new VehicleDao();
     private List<VehicleDto> vehicleDtoList;
 
-    public VehicleService() {}
+    public VehicleService() {
+    }
 
-    public VehicleService(List<VehicleDto> vehicleDtoList){
+    public VehicleService(List<VehicleDto> vehicleDtoList) {
         this.vehicleDtoList = vehicleDtoList;
     }
 
-    public void LoadVehicle(){
-        vehiclesLoader = new VehiclesLoader();
+    public void LoadVehicle() {
+        VehiclesLoader vehiclesLoader = new VehiclesLoader();
         vehicleDtoList = vehiclesLoader.getListOfVehicles();
-        vehicleDtoList = getValidVehicles();
-        for (VehicleDto vehicleDto:vehicleDtoList) {
-            System.out.println(vehicleDto);
+        List<VehicleDto> validList = saveValidVehicles();
+        for (VehicleDto vehicleDto : validList) {
+            SYSOUT.info("Valid: " + vehicleDto);
             vehicleDao.save(vehicleDto);
         }
     }
 
+    public Collection<Vehicle> getVehicleDtoList() {
+        return vehicleDao.findAll();
+    }
 
-    private List<VehicleDto> getValidVehicles(){
+
+    private List<VehicleDto> saveValidVehicles() {
         for (VehicleDto vehicleDto : vehicleDtoList) {
-            vehicleValidator = new VehicleValidator(vehicleDto);
-            if (!vehicleValidator.isVehicleValid()){
-                LOG.info(vehicleDto + "has been removed");
+            VehicleValidator vehicleValidator = new VehicleValidator(vehicleDto);
+            if (vehicleValidator.isVehicleValid()) {
+                SYSOUT.info(vehicleDto + " is valid");
+            } else {
+                SYSOUT.warn(vehicleDto + " has been removed");
                 vehicleDtoList.remove(vehicleDto);
             }
         }
         return vehicleDtoList;
     }
 
-    public List<VehicleDto> getVehiclesList(){
+    public List<VehicleDto> getVehiclesList() {
         return vehicleDtoList;
     }
 

@@ -16,7 +16,7 @@ public class VehicleMenu {
 
     public void runVehicleMenu(){
         printMenu(vehicleMenu.menuItems);
-        serviceMainMenu();
+        serviceVehicleMenu();
     }
 
     private final Menu vehicleMenu = new Menu(
@@ -26,6 +26,7 @@ public class VehicleMenu {
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
+        vehicleService.getVehicleDtoList();
     }
 
     private void subVehicleMenuNo2() {
@@ -44,7 +45,7 @@ public class VehicleMenu {
         log.info("User correctly chose " + index + " in menu");
     }
 
-    private void serviceMainMenu() {
+    private void serviceVehicleMenu() {
         int item;
         while (true) {
             item = getMenuItem();
