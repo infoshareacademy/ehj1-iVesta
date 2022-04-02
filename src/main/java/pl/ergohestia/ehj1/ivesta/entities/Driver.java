@@ -37,8 +37,4 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
-
-    @OneToOne
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
 }

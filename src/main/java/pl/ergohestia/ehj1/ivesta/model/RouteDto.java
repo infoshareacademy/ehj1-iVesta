@@ -1,12 +1,14 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class RouteDto {
 
     public Long id;
@@ -26,7 +28,5 @@ public class RouteDto {
         this.routeLength = routeLength;
         this.transportType = transportType;
         this.transportVolume = transportVolume;
-    }
-    public RouteDto() {
     }
 }

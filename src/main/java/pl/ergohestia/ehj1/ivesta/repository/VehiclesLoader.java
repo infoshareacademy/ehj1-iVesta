@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.Main;
+import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 
@@ -18,24 +18,34 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class VehiclesLoader {
 
     private static final Logger log = LoggerFactory.getLogger(VehiclesLoader.class);
+    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+
     private final ObjectMapper objectMapper = new ObjectMapper();
     private static final String ATTRIBUTES = "attributes";
 
-    private final String path;
+    Scanner scanner = new Scanner(System.in);
+    private final Path path;
+
+    /*public Path getVehiclePath() {
+        return getPath();
+    }*/
+
+    public VehiclesLoader(){this.path = getPath();}
 
     public VehiclesLoader(Path path) {
-        this.path = path.toString();
+        this.path = path;
     }
 
     public List<VehicleDto> getListOfVehicles() {
         List<VehicleDto> vehicleDtoList = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(path)) {
+        try (FileReader reader = new FileReader(String.valueOf(path))) {
             Object object = jsonParser.parse(reader);
             JSONArray objectArray = (JSONArray) object;
 
@@ -54,5 +64,24 @@ public class VehiclesLoader {
 
     public <A> A fromJson(JsonNode node, Class<A> classA) throws JsonProcessingException {
         return objectMapper.treeToValue(node, classA);
+    }
+
+    private Path getPath() {
+        try {
+            SYSOUT.info("Czy pliki dotyczące pojazdu mają byc wczytane z domyślnej ścieżki? \n T\\N");
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase("t")) {
+                DefaultVehiclePath defaultPath = new DefaultVehiclePath();
+                return defaultPath.vehiclePath;
+            } else if (answer.equalsIgnoreCase("n")) {
+                SYSOUT.info("Proszę o podanie pełnej ścieżki z lokalizacją pliku: ");
+                answer = scanner.nextLine();
+                DefaultVehiclePath defaultPath = new DefaultVehiclePath(answer);
+                return defaultPath.vehiclePath;
+            }
+        } catch (Exception e) {
+            SYSOUT.warn("Brak pliku w podanym katalogu! Sprawdź ponownie ścieżkę dostępu.");
+        }
+        return getPath();
     }
 }

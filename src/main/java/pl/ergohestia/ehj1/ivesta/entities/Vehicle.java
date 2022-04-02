@@ -2,6 +2,7 @@ package pl.ergohestia.ehj1.ivesta.entities;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,9 +13,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle")
+})
 public class Vehicle {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -33,7 +39,7 @@ public class Vehicle {
     @Column(name = "production_method")
     private String productionMethod;
 
-    @Column(name = "production_method")
+    @Column(name = "production_year")
     private String productionYear;
 
     @Column(name = "engine_capacity")
@@ -57,6 +63,31 @@ public class Vehicle {
     @Column(nullable = false, name = "weight_limit")
     private double weightLimit;
 
-    @OneToOne(mappedBy = "vehicle")
-    private Driver driver;
+    public Vehicle(String brand,
+                   String vehicleCategory,
+                   String model,
+                   String vehicleType,
+                   String productionMethod,
+                   String productionYear,
+                   double engineCapacity,
+                   double enginePower,
+                   double hybridEnginePower,
+                   int numberOfSeats,
+                   String fuelType,
+                   double fuelConsumption,
+                   double weightLimit) {
+        this.brand = brand;
+        this.vehicleCategory = vehicleCategory;
+        this.model = model;
+        this.vehicleType = vehicleType;
+        this.productionMethod = productionMethod;
+        this.productionYear = productionYear;
+        this.engineCapacity = engineCapacity;
+        this.enginePower = enginePower;
+        this.hybridEnginePower = hybridEnginePower;
+        this.numberOfSeats = numberOfSeats;
+        this.fuelType = fuelType;
+        this.fuelConsumption = fuelConsumption;
+        this.weightLimit = weightLimit;
+    }
 }

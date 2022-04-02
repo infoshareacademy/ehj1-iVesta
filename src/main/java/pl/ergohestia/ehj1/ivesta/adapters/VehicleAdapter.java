@@ -22,4 +22,24 @@ public class VehicleAdapter {
         vehicleDto.setId(vehicle.getId());
         return vehicleDto;
     }
+
+    public Vehicle convertToVehicle(VehicleDto vehicleDto) {
+        if (vehicleDto == null) return null;
+        Vehicle vehicle = new Vehicle(
+                vehicleDto.getBrand(),
+                vehicleDto.getVehicleCategory(),
+                vehicleDto.getModel(),
+                vehicleDto.getVehicleType(),
+                vehicleDto.getProductionMethod(),
+                vehicleDto.getProductionYear(),
+                vehicleDto.getEngineCapacity(),
+                vehicleDto.getEnginePower(),
+                vehicleDto.getHybridEnginePower(),
+                vehicleDto.getNumberOfSeats(),
+                vehicleDto.getFuelType(),
+                vehicleDto.getFuelConsumption(),
+                vehicleDto.getWeightLimit());
+        vehicleDto.setId(vehicleDto.getId());
+        return vehicle;
+    }
 }
