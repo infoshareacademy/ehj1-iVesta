@@ -33,7 +33,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
                     .filter(driver -> driver.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
+            log.error("Filepath does not exist: " + driverPath.toString(), e);
             SYSOUT.error("Error while loading drivers CSV file: file does not exist.");
         }
         return driversList;
