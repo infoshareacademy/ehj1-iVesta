@@ -1,11 +1,12 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-
+@NoArgsConstructor
 public class Driver {
 
     private String name;

@@ -20,6 +20,8 @@ public class DriverService extends DriverConfig implements Service<Driver> {
 
     private List<Driver> driversList;
 
+    private DriverConverter converter = new DriverConverter();
+
     public DriverService(String filePath) {
         super(filePath);
     }
@@ -29,7 +31,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
                     .stream()
-                    .map(csvRecord -> convertToDriver(csvRecord))
+                    .map(csvRecord -> converter.convertToDriver(csvRecord))
                     .filter(driver -> driver.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
@@ -37,24 +39,6 @@ public class DriverService extends DriverConfig implements Service<Driver> {
             SYSOUT.error("Error while loading drivers CSV file: file does not exist.");
         }
         return driversList;
-    }
-
-    private Driver convertToDriver(CSVRecord csvRecord) {
-        Driver driver = new Driver(null,null,null,null,null,null,null);
-        try {
-            driver.setName(csvRecord.get(0));
-            driver.setLastName(csvRecord.get(1));
-            driver.setAddress(csvRecord.get(2));
-            driver.setPhoneNumber(csvRecord.get(3));
-            driver.setLicense(csvRecord.get(4));
-            driver.setNumberOfCourses(Math.abs(Integer.valueOf(csvRecord.get(5))));
-            driver.setNumberOfKilometres(Math.abs(Integer.valueOf(csvRecord.get(6))));
-        } catch (NumberFormatException e) {
-            SYSOUT.warn("Cannot read csv record: numerical columns have incorrect values.");
-        } catch (NullPointerException e) {
-            SYSOUT.warn("Cannot read csv record: columns without values have been found.");
-        }
-        return driver;
     }
 
     public List<Driver> getDriversList() {
