@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +13,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class DriverService extends DriverConfig implements Service<Driver> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DriverService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     private List<Driver> driversList;
@@ -32,7 +33,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
                     .filter(driver -> driver.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             SYSOUT.error("Error while loading drivers CSV file: file does not exist.");
         }
         return driversList;
@@ -73,7 +74,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
             driver.setNumberOfKilometres(Math.abs(driver.getNumberOfKilometres()));
             driversList.add(driver);
         } else {
-            LOG.warn("Cannot add driver to the list: driver object is null.");
+            log.warn("Cannot add driver to the list: driver object is null.");
             SYSOUT.warn("Driver addition to the list failed.");
         }
     }
