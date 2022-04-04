@@ -7,16 +7,15 @@ import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuService {
 
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private InputStreamProvider in = new InputStreamProvider();
+    private InputStreamProvider in = InputStreamProvider.getInstance();
 
     VehicleService vehicleService = new VehicleService();
     DriverService driverService = new DriverService("path");
@@ -78,7 +77,7 @@ public class MenuService {
     }
 
     private int getMenuItem() {
-        Scanner scanner = new Scanner(in.getInputStream());
+        Scanner scanner = in.getScanner();
         int item = 0;
         String incorrecltyInput;
         do {
@@ -86,11 +85,14 @@ public class MenuService {
             if (!scanner.hasNextInt()) {
                 incorrecltyInput = scanner.next();
                 log.info("User incorrectly wrote " + incorrecltyInput + " in menu");
+                SYSOUT.info("User incorrectly wrote " + incorrecltyInput + " in menu");
                 continue;
             }
             item = scanner.nextInt();
+            SYSOUT.info("User chose " + item + " in menu");
             if (item < 1) {
                 log.info("User incorrectly wrote " + item + " in menu");
+                SYSOUT.info("User incorrectly wrote " + item + " in menu");
             }
         } while (item < 1);
 
