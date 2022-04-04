@@ -104,7 +104,7 @@
       "masa-pojazdu-gotowego-do-jazdy": null,
       "dopuszczalna-masa-calkowita": 2150,
       "max-masa-calkowita": 2150,
-      "dopuszczalna-ladownosc": null,
+      "dopuszczalna-ladownosc": 2150,
       "max-ladownosc": 6000,
       "dopuszczalna-masa-calkowita-zespolu-pojazdow": 3950,
       "liczba-osi": 2,

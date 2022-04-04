@@ -1,20 +1,20 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleValidator {
 
-    private Vehicle vehicle;
+    private VehicleDto vehicleDto;
     private List<String> notValidParameters;
 
     public VehicleValidator() {
     }
 
-    public VehicleValidator(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public VehicleValidator(VehicleDto vehicleDto) {
+        this.vehicleDto = vehicleDto;
         this.notValidParameters = new ArrayList<>();
         validateConfigOfYearAndMethodProduction();
     }
@@ -26,37 +26,37 @@ public class VehicleValidator {
         validateYearProduction();
         validateVehicleType();
 
-        return getNotValidParameters().size() == 0;
+        return getNotValidParameters().isEmpty();
     }
 
     public void validateSeats() {
-        if (!(vehicle.getNumberOfSeats() > 0)) {
-            addParameterToList("Seats");
+        if (vehicleDto.getNumberOfSeats() <= 0) {
+            addParameterToNotValidParametersList("Seats");
         }
     }
 
     public void validateYearProduction() {
-        String year = vehicle.getProductionYear();
-        if (!(year.length() == 4) || !Service.isNumeric(year)) {
-            addParameterToList("Production year");
+        String year = vehicleDto.getProductionYear();
+        if ((year.length() != 4) || !Service.isNumeric(year)) {
+            addParameterToNotValidParametersList("Production year");
         }
     }
 
     public void validateVehicleCategory() {
-        if (vehicle.getVehicleCategory() == null) {
-            addParameterToList("Vehicle category");
+        if (vehicleDto.getVehicleCategory() == null) {
+            addParameterToNotValidParametersList("Vehicle category");
         }
     }
 
     public void validateWeightLimit(){
-        if(!(vehicle.getWeightLimit() > 0)){
-            addParameterToList("Max weight");
+        if(vehicleDto.getWeightLimit() <= 0){
+            addParameterToNotValidParametersList("Max weight");
         }
     }
 
     public void validateVehicleType(){
-        if(vehicle.getVehicleType() == null){
-            addParameterToList("Vehicle type");
+        if(vehicleDto.getVehicleType() == null){
+            addParameterToNotValidParametersList("Vehicle type");
         }
     }
 
@@ -64,16 +64,16 @@ public class VehicleValidator {
         return this.notValidParameters;
     }
 
-    private void addParameterToList(String parameter) {
+    private void addParameterToNotValidParametersList(String parameter) {
         this.notValidParameters.add(parameter);
     }
 
     private void validateConfigOfYearAndMethodProduction() {
-        String productionMethod = vehicle.getProductionMethod();
-        String productionYear = vehicle.getProductionYear();
+        String productionMethod = vehicleDto.getProductionMethod();
+        String productionYear = vehicleDto.getProductionYear();
         if (Service.isNumeric(productionMethod)) {
-            vehicle.setProductionYear(productionMethod);
-            vehicle.setProductionMethod(productionYear);
+            vehicleDto.setProductionYear(productionMethod);
+            vehicleDto.setProductionMethod(productionYear);
         }
     }
 

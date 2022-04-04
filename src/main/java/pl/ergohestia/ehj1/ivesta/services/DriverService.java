@@ -4,7 +4,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
-import pl.ergohestia.ehj1.ivesta.model.Driver;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.ui.MenuService;
 
 import java.io.FileReader;
@@ -12,18 +12,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DriverService extends DriverConfig implements Service<Driver> {
+public class DriverService extends DriverConfig implements Service<DriverDto> {
 
     private static final Logger LOG = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private static List<Driver> driversList;
+    private static List<DriverDto> driversList;
 
     public DriverService(String filePath) {
         super(filePath);
     }
 
-    public List<Driver> importDrivers() {
+    public List<DriverDto> importDrivers() {
         try (FileReader fileReader = new FileReader(super.driverPath.toString())) {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
@@ -35,8 +35,8 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         return driversList;
     }
 
-    private static Driver convertToDriver(CSVRecord csvRecord) {
-        return new Driver(
+    private static DriverDto convertToDriver(CSVRecord csvRecord) {
+        return new DriverDto(
                 csvRecord.get(0),
                 csvRecord.get(1),
                 csvRecord.get(2),
@@ -54,7 +54,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     }
 
     @Override
-    public void addElement(Driver driver) {
-        driversList.add(driver);
+    public void addElement(DriverDto driverDto) {
+        driversList.add(driverDto);
     }
 }
