@@ -30,9 +30,10 @@ public class VehicleService implements Service<VehicleDto> {
         vehicleDtoList = vehiclesLoader.getListOfVehicles();
         List<VehicleDto> validList = saveValidVehicles();
         for (VehicleDto vehicleDto : validList) {
-            SYSOUT.info("Valid: " + vehicleDto);
+            LOG.info("Added vehicle to database: " + vehicleDto);
             vehicleDao.save(vehicleDto);
         }
+        SYSOUT.info("Ilość pojazdów dodanych do bazy danych: " + vehicleDtoList.size());
     }
 
     public Collection<Vehicle> getVehicleDtoList() {
@@ -46,7 +47,8 @@ public class VehicleService implements Service<VehicleDto> {
             if (vehicleValidator.isVehicleValid()) {
                 SYSOUT.info(vehicleDto + " is valid");
             } else {
-                SYSOUT.warn(vehicleDto + " has been removed");
+                LOG.warn("Vehicle has been removed: " + vehicleDto);
+                SYSOUT.warn("Usunięto pojazd z niepoprawnymi danymi: " + vehicleDto);
                 vehicleDtoList.remove(vehicleDto);
             }
         }

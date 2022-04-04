@@ -24,7 +24,8 @@ public class VehicleMenu {
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
             "2. Wyświetl wszystkie dostępne pojazdy.",
-            "3. Załaduj nowe pojazdy");
+            "3. Załaduj nowe pojazdy",
+            "4. Edycja danych pojazdu");
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
