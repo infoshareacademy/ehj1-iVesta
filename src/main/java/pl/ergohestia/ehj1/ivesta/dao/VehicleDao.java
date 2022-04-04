@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 public class VehicleDao implements Dao<VehicleDto> {
 
@@ -21,29 +22,38 @@ public class VehicleDao implements Dao<VehicleDto> {
 
     @Override
     public Collection<Vehicle> findAll() {
-        return em.createNamedQuery("vehicle.findAll", Vehicle.class)
+        em.getTransaction().begin();
+        List<Vehicle> vehicles = em.createNamedQuery("vehicle.findAll", Vehicle.class)
                 .getResultStream()
                 .toList();
+        em.getTransaction().commit();
+        return vehicles;
+
     }
 
     private void saveVehicle(Vehicle vehicle){
+        em.getTransaction().begin();
         em.persist(vehicle);
+        em.getTransaction().commit();
     }
 
     @Override
-    @Transactional
     public void save(VehicleDto vehicleDto) {
-         saveVehicle(vehicleAdapter.convertToVehicle(vehicleDto));
+        saveVehicle(vehicleAdapter.convertToVehicle(vehicleDto));
     }
 
     @Override
     public VehicleDto update(VehicleDto vehicleDto) {
+        em.getTransaction().begin();
         Vehicle vehicle = em.merge(vehicleAdapter.convertToVehicle(vehicleDto));
+        em.getTransaction().commit();
         return vehicleAdapter.convertToVehicleDto(vehicle);
     }
 
     @Override
     public void delete(VehicleDto vehicleDto) {
+        em.getTransaction().begin();
         em.remove(vehicleAdapter.convertToVehicle(vehicleDto));
+        em.getTransaction().commit();
     }
 }

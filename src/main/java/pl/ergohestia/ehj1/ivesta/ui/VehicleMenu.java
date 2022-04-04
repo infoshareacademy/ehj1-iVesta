@@ -2,9 +2,11 @@ package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,10 +28,15 @@ public class VehicleMenu {
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
-        vehicleService.getVehicleDtoList();
+        Collection<Vehicle> vehicles = vehicleService.getVehicleDtoList();
+        for (Vehicle vehicle : vehicles) {
+            SYSOUT.info(String.valueOf(vehicle));
+        }
     }
 
-    private void subVehicleMenuNo2() {
+    private void subVehicleMenuNo2(
+            //TODO implementacja dla wyświetlania pojazdów bez kierowcy
+    ) {
         logSubMenu(2);
     }
 

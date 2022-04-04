@@ -45,7 +45,7 @@ public class VehicleDto {
     @JsonProperty("moc-netto-silnika-hybrydowego")
     private double hybridEnginePower;
 
-    @JsonProperty("liczba-miejsc-ogole")
+    @JsonProperty("liczba-miejsc-ogolem")
     private int numberOfSeats;
 
     @JsonProperty("rodzaj-paliwa")
