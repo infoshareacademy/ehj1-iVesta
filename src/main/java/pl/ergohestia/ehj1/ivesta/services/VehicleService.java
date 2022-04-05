@@ -3,7 +3,6 @@ package pl.ergohestia.ehj1.ivesta.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 
@@ -35,7 +34,7 @@ public class VehicleService implements Service<VehicleDto> {
         }
     }
 
-    public Collection<Vehicle> getVehicleDtoList() {
+    public Collection<VehicleDto> getVehicleDtoList() {
         return vehicleDao.findAll();
     }
 
