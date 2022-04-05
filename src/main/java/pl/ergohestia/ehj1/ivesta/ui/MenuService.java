@@ -37,7 +37,7 @@ public class MenuService {
 
     private void subMenuNo3() {
         logSubMenu(3);
-        RouteDto routeDto = routesLoader.loadRoute(System.in);
+        RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
         log.debug("Loaded route: {}", routeDto);
 
         // route serivce - dodaje drivera i auto (Michał)
