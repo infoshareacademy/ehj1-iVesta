@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class MenuService {
 
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
-    private final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     private InputStreamProvider in = InputStreamProvider.getInstance();
 
@@ -85,14 +85,11 @@ public class MenuService {
             if (!scanner.hasNextInt()) {
                 incorrecltyInput = scanner.next();
                 log.info("User incorrectly wrote " + incorrecltyInput + " in menu");
-                SYSOUT.info("User incorrectly wrote " + incorrecltyInput + " in menu");
                 continue;
             }
             item = scanner.nextInt();
-            SYSOUT.info("User chose " + item + " in menu");
             if (item < 1) {
                 log.info("User incorrectly wrote " + item + " in menu");
-                SYSOUT.info("User incorrectly wrote " + item + " in menu");
             }
         } while (item < 1);
 
