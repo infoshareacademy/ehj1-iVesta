@@ -15,7 +15,7 @@ public class MenuService {
     private static final Logger log = LoggerFactory.getLogger(MenuService.class);
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private InputStreamProvider in = InputStreamProvider.getInstance();
+    private InputScannerProvider in = new InputScannerProvider();
 
     VehicleService vehicleService = new VehicleService();
     DriverService driverService = new DriverService("path");
