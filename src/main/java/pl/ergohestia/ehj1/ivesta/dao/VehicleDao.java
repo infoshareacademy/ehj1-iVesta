@@ -21,10 +21,11 @@ public class VehicleDao implements Dao<VehicleDto> {
     }
 
     @Override
-    public Collection<Vehicle> findAll() {
+    public Collection<VehicleDto> findAll() {
         em.getTransaction().begin();
-        List<Vehicle> vehicles = em.createNamedQuery("vehicle.findAll", Vehicle.class)
+        List<VehicleDto> vehicles = em.createNamedQuery("vehicle.findAll", Vehicle.class)
                 .getResultStream()
+                .map(vehicleAdapter::convertToVehicleDto)
                 .toList();
         em.getTransaction().commit();
         return vehicles;
