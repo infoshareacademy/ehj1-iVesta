@@ -12,9 +12,8 @@ import java.util.Scanner;
 
 public class MenuService {
 
-    private static final Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger log = LoggerFactory.getLogger(MenuService.class);
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
-
     private InputScannerProvider in = new InputScannerProvider();
 
     DriverService driverService = new DriverService("path");
