@@ -1,15 +1,9 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
-import com.sun.xml.bind.v2.model.core.ID;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
+@Data
 public class DriverDto {
     private UUID id;
     private String name;
