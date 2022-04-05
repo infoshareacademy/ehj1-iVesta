@@ -40,15 +40,17 @@ class MenuServiceTest {
 
     // TODO refatctor and change name
     @Test
-    void shouldName() {
+    void shouldLoggerLog() {
+        // given
+        int correctChose = 1;
+        String outputMessage = correctChose + " test";
 
-        String test1 = "1 test";
-        List<String> testMenu = List.of(test1, "2 test", "3 test");
-        when(menu.getMenuItems()).thenReturn(testMenu);
-
-        InputStream testInputStream = prepareInputStream("test", 999999, -1, 1);
+        List<String> testMenu = List.of(outputMessage, "2 test", "3 test");
+        InputStream testInputStream = prepareInputStream("test", 999999, -1, correctChose);
         Scanner testScanner = new Scanner(testInputStream);
 
+        // when
+        when(menu.getMenuItems()).thenReturn(testMenu);
         when(inputScannerProvider.getScanner()).thenReturn(testScanner);
 
         sut.menu();
@@ -56,8 +58,31 @@ class MenuServiceTest {
         verify(SYSOUT, atLeastOnce()).info(captor.capture());
         String lastCapturedMessage = captor.getAllValues().get(captor.getAllValues().size()-1);
 
-        String testMessage = lastCapturedMessage.substring(lastCapturedMessage.length() - 6);
-        assertThat(testMessage).isEqualTo(test1);
+        String result = lastCapturedMessage.substring(lastCapturedMessage.length() - 6);
+
+        // then
+        assertThat(result).isEqualTo(outputMessage);
+    }
+
+    @Test
+    void shouldPrintMenu() {
+        // given
+        int noMenuItems = 3;
+        List<String> testMenu = List.of("1 test", "2 test", "3 test");
+        InputStream testInputStream = prepareInputStream(1);
+        Scanner testScanner = new Scanner(testInputStream);
+
+        // when
+        when(menu.getMenuItems()).thenReturn(testMenu);
+        when(inputScannerProvider.getScanner()).thenReturn(testScanner);
+
+        sut.menu();
+        verify(SYSOUT, atLeastOnce()).info(captor.capture());
+        List<String> result = captor.getAllValues().subList(0,noMenuItems);
+
+        // then
+        assertThat(result).isEqualTo(testMenu);
+
     }
 
     private InputStream prepareInputStream(Object... inputs) {
