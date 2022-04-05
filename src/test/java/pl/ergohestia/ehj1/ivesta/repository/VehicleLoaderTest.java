@@ -2,21 +2,21 @@ package pl.ergohestia.ehj1.ivesta.repository;
 
 import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.nio.file.Path;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class VehiclesLoaderTest {
+class VehicleLoaderTest {
     private static final Path TEST_PATH = Path.of(("src/main/resources/input.json"));
     private final VehiclesLoader sut = new VehiclesLoader(TEST_PATH);
 
     @Test
     void shouldGetVehicleList() {
         //given
-        List<Vehicle> result;
+        List<VehicleDto> result;
         String testBrand = "BELARUS";
         double testEngineCapacity = 1998.0;
 

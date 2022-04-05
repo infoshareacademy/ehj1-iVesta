@@ -5,7 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
-import pl.ergohestia.ehj1.ivesta.model.Driver;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.ui.MenuService;
 
 import java.io.FileReader;
@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class DriverService extends DriverConfig implements Service<Driver> {
+public class DriverService extends DriverConfig implements Service<DriverDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private List<Driver> driversList;
+    private static List<DriverDto> driversList;
 
     private DriverConverter converter = new DriverConverter();
 
@@ -26,7 +26,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         super(filePath);
     }
 
-    public List<Driver> importDrivers() {
+    public List<DriverDto> importDrivers() {
         try (FileReader fileReader = new FileReader(super.driverPath.toString())) {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
@@ -41,9 +41,8 @@ public class DriverService extends DriverConfig implements Service<Driver> {
         return driversList;
     }
 
-    public List<Driver> getDriversList() {
+    public List<DriverDto> getDriversList() {
         return driversList;
-    }
 
     @Override
     public void printElements() {
@@ -52,11 +51,11 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     }
 
     @Override
-    public void addElement(Driver driver) {
+    public void addElement(DriverDto driverDto) {
         if(driver != null) {
-            driver.setNumberOfCourses(Math.abs(driver.getNumberOfCourses()));
-            driver.setNumberOfKilometres(Math.abs(driver.getNumberOfKilometres()));
-            driversList.add(driver);
+            driver.setNumberOfCourses(Math.abs(driverDto.getNumberOfCourses()));
+            driver.setNumberOfKilometres(Math.abs(driverDto.getNumberOfKilometres()));
+            driversList.add(driverDto);
         } else {
             log.warn("Cannot add driver to the list: driver object is null.");
             SYSOUT.warn("Driver addition to the list failed.");

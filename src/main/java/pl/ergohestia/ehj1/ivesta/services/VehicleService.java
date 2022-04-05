@@ -2,86 +2,68 @@ package pl.ergohestia.ehj1.ivesta.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
-import pl.ergohestia.ehj1.ivesta.Main;
-import pl.ergohestia.ehj1.ivesta.model.Vehicle;
+import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Scanner;
 
-public class VehicleService implements Service<Vehicle>{
+public class VehicleService implements Service<VehicleDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
-    Scanner scanner = new Scanner(System.in);
-    private static final Logger log = LoggerFactory.getLogger(VehicleService.class);
-    VehiclesLoader vehiclesLoader = new VehiclesLoader(Path.of("src/main/resources/input.json"));
-    VehicleValidator vehicleValidator;
+    private static final Logger LOG = LoggerFactory.getLogger(VehicleService.class);
 
-    //TODO Create menu for Vehicle Services
-
-    public Path getVehiclePath() {
-        return getPath();
-    }
-
-
-
-
-    private final List<Vehicle> vehicleList;
+    private final VehicleDao vehicleDao = new VehicleDao();
+    private List<VehicleDto> vehicleDtoList;
 
     public VehicleService() {
-        this.vehicleList = vehiclesLoader.getListOfVehicles();
-
     }
 
-    public VehicleService(List<Vehicle> vehicleList){
-        this.vehicleList = vehicleList;
+    public VehicleService(List<VehicleDto> vehicleDtoList) {
+        this.vehicleDtoList = vehicleDtoList;
     }
 
-    public List<Vehicle> getValidVehicles(){
-        for (Vehicle vehicle : vehicleList) {
-            vehicleValidator = new VehicleValidator(vehicle);
-            if (!vehicleValidator.isVehicleValid()){
-                log.info(vehicle + "has been removed");
-                vehicleList.remove(vehicle);
+    public void LoadVehicle() {
+        VehiclesLoader vehiclesLoader = new VehiclesLoader();
+        vehicleDtoList = vehiclesLoader.getListOfVehicles();
+        List<VehicleDto> validList = saveValidVehicles();
+        for (VehicleDto vehicleDto : validList) {
+            SYSOUT.info("Valid: " + vehicleDto);
+            vehicleDao.save(vehicleDto);
+        }
+    }
+
+    public Collection<Vehicle> getVehicleDtoList() {
+        return vehicleDao.findAll();
+    }
+
+
+    private List<VehicleDto> saveValidVehicles() {
+        for (VehicleDto vehicleDto : vehicleDtoList) {
+            VehicleValidator vehicleValidator = new VehicleValidator(vehicleDto);
+            if (vehicleValidator.isVehicleValid()) {
+                SYSOUT.info(vehicleDto + " is valid");
+            } else {
+                SYSOUT.warn(vehicleDto + " has been removed");
+                vehicleDtoList.remove(vehicleDto);
             }
         }
-        return vehicleList;
+        return vehicleDtoList;
     }
 
-    public List<Vehicle> getVehiclesList(){
-        return vehicleList;
+    public List<VehicleDto> getVehiclesList() {
+        return vehicleDtoList;
     }
 
     @Override
     public void printElements() {
-        vehicleList.forEach(x -> SYSOUT.info(String.valueOf(x)));
+        vehicleDtoList.forEach(x -> SYSOUT.info(String.valueOf(x)));
     }
 
-    //TODO implementacja metody
     @Override
-    public void addElement(Vehicle vehicle) {
-        vehicleList.add(vehicle);
-    }
-
-    private Path getPath() {
-        try {
-            SYSOUT.info("Czy pliki dotyczące pojazdu mają byc wczytane z domyślen ścieżki? \n T\\N");
-            String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("t")) {
-                DefaultVehiclePath defaultPath = new DefaultVehiclePath();
-                return defaultPath.vehiclePath;
-            } else if (answer.equalsIgnoreCase("n")) {
-                SYSOUT.info("Proszę o podanie pełnej ścieżki z lokalizacją pliku: ");
-                answer = scanner.nextLine();
-                DefaultVehiclePath defaultPath = new DefaultVehiclePath(answer);
-                return defaultPath.vehiclePath;
-            }
-        } catch (Exception e) {
-            SYSOUT.warn("Brak pliku w podanym katalogu! Sprawdź ponownie ścieżkę dostępu.");
-        }
-        return getVehiclePath();
+    public void addElement(VehicleDto vehicleDto) {
+        vehicleDtoList.add(vehicleDto);
     }
 }

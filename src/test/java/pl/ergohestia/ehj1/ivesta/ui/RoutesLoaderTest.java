@@ -1,7 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.junit.jupiter.api.Test;
-import pl.ergohestia.ehj1.ivesta.model.Route;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -29,7 +29,7 @@ class RoutesLoaderTest {
                 transportVolume);
 
         // when
-        Route result = sut.loadRoute(testIn);
+        RouteDto result = sut.loadRoute(testIn);
 
         // then
         assertThat(result.getStartAddress()).isEqualTo(testStartAddress);
