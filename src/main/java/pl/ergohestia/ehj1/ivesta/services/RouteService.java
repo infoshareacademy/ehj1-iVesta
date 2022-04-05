@@ -23,11 +23,7 @@ public class RouteService implements Service<RouteDto> {
     public List<RouteDto> getRoutes() {
         return routeList;
     }
-
-    public void addRouteToList(RouteDto routeDto) {
-        routeList.add(routeDto);
-    }
-
+    
     public Integer loadPositiveNumber(Scanner scanner) {
         Integer positiveNumber = 0;
         boolean correctData = false;
@@ -71,5 +67,6 @@ public class RouteService implements Service<RouteDto> {
 
     @Override
     public void addElement(RouteDto routeDto) {
+        routeList.add(routeDto);
     }
 }
