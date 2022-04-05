@@ -1,15 +1,15 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "drivers")
-
 @Getter
 @Setter
-
+@ToString
 public class Driver {
 
     @Id
@@ -37,11 +37,4 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
-
-    @OneToOne
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
 }
-
-
-

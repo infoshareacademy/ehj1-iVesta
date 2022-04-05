@@ -3,14 +3,20 @@ package pl.ergohestia.ehj1.ivesta.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.util.UUID;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class VehicleDto {
 
-    private Long id;
+    private UUID id;
 
     @JsonProperty("marka")
     private String brand;
@@ -39,7 +45,7 @@ public class VehicleDto {
     @JsonProperty("moc-netto-silnika-hybrydowego")
     private double hybridEnginePower;
 
-    @JsonProperty("liczba-miejsc-ogole")
+    @JsonProperty("liczba-miejsc-ogolem")
     private int numberOfSeats;
 
     @JsonProperty("rodzaj-paliwa")
@@ -51,11 +57,8 @@ public class VehicleDto {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-
-    public VehicleDto() {
-    }
-
-    public VehicleDto(String brand,
+    public VehicleDto(UUID id,
+                      String brand,
                       String vehicleCategory,
                       String model,
                       String vehicleType,
@@ -68,6 +71,7 @@ public class VehicleDto {
                       String fuelType,
                       double fuelConsumption,
                       double weightLimit) {
+        this.id = id;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
@@ -81,24 +85,5 @@ public class VehicleDto {
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
         this.weightLimit = weightLimit;
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", vehicleCategory='" + vehicleCategory + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleType='" + vehicleType + '\'' +
-                ", productionMethod='" + productionMethod + '\'' +
-                ", productionYear='" + productionYear + '\'' +
-                ", engineCapacity=" + engineCapacity +
-                ", enginePower=" + enginePower +
-                ", hybridEnginePower=" + hybridEnginePower +
-                ", numberOfSeats=" + numberOfSeats +
-                ", fuelType='" + fuelType + '\'' +
-                ", fuelConsumption=" + fuelConsumption +
-                ", weightLimit=" + weightLimit +
-                '}';
     }
 }

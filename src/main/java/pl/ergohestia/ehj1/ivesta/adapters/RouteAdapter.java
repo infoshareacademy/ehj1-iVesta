@@ -4,21 +4,16 @@ import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
 public class RouteAdapter {
-    public RouteDto convertoToRouteDto(Route route) {
+    public RouteDto convertToRouteDto(Route route) {
         if (route == null) {
             return null;
         }
-        RouteDto routeDto = new RouteDto(route.getStartCity(),
+        RouteDto routeDto = new RouteDto(
                 route.getStartAddress(),
-                route.getDestinationCity(),
                 route.getDestinationAddress(),
-                route.getDriverName(),
-                route.getDriverLastName(),
-                route.getAssignedVehicle(),
-                route.getCargoType(),
-                route.getCargoWeight(),
-                route.getRouteLength()
-                );
+                route.getRouteLength(),
+                route.getTransportType(),
+                route.getRouteLength());
         routeDto.setId(route.getId());
         return routeDto;
     }
