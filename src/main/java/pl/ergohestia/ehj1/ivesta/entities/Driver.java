@@ -10,6 +10,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "drivers.findAll", query = "from Driver")
+})
+//name = "driver.findAll", query = "from Driver"
 public class Driver {
 
     @Id
@@ -32,7 +36,7 @@ public class Driver {
     @Column
     private String license;
 
-    @Column(name = "number_of_columns")
+    @Column(name = "number_of_courses")
     private Integer numberOfCourses;
 
     @Column(name = "number_of_kilometres")
@@ -58,6 +62,10 @@ public class Driver {
         this.license = license;
         this.numberOfCourses = numberOfCourses;
         this.numberOfKilometres = numberOfKilometres;
+    }
+
+    public Driver() {
+
     }
 }
 
