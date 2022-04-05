@@ -3,10 +3,13 @@ package pl.ergohestia.ehj1.ivesta.model;
 import com.sun.xml.bind.v2.model.core.ID;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class DriverDto {
+
     private Long id;
     private String name;
     private String lastName;
