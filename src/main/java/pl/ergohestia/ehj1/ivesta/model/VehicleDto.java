@@ -3,12 +3,20 @@ package pl.ergohestia.ehj1.ivesta.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.util.UUID;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class Vehicle {
+@NoArgsConstructor
+@ToString
+public class VehicleDto {
+
+    private UUID id;
 
     @JsonProperty("marka")
     private String brand;
@@ -37,7 +45,7 @@ public class Vehicle {
     @JsonProperty("moc-netto-silnika-hybrydowego")
     private double hybridEnginePower;
 
-    @JsonProperty("liczba-miejsc-ogole")
+    @JsonProperty("liczba-miejsc-ogolem")
     private int numberOfSeats;
 
     @JsonProperty("rodzaj-paliwa")
@@ -49,23 +57,21 @@ public class Vehicle {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-
-    public Vehicle() {
-    }
-
-    public Vehicle(String brand,
-                   String vehicleCategory,
-                   String model,
-                   String vehicleType,
-                   String productionMethod,
-                   String productionYear,
-                   double engineCapacity,
-                   double enginePower,
-                   double hybridEnginePower,
-                   int numberOfSeats,
-                   String fuelType,
-                   double fuelConsumption,
-                   double weightLimit) {
+    public VehicleDto(UUID id,
+                      String brand,
+                      String vehicleCategory,
+                      String model,
+                      String vehicleType,
+                      String productionMethod,
+                      String productionYear,
+                      double engineCapacity,
+                      double enginePower,
+                      double hybridEnginePower,
+                      int numberOfSeats,
+                      String fuelType,
+                      double fuelConsumption,
+                      double weightLimit) {
+        this.id = id;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
@@ -79,24 +85,5 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.fuelConsumption = fuelConsumption;
         this.weightLimit = weightLimit;
-    }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "brand='" + brand + '\'' +
-                ", vehicleCategory='" + vehicleCategory + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleType='" + vehicleType + '\'' +
-                ", productionMethod='" + productionMethod + '\'' +
-                ", productionYear='" + productionYear + '\'' +
-                ", engineCapacity=" + engineCapacity +
-                ", enginePower=" + enginePower +
-                ", hybridEnginePower=" + hybridEnginePower +
-                ", numberOfSeats=" + numberOfSeats +
-                ", fuelType='" + fuelType + '\'' +
-                ", fuelConsumption=" + fuelConsumption +
-                ", weightLimit=" + weightLimit +
-                '}';
     }
 }

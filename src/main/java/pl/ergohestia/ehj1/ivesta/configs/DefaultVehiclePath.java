@@ -7,7 +7,6 @@ import java.nio.file.Path;
 
 @Getter
 @Setter
-
 public class DefaultVehiclePath {
 
     public final Path vehiclePath;

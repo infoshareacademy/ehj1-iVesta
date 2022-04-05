@@ -3,9 +3,9 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,13 +17,14 @@ public class MenuService {
 
     private InputScannerProvider in = new InputScannerProvider();
 
-    VehicleService vehicleService = new VehicleService();
     DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
+    VehicleMenu vehicleMenu = new VehicleMenu();
+    RoutesLoader routesLoader = new RoutesLoader();
 
     private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
-            "2. Wyświetl samochody.",
+            "2. Obsługa pojazdów.",
             "3. Zaplanuj trasę.");
 
     private void subMenuNo1() {
@@ -32,11 +33,14 @@ public class MenuService {
 
     private void subMenuNo2() {
         logSubMenu(2);
+        vehicleMenu.runVehicleMenu();
     }
 
     private void subMenuNo3() {
         logSubMenu(3);
-        // UI route serivce - wczyta dane, zwróci Route (Arek)
+        RouteDto routeDto = routesLoader.loadRoute(System.in);
+        log.debug("Loaded route: {}", routeDto);
+
         // route serivce - dodaje drivera i auto (Michał)
         // wypisanie wyniku (Michał)
     }

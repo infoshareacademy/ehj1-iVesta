@@ -1,13 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
+import com.sun.xml.bind.v2.model.core.ID;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-
-public class Driver {
-
+public class DriverDto {
+    private Long id;
     private String name;
     private String lastName;
     private String address;
@@ -16,7 +16,7 @@ public class Driver {
     private Integer numberOfCourses;
     private Integer numberOfKilometres;
 
-    public Driver(String name, String lastName, String address, String phoneNumber, String license, Integer numberOfCourses, Integer numberOfKilometres) {
+    public DriverDto(String name, String lastName, String address, String phoneNumber, String license, Integer numberOfCourses, Integer numberOfKilometres) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
