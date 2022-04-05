@@ -4,7 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,8 +30,8 @@ public class VehicleMenu {
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
-        Collection<Vehicle> vehicles = vehicleService.getVehicleDtoList();
-        for (Vehicle vehicle : vehicles) {
+        Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
+        for (VehicleDto vehicle : vehicles) {
             SYSOUT.info(String.valueOf(vehicle));
         }
     }

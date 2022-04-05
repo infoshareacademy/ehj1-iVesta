@@ -1,6 +1,7 @@
-package pl.ergohestia.ehj1.ivesta.services;
+package pl.ergohestia.ehj1.ivesta.services.vehicle;
 
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.services.Service;
 
 import java.util.ArrayList;
 import java.util.List;
