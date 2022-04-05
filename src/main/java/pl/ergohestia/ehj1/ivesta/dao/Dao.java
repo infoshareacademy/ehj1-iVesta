@@ -8,7 +8,7 @@ public interface Dao<T> {
 
     T find(Long id);
 
-    Collection<Vehicle> findAll();
+    Collection<T> findAll();
 
     void save(T t);
 
