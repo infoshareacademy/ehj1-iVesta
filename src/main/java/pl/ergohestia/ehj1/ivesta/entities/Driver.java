@@ -37,4 +37,29 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
+
+    @OneToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
+
+
+    public Driver(String name,
+                  String lastName,
+                  String address,
+                  String phoneNumber,
+                  String license,
+                  Integer numberOfCourses,
+                  Integer numberOfKilometres)
+    {
+        this.name = name;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.license = license;
+        this.numberOfCourses = numberOfCourses;
+        this.numberOfKilometres = numberOfKilometres;
+    }
 }
+
+
+

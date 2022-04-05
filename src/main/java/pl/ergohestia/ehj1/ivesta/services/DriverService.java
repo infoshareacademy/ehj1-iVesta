@@ -4,6 +4,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
+import pl.ergohestia.ehj1.ivesta.dao.DriverDao;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.ui.MenuService;
 
@@ -13,15 +14,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DriverService extends DriverConfig implements Service<DriverDto> {
+    
+    private DriverDao driverDao;
 
     private static final Logger LOG = LoggerFactory.getLogger(MenuService.class);
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
     private static List<DriverDto> driversList;
 
+
+
     public DriverService(String filePath) {
-        super(filePath);
-    }
+        super(filePath);    }
 
     public List<DriverDto> importDrivers() {
         try (FileReader fileReader = new FileReader(super.driverPath.toString())) {
