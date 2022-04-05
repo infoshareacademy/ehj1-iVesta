@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class DriverDto {
-    private Long id;
+    private UUID id;
     private String name;
     private String lastName;
     private String address;
@@ -20,7 +20,13 @@ public class DriverDto {
     private Integer numberOfCourses;
     private Integer numberOfKilometres;
 
-    public DriverDto(String name, String lastName, String address, String phoneNumber, String license, Integer numberOfCourses, Integer numberOfKilometres) {
+    public DriverDto(String name,
+                     String lastName,
+                     String address,
+                     String phoneNumber,
+                     String license,
+                     Integer numberOfCourses,
+                     Integer numberOfKilometres) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
