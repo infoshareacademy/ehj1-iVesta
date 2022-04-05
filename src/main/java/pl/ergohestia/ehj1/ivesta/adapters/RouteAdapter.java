@@ -13,8 +13,20 @@ public class RouteAdapter {
                 route.getDestinationAddress(),
                 route.getRouteLength(),
                 route.getTransportType(),
-                route.getRouteLength());
+                route.getTransportVolume());
         routeDto.setId(route.getId());
         return routeDto;
+    }
+
+    public Route convertToRoute(RouteDto routeDto) {
+        if (routeDto == null) return null;
+        Route route = new Route(
+                routeDto.getStartAddress(),
+                routeDto.getDestinationAddress(),
+                routeDto.getRouteLength(),
+                routeDto.getTransportType(),
+                routeDto.getTransportVolume());
+                routeDto.setId(routeDto.getId());
+        return route;
     }
 }
