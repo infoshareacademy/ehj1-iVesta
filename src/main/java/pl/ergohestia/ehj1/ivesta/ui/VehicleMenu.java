@@ -12,12 +12,14 @@ import java.util.Scanner;
 
 public class VehicleMenu {
 
-    private static final Logger log = LoggerFactory.getLogger(MenuService.class);
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private InputScannerProvider in = new InputScannerProvider();
+
     VehicleService vehicleService = new VehicleService();
 
     public void runVehicleMenu(){
-        printMenu(vehicleMenu.menuItems);
+        printMenu(vehicleMenu.getMenuItems());
         serviceVehicleMenu();
     }
 
@@ -47,7 +49,7 @@ public class VehicleMenu {
 
     private void logSubMenu(int index) {
         int menuIndex = index - 1;
-        String subMenuName = vehicleMenu.menuItems.get(menuIndex);
+        String subMenuName = vehicleMenu.getMenuItems().get(menuIndex);
         SYSOUT.info("Wybrałeś: " + subMenuName);
         log.info("User correctly chose " + index + " in menu");
     }
@@ -70,7 +72,7 @@ public class VehicleMenu {
     }
 
     private int getMenuItem() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = in.getScanner();
         int item = 0;
         String incorrecltyInput;
         do {

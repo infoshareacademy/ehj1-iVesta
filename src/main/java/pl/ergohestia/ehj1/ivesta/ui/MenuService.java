@@ -12,15 +12,16 @@ import java.util.Scanner;
 
 public class MenuService {
 
-    private static final Logger log = LoggerFactory.getLogger(MenuService.class);
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    private InputScannerProvider in = new InputScannerProvider();
 
     DriverService driverService = new DriverService("path");
     RouteService routeService = new RouteService();
     VehicleMenu vehicleMenu = new VehicleMenu();
     RoutesLoader routesLoader = new RoutesLoader();
 
-    private final Menu mainMenu = new Menu(
+    private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
             "2. Obsługa pojazdów.",
             "3. Zaplanuj trasę.");
@@ -36,7 +37,7 @@ public class MenuService {
 
     private void subMenuNo3() {
         logSubMenu(3);
-        RouteDto routeDto = routesLoader.loadRoute(System.in);
+        RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
         log.debug("Loaded route: {}", routeDto);
 
         // route serivce - dodaje drivera i auto (Michał)
@@ -45,13 +46,13 @@ public class MenuService {
 
     private void logSubMenu(int index) {
         int menuIndex = index - 1;
-        String subMenuName = mainMenu.menuItems.get(menuIndex);
+        String subMenuName = mainMenu.getMenuItems().get(menuIndex);
         SYSOUT.info("Wybrałeś: " + subMenuName);
         log.info("User correctly chose " + index + " in menu");
     }
 
     public void menu() {
-        printMenu(mainMenu.menuItems);
+        printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
     }
 
@@ -79,7 +80,7 @@ public class MenuService {
     }
 
     private int getMenuItem() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = in.getScanner();
         int item = 0;
         String incorrecltyInput;
         do {
