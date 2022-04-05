@@ -1,7 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
 import org.junit.jupiter.api.Test;
-import pl.ergohestia.ehj1.ivesta.model.Driver;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ class DriverServiceTest {
         // given
 
         // when
-        List<Driver> result = sut.importDrivers();
+        List<DriverDto> result = sut.importDrivers();
 
         // then
         assertThat(result).isNotNull();
@@ -27,15 +27,15 @@ class DriverServiceTest {
     @Test
     void shouldAddElementToDriversList() {
         // given
-        Driver testDriver = new Driver("test","test","test","test","test",1,1);
+        DriverDto testDriverDto = new DriverDto("test","test","test","test","test",1,1);
 
         // when
         sut.importDrivers();
-        sut.addElement(testDriver);
-        List<Driver> result = sut.getDriversList();
+        sut.addElement(testDriverDto);
+        List<DriverDto> result = sut.getDriversList();
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result.get(result.size()-1)).isEqualTo(testDriver);
+        assertThat(result.get(result.size()-1)).isEqualTo(testDriverDto);
     }
 }

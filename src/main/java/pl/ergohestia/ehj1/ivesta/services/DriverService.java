@@ -1,12 +1,10 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
-import pl.ergohestia.ehj1.ivesta.ui.MenuService;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,8 +29,8 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
                     .stream()
-                    .map(converter::convertToDriver)
-                    .filter(driver -> driver.getName() != null)
+                    .map(converter::convertToDriverDto)
+                    .filter(driverDto -> driverDto.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             log.error("Filepath does not exist: " + driverPath.toString(), e);
@@ -43,18 +41,19 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
 
     public List<DriverDto> getDriversList() {
         return driversList;
+    }
 
     @Override
     public void printElements() {
         driversList.stream()
-                .map(Driver::toString).forEach(SYSOUT::info);
+                .map(DriverDto::toString).forEach(SYSOUT::info);
     }
 
     @Override
     public void addElement(DriverDto driverDto) {
-        if(driver != null) {
-            driver.setNumberOfCourses(Math.abs(driverDto.getNumberOfCourses()));
-            driver.setNumberOfKilometres(Math.abs(driverDto.getNumberOfKilometres()));
+        if (driverDto != null) {
+            driverDto.setNumberOfCourses(Math.abs(driverDto.getNumberOfCourses()));
+            driverDto.setNumberOfKilometres(Math.abs(driverDto.getNumberOfKilometres()));
             driversList.add(driverDto);
         } else {
             log.warn("Cannot add driver to the list: driver object is null.");
