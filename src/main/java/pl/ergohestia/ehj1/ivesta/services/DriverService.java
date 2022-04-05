@@ -31,7 +31,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
             driversList = DRIVERS_CSV_FORMAT
                     .parse(fileReader)
                     .stream()
-                    .map(csvRecord -> converter.convertToDriver(csvRecord))
+                    .map(converter::convertToDriver)
                     .filter(driver -> driver.getName() != null)
                     .collect(Collectors.toList());
         } catch (IOException e) {
@@ -48,7 +48,7 @@ public class DriverService extends DriverConfig implements Service<Driver> {
     @Override
     public void printElements() {
         driversList.stream()
-                .forEach(n -> SYSOUT.info(n.toString()));
+                .map(Driver::toString).forEach(SYSOUT::info);
     }
 
     @Override
