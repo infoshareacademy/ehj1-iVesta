@@ -7,7 +7,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.slf4j.Logger;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 
@@ -38,7 +37,7 @@ class MenuServiceTest {
     @Captor
     private ArgumentCaptor<String> captor;
 
-    // TODO refatctor and change name
+
     @Test
     void shouldLoggerLog() {
         // given
@@ -56,7 +55,7 @@ class MenuServiceTest {
         sut.menu();
 
         verify(SYSOUT, atLeastOnce()).info(captor.capture());
-        String lastCapturedMessage = captor.getAllValues().get(captor.getAllValues().size()-1);
+        String lastCapturedMessage = captor.getAllValues().get(captor.getAllValues().size() - 1);
 
         String result = lastCapturedMessage.substring(lastCapturedMessage.length() - 6);
 
@@ -78,7 +77,7 @@ class MenuServiceTest {
 
         sut.menu();
         verify(SYSOUT, atLeastOnce()).info(captor.capture());
-        List<String> result = captor.getAllValues().subList(0,noMenuItems);
+        List<String> result = captor.getAllValues().subList(0, noMenuItems);
 
         // then
         assertThat(result).isEqualTo(testMenu);
