@@ -2,8 +2,11 @@ package pl.ergohestia.ehj1.ivesta.entities;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "drivers")
@@ -13,13 +16,15 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "drivers.findAll", query = "from Driver")
 })
-//name = "driver.findAll", query = "from Driver"
+
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    private Long id;
+    @GeneratedValue(generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid2")
+    @Type(type = "uuid-char")
+    @Column(length = 36, updatable = false, nullable = false)
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
