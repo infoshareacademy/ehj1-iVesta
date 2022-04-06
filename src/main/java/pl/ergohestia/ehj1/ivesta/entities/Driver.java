@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "drivers.findAll", query = "from Driver")
 })
@@ -67,10 +69,6 @@ public class Driver {
         this.license = license;
         this.numberOfCourses = numberOfCourses;
         this.numberOfKilometres = numberOfKilometres;
-    }
-
-    public Driver() {
-
     }
 }
 
