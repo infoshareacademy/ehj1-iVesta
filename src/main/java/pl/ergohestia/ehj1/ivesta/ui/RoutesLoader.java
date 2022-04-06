@@ -2,6 +2,7 @@ package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
@@ -32,7 +33,11 @@ public class RoutesLoader {
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
         Integer transportVolume = routeService.loadPositiveNumber(scanner);
 
-        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
+        SYSOUT.info("Wybierz numer kierowcy z poniżej listy:");
+        DriverDto driver = routeService.driverSelect(scanner);
+
+
+        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume, driver);
     }
 
 }
