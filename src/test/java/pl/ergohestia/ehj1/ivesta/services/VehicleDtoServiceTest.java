@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.configs.DefaultVehiclePath;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
@@ -12,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class VehicleDtoServiceTest {
     private VehicleService sut;
 
+    @Disabled
     @Test
     void shouldGetVehiclesList() {
         //given
@@ -26,6 +28,7 @@ class VehicleDtoServiceTest {
         assertThat(result.size()).isEqualTo(2);
     }
 
+    @Disabled
     @Test
     void addVehicleToList() {
         //given
@@ -38,6 +41,7 @@ class VehicleDtoServiceTest {
         //then
         assertThat(result.size()).isEqualTo(3);
     }
+
     @Test
     void shouldResultFromDefaultPathBeEqualToTestPath() {
         // given

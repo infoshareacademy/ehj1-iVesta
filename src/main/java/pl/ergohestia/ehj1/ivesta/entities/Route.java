@@ -1,6 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
@@ -12,6 +13,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "route.findAll", query = "from Route")
+})
 public class Route {
 
     @Id
@@ -34,4 +39,12 @@ public class Route {
 
     @Column(name = "transport_volume")
     private Integer transportVolume;
+
+    public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
+        this.startAddress = startAddress;
+        this.destinationAddress = destinationAddress;
+        this.routeLength = routeLength;
+        this.transportType = transportType;
+        this.transportVolume = transportVolume;
+    }
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 public class Menu {
 
-    public List<String> menuItems;
+    private List<String> menuItems;
 
     public Menu(String... menuItem) {
         this.menuItems = List.of(menuItem);
     }
 
+    public List<String> getMenuItems() {
+        return menuItems;
+    }
 }
