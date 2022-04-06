@@ -23,7 +23,7 @@ public class DriverConfig {
         this.driverPath = Path.of(filePath);
     }
 
-    public static void setDriverPath(Path driverFilePath) {
+    public void setDriverPath(Path driverFilePath) {
         DriverConfig.driverPath = driverPath;
     }
 }

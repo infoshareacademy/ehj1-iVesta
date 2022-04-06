@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
+import pl.ergohestia.ehj1.ivesta.dao.DriverDao;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 
 import java.io.FileReader;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 public class DriverService extends DriverConfig implements Service<DriverDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+
+    private final DriverDao dao = new DriverDao();
 
     private static List<DriverDto> driversList;
 
@@ -45,6 +48,10 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         return driversList;
     }
 
+    public void setDriversList() {
+        driversList = dao.findAll().stream().toList();
+    }
+
     @Override
     public void printElements() {
         driversList.stream()
@@ -54,12 +61,11 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
     @Override
     public void addElement(DriverDto driverDto) {
         if (driverDto != null) {
-            driverDto.setNumberOfCourses(Math.abs(driverDto.getNumberOfCourses()));
-            driverDto.setNumberOfKilometres(Math.abs(driverDto.getNumberOfKilometres()));
+            driverDto.setNumberOfCourses(driverDto.getNumberOfCourses());
+            driverDto.setNumberOfKilometres(driverDto.getNumberOfKilometres());
             driversList.add(driverDto);
         } else {
             log.warn("Cannot add driver to the list: driver object is null.");
-            SYSOUT.warn("Driver addition to the list failed.");
         }
     }
 }
