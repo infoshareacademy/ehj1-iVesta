@@ -49,17 +49,20 @@ public class RoutesLoader {
     }
 
     public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
-        SYSOUT.info("Wybierz numer samochodu z poniższej listy:");
-
         List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
-        for (int i = 0; i < vehicles.size(); i++) {
-            SYSOUT.info("{}. {}", (i + 1), vehicles.get(i));
-        }
+        if (vehicles.isEmpty()) {
+            return routeDto;
+        } else {
+            SYSOUT.info("Wybierz numer samochodu z poniższej listy:");
+            for (int i = 0; i < vehicles.size(); i++) {
+                SYSOUT.info("{}. {}", (i + 1), vehicles.get(i));
+            }
 
-        int vehicleNo = getVehicleFromList(in, vehicles.size());
-        VehicleDto vehicle = vehicles.get(vehicleNo);
-        routeDto.setVehicle(vehicle);
-        return routeDto;
+            int vehicleNo = getVehicleFromList(in, vehicles.size());
+            VehicleDto vehicle = vehicles.get(vehicleNo);
+            routeDto.setVehicle(vehicle);
+            return routeDto;
+        }
     }
 
     private int getVehicleFromList(Scanner scanner, int vehiclesListSize) {

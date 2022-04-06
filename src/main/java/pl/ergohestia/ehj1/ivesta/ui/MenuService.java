@@ -49,7 +49,11 @@ public class MenuService {
         log.debug("Loaded route: {}", routeDto);
 
         routeDto = routesLoader.addVehicleToRoute(in.getScanner(), routeDto);
-        SYSOUT.info("Wybrany samochód: {}", routeDto.toString());
+        if (routeDto.getVehicle() == null){
+            SYSOUT.info("Brak pojazdow w bazie.");
+        } else {
+            SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
+        }
     }
 
     private void logSubMenu(int index) {

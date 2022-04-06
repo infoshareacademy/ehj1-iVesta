@@ -54,7 +54,6 @@ class RoutesLoaderTest {
 
         // when
         RouteDto result = sut.loadRoute(testIn);
-        System.out.println(result.toString());
 
         // then
         assertThat(result.getStartAddress()).isEqualTo(testStartAddress);
