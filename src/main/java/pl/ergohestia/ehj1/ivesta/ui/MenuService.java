@@ -25,7 +25,7 @@ public class MenuService {
         driverService = new DriverService("path");
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
-        routesLoader = new RoutesLoader();
+        routesLoader = new RoutesLoader().init();
         return this;
     }
 
@@ -34,22 +34,26 @@ public class MenuService {
             "2. Obsługa pojazdów.",
             "3. Zaplanuj trasę.");
 
-    private void subMenuNo1() {
+    private void subMenuDriver() {
         logSubMenu(1);
     }
 
-    private void subMenuNo2() {
+    private void subMenuVehicle() {
         logSubMenu(2);
         vehicleMenu.runVehicleMenu();
     }
 
-    private void subMenuNo3() {
+    private void subMenuRoute() {
         logSubMenu(3);
         RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
         log.debug("Loaded route: {}", routeDto);
 
-        // route serivce - dodaje drivera i auto (Michał)
-        // wypisanie wyniku (Michał)
+        routeDto = routesLoader.addVehicleToRoute(in.getScanner(), routeDto);
+        if (routeDto.getVehicle() == null){
+            SYSOUT.info("Brak pojazdow w bazie.");
+        } else {
+            SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
+        }
     }
 
     private void logSubMenu(int index) {
@@ -69,9 +73,9 @@ public class MenuService {
         while (true) {
             item = getMenuItem();
             switch (item) {
-                case 1 -> subMenuNo1();
-                case 2 -> subMenuNo2();
-                case 3 -> subMenuNo3();
+                case 1 -> subMenuDriver();
+                case 2 -> subMenuVehicle();
+                case 3 -> subMenuRoute();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;

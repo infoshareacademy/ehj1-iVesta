@@ -24,10 +24,10 @@ public class Route {
     @Column(nullable = false)
     private Long id;
 
-    @Column(name = "start_address",nullable = false)
+    @Column(name = "start_address", nullable = false)
     private String startAddress;
 
-    @Column(name = "destination_address",nullable = false)
+    @Column(name = "destination_address", nullable = false)
     private String destinationAddress;
 
     @Column(name = "route_length")

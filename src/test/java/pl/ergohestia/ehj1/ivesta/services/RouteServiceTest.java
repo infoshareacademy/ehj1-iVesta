@@ -8,15 +8,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class RouteServiceTest {
 
-    private RouteService sut = new RouteService();
 
-   private static final String testStartAddress = "Test Start Address";
-   private static final String testDestinationAddress = "Test Destination Address";
-   private static final Integer testRouteLength = 200;
-   private static final TransportType testTransportType = TransportType.PASSENGERS;
-   private static final Integer testTransportVolume = 20;
+    RouteService sut = new RouteService();
 
     @Test
     void shouldGetEmptyList() {
@@ -44,6 +40,12 @@ class RouteServiceTest {
     }
 
     public RouteDto prepareTestRouteDto() {
+        String testStartAddress = "Test Start Address";
+        String testDestinationAddress = "Test Destination Address";
+        Integer testRouteLength = 200;
+        TransportType testTransportType = TransportType.PASSENGERS;
+        Integer testTransportVolume = 20;
         return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
     }
+
 }
