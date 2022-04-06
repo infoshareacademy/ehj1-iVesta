@@ -23,19 +23,15 @@ class DriverDaoTest {
         String license = "TestLicense";
         Integer numberOfCourses = 5;
         Integer numberOfKilometres = 3000;
-        DriverDto test = testDriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
-
+        DriverDto test = new DriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
 
         // when
         DriverDto result= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-
-
 
         // then
         assertThat(result).isNotNull();
         assertThat(result.getName()).isEqualTo(test.getName());
     }
-
 
     @Test
     void shouldFindByID() {
@@ -43,18 +39,10 @@ class DriverDaoTest {
         DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
         DriverDto d2= sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
 
-
-
         // when
 
 
-
-
         // then
-
-
-
-
 
 
     }
@@ -72,7 +60,6 @@ class DriverDaoTest {
         assertThat(result).isNotNull();
         assertThat(result).isNotEmpty();
         assertThat(result).size().isEqualTo(2);
-
     }
 
     @Test
@@ -99,25 +86,8 @@ class DriverDaoTest {
         Collection<DriverDto> result = sut.findAll();
 
 
-
-
         // then
 
-    }
 
-    public DriverDto testDriverDto(String name,
-                                   String lastName,
-                                   String address,
-                                   String phoneNumber,
-                                   String license,
-                                   Integer numberOfCourses,
-                                   Integer numberOfKilometres){
-        return new DriverDto("TestName",
-                "TestLastName",
-                "TestAddress",
-                "TestPhone",
-                "TestLicense",
-                5,
-                3000);
     }
 }
