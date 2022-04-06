@@ -3,9 +3,8 @@ package pl.ergohestia.ehj1.ivesta.dao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -17,41 +16,40 @@ import static pl.ergohestia.ehj1.ivesta.utils.HibernateUtils.em;
 class DriverDaoTest {
 
     @AfterEach
-    void cleanDb(){
+    void cleanDb() {
         em.getTransaction().begin();
         em.createQuery("delete Driver").executeUpdate();
         em.getTransaction().commit();
     }
 
-    DriverDto test = new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000);
-    DriverDto test2 =new DriverDto("TestName2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",2,1000);
+    DriverDto testDriver = new DriverDto("TEST_NAME", "TEST_LAST_NAME", "TEST_ADDRESS", "TEST_PHONE", "TEST_LICENSE", 5, 3000);
+    DriverDto testDriver2 = new DriverDto("TEST_NAME_2", "TEST_LAST_NAME_2", "TEST_ADDRESS_2", "TEST_PHONE_2", "TEST_LICENSE_2", 2, 1000);
 
-    private DriverDao sut = new DriverDao();
+    final DriverDao sut = new DriverDao();
 
     @Test
     void shouldSaveNewDriver() {
         // given
 
 
-
         // when
-        sut.save(test);
-
+        sut.save(testDriver);
+        Collection<DriverDto> dtoResultCollection = sut.findAll();
 
         // then
-        assertThat(test).isNotNull();
-        assertThat(test.getName()).isEqualTo("TestName");
+        assertThat(dtoResultCollection).isNotNull();
+        assertThat(dtoResultCollection.size()).isEqualTo(1);
     }
 
     @Test
     void shouldFindByID() {
         // given
-        sut.save(test);
+        sut.save(testDriver);
 
         // when
-        Collection<DriverDto> dtoCollection = sut.findAll();
-        List<UUID> id = dtoCollection.stream().map(DriverDto::getId).collect(Collectors.toList());
-        UUID resultUUID = id.get(0);
+        Collection<DriverDto> drivers = sut.findAll();
+        List<UUID> driversId = drivers.stream().map(DriverDto::getId).toList();
+        UUID resultUUID = driversId.get(0);
 
         // then
         assertThat(sut.find(resultUUID)).isNotNull();
@@ -62,8 +60,8 @@ class DriverDaoTest {
     @Test
     void shouldFindAll() {
         // given
-        sut.save(test);
-        sut.save(test2);
+        sut.save(testDriver);
+        sut.save(testDriver2);
 
         // when
         Collection<DriverDto> result = sut.findAll();
@@ -77,7 +75,7 @@ class DriverDaoTest {
     @Test
     void shouldUpdate() {
         // given
-        sut.save(test);
+        sut.save(testDriver);
         DriverDto firstResult = sut.findAll().iterator().next();
 
         // when
@@ -88,16 +86,15 @@ class DriverDaoTest {
         DriverDto resultDriver = sut.findAll().iterator().next();
 
         // then
-        assertThat(resultDriver.getName().equals("Johny"));
-        assertThat(resultDriver.getLicense().equals("C"));
-
+        assertThat(resultDriver.getName()).isEqualTo("Johny");
+        assertThat(resultDriver.getLicense()).isEqualTo("C");
     }
 
     @Disabled
     @Test
     void shouldDelete() {
         // given
-        sut.save(test);
+        sut.save(testDriver);
         DriverDto firstResult = sut.findAll().iterator().next();
 
 
