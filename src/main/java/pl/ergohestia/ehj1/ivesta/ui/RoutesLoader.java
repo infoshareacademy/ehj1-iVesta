@@ -33,11 +33,8 @@ public class RoutesLoader {
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
         Integer transportVolume = routeService.loadPositiveNumber(scanner);
 
-        SYSOUT.info("Wybierz numer kierowcy z poniżej listy:");
-        DriverDto driver = routeService.driverSelect(scanner);
 
-
-        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume, driver);
+        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
     }
 
 }
