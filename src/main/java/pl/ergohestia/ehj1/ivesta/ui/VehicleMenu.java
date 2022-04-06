@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class VehicleMenu {
 
-    private Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger log = LoggerFactory.getLogger(VehicleMenu.class);
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private InputScannerProvider in = new InputScannerProvider();
 
