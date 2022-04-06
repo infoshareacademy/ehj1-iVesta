@@ -48,10 +48,8 @@ public class MenuService {
         RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
         log.debug("Loaded route: {}", routeDto);
 
-        // route serivce - dodaje drivera i auto (Michał)
         routeDto = routeService.addVehicleToRoute(in.getScanner(), routeDto);
-        // wypisanie wyniku (Michał)
-        SYSOUT.info(routeDto.toString());
+        SYSOUT.info("Wybrany samochód: {}", routeDto.toString());
     }
 
     private void logSubMenu(int index) {
