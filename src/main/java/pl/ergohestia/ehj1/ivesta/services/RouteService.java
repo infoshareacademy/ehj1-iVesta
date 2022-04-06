@@ -3,12 +3,14 @@ package pl.ergohestia.ehj1.ivesta.services;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 @Slf4j
 public class RouteService implements Service<RouteDto> {
@@ -66,7 +68,7 @@ public class RouteService implements Service<RouteDto> {
 
 
     public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
-        SYSOUT.info("Wybierz numer samochodu z poniżej listy:");
+        SYSOUT.info("Wybierz numer samochodu z poniższej listy:");
 
         List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
         for (int i = 0; i < vehicles.size(); i++) {

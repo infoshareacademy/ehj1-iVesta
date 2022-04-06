@@ -96,5 +96,4 @@ class RouteServiceTest {
         }
         return new ByteArrayInputStream(testInput.toString().getBytes());
     }
-
 }
