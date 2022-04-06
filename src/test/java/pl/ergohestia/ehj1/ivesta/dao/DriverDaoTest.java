@@ -8,7 +8,6 @@ import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.ergohestia.ehj1.ivesta.utils.HibernateUtils.em;
