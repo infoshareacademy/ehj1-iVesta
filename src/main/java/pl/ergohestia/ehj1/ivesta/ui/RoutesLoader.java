@@ -3,9 +3,11 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
+import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.io.InputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RoutesLoader {
@@ -24,15 +26,43 @@ public class RoutesLoader {
         String destinationAddress = scanner.nextLine();
 
         SYSOUT.info("Podaj długość trasy");
-        Integer routeLength = routeService.loadPositiveNumber(scanner);
+        Integer routeLength = loadPositiveNumber(scanner);
 
         SYSOUT.info("Podaj rodzaj przewozu (o - osoby, t - towary)");
-        String transportTypeInput = routeService.loadTransportType(scanner);
+        TransportType transportTypeInput = loadTransportType(scanner);
 
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
-        Integer transportVolume = routeService.loadPositiveNumber(scanner);
+        Integer transportVolume = loadPositiveNumber(scanner);
 
-        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
+        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume);
+    }
+
+
+    public TransportType loadTransportType(Scanner scanner) {
+        String transportTypeInput = "";
+        while(!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
+            transportTypeInput = scanner.next();
+            if (!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
+                SYSOUT.info("Podaj prawidłową literę: o lub t");
+            }
+        }
+        return routeService.convertToTransportType(transportTypeInput);
+    }
+
+    public Integer loadPositiveNumber(Scanner scanner) {
+        Integer positiveNumber = 0;
+        while (positiveNumber <= 0) {
+            try {
+                positiveNumber = scanner.nextInt();
+                if (positiveNumber <= 0) {
+                    SYSOUT.info("Podaj liczbę całkowitą dodatnią");
+                }
+            } catch (InputMismatchException e) {
+                SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
+                scanner.next();
+            }
+        }
+        return positiveNumber;
     }
 
 }

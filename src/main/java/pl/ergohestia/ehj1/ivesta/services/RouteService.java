@@ -2,13 +2,11 @@ package pl.ergohestia.ehj1.ivesta.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
 public class RouteService implements Service<RouteDto> {
 
@@ -22,34 +20,6 @@ public class RouteService implements Service<RouteDto> {
 
     public List<RouteDto> getRoutes() {
         return routeList;
-    }
-    
-    public Integer loadPositiveNumber(Scanner scanner) {
-        Integer positiveNumber = 0;
-        boolean correctData = false;
-        while (positiveNumber <= 0) {
-            try {
-                positiveNumber = scanner.nextInt();
-                if (positiveNumber <= 0) {
-                    SYSOUT.info("Podaj liczbę całkowitą dodatnią");
-                }
-            } catch (InputMismatchException e) {
-                SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
-                scanner.next();
-            }
-        }
-        return positiveNumber;
-    }
-
-    public String loadTransportType(Scanner scanner) {
-        String transportTypeInput = "";
-        while(!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
-            transportTypeInput = scanner.next();
-            if (!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
-                System.out.println("Podaj prawidłową literę: o lub t");
-            }
-        }
-        return transportTypeInput;
     }
 
     public TransportType convertToTransportType(String input) {
