@@ -6,16 +6,14 @@ import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @Slf4j
 public class RouteService implements Service<RouteDto> {
 
-    DriverService driverService = new DriverService("path");
+    VehicleService vehicleService = new VehicleService();
 
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
@@ -67,31 +65,35 @@ public class RouteService implements Service<RouteDto> {
     }
 
 
-    public DriverDto driverSelect(Scanner scanner) {
-        List<DriverDto> driversList = driverService.getDriversList();
-        for (int i = 0; i < driversList.size(); i++) {
-            SYSOUT.info((i + 1) + ". " + driversList.get(i));
+    public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
+        SYSOUT.info("Wybierz numer samochodu z poniżej listy:");
+
+        List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
+        for (int i = 0; i < vehicles.size(); i++) {
+            SYSOUT.info((i + 1) + ". " + vehicles.get(i));
         }
 
-        int driverNo = getDriverFromList(scanner, driversList.size());
-        return driversList.get(driverNo);
+        int vehicleNo = getVehicleFromList(in, vehicles.size());
+        VehicleDto vehicle = vehicles.get(vehicleNo);
+        routeDto.setVehicle(vehicle);
+        return routeDto;
     }
 
-    private int getDriverFromList(Scanner scanner, int driversListSize) {
+    private int getVehicleFromList(Scanner scanner, int vehiclesListSize) {
         int item = 0;
         String incorrecltyInput;
         do {
-            SYSOUT.info("Numer kierowcy: ");
+            SYSOUT.info("Numer samochodu: ");
             if (!scanner.hasNextInt()) {
                 incorrecltyInput = scanner.next();
-                log.info("User incorrectly wrote " + incorrecltyInput + " when choosing driver");
+                log.info("User incorrectly wrote " + incorrecltyInput + " when choosing vehicle");
                 continue;
             }
             item = scanner.nextInt();
-            if (!(item < 1 & item <= driversListSize)) {
-                log.info("User incorrectly wrote " + item + " when choosing driver");
+            if (!(item < 1 & item <= vehiclesListSize)) {
+                log.info("User incorrectly wrote " + item + " when choosing vehicle");
             }
-        } while (!(item >= 1 & item <= driversListSize));
+        } while (!(item >= 1 & item <= vehiclesListSize));
 
         return item;
     }

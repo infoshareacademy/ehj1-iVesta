@@ -49,7 +49,7 @@ public class MenuService {
         log.debug("Loaded route: {}", routeDto);
 
         // route serivce - dodaje drivera i auto (Michał)
-        routeDto = routeService.addDriverToRoute(in.getScanner(), routeDto);
+        routeDto = routeService.addVehicleToRoute(in.getScanner(), routeDto);
         // wypisanie wyniku (Michał)
         SYSOUT.info(routeDto.toString());
     }
