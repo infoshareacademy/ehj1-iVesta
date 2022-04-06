@@ -1,48 +1,59 @@
 package pl.ergohestia.ehj1.ivesta.dao;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static pl.ergohestia.ehj1.ivesta.utils.HibernateUtils.em;
 
 class DriverDaoTest {
 
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
+    @AfterEach
+    void cleanDb(){
+        em.getTransaction().begin();
+        em.createQuery("delete Driver").executeUpdate();
+        em.getTransaction().commit();
+    }
+
+    DriverDto test = new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000);
+    DriverDto test2 =new DriverDto("TestName2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",2,1000);
 
     private DriverDao sut = new DriverDao();
 
     @Test
     void shouldSaveNewDriver() {
         // given
-        String name = "TestName";
-        String lastName= "TestLastName";
-        String address = "TestAddress";
-        String phoneNumber = "TestPhone";
-        String license = "TestLicense";
-        Integer numberOfCourses = 5;
-        Integer numberOfKilometres = 3000;
-        DriverDto test = new DriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
+
+
 
         // when
-        DriverDto result= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
+        sut.save(test);
+
 
         // then
-        assertThat(result).isNotNull();
-        assertThat(result.getName()).isEqualTo(test.getName());
+        assertThat(test).isNotNull();
+        assertThat(test.getName()).isEqualTo("TestName");
     }
 
     @Test
     void shouldFindByID() {
         // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-        DriverDto d2= sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
+        sut.save(test);
 
         // when
-
+        Collection<DriverDto> dtoCollection = sut.findAll();
+        List<UUID> id = dtoCollection.stream().map(DriverDto::getId).collect(Collectors.toList());
+        UUID resultUUID = id.get(0);
 
         // then
+        assertThat(sut.find(resultUUID)).isNotNull();
 
 
     }
@@ -50,8 +61,8 @@ class DriverDaoTest {
     @Test
     void shouldFindAll() {
         // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-        DriverDto d2= sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
+        sut.save(test);
+        sut.save(test2);
 
         // when
         Collection<DriverDto> result = sut.findAll();
@@ -65,29 +76,35 @@ class DriverDaoTest {
     @Test
     void shouldUpdate() {
         // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-
+        sut.save(test);
+        DriverDto firstResult = sut.findAll().iterator().next();
 
         // when
-
+        firstResult.setLicense("C");
+        firstResult.setName("Johny");
+        sut.update(firstResult);
+        Collection<DriverDto> result = sut.findAll();
+        DriverDto resultDriver = sut.findAll().iterator().next();
 
         // then
-
+        assertThat(resultDriver.getName().equals("Johny"));
+        assertThat(resultDriver.getLicense().equals("C"));
 
     }
 
     @Test
     void shouldDelete() {
         // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
+        sut.save(test);
+        DriverDto firstResult = sut.findAll().iterator().next();
 
 
         // when
+        sut.delete(firstResult);
         Collection<DriverDto> result = sut.findAll();
 
-
         // then
-
+        assertThat(result).isEmpty();
 
     }
 }
