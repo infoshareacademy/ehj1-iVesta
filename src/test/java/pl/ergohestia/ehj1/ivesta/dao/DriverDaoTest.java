@@ -23,10 +23,13 @@ class DriverDaoTest {
         String license = "TestLicense";
         Integer numberOfCourses = 5;
         Integer numberOfKilometres = 3000;
+        DriverDto test = testDriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
+
 
         // when
-        DriverDto test = testDriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
         DriverDto result= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
+
+
 
         // then
         assertThat(result).isNotNull();
@@ -48,7 +51,7 @@ class DriverDaoTest {
 
 
         // then
-        //TODO to discuss
+
 
 
 
@@ -82,7 +85,7 @@ class DriverDaoTest {
 
 
         // then
-        //TODO to discuss
+
 
     }
 
@@ -99,7 +102,6 @@ class DriverDaoTest {
 
 
         // then
-        //TODO to discuss
 
     }
 
