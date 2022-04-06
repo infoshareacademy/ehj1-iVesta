@@ -45,9 +45,9 @@ public class DriverMenu {
         logSubMenu(3);
     }
 
-    private void subDriverMenuNo4() {
+    private void subMenuLoadNewDrivers() {
         logSubMenu(4);
-        driverService.setDriverPath(Path.of("path"));
+        driverService.setDriverPath(getDriverFilePathFromInput());
         driverService.importDrivers();
     }
 
@@ -66,7 +66,7 @@ public class DriverMenu {
                 case 1 -> subMenuShowAllDrivers();
                 case 2 -> subMenuShowAvailableDrivers();
                 case 3 -> subDriverMenuNo3();
-                case 4 -> subDriverMenuNo4();
+                case 4 -> subMenuLoadNewDrivers();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;
@@ -95,7 +95,7 @@ public class DriverMenu {
         return item;
     }
 
-    private String getDriverFilePathFromInput() {
+    private Path getDriverFilePathFromInput() {
         Scanner scanner = in.getScanner();
         String filePath = null;
         do {
@@ -105,10 +105,17 @@ public class DriverMenu {
                 SYSOUT.info("Nie podałeś ścieżki do pliku.");
             }
             if (scanner.hasNextLine()) {
-                Boolean fileExist = new File(filePath).isFile();
+                String filePathToCheck = scanner.nextLine();
+                Boolean fileExist = new File(filePathToCheck).isFile();
+                if (fileExist) {
+                    filePath = filePathToCheck;
+                } else {
+                    log.info("User wrote filepath that does not exist.");
+                    SYSOUT.info("Podana ścieżka nie istnieje.");
+                }
             }
         } while (filePath == null);
-        return filePath;
+        return Path.of(filePath);
     }
 
     private void printMenu(List<String> menuItems) {
