@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
 @Slf4j
 public class DriverService extends DriverConfig implements Service<DriverDto> {
 
