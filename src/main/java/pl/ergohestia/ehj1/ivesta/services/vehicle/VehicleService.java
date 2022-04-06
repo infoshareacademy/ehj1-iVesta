@@ -3,7 +3,6 @@ package pl.ergohestia.ehj1.ivesta.services.vehicle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 import pl.ergohestia.ehj1.ivesta.services.Service;

@@ -19,4 +19,20 @@ public class DriverAdapter {
         driverDto.setId(driver.getId());
         return driverDto;
     }
+    public Driver convertToDriver(DriverDto driverDto){
+        if (driverDto == null) {
+            return null;
+        }
+        Driver driver = new Driver(
+                driverDto.getName(),
+                driverDto.getLastName(),
+                driverDto.getAddress(),
+                driverDto.getPhoneNumber(),
+                driverDto.getLicense(),
+                driverDto.getNumberOfCourses(),
+                driverDto.getNumberOfKilometres()
+        );
+        driver.setId(driverDto.getId());
+        return driver;
+    }
 }
