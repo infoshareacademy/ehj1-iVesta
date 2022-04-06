@@ -13,6 +13,8 @@ class DriverDaoTest {
 
     private DriverDao sut = new DriverDao();
 
+    DriverDto testDriver = new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000);
+
     @Test
     void shouldSaveNewDriver() {
         // given
@@ -26,7 +28,8 @@ class DriverDaoTest {
         DriverDto test = new DriverDto(name,lastName,address,phoneNumber,license,numberOfCourses,numberOfKilometres);
 
         // when
-        DriverDto result= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
+        sut.save(test);
+        DriverDto result = sut.findAll().iterator().next();
 
         // then
         assertThat(result).isNotNull();
@@ -36,55 +39,11 @@ class DriverDaoTest {
     @Test
     void shouldFindByID() {
         // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-        DriverDto d2= sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
-
-        // when
-
-
-        // then
-
-
-    }
-
-    @Test
-    void shouldFindAll() {
-        // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-        DriverDto d2= sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
+        sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
+        sut.save(new DriverDto("2","TestLastName2","TestAddress2","TestPhone2","TestLicense2",5,3000));
 
         // when
         Collection<DriverDto> result = sut.findAll();
-
-        // then
-        assertThat(result).isNotNull();
-        assertThat(result).isNotEmpty();
-        assertThat(result).size().isEqualTo(2);
-    }
-
-    @Test
-    void shouldUpdate() {
-        // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-
-
-        // when
-
-
-        // then
-
-
-    }
-
-    @Test
-    void shouldDelete() {
-        // given
-        DriverDto d1= sut.save(new DriverDto("TestName","TestLastName","TestAddress","TestPhone","TestLicense",5,3000));
-
-
-        // when
-        Collection<DriverDto> result = sut.findAll();
-
 
         // then
 
