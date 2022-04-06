@@ -9,15 +9,23 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class VehicleDao implements Dao<VehicleDto> {
 
-    private final EntityManager em = HibernateUtils.getEntityManager();
-    private final VehicleAdapter vehicleAdapter = new VehicleAdapter();
+    private EntityManager em = HibernateUtils.getEntityManager();
+    private VehicleAdapter vehicleAdapter = new VehicleAdapter();
 
     @Override
-    public VehicleDto find(Long id) {
-        return vehicleAdapter.convertToVehicleDto(em.find(Vehicle.class, id));
+    public VehicleDto find(UUID id) {
+        em.getTransaction().begin();
+        Vehicle vehicle = findVehicle(id);
+        em.getTransaction().commit();
+        return vehicleAdapter.convertToVehicleDto(vehicle);
+    }
+
+    private Vehicle findVehicle(UUID id) {
+        return em.find(Vehicle.class, id);
     }
 
     @Override
@@ -54,7 +62,7 @@ public class VehicleDao implements Dao<VehicleDto> {
     @Override
     public void delete(VehicleDto vehicleDto) {
         em.getTransaction().begin();
-        em.remove(vehicleAdapter.convertToVehicle(vehicleDto));
+        em.remove(findVehicle(vehicleDto.getId()));
         em.getTransaction().commit();
     }
 }

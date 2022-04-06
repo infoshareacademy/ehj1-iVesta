@@ -40,7 +40,7 @@ public class VehicleAdapter {
                 vehicleDto.getFuelType(),
                 vehicleDto.getFuelConsumption(),
                 vehicleDto.getWeightLimit());
-        vehicleDto.setId(vehicleDto.getId());
+        vehicle.setId(vehicleDto.getId());
         return vehicle;
     }
 }
