@@ -12,12 +12,11 @@ class RouteServiceTest {
 
     private RouteService sut = new RouteService();
 
-    String testStartAddress = "Test Start Address";
-    String testDestinationAddress = "Test Destination Address";
-    Integer testRouteLength = 200;
-    TransportType testTransportType = TransportType.PASSENGERS;
-    Integer testTransportVolume = 20;
-    RouteDto testRouteDto = prepareTestRouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
+   private static final String testStartAddress = "Test Start Address";
+   private static final String testDestinationAddress = "Test Destination Address";
+   private static final Integer testRouteLength = 200;
+   private static final TransportType testTransportType = TransportType.PASSENGERS;
+   private static final Integer testTransportVolume = 20;
 
     @Test
     void shouldGetEmptyList() {
@@ -33,12 +32,7 @@ class RouteServiceTest {
     @Test
     void shouldAddElement() {
         // given
-        String testStartAddress = "Test Start Address";
-        String testDestinationAddress = "Test Destination Address";
-        Integer testRouteLength = 200;
-        TransportType testTransportType = TransportType.PASSENGERS;
-        Integer testTransportVolume = 20;
-        RouteDto testRouteDto = prepareTestRouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
+        RouteDto testRouteDto = prepareTestRouteDto();
 
         // when
         sut.addElement(testRouteDto);
@@ -49,11 +43,7 @@ class RouteServiceTest {
 
     }
 
-    public RouteDto prepareTestRouteDto(String testStartAddress,
-                                        String testDestinationAddress,
-                                        Integer testRouteLength,
-                                        TransportType testTransportType,
-                                        Integer testTransportVolume) {
+    public RouteDto prepareTestRouteDto() {
         return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
     }
 }
