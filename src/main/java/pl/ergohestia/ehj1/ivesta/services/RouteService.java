@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -14,8 +13,6 @@ import java.util.Scanner;
 
 @Slf4j
 public class RouteService implements Service<RouteDto> {
-
-    VehicleService vehicleService = new VehicleService();
 
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
@@ -64,40 +61,6 @@ public class RouteService implements Service<RouteDto> {
             case "t" -> TransportType.CARGO;
             default -> throw new IllegalStateException("Unexpected value: " + input);
         };
-    }
-
-
-    public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
-        SYSOUT.info("Wybierz numer samochodu z poniższej listy:");
-
-        List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
-        for (int i = 0; i < vehicles.size(); i++) {
-            SYSOUT.info((i + 1) + ". " + vehicles.get(i));
-        }
-
-        int vehicleNo = getVehicleFromList(in, vehicles.size());
-        VehicleDto vehicle = vehicles.get(vehicleNo);
-        routeDto.setVehicle(vehicle);
-        return routeDto;
-    }
-
-    private int getVehicleFromList(Scanner scanner, int vehiclesListSize) {
-        int item = 0;
-        String incorrecltyInput;
-        do {
-            SYSOUT.info("Numer samochodu: ");
-            if (!scanner.hasNextInt()) {
-                incorrecltyInput = scanner.next();
-                log.info("User incorrectly wrote " + incorrecltyInput + " when choosing vehicle");
-                continue;
-            }
-            item = scanner.nextInt();
-            if (!(item < 1 & item <= vehiclesListSize)) {
-                log.info("User incorrectly wrote " + item + " when choosing vehicle");
-            }
-        } while (!(item >= 1 & item <= vehiclesListSize));
-
-        return item;
     }
 
 

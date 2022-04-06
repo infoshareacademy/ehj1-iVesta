@@ -48,7 +48,7 @@ public class MenuService {
         RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
         log.debug("Loaded route: {}", routeDto);
 
-        routeDto = routeService.addVehicleToRoute(in.getScanner(), routeDto);
+        routeDto = routesLoader.addVehicleToRoute(in.getScanner(), routeDto);
         SYSOUT.info("Wybrany samochód: {}", routeDto.toString());
     }
 
