@@ -1,6 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
