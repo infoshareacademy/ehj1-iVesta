@@ -52,6 +52,7 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         driversList = dao.findAll().stream().toList();
     }
 
+    //TODO przenieść metodę do ui
     @Override
     public void printElements() {
         driversList.stream()

@@ -4,13 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,12 +30,12 @@ public class DriverMenu {
             "3. Edytuj kierowców.",
             "4. Załaduj nowych kierowców.");
 
-    private void subDriverMenuNo1() {
+    private void subMenuShowAllDrivers() {
         logSubMenu(1);
         driverService.printElements();
     }
 
-    private void subDriverMenuNo2(
+    private void subMenuShowAvailableDrivers(
             //TODO implementacja dla wyświetlania kierowców nieprzypisanych do trasy
     ) {
         logSubMenu(2);
@@ -66,8 +63,8 @@ public class DriverMenu {
         while (true) {
             item = getMenuItem();
             switch (item) {
-                case 1 -> subDriverMenuNo1();
-                case 2 -> subDriverMenuNo2();
+                case 1 -> subMenuShowAllDrivers();
+                case 2 -> subMenuShowAvailableDrivers();
                 case 3 -> subDriverMenuNo3();
                 case 4 -> subDriverMenuNo4();
                 default -> {

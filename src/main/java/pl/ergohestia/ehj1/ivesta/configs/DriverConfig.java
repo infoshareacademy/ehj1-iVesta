@@ -2,7 +2,7 @@ package pl.ergohestia.ehj1.ivesta.configs;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
-import pl.ergohestia.ehj1.ivesta.utils.DriverHeaders;
+import pl.ergohestia.ehj1.ivesta.model.DriverHeaders;
 
 import java.nio.file.Path;
 
