@@ -39,7 +39,4 @@ public class Driver {
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
 
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
-    @OrderColumn
-    private List<Route> owners;
 }
