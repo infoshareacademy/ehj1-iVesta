@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 import java.util.Collection;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class VehicleMenu {
 
-    private Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger log = LoggerFactory.getLogger(VehicleMenu.class);
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private InputScannerProvider in = new InputScannerProvider();
 
@@ -30,9 +31,9 @@ public class VehicleMenu {
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
-        Collection<Vehicle> vehicles = vehicleService.getVehicleDtoList();
-        for (Vehicle vehicle : vehicles) {
-            SYSOUT.info(String.valueOf(vehicle));
+        Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
+        for (VehicleDto vehicleDto : vehicles) {
+            SYSOUT.info(String.valueOf(vehicleDto));
         }
     }
 

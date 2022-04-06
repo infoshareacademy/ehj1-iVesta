@@ -12,6 +12,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "route.findAll", query = "from Route")
+})
 public class Route {
 
     @Id
@@ -42,4 +46,12 @@ public class Route {
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
+
+    public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
+        this.startAddress = startAddress;
+        this.destinationAddress = destinationAddress;
+        this.routeLength = routeLength;
+        this.transportType = transportType;
+        this.transportVolume = transportVolume;
+    }
 }

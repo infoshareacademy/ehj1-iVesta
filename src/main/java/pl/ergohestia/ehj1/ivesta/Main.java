@@ -14,7 +14,7 @@ public class Main {
     }
 
     private void run(){
-        MenuService menuService = new MenuService();
+        MenuService menuService = new MenuService().init();
 
         log.info("App starting.");
 
