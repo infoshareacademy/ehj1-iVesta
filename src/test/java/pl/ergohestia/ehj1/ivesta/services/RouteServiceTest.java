@@ -7,6 +7,7 @@ import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RouteServiceTest {
 
@@ -45,5 +46,34 @@ class RouteServiceTest {
 
     public RouteDto prepareTestRouteDto() {
         return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
+    }
+
+    @Test
+    void shouldConvertToTransportType() {
+        // given
+        String testInput = "o";
+        String testInput2 = "t";
+
+        // when
+        TransportType result1 = sut.convertToTransportType(testInput);
+        TransportType result2 = sut.convertToTransportType(testInput2);
+
+        // then
+        assertThat(result1).isEqualTo(TransportType.PASSENGERS);
+        assertThat(result2).isEqualTo(TransportType.CARGO);
+
+    }
+
+    @Test
+    void shouldThrowExceptionWhenInputIsNotOOrT() {
+        // given
+        String testWrongInput = "x";
+
+        // when
+        Exception exception = assertThrows(Exception.class, () -> sut.convertToTransportType(testWrongInput));
+
+        // then
+        assertThat(exception).isInstanceOf(IllegalStateException.class);
+        assertThat(exception.getMessage()).contains("Unexpected value:");
     }
 }
