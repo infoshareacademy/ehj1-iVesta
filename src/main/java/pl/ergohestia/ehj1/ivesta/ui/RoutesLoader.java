@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
@@ -18,8 +19,14 @@ public class RoutesLoader {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    VehicleService vehicleService = new VehicleService();
-    RouteService routeService = new RouteService();
+    VehicleService vehicleService;
+    RouteService routeService;
+
+    public RoutesLoader init() {
+        vehicleService = new VehicleService();
+        routeService = new RouteService();
+        return this;
+    }
 
     public RouteDto loadRoute(InputStream in) {
         Scanner scanner = new Scanner(in);

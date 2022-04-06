@@ -25,7 +25,7 @@ public class MenuService {
         driverService = new DriverService("path");
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
-        routesLoader = new RoutesLoader();
+        routesLoader = new RoutesLoader().init();
         return this;
     }
 
