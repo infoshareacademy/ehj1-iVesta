@@ -32,7 +32,7 @@ class MenuServiceTest {
     InputScannerProvider inputScannerProvider;
 
     @InjectMocks
-    private MenuService sut = new MenuService().init();
+    private MenuService sut;
 
     @Captor
     private ArgumentCaptor<String> captor;
