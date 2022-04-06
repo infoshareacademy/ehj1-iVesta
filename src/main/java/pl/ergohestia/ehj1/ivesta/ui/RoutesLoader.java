@@ -38,7 +38,7 @@ public class RoutesLoader {
     }
 
 
-    public TransportType loadTransportType(Scanner scanner) {
+    private TransportType loadTransportType(Scanner scanner) {
         String transportTypeInput = "";
         while(!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
             transportTypeInput = scanner.next();
