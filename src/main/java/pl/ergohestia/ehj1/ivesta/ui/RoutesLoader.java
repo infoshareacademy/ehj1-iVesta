@@ -3,10 +3,8 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
@@ -55,7 +53,7 @@ public class RoutesLoader {
 
         List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
         for (int i = 0; i < vehicles.size(); i++) {
-            SYSOUT.info((i + 1) + ". " + vehicles.get(i));
+            SYSOUT.info("{}. {}", (i + 1), vehicles.get(i));
         }
 
         int vehicleNo = getVehicleFromList(in, vehicles.size());
@@ -71,12 +69,12 @@ public class RoutesLoader {
             SYSOUT.info("Numer samochodu: ");
             if (!scanner.hasNextInt()) {
                 incorrecltyInput = scanner.next();
-                log.info("User incorrectly wrote " + incorrecltyInput + " when choosing vehicle");
+                log.info("User incorrectly wrote {} when choosing vehicle", incorrecltyInput);
                 continue;
             }
             item = scanner.nextInt();
             if (!(item < 1 & item <= vehiclesListSize)) {
-                log.info("User incorrectly wrote " + item + " when choosing vehicle");
+                log.info("User incorrectly wrote {} when choosing vehicle", item);
             }
         } while (!(item >= 1 & item <= vehiclesListSize));
 
