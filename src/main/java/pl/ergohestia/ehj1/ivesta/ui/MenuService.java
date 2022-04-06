@@ -16,10 +16,18 @@ public class MenuService {
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private InputScannerProvider in = new InputScannerProvider();
 
-    DriverService driverService = new DriverService("path");
-    RouteService routeService = new RouteService();
-    VehicleMenu vehicleMenu = new VehicleMenu();
-    RoutesLoader routesLoader = new RoutesLoader();
+    DriverService driverService;
+    RouteService routeService;
+    VehicleMenu vehicleMenu;
+    RoutesLoader routesLoader;
+
+    public MenuService init() {
+        driverService = new DriverService("path");
+        routeService = new RouteService();
+        vehicleMenu = new VehicleMenu();
+        routesLoader = new RoutesLoader();
+        return this;
+    }
 
     private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
