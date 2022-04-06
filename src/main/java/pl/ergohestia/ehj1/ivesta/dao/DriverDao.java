@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 import javax.persistence.EntityManager;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class DriverDao implements Dao<DriverDto>{
     private final EntityManager em = HibernateUtils.getEntityManager();
@@ -19,13 +20,12 @@ public class DriverDao implements Dao<DriverDto>{
         em.getTransaction().commit();
     }
 
-    public DriverDto save(DriverDto driverDto) {
+    public void save(DriverDto driverDto) {
         saveDriver(adapter.convertToDriver(driverDto));
-        return driverDto;
     }
 
     @Override
-    public DriverDto find(Long id) {
+    public DriverDto find(UUID id) {
         return adapter.convertToDriverDto(em.find(Driver.class,id));
     }
 

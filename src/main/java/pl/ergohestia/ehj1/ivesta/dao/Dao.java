@@ -3,14 +3,15 @@ package pl.ergohestia.ehj1.ivesta.dao;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public interface Dao<T> {
 
-    T find(Long id);
+    T find(UUID id);
 
     Collection<T> findAll();
 
-    DriverDto save(T t);
+    void save(T t);
 
     T update(T t);
 
