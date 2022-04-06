@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -67,6 +68,10 @@ public class Vehicle {
 
     @Column(nullable = false, name = "weight_limit")
     private double weightLimit;
+
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    @OrderColumn
+    private List<Route> owners;
 
     public Vehicle(String brand,
                    String vehicleCategory,

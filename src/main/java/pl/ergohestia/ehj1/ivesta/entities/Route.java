@@ -34,4 +34,12 @@ public class Route {
 
     @Column(name = "transport_volume")
     private Integer transportVolume;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
 }

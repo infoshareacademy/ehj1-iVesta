@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "drivers")
@@ -37,4 +38,8 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
+
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
+    @OrderColumn
+    private List<Route> owners;
 }
