@@ -33,8 +33,4 @@ public class RouteDto {
         this.transportType = transportType;
         this.transportVolume = transportVolume;
     }
-
-    public void setVehicle(VehicleDto vehicle) {
-        this.vehicle = vehicle;
-    }
 }
