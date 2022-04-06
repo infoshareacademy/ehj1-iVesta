@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,12 +48,4 @@ class RouteServiceTest {
         return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
     }
 
-
-    private InputStream prepareInputStream(Object... inputs) {
-        StringBuilder testInput = new StringBuilder();
-        for (Object input : inputs) {
-            testInput.append(input).append(System.lineSeparator());
-        }
-        return new ByteArrayInputStream(testInput.toString().getBytes());
-    }
 }
