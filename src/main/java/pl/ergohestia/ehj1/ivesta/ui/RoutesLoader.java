@@ -7,6 +7,7 @@ import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -34,9 +35,11 @@ public class RoutesLoader {
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
         Integer transportVolume = loadPositiveNumber(scanner);
 
-        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume);
-    }
+        SYSOUT.info("Podaj datę transportu w formacie rrrr-mm-dd:");
+        String date = scanner.nextLine();
 
+        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume, LocalDate.parse(date));
+    }
 
     private TransportType loadTransportType(Scanner scanner) {
         String transportTypeInput = "";
@@ -64,5 +67,8 @@ public class RoutesLoader {
         }
         return positiveNumber;
     }
+    //TODO implements method
+//    private LocalDate loadCorrectData(String input) {
+//    }
 
 }
