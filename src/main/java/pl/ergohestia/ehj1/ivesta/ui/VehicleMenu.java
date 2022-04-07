@@ -2,7 +2,6 @@ package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
@@ -30,7 +29,7 @@ public class VehicleMenu {
             "3. Załaduj nowe pojazdy",
             "4. Edycja danych pojazdu");
 
-    private void subVehicleMenuNo1() {
+    private void printVehicles() {
         logSubMenu(1);
         Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
         for (VehicleDto vehicle : vehicles) {
@@ -38,14 +37,19 @@ public class VehicleMenu {
         }
     }
 
-    private void subVehicleMenuNo2(
+    private void printAvailableVehicles(
             //TODO implementacja dla wyświetlania pojazdów bez kierowcy
     ) {
         logSubMenu(2);
     }
 
-    private void subVehicleMenuNo3() {
+    private void loadNewVehicles() {
         logSubMenu(3);
+        vehicleService.LoadVehicle();
+    }
+
+    private void editVehicles() {
+        logSubMenu(4);
         vehicleService.LoadVehicle();
     }
 
@@ -61,9 +65,9 @@ public class VehicleMenu {
         while (true) {
             item = getMenuItem();
             switch (item) {
-                case 1 -> subVehicleMenuNo1();
-                case 2 -> subVehicleMenuNo2();
-                case 3 -> subVehicleMenuNo3();
+                case 1 -> printVehicles();
+                case 2 -> printAvailableVehicles();
+                case 3 -> loadNewVehicles();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;

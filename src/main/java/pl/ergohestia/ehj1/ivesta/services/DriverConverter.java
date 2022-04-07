@@ -6,12 +6,13 @@ import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 
 @Slf4j
 public class DriverConverter {
+
     public DriverDto convertToDriverDto(CSVRecord csvRecord) {
+        DriverDto driverDto = new DriverDto();
         try {
-        DriverDto driverDto = new DriverDto(
-            driverDto.setName(csvRecord.get(0)),
-            driverDto.setLastName(csvRecord.get(1)),
-            driverDto.setAddress(csvRecord.get(2))
+            driverDto.setName(csvRecord.get(0));
+            driverDto.setLastName(csvRecord.get(1));
+            driverDto.setAddress(csvRecord.get(2));
             driverDto.setPhoneNumber(csvRecord.get(3));
             driverDto.setLicense(csvRecord.get(4));
             driverDto.setNumberOfCourses(Math.abs(Integer.valueOf(csvRecord.get(5))));

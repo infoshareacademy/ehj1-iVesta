@@ -36,6 +36,11 @@ public class VehicleService implements Service<VehicleDto> {
         SYSOUT.info("Ilość pojazdów dodanych do bazy danych: " + vehicleDtoList.size());
     }
 
+    public void editVehicles(){
+        getVehicleDtoList();//TODO
+
+    }
+
     public Collection<VehicleDto> getVehicleDtoList() {
         return vehicleDao.findAll();
     }

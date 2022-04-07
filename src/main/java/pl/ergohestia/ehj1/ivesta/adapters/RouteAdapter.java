@@ -26,7 +26,7 @@ public class RouteAdapter {
                 routeDto.getRouteLength(),
                 routeDto.getTransportType(),
                 routeDto.getTransportVolume());
-                routeDto.setId(routeDto.getId());
+        route.setId(routeDto.getId());
         return route;
     }
 }

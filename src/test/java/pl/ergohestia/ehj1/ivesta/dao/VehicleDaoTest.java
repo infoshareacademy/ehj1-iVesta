@@ -98,7 +98,7 @@ class VehicleDaoTest {
     }
 
     @Test
-    void delete() {
+    void shouldDeleteVehicle() {
         //given
         testDao = new VehicleDao();
         testDao.save(testVehicle);

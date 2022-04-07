@@ -4,6 +4,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
 public class DriverDto {
     private UUID id;
     private String name;
