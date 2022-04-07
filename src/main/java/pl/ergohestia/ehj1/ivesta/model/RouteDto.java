@@ -5,28 +5,34 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class RouteDto {
 
-    public Long id;
+    public UUID id;
     private String startAddress;
     private String destinationAddress;
     private Integer routeLength;
     private TransportType transportType;
     private Integer transportVolume;
+    private LocalDate date;
 
     public RouteDto(String startAddress,
                     String destinationAddress,
                     Integer routeLength,
                     TransportType transportType,
-                    Integer transportVolume) {
+                    Integer transportVolume,
+                    LocalDate date) {
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
         this.routeLength = routeLength;
         this.transportType = transportType;
         this.transportVolume = transportVolume;
+        this.date = date;
     }
 }

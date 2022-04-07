@@ -3,10 +3,11 @@ package pl.ergohestia.ehj1.ivesta.dao;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public interface Dao<T> {
 
-    T find(Long id);
+    T find(UUID id);
 
     Collection<T> findAll();
 
