@@ -37,4 +37,7 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
+
+    @OneToOne(mappedBy = "driver")
+    private Route route;
 }

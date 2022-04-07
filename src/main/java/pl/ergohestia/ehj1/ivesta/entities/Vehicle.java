@@ -68,6 +68,9 @@ public class Vehicle {
     @Column(nullable = false, name = "weight_limit")
     private double weightLimit;
 
+    @OneToOne(mappedBy = "vehicle")
+    private Route route;
+
     public Vehicle(String brand,
                    String vehicleCategory,
                    String model,
