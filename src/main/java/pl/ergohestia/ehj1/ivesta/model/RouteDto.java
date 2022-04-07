@@ -7,13 +7,15 @@ import lombok.ToString;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class RouteDto {
 
-    public Long id;
+    public UUID id;
     private String startAddress;
     private String destinationAddress;
     private Integer routeLength;

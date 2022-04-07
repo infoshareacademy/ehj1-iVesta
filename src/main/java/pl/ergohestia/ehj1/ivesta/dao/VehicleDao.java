@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class VehicleDao implements Dao<VehicleDto> {
 
@@ -16,7 +17,7 @@ public class VehicleDao implements Dao<VehicleDto> {
     private final VehicleAdapter vehicleAdapter = new VehicleAdapter();
 
     @Override
-    public VehicleDto find(Long id) {
+    public VehicleDto find(UUID id) {
         return vehicleAdapter.convertToVehicleDto(em.find(Vehicle.class, id));
     }
 

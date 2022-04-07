@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 import javax.persistence.EntityManager;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class RouteDao implements Dao<RouteDto> {
 
@@ -15,7 +16,7 @@ public class RouteDao implements Dao<RouteDto> {
     private final RouteAdapter routeAdapter = new RouteAdapter();
 
     @Override
-    public RouteDto find(Long id) {
+    public RouteDto find(UUID id) {
         return routeAdapter.convertToRouteDto(em.find(Route.class, id));
     }
 
