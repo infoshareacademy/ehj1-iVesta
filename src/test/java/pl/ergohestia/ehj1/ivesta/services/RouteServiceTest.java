@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,12 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class RouteServiceTest {
 
     private RouteService sut = new RouteService();
-
-   private static final String testStartAddress = "Test Start Address";
-   private static final String testDestinationAddress = "Test Destination Address";
-   private static final Integer testRouteLength = 200;
-   private static final TransportType testTransportType = TransportType.PASSENGERS;
-   private static final Integer testTransportVolume = 20;
 
     @Test
     void shouldGetEmptyList() {
@@ -44,23 +39,29 @@ class RouteServiceTest {
 
     }
 
-    public RouteDto prepareTestRouteDto() {
-        return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
-    }
-
     @Test
-    void shouldConvertToTransportType() {
+    void shouldConvertToPassengers() {
         // given
         String testInput = "o";
-        String testInput2 = "t";
 
         // when
         TransportType result1 = sut.convertToTransportType(testInput);
-        TransportType result2 = sut.convertToTransportType(testInput2);
 
         // then
         assertThat(result1).isEqualTo(TransportType.PASSENGERS);
-        assertThat(result2).isEqualTo(TransportType.CARGO);
+
+    }
+
+    @Test
+    void shouldConvertToCargo() {
+        // given
+        String testInput = "t";
+
+        // when
+        TransportType result = sut.convertToTransportType(testInput);
+
+        // then
+        assertThat(result).isEqualTo(TransportType.CARGO);
 
     }
 
@@ -75,5 +76,14 @@ class RouteServiceTest {
         // then
         assertThat(exception).isInstanceOf(IllegalStateException.class);
         assertThat(exception.getMessage()).contains("Unexpected value:");
+    }
+
+    public RouteDto prepareTestRouteDto() {
+        return new RouteDto("Test Start Address",
+                "Test Destination Address",
+                200,
+                TransportType.PASSENGERS,
+                20,
+                LocalDate.parse("2022-04-20"));
     }
 }
