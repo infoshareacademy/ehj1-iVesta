@@ -7,8 +7,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
+import java.util.List;
 
 @Entity
 @Table(name = "drivers")
@@ -44,7 +44,7 @@ public class Driver {
     @Column
     private String license;
 
-    @Column(name = "number_of_columns")
+    @Column(name = "number_of_courses")
     private Integer numberOfCourses;
 
     @Column(name = "number_of_kilometres")

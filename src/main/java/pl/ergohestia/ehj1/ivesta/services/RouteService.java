@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
@@ -8,6 +9,7 @@ import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class RouteService implements Service<RouteDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");

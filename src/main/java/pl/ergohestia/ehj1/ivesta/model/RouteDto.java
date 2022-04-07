@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -21,6 +22,8 @@ public class RouteDto {
     private TransportType transportType;
     private Integer transportVolume;
     private LocalDate date;
+    private VehicleDto vehicle;
+    private DriverDto driver;
 
     public RouteDto(String startAddress,
                     String destinationAddress,
