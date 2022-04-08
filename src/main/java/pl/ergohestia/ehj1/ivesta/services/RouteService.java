@@ -1,16 +1,19 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
+@Slf4j
 public class RouteService implements Service<RouteDto> {
+
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
@@ -23,7 +26,7 @@ public class RouteService implements Service<RouteDto> {
     public List<RouteDto> getRoutes() {
         return routeList;
     }
-    
+
     public Integer loadPositiveNumber(Scanner scanner) {
         Integer positiveNumber = 0;
         boolean correctData = false;
@@ -43,7 +46,7 @@ public class RouteService implements Service<RouteDto> {
 
     public String loadTransportType(Scanner scanner) {
         String transportTypeInput = "";
-        while(!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
+        while (!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
             transportTypeInput = scanner.next();
             if (!(transportTypeInput.equals("o") || transportTypeInput.equals("t"))) {
                 System.out.println("Podaj prawidłową literę: o lub t");
@@ -59,6 +62,7 @@ public class RouteService implements Service<RouteDto> {
             default -> throw new IllegalStateException("Unexpected value: " + input);
         };
     }
+
 
     @Override
     public void printElements() {

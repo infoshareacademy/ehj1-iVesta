@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,12 +15,14 @@ import lombok.ToString;
 @NoArgsConstructor
 public class RouteDto {
 
-    public Long id;
+    public UUID id;
     private String startAddress;
     private String destinationAddress;
     private Integer routeLength;
     private TransportType transportType;
     private Integer transportVolume;
+    private VehicleDto vehicle;
+    private DriverDto driver;
 
     public RouteDto(String startAddress,
                     String destinationAddress,

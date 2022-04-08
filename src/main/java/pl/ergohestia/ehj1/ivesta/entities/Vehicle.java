@@ -68,6 +68,7 @@ public class Vehicle {
     @Column(nullable = false, name = "weight_limit")
     private double weightLimit;
 
+
     public Vehicle(String brand,
                    String vehicleCategory,
                    String model,
