@@ -17,7 +17,8 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "drivers.findAll", query = "from Driver")
+        @NamedQuery(name = "drivers.findAll", query = "from Driver"),
+        @NamedQuery(name = "drivers.availableForCurrentDate", query = "select d from Driver d where d.id not in (select r.driver.id from Route r where r.date = :date)")
 })
 
 public class Driver {
