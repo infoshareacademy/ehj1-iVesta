@@ -38,4 +38,7 @@ public class RouteDto {
         this.transportVolume = transportVolume;
         this.date = date;
     }
+
+    public RouteDto(String testStartAddress, String testDestinationAddress, Integer testRouteLength, TransportType testTransportType, Integer testTransportVolume) {
+    }
 }
