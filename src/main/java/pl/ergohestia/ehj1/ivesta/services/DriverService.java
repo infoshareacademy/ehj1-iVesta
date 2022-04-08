@@ -20,10 +20,11 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
 
     private static List<DriverDto> driversList;
 
-    private DriverConverter converter = new DriverConverter();
+    private final DriverConverter converter = new DriverConverter();
 
     DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
-    DateValidator validator = new DateValidatorUsingLocalDate(dateFormatter);
+
+
 
     public DriverService(String filePath) {
         super(filePath);
