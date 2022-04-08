@@ -20,12 +20,14 @@ public class MenuService {
     RouteService routeService;
     VehicleMenu vehicleMenu;
     RoutesLoader routesLoader;
+    DriverMenu driverMenu;
 
     public MenuService init() {
         driverService = new DriverService("path");
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
         routesLoader = new RoutesLoader().init();
+        driverMenu = new DriverMenu();
         return this;
     }
 
@@ -36,6 +38,7 @@ public class MenuService {
 
     private void subMenuDriver() {
         logSubMenu(1);
+        driverMenu.runDriverMenu();
     }
 
     private void subMenuVehicle() {

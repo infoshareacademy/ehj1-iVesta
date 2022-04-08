@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
@@ -32,17 +33,73 @@ public class DriverMenu {
 
     private void subMenuShowAllDrivers() {
         logSubMenu(1);
-        driverService.printElements();
+        List<DriverDto> list = driverService.getDriversList();
+        if (!(list == null) && !list.isEmpty()) {
+            list.stream().map(DriverDto::toString).forEach(SYSOUT::info);
+        } else {
+            SYSOUT.info("Brak kierowców. Dodaj nowych.");
+        }
     }
 
-    private void subMenuShowAvailableDrivers(
-            //TODO implementacja dla wyświetlania kierowców nieprzypisanych do trasy
-    ) {
+    private void subMenuShowAvailableDrivers() {
         logSubMenu(2);
+        List<DriverDto> list = driverService.getAvailableDrivers();
+        if (!(list == null) && !list.isEmpty()) {
+            list.stream().map(DriverDto::toString).forEach(SYSOUT::info);
+        } else {
+            SYSOUT.info("Brak dostępnych kierowców.");
+        }
     }
 
-    private void subDriverMenuNo3() {
+    private void subMenuEditDrivers() {
         logSubMenu(3);
+        Scanner scanner = in.getScanner();
+        List<DriverDto> list = driverService.getDriversList();
+        if (!(list == null) && !list.isEmpty()) {
+            for (DriverDto driver : list) {
+                String name;
+                String lastName;
+                String address;
+                String phoneNumber;
+                String license;
+                SYSOUT.info(("Wyświetlam kolejnego kierowcę."));
+                SYSOUT.info(driver.toString());
+                SYSOUT.info("Jeśli chcesz dokonać zmiany danych, wpisz nową wartość.");
+                SYSOUT.info("Imię: " + driver.getName());
+                if (scanner.hasNextLine()) {
+                    name = scanner.nextLine();
+                } else {
+                    name = driver.getName();
+                }
+                SYSOUT.info("Nazwisko: " + driver.getLastName());
+                if (scanner.hasNextLine()) {
+                    lastName = scanner.nextLine();
+                } else {
+                    lastName = driver.getLastName();
+                }
+                SYSOUT.info("Adres: " + driver.getAddress());
+                if (scanner.hasNextLine()) {
+                    address = scanner.nextLine();
+                } else {
+                    address = driver.getAddress();
+                }
+                SYSOUT.info("Numer telefonu: " + driver.getPhoneNumber());
+                if (scanner.hasNextLine()) {
+                    phoneNumber = scanner.nextLine();
+                } else {
+                    phoneNumber = driver.getPhoneNumber();
+                }
+                SYSOUT.info("Licencja: " + driver.getLicense());
+                if (scanner.hasNextLine()) {
+                    license = scanner.nextLine();
+                } else {
+                    license = driver.getLicense();
+                }
+                driverService.updateDriverPersonalData(driver.getId(), name, lastName, address, phoneNumber, license);
+            }
+        } else {
+            SYSOUT.info("Brak kierowców. Dodaj nowych.");
+        }
     }
 
     private void subMenuLoadNewDrivers() {
@@ -65,7 +122,7 @@ public class DriverMenu {
             switch (item) {
                 case 1 -> subMenuShowAllDrivers();
                 case 2 -> subMenuShowAvailableDrivers();
-                case 3 -> subDriverMenuNo3();
+                case 3 -> subMenuEditDrivers();
                 case 4 -> subMenuLoadNewDrivers();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");

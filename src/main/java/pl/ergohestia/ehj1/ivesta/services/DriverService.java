@@ -11,6 +11,8 @@ import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -36,6 +38,7 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
                     .stream()
                     .map(converter::convertToDriverDto)
                     .filter(driverDto -> driverDto.getName() != null)
+                    .peek(dao::save)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             log.error("Filepath does not exist: " + driverPath.toString(), e);
@@ -52,7 +55,31 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         driversList = dao.findAll().stream().toList();
     }
 
-    //TODO przenieść metodę do ui
+    public List<DriverDto> getAvailableDrivers() {
+        return dao.findAvailable().stream().toList();
+    }
+
+    public Optional<DriverDto> findById(UUID id) {
+        return Optional.ofNullable(dao.find(id));
+    }
+
+    public Optional<DriverDto> updateDriverPersonalData(UUID id, String name, String lastName, String address, String phoneNumber, String license) {
+        Optional<DriverDto> driver = findById(id);
+        if(driver.isPresent()){
+            DriverDto driverValue = new DriverDto(
+                    driver.get().getId(),
+                    name,
+                    lastName,
+                    address,
+                    phoneNumber,
+                    license,
+                    driver.get().getNumberOfCourses(),
+                    driver.get().getNumberOfKilometres());
+            driver = Optional.ofNullable(dao.update(driverValue));
+        }
+        return driver;
+    }
+
     @Override
     public void printElements() {
         driversList.stream()
