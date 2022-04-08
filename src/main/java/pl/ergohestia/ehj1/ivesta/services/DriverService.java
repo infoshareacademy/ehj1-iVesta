@@ -5,9 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
+import pl.ergohestia.ehj1.ivesta.repository.DateValidator;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +21,9 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
     private static List<DriverDto> driversList;
 
     private DriverConverter converter = new DriverConverter();
+
+    DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
+    DateValidator validator = new DateValidatorUsingLocalDate(dateFormatter);
 
     public DriverService(String filePath) {
         super(filePath);
