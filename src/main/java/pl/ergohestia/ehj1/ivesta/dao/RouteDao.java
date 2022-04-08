@@ -1,6 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
+import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
@@ -55,5 +56,13 @@ public class RouteDao implements Dao<RouteDto> {
         em.getTransaction().begin();
         em.remove(routeAdapter.convertToRoute(routeDto));
         em.getTransaction().commit();
+    }
+    public RouteDto updateDriver(UUID routeId, Driver driver){
+        em.getTransaction().begin();
+        Route route = (em.find(Route.class, routeId));
+        route.setDriver(driver);
+        em.merge(route);
+        em.getTransaction().commit();
+        return (routeAdapter.convertToRouteDto(route));
     }
 }
