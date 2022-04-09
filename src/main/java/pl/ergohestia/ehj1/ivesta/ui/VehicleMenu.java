@@ -18,16 +18,20 @@ public class VehicleMenu {
     private InputScannerProvider in = new InputScannerProvider();
 
     VehicleService vehicleService = new VehicleService();
+    MenuService menuService;
 
-    public void runVehicleMenu(){
+    public void runVehicleMenu(MenuService menuService){
+        this.menuService = menuService;
         printMenu(vehicleMenu.getMenuItems());
         serviceVehicleMenu();
+        menuService.menu();
     }
 
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
             "2. Wyświetl wszystkie dostępne pojazdy.",
-            "3. Załaduj nowe pojazdy");
+            "3. Załaduj nowe pojazdy.",
+            "4. Powrót do menu głównego.");
 
     private void subVehicleMenuNo1() {
         logSubMenu(1);
@@ -63,6 +67,7 @@ public class VehicleMenu {
                 case 1 -> subVehicleMenuNo1();
                 case 2 -> subVehicleMenuNo2();
                 case 3 -> subVehicleMenuNo3();
+                case 4 -> menuService.menu();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;
