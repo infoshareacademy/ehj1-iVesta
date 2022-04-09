@@ -5,10 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.configs.DriverConfig;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
-import pl.ergohestia.ehj1.ivesta.repository.DateValidator;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,9 +21,8 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
     private static List<DriverDto> driversList;
 
     private final DriverConverter converter = new DriverConverter();
-
     DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
-
+    ProperDateValidator dateValidator = new ProperDateValidator(dateFormatter);
 
 
     public DriverService(String filePath) {
@@ -65,5 +64,12 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
             log.warn("Cannot add driver to the list: driver object is null.");
             SYSOUT.warn("Driver addition to the list failed.");
         }
+    }
+
+    public List<DriverDto> findByDate(LocalDate date) {
+        if (dateValidator.isValid(String.valueOf(date))) {
+            return findByDate(date);
+        } else SYSOUT.warn("Date must be in format: YYYY-MM-DD");
+        return null;
     }
 }
