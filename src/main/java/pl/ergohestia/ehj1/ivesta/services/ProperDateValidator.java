@@ -6,10 +6,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class DateValidatorUsingLocalDate implements DateValidator {
-    private DateTimeFormatter dateFormatter;
+public class ProperDateValidator implements DateValidator {
+    private final DateTimeFormatter dateFormatter;
 
-    public DateValidatorUsingLocalDate(DateTimeFormatter dateFormatter) {
+    public ProperDateValidator(DateTimeFormatter dateFormatter) {
         this.dateFormatter = dateFormatter;
     }
 
