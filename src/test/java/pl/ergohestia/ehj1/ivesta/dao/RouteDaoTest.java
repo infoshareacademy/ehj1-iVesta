@@ -3,8 +3,7 @@ package pl.ergohestia.ehj1.ivesta.dao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
-import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
@@ -23,6 +22,7 @@ class RouteDaoTest {
 
 
     private final RouteDao sut = new RouteDao();
+    private final DriverDao sut2 = new DriverDao();
     private final RouteService routeService = new RouteService();
     EntityManager em = HibernateUtils.getEntityManager();
 
@@ -126,26 +126,28 @@ class RouteDaoTest {
     }
 
     @Test
-    void shouldUpdateDriver() {
+    void shouldAddDriverIdToRouteDriver() {
         // given
-        Driver driver = new Driver("TEST_NAME", "TEST_LAST_NAME", "TEST_ADDRESS", "TEST_PHONE", "TEST_LICENSE", 5, 3000);
         sut.save(new RouteDto("Gdańsk","Warszawa",200, TransportType.PASSENGERS,100,LocalDate.parse("2022-04-22")));
         Collection<RouteDto> result = sut.findAll();
         List<UUID> routeId = result.stream().map(RouteDto::getId).toList();
         UUID resultUUID = routeId.get(0);
 
+        sut2.save(new DriverDto("TEST_NAME", "TEST_LAST_NAME", "TEST_ADDRESS", "TEST_PHONE", "TEST_LICENSE", 5, 3000));
+        Collection<DriverDto> result2 = sut2.findAll();
+        List<UUID> driverId = result2.stream().map(DriverDto::getId).toList();
+        UUID resultDriverUUID = driverId.get(0);
+
+        System.out.println(resultDriverUUID+ " "+resultUUID);
 
         // when
-        sut.updateDriver(resultUUID,driver);
-        Collection<RouteDto> result2 = sut.findAll();
-
-
-
+        sut.updateDriver(resultUUID,resultDriverUUID);
+        Collection<RouteDto> result3 = sut.findAll();
 
 
         // then
-        System.out.println(result);
-        System.out.println(result2);
+        System.out.println(result3);
+        //zmianę widać na tabeli w bazie danych, w teście będzie null
 
     }
 }
