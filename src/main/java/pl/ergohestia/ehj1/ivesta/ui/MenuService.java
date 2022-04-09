@@ -36,11 +36,13 @@ public class MenuService {
 
     private void subMenuDriver() {
         logSubMenu(1);
+        menu();
     }
 
     private void subMenuVehicle() {
         logSubMenu(2);
-        vehicleMenu.runVehicleMenu();
+        vehicleMenu.runVehicleMenu(this);
+        menu();
     }
 
     private void subMenuRoute() {
@@ -54,6 +56,7 @@ public class MenuService {
         } else {
             SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
         }
+        menu();
     }
 
     private void logSubMenu(int index) {
@@ -64,6 +67,7 @@ public class MenuService {
     }
 
     public void menu() {
+        SYSOUT.info("GŁÓWNE MENU");
         printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
     }
