@@ -18,14 +18,12 @@ class DriverServiceTest {
     @BeforeEach
     void beforeEach() {
         sut = new DriverService(TEST_FILE_PATH);
-        sut.importDrivers();
-        sut.setDriversList();
-        testDriverDto = sut.getDriversList().get(0);
     }
 
     @Test
     void shouldReturnDriversListFromCsvWhenFileIsCorrect() {
         // given
+        sut.importDrivers();
 
         // when
         List<DriverDto> result = sut.getDriversList();
@@ -39,6 +37,7 @@ class DriverServiceTest {
     void shouldAddElementToDriversList() {
         // given
         sut.importDrivers();
+        testDriverDto = sut.getDriversList().get(0);
 
         // when
         sut.addElement(testDriverDto);
@@ -52,6 +51,8 @@ class DriverServiceTest {
     @Test
     void shouldUpdateDriver() {
         // given
+        sut.setDriversList();
+        testDriverDto = sut.getDriversList().get(0);
         String newTestName = "testName2";
         String newTestLastName = "testLastname2";
         String newTestAddress = "testAddress2";

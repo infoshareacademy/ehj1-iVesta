@@ -9,6 +9,7 @@ import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +22,6 @@ public class DriverMenu {
     DriverService driverService = new DriverService();
 
     public void runDriverMenu() {
-        printMenu(driverMenu.getMenuItems());
         serviceDriverMenu();
     }
 
@@ -29,11 +29,12 @@ public class DriverMenu {
             "1. Wyświetl wszystkich kierowców.",
             "2. Wyświetl dostępnych kierowców.",
             "3. Edytuj kierowców.",
-            "4. Załaduj nowych kierowców.");
+            "4. Załaduj nowych kierowców.",
+            "5. Wróć do głównego menu.");
 
     private void subMenuShowAllDrivers() {
         logSubMenu(1);
-        List<DriverDto> list = driverService.getDriversList();
+        List<DriverDto> list = driverService.getAllDrivers();
         if (!(list == null) && !list.isEmpty()) {
             list.stream().map(DriverDto::toString).forEach(SYSOUT::info);
         } else {
@@ -53,50 +54,9 @@ public class DriverMenu {
 
     private void subMenuEditDrivers() {
         logSubMenu(3);
-        Scanner scanner = in.getScanner();
-        List<DriverDto> list = driverService.getDriversList();
+        List<DriverDto> list = driverService.getAllDrivers();
         if (!(list == null) && !list.isEmpty()) {
-            for (DriverDto driver : list) {
-                String name;
-                String lastName;
-                String address;
-                String phoneNumber;
-                String license;
-                SYSOUT.info(("Wyświetlam kolejnego kierowcę."));
-                SYSOUT.info(driver.toString());
-                SYSOUT.info("Jeśli chcesz dokonać zmiany danych, wpisz nową wartość.");
-                SYSOUT.info("Imię: " + driver.getName());
-                if (scanner.hasNextLine()) {
-                    name = scanner.nextLine();
-                } else {
-                    name = driver.getName();
-                }
-                SYSOUT.info("Nazwisko: " + driver.getLastName());
-                if (scanner.hasNextLine()) {
-                    lastName = scanner.nextLine();
-                } else {
-                    lastName = driver.getLastName();
-                }
-                SYSOUT.info("Adres: " + driver.getAddress());
-                if (scanner.hasNextLine()) {
-                    address = scanner.nextLine();
-                } else {
-                    address = driver.getAddress();
-                }
-                SYSOUT.info("Numer telefonu: " + driver.getPhoneNumber());
-                if (scanner.hasNextLine()) {
-                    phoneNumber = scanner.nextLine();
-                } else {
-                    phoneNumber = driver.getPhoneNumber();
-                }
-                SYSOUT.info("Licencja: " + driver.getLicense());
-                if (scanner.hasNextLine()) {
-                    license = scanner.nextLine();
-                } else {
-                    license = driver.getLicense();
-                }
-                driverService.updateDriverPersonalData(driver.getId(), name, lastName, address, phoneNumber, license);
-            }
+            driverService.editDriversData(list);
         } else {
             SYSOUT.info("Brak kierowców. Dodaj nowych.");
         }
@@ -116,20 +76,21 @@ public class DriverMenu {
     }
 
     private void serviceDriverMenu() {
-        int item;
-        while (true) {
+        int item = 0;
+        while (item != 5) {
+            printMenu(driverMenu.getMenuItems());
             item = getMenuItem();
             switch (item) {
                 case 1 -> subMenuShowAllDrivers();
                 case 2 -> subMenuShowAvailableDrivers();
                 case 3 -> subMenuEditDrivers();
                 case 4 -> subMenuLoadNewDrivers();
+                case 5 -> logSubMenu(5);
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;
                 }
             }
-            break;
         }
     }
 
@@ -153,26 +114,27 @@ public class DriverMenu {
     }
 
     private Path getDriverFilePathFromInput() {
-        Scanner scanner = in.getScanner();
-        String filePath = null;
+        Scanner scanner;
+        Path filePath = null;
         do {
             SYSOUT.info("Podaj ścieżkę do pliku CSV z nowymi kierowcami: ");
-            if (!scanner.hasNextLine()) {
+            scanner = new Scanner(System.in);
+            String nextLine = scanner.nextLine();
+            if (nextLine.isBlank()) {
                 log.info("User wrote nothing while passing drivers filepath.");
                 SYSOUT.info("Nie podałeś ścieżki do pliku.");
             }
-            if (scanner.hasNextLine()) {
-                String filePathToCheck = scanner.nextLine();
-                Boolean fileExist = new File(filePathToCheck).isFile();
+            if (!nextLine.isBlank()) {
+                Boolean fileExist = new File(nextLine).isFile();
                 if (fileExist) {
-                    filePath = filePathToCheck;
+                    filePath = Paths.get(nextLine);
                 } else {
                     log.info("User wrote filepath that does not exist.");
                     SYSOUT.info("Podana ścieżka nie istnieje.");
                 }
             }
         } while (filePath == null);
-        return Path.of(filePath);
+        return filePath;
     }
 
     private void printMenu(List<String> menuItems) {

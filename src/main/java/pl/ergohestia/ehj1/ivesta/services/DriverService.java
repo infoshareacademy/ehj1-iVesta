@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -55,6 +56,10 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         driversList = dao.findAll().stream().toList();
     }
 
+    public List<DriverDto> getAllDrivers() {
+        return dao.findAll().stream().toList();
+    }
+
     public List<DriverDto> getAvailableDrivers() {
         return dao.findAvailable().stream().toList();
     }
@@ -63,9 +68,65 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         return Optional.ofNullable(dao.find(id));
     }
 
+    public void editDriversData(List<DriverDto> list) {
+        Scanner scanner;
+        String nextLine;
+        for (DriverDto driver : list) {
+            String name;
+            String lastName;
+            String address;
+            String phoneNumber;
+            String license;
+            SYSOUT.info(("Wyświetlam kolejnego kierowcę."));
+            SYSOUT.info(driver.toString());
+            SYSOUT.info("Jeśli chcesz dokonać zmiany danych, wpisz nową wartość.");
+            SYSOUT.info("Imię: " + driver.getName());
+            scanner = new Scanner(System.in);
+            nextLine = scanner.nextLine();
+            if (!nextLine.isBlank()) {
+                name = nextLine;
+            } else {
+                name = driver.getName();
+            }
+            SYSOUT.info("Nazwisko: " + driver.getLastName());
+            scanner = new Scanner(System.in);
+            nextLine = scanner.nextLine();
+            if (!nextLine.isBlank()) {
+                lastName = nextLine;
+            } else {
+                lastName = driver.getLastName();
+            }
+            SYSOUT.info("Adres: " + driver.getAddress());
+            scanner = new Scanner(System.in);
+            nextLine = scanner.nextLine();
+            if (!nextLine.isBlank()) {
+                address = nextLine;
+            } else {
+                address = driver.getAddress();
+            }
+            SYSOUT.info("Numer telefonu: " + driver.getPhoneNumber());
+            scanner = new Scanner(System.in);
+            nextLine = scanner.nextLine();
+            if (!nextLine.isBlank()) {
+                phoneNumber = nextLine;
+            } else {
+                phoneNumber = driver.getPhoneNumber();
+            }
+            SYSOUT.info("Licencja: " + driver.getLicense());
+            scanner = new Scanner(System.in);
+            nextLine = scanner.nextLine();
+            if (!nextLine.isBlank()) {
+                license = nextLine;
+            } else {
+                license = driver.getLicense();
+            }
+            updateDriverPersonalData(driver.getId(), name, lastName, address, phoneNumber, license);
+        }
+    }
+
     public Optional<DriverDto> updateDriverPersonalData(UUID id, String name, String lastName, String address, String phoneNumber, String license) {
         Optional<DriverDto> driver = findById(id);
-        if(driver.isPresent()){
+        if (driver.isPresent()) {
             DriverDto driverValue = new DriverDto(
                     driver.get().getId(),
                     name,
