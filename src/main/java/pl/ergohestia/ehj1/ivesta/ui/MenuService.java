@@ -42,7 +42,6 @@ public class MenuService {
     private void subMenuVehicle() {
         logSubMenu(2);
         vehicleMenu.runVehicleMenu(this);
-        menu();
     }
 
     private void subMenuRoute() {
@@ -56,6 +55,7 @@ public class MenuService {
         } else {
             SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
         }
+        SYSOUT.info("Dodano trasę: {}",routeDto);
         menu();
     }
 
