@@ -8,16 +8,16 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DateValidatorUsingLocalDateTest {
+class ProperDateValidatorTest {
 
-    private DateValidatorUsingLocalDate sut = new DateValidatorUsingLocalDate(DateTimeFormatter.BASIC_ISO_DATE);
+    private final ProperDateValidator sut = new ProperDateValidator(DateTimeFormatter.BASIC_ISO_DATE);
 
 
     @Test
     void shouldIsValid() {
         // given
         DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
-        DateValidator validator = new DateValidatorUsingLocalDate(dateFormatter);
+        DateValidator validator = new ProperDateValidator(dateFormatter);
 
         // when
 
