@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 public class RouteService implements Service<RouteDto> {
@@ -41,4 +42,14 @@ public class RouteService implements Service<RouteDto> {
     public void addElement(RouteDto routeDto) {
         routeList.add(routeDto);
     }
+
+    public void addDriverToRoute(UUID routeId, UUID driverId) {
+        if (routeId == null) {
+            SYSOUT.warn("Wrong route ID.");
+        } else if (driverId == null) {
+            SYSOUT.warn("Wrong driver ID.");
+        } else addDriverToRoute(routeId, driverId);
+        SYSOUT.info("Driver was added to route.");
+    }
 }
+
