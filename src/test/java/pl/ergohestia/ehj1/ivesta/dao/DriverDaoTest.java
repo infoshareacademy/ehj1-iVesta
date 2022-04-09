@@ -119,7 +119,7 @@ class DriverDaoTest {
 
 
         // when
-        RouteDto resultRoute = sut2.updateDriver(resultUUID,resultDriverUUID);
+        RouteDto resultRoute = sut2.addDriverToRoute(resultUUID,resultDriverUUID);
         List<DriverDto> resultDriverAvailable = sut.findByDate(LocalDate.parse("2022-04-20"));
 
 

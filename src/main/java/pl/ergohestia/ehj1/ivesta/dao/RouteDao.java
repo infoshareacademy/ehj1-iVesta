@@ -59,7 +59,7 @@ public class RouteDao implements Dao<RouteDto> {
         em.remove(routeAdapter.convertToRoute(routeDto));
         em.getTransaction().commit();
     }
-    public RouteDto updateDriver(UUID routeId, UUID driverId){
+    public RouteDto addDriverToRoute(UUID routeId, UUID driverId){
         em.getTransaction().begin();
         Route route = em.find(Route.class, routeId);
         Driver driver = em.find(Driver.class, driverId);

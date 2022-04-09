@@ -141,7 +141,7 @@ class RouteDaoTest {
         System.out.println(resultDriverUUID+ " "+resultUUID);
 
         // when
-        sut.updateDriver(resultUUID,resultDriverUUID);
+        sut.addDriverToRoute(resultUUID,resultDriverUUID);
         Collection<RouteDto> result3 = sut.findAll();
 
 
