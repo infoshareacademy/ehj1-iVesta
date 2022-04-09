@@ -58,7 +58,7 @@ public class RoutesLoader {
                 SYSOUT.info("{}. {}", (i + 1), vehicles.get(i));
             }
 
-            int vehicleNo = getVehicleFromList(in, vehicles.size());
+            int vehicleNo = getVehicleFromList(in, vehicles.size()) - 1;
             VehicleDto vehicle = vehicles.get(vehicleNo);
             routeDto.setVehicle(vehicle);
             return routeDto;
