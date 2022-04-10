@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import pl.ergohestia.ehj1.ivesta.entities.Driver;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
