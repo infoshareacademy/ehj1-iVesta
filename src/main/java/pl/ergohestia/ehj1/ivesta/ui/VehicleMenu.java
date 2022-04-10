@@ -26,7 +26,7 @@ public class VehicleMenu {
 
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
-            "2. Wyświetl wszystkie dostępne pojazdy.",
+            "2. Wyświetl wszystkie pojazdy bez przydzielonych kierowców.",
             "3. Załaduj nowe pojazdy.",
             "4. Edycja danych pojazdu.",
             "5. Powrót do menu głównego.");
@@ -34,6 +34,9 @@ public class VehicleMenu {
     private void printVehicles() {
         logSubMenu(1);
         Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
+        if (vehicles.size() == 0){
+            SYSOUT.info("Brak pojazdów do wyswietlenia");
+        }
         for (VehicleDto vehicleDto : vehicles) {
             SYSOUT.info(String.valueOf(vehicleDto));
         }
