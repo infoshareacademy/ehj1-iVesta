@@ -22,8 +22,6 @@ public class Main {
 
         menuService.menu();
 
-
         log.info("Exit successful.");
-
     }
 }

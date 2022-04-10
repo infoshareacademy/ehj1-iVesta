@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +18,8 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "drivers.findAll", query = "from Driver")
+        @NamedQuery(name = "drivers.findAll", query = "from Driver"),
+        @NamedQuery(name = "drivers.findAvailable", query = "FROM Driver d WHERE d.id NOT IN (SELECT DISTINCT r.driver.id FROM Route r)")
 })
 
 public class Driver {
@@ -54,6 +56,8 @@ public class Driver {
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
+    private List<Route> route;
 
     public Driver(String name,
                   String lastName,
@@ -61,8 +65,7 @@ public class Driver {
                   String phoneNumber,
                   String license,
                   Integer numberOfCourses,
-                  Integer numberOfKilometres)
-    {
+                  Integer numberOfKilometres) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;

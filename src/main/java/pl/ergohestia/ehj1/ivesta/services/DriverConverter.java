@@ -15,12 +15,10 @@ public class DriverConverter {
             driverDto.setAddress(csvRecord.get(2));
             driverDto.setPhoneNumber(csvRecord.get(3));
             driverDto.setLicense(csvRecord.get(4));
-            driverDto.setNumberOfCourses(Math.abs(Integer.valueOf(csvRecord.get(5))));
-            driverDto.setNumberOfKilometres(Math.abs(Integer.valueOf(csvRecord.get(6))));
-        } catch (NumberFormatException e) {
-            log.warn("Cannot read csv record: numerical columns have incorrect values.", e);
-        } catch (NullPointerException e) {
-            log.warn("Cannot read csv record: columns without values have been found.", e);
+            driverDto.setNumberOfCourses(Math.abs(Integer.parseInt(csvRecord.get(5))));
+            driverDto.setNumberOfKilometres(Math.abs(Integer.parseInt(csvRecord.get(6))));
+        } catch (NumberFormatException | NullPointerException e) {
+            log.warn("Cannot read csv record: columns have incorrect values.", e);
         }
         return driverDto;
     }

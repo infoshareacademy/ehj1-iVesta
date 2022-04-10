@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 import javax.persistence.EntityManager;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class DriverDao implements Dao<DriverDto>{
@@ -33,6 +34,16 @@ public class DriverDao implements Dao<DriverDto>{
     public Collection<DriverDto> findAll() {
         em.getTransaction().begin();
         List<DriverDto> drivers = em.createNamedQuery("drivers.findAll",Driver.class)
+                .getResultStream()
+                .map(adapter::convertToDriverDto)
+                .toList();
+        em.getTransaction().commit();
+        return drivers;
+    }
+
+    public Collection<DriverDto> findAvailable() {
+        em.getTransaction().begin();
+        List<DriverDto> drivers = em.createNamedQuery("drivers.findAvailable",Driver.class)
                 .getResultStream()
                 .map(adapter::convertToDriverDto)
                 .toList();

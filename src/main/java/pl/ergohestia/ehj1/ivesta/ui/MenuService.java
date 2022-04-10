@@ -20,23 +20,26 @@ public class MenuService {
     RouteService routeService;
     VehicleMenu vehicleMenu;
     RoutesLoader routesLoader;
+    DriverMenu driverMenu;
 
     public MenuService init() {
-        driverService = new DriverService("path");
+        driverService = new DriverService();
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
         routesLoader = new RoutesLoader().init();
+        driverMenu = new DriverMenu();
         return this;
     }
 
     private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
             "2. Obsługa pojazdów.",
-            "3. Zaplanuj trasę.");
+            "3. Zaplanuj trasę.",
+            "4. Wyjdź z aplikacji.");
 
     private void subMenuDriver() {
         logSubMenu(1);
-        menu();
+        driverMenu.runDriverMenu(this);
     }
 
     private void subMenuVehicle() {
@@ -73,19 +76,18 @@ public class MenuService {
     }
 
     private void serviceMainMenu() {
-        int item;
-        while (true) {
+        int item = 0;
+        while (item != 4) {
             item = getMenuItem();
             switch (item) {
                 case 1 -> subMenuDriver();
                 case 2 -> subMenuVehicle();
                 case 3 -> subMenuRoute();
+                case 4 -> logSubMenu(4);
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
-                    continue;
                 }
             }
-            break;
         }
     }
 
