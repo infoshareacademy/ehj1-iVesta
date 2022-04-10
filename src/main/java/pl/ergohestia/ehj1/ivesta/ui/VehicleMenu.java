@@ -22,7 +22,6 @@ public class VehicleMenu {
 
     public void runVehicleMenu(MenuService menuService){
         this.menuService = menuService;
-        printMenu(vehicleMenu.getMenuItems());
         serviceVehicleMenu();
         menuService.menu();
     }
@@ -60,21 +59,21 @@ public class VehicleMenu {
     }
 
     private void serviceVehicleMenu() {
-        int item;
-        while (true) {
+        int item = 0;
+        while (item != 4) {
+            printMenu(vehicleMenu.getMenuItems());
             item = getMenuItem();
             switch (item) {
                 case 1 -> subVehicleMenuNo1();
                 case 2 -> subVehicleMenuNo2();
                 case 3 -> subVehicleMenuNo3();
-                case 4 -> menuService.menu();
+                case 4 -> logSubMenu(4);
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
-                    continue;
                 }
             }
-            break;
         }
+        menuService.menu();
     }
 
     private int getMenuItem() {
