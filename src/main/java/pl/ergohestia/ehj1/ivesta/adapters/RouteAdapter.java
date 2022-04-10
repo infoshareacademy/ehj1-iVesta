@@ -13,7 +13,8 @@ public class RouteAdapter {
                 route.getDestinationAddress(),
                 route.getRouteLength(),
                 route.getTransportType(),
-                route.getTransportVolume());
+                route.getTransportVolume(),
+                route.getDate());
         routeDto.setId(route.getId());
         return routeDto;
     }
@@ -25,8 +26,9 @@ public class RouteAdapter {
                 routeDto.getDestinationAddress(),
                 routeDto.getRouteLength(),
                 routeDto.getTransportType(),
-                routeDto.getTransportVolume());
-        route.setId(routeDto.getId());
+                routeDto.getTransportVolume(),
+                routeDto.getDate());
+                route.setId(routeDto.getId());
         return route;
     }
 }

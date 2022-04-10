@@ -5,11 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
 import java.io.InputStream;
 import java.util.List;
+import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @Slf4j
@@ -36,17 +39,49 @@ public class RoutesLoader {
         String destinationAddress = scanner.nextLine();
 
         SYSOUT.info("Podaj długość trasy");
-        Integer routeLength = routeService.loadPositiveNumber(scanner);
+        Integer routeLength = loadPositiveNumber(scanner);
 
         SYSOUT.info("Podaj rodzaj przewozu (o - osoby, t - towary)");
-        String transportTypeInput = routeService.loadTransportType(scanner);
+        TransportType transportTypeInput = loadTransportType(scanner);
 
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
-        Integer transportVolume = routeService.loadPositiveNumber(scanner);
+        Integer transportVolume = loadPositiveNumber(scanner);
 
+        SYSOUT.info("Podaj datę transportu w formacie rrrr-mm-dd:");
+        String date = scanner.nextLine();
 
-        return new RouteDto(startAddress, destinationAddress, routeLength, routeService.convertToTransportType(transportTypeInput), transportVolume);
+        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume, LocalDate.parse(date));
     }
+
+    private TransportType loadTransportType(Scanner scanner) {
+        String transportTypeInput = "";
+        while(!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
+            transportTypeInput = scanner.next();
+            if (!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
+                SYSOUT.info("Podaj prawidłową literę: o lub t");
+            }
+        }
+        return routeService.convertToTransportType(transportTypeInput);
+    }
+
+    public Integer loadPositiveNumber(Scanner scanner) {
+        Integer positiveNumber = 0;
+        while (positiveNumber <= 0) {
+            try {
+                positiveNumber = scanner.nextInt();
+                if (positiveNumber <= 0) {
+                    SYSOUT.info("Podaj liczbę całkowitą dodatnią");
+                }
+            } catch (InputMismatchException e) {
+                SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
+                scanner.next();
+            }
+        }
+        return positiveNumber;
+    }
+    //TODO implements method
+//    private LocalDate loadCorrectData(String input) {
+//    }
 
     public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
         List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();

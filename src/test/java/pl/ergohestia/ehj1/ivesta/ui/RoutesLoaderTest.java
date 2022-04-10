@@ -18,9 +18,7 @@ import java.util.Scanner;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static pl.ergohestia.ehj1.ivesta.model.TransportType.*;
 
 @ExtendWith(MockitoExtension.class)
 class RoutesLoaderTest {
@@ -33,35 +31,6 @@ class RoutesLoaderTest {
 
     @InjectMocks
     private RoutesLoader sut;
-
-    @Test
-    void shouldReturnObjectRoute() {
-        // given
-        String testStartAddress = "Test Start Address";
-        String testDestinationAddress = "Test Destination Address";
-        Integer testRouteLength = 200;
-        String testCargoType = "o";
-        Integer transportVolume = 200;
-        InputStream testIn = prepareInputStream(
-                testStartAddress,
-                testDestinationAddress,
-                testRouteLength,
-                testCargoType,
-                transportVolume);
-        when(routeService.loadPositiveNumber(any())).thenReturn(200);
-        when(routeService.loadTransportType(any())).thenReturn("PASSENGERS");
-        when(routeService.convertToTransportType(any())).thenReturn(PASSENGERS);
-
-        // when
-        RouteDto result = sut.loadRoute(testIn);
-
-        // then
-        assertThat(result.getStartAddress()).isEqualTo(testStartAddress);
-        assertThat(result.getDestinationAddress()).isEqualTo(testDestinationAddress);
-        assertThat(result.getRouteLength()).isEqualTo(testRouteLength);
-        assertThat(result.getTransportType()).isEqualTo(PASSENGERS);
-        assertThat(result.getTransportVolume()).isEqualTo(transportVolume);
-    }
 
     @Test
     void shouldAddVehicleToRoute() {

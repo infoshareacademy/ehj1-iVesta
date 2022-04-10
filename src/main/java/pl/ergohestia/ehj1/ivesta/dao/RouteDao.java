@@ -1,6 +1,8 @@
 package pl.ergohestia.ehj1.ivesta.dao;
 
+import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
+import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
@@ -14,6 +16,7 @@ public class RouteDao implements Dao<RouteDto> {
 
     private final EntityManager em = HibernateUtils.getEntityManager();
     private final RouteAdapter routeAdapter = new RouteAdapter();
+    private final DriverAdapter driverAdapter = new DriverAdapter();
 
     @Override
     public RouteDto find(UUID id) {
@@ -55,5 +58,13 @@ public class RouteDao implements Dao<RouteDto> {
         em.getTransaction().begin();
         em.remove(routeAdapter.convertToRoute(routeDto));
         em.getTransaction().commit();
+    }
+    public RouteDto addDriverToRoute(UUID routeId, UUID driverId){
+        em.getTransaction().begin();
+        Route route = em.find(Route.class, routeId);
+        Driver driver = em.find(Driver.class, driverId);
+        route.setDriver(driver);
+        em.getTransaction().commit();
+        return routeAdapter.convertToRouteDto(route);
     }
 }
