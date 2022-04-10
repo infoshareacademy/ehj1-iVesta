@@ -20,8 +20,10 @@ public class DriverMenu {
     private InputScannerProvider in = new InputScannerProvider();
 
     DriverService driverService = new DriverService();
+    MenuService menuService;
 
-    public void runDriverMenu() {
+    public void runDriverMenu(MenuService menuService) {
+        this.menuService = menuService;
         serviceDriverMenu();
     }
 
@@ -88,10 +90,10 @@ public class DriverMenu {
                 case 5 -> logSubMenu(5);
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
-                    continue;
                 }
             }
         }
+        menuService.menu();
     }
 
     private int getMenuItem() {
