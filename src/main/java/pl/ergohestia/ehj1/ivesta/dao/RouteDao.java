@@ -53,7 +53,7 @@ public class RouteDao implements Dao<RouteDto> {
     @Override
     public void delete(RouteDto routeDto) {
         em.getTransaction().begin();
-        em.remove(routeAdapter.convertToRoute(routeDto));
+        em.remove(find(routeDto.getId()));
         em.getTransaction().commit();
     }
 }
