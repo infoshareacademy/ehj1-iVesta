@@ -49,9 +49,11 @@ public class Route {
     private LocalDate date;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "driver_id")
     private Driver driver;
 
     public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume, LocalDate date) {
