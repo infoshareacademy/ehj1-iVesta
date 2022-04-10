@@ -23,7 +23,6 @@ public class VehicleMenu {
     public void runVehicleMenu(MenuService menuService){
         this.menuService = menuService;
         serviceVehicleMenu();
-        menuService.menu();
     }
 
     private final Menu vehicleMenu = new Menu(
