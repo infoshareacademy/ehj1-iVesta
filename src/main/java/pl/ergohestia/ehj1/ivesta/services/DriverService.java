@@ -29,8 +29,7 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
     private static List<DriverDto> driversList;
 
     private final DriverConverter converter = new DriverConverter();
-    DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
-    ProperDateValidator dateValidator = new ProperDateValidator(dateFormatter);
+    ProperDateValidator dateValidator = new ProperDateValidator();
 
 
     public DriverService(String filePath) {
@@ -65,9 +64,9 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
         return dao.findAll().stream().toList();
     }
 
-    public List<DriverDto> getAvailableDrivers() {
+    /*public List<DriverDto> getAvailableDrivers() {
         return dao.findAvailable().stream().toList();
-    }
+    }*/
 
     public Optional<DriverDto> findById(UUID id) {
         return Optional.ofNullable(dao.find(id));
@@ -164,8 +163,8 @@ public class DriverService extends DriverConfig implements Service<DriverDto> {
     }
 
     public List<DriverDto> findByDate(LocalDate date) {
-        if (dateValidator.isValid(String.valueOf(date))) {
-            return findByDate(date);
+        if (dateValidator.isValid(String.valueOf(date).replace("-",""))) {
+            return dao.findByDate(date);
         } else SYSOUT.warn("Date must be in format: YYYY-MM-DD");
         return null;
     }

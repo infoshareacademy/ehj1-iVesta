@@ -42,15 +42,15 @@ public class DriverDao implements Dao<DriverDto> {
         return drivers;
     }
 
-    public Collection<DriverDto> findAvailable() {
+    /*public Collection<DriverDto> findAvailable() {
         em.getTransaction().begin();
-        List<DriverDto> drivers = em.createNamedQuery("drivers.findAvailable",Driver.class)
+        List<DriverDto> drivers = em.createNamedQuery("drivers.findAvailableDrivers",Driver.class)
                 .getResultStream()
                 .map(adapter::convertToDriverDto)
                 .toList();
         em.getTransaction().commit();
         return drivers;
-    }
+    }*/
 
     @Override
     public DriverDto update(DriverDto driverDto) {
@@ -69,10 +69,12 @@ public class DriverDao implements Dao<DriverDto> {
 
     public List<DriverDto> findByDate(LocalDate date) {
         em.getTransaction().begin();
-        return em.createNamedQuery("drivers.availableForCurrentDate", Driver.class)
-                .setParameter("date",date)
+        List<DriverDto> result = em.createNamedQuery("drivers.availableForCurrentDate", Driver.class)
+                .setParameter("date", date)
                 .getResultStream()
                 .map(adapter::convertToDriverDto)
                 .toList();
+        em.getTransaction().commit();
+        return result;
     }
 }

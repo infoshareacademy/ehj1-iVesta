@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class ProperDateValidator implements DateValidator {
-    private final DateTimeFormatter dateFormatter;
 
-    public ProperDateValidator(DateTimeFormatter dateFormatter) {
-        this.dateFormatter = dateFormatter;
+    DateTimeFormatter dateFormatter;
+    public ProperDateValidator() {
+        this.dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;;
     }
 
     @Override

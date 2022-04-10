@@ -10,14 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ProperDateValidatorTest {
 
-    private final ProperDateValidator sut = new ProperDateValidator(DateTimeFormatter.BASIC_ISO_DATE);
+    private final ProperDateValidator sut = new ProperDateValidator();
 
 
     @Test
     void shouldIsValid() {
         // given
-        DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
-        DateValidator validator = new ProperDateValidator(dateFormatter);
+        DateValidator validator = new ProperDateValidator();
 
         // when
 

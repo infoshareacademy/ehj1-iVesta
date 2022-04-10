@@ -32,9 +32,9 @@ public class MenuService {
     }
 
     private Menu mainMenu = new Menu(
-            "1. Wyświetl kierowców.",
+            "1. Obsługa kierowców.",
             "2. Obsługa pojazdów.",
-            "3. Zaplanuj trasę.",
+            "3. Obsługa tras.",
             "4. Wyjdź z aplikacji.");
 
     private void subMenuDriver() {
@@ -53,12 +53,12 @@ public class MenuService {
         log.debug("Loaded route: {}", routeDto);
 
         routeDto = routesLoader.addVehicleToRoute(in.getScanner(), routeDto);
-        if (routeDto.getVehicle() == null){
+        if (routeDto.getVehicle() == null) {
             SYSOUT.info("Brak pojazdow w bazie.");
         } else {
             SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
         }
-        SYSOUT.info("Dodano trasę: {}",routeDto);
+        SYSOUT.info("Dodano trasę: {}", routeDto);
         menu();
     }
 
@@ -83,13 +83,15 @@ public class MenuService {
                 case 1 -> subMenuDriver();
                 case 2 -> subMenuVehicle();
                 case 3 -> subMenuRoute();
-                case 4 -> logSubMenu(4);
-                default -> {
-                    log.info("User incorrectly wrote " + item + " in menu");
-                }
+                case 4 -> {
+                item = 4;}
+            default -> {
+                log.info("User incorrectly wrote " + item + " in menu");
             }
         }
     }
+
+}
 
     private void printMenu(List<String> menuItems) {
         for (String item : menuItems) {
