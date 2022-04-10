@@ -4,15 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 import java.io.InputStream;
-import java.util.List;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 @Slf4j
@@ -47,15 +48,15 @@ public class RoutesLoader {
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
         Integer transportVolume = loadPositiveNumber(scanner);
 
-        SYSOUT.info("Podaj datę transportu w formacie rrrr-mm-dd:");
-        String date = scanner.nextLine();
+        SYSOUT.info("Podaj datę transportu w formacie dd/mm/rrrr:");
+        LocalDate date = loadCorrectDate(scanner);
 
-        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume, LocalDate.parse(date));
+        return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume, date);
     }
 
-    private TransportType loadTransportType(Scanner scanner) {
+    TransportType loadTransportType(Scanner scanner) {
         String transportTypeInput = "";
-        while(!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
+        while (!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
             transportTypeInput = scanner.next();
             if (!(transportTypeInput.equalsIgnoreCase("o") || transportTypeInput.equalsIgnoreCase("t"))) {
                 SYSOUT.info("Podaj prawidłową literę: o lub t");
@@ -74,14 +75,26 @@ public class RoutesLoader {
                 }
             } catch (InputMismatchException e) {
                 SYSOUT.info("Podaj prawidłowe dane (liczba całkowita dodatnia)");
-                scanner.next();
             }
         }
         return positiveNumber;
     }
-    //TODO implements method
-//    private LocalDate loadCorrectData(String input) {
-//    }
+
+    private LocalDate loadCorrectDate(Scanner scanner) {
+        scanner = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        boolean isCorrect = false;
+        LocalDate correctDate = null;
+        while (!isCorrect) {
+            try {
+                correctDate = LocalDate.parse(scanner.nextLine(), formatter);
+                isCorrect = true;
+            } catch (Exception e) {
+                SYSOUT.info("Podaj prawidłowy format daty.");
+            }
+        }
+        return correctDate;
+    }
 
     public RouteDto addVehicleToRoute(Scanner in, RouteDto routeDto) {
         List<VehicleDto> vehicles = (List<VehicleDto>) vehicleService.getVehicleDtoList();
