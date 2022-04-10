@@ -20,8 +20,8 @@ public class Main {
 
         SYSOUT.info("Witaj w aplikacji iVesta!");
 
-        log.info("Exit successful.");
-
         menuService.menu();
+
+        log.info("Exit successful.");
     }
 }
