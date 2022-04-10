@@ -20,27 +20,31 @@ public class MenuService {
     RouteService routeService;
     VehicleMenu vehicleMenu;
     RoutesLoader routesLoader;
+    DriverMenu driverMenu;
 
     public MenuService init() {
-        driverService = new DriverService("path");
+        driverService = new DriverService();
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
         routesLoader = new RoutesLoader().init();
+        driverMenu = new DriverMenu();
         return this;
     }
 
     private Menu mainMenu = new Menu(
             "1. Wyświetl kierowców.",
             "2. Obsługa pojazdów.",
-            "3. Zaplanuj trasę.");
+            "3. Zaplanuj trasę.",
+            "4. Wyjdź z aplikacji.");
 
     private void subMenuDriver() {
         logSubMenu(1);
+        driverMenu.runDriverMenu(this);
     }
 
     private void subMenuVehicle() {
         logSubMenu(2);
-        vehicleMenu.runVehicleMenu();
+        vehicleMenu.runVehicleMenu(this);
     }
 
     private void subMenuRoute() {
@@ -54,6 +58,8 @@ public class MenuService {
         } else {
             SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
         }
+        SYSOUT.info("Dodano trasę: {}",routeDto);
+        menu();
     }
 
     private void logSubMenu(int index) {
@@ -64,24 +70,24 @@ public class MenuService {
     }
 
     public void menu() {
+        SYSOUT.info("GŁÓWNE MENU");
         printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
     }
 
     private void serviceMainMenu() {
-        int item;
-        while (true) {
+        int item = 0;
+        while (item != 4) {
             item = getMenuItem();
             switch (item) {
                 case 1 -> subMenuDriver();
                 case 2 -> subMenuVehicle();
                 case 3 -> subMenuRoute();
+                case 4 -> logSubMenu(4);
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
-                    continue;
                 }
             }
-            break;
         }
     }
 

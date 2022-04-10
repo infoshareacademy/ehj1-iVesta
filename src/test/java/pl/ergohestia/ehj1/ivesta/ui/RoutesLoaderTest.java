@@ -71,7 +71,7 @@ class RoutesLoaderTest {
         int excpectedVehicleNo = 2;
         VehicleDto expectedVehicle = vehicles.get(excpectedVehicleNo);
 
-        InputStream testInputStream = prepareInputStream("test", 99999, -1, excpectedVehicleNo);
+        InputStream testInputStream = prepareInputStream("test", 99999, -1, excpectedVehicleNo + 1);
         Scanner testScanner = new Scanner(testInputStream);
         when(vehicleService.getVehicleDtoList()).thenReturn(vehicles);
 
