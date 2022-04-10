@@ -23,7 +23,7 @@ public class MenuService {
     DriverMenu driverMenu;
 
     public MenuService init() {
-        driverService = new DriverService("path");
+        driverService = new DriverService();
         routeService = new RouteService();
         vehicleMenu = new VehicleMenu();
         routesLoader = new RoutesLoader().init();
@@ -43,7 +43,7 @@ public class MenuService {
 
     private void subMenuVehicle() {
         logSubMenu(2);
-        vehicleMenu.runVehicleMenu();
+        vehicleMenu.runVehicleMenu(this);
     }
 
     private void subMenuRoute() {
@@ -57,6 +57,8 @@ public class MenuService {
         } else {
             SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
         }
+        SYSOUT.info("Dodano trasę: {}",routeDto);
+        menu();
     }
 
     private void logSubMenu(int index) {
@@ -67,6 +69,7 @@ public class MenuService {
     }
 
     public void menu() {
+        SYSOUT.info("GŁÓWNE MENU");
         printMenu(mainMenu.getMenuItems());
         serviceMainMenu();
     }
