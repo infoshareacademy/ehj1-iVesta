@@ -19,18 +19,16 @@ public class VehicleMenu {
     VehicleService vehicleService = new VehicleService();
     MenuService menuService;
 
-    public void runVehicleMenu(MenuService menuService){
+    public void runVehicleMenu(MenuService menuService) {
         this.menuService = menuService;
-        printMenu(vehicleMenu.getMenuItems());
         serviceVehicleMenu();
-        menuService.menu();
     }
 
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
             "2. Wyświetl wszystkie dostępne pojazdy.",
             "3. Załaduj nowe pojazdy.",
-            "4. Edycja danych pojazdu",
+            "4. Edycja danych pojazdu.",
             "5. Powrót do menu głównego.");
 
     private void printVehicles() {
@@ -49,12 +47,12 @@ public class VehicleMenu {
 
     private void loadNewVehicles() {
         logSubMenu(3);
-        vehicleService.LoadVehicle();
+        vehicleService.loadVehicle();
     }
 
     private void editVehicles() {
         logSubMenu(4);
-        vehicleService.LoadVehicle();
+        vehicleService.editVehicles();
     }
 
     private void logSubMenu(int index) {
@@ -66,21 +64,22 @@ public class VehicleMenu {
 
     private void serviceVehicleMenu() {
         int item;
-        while (true) {
+        boolean isEnd = false;
+        while (!isEnd) {
+            printMenu(vehicleMenu.getMenuItems());
             item = getMenuItem();
             switch (item) {
                 case 1 -> printVehicles();
                 case 2 -> printAvailableVehicles();
                 case 3 -> loadNewVehicles();
                 case 4 -> editVehicles();
-                case 5 -> menuService.menu();
+                case 5 -> isEnd = true;
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
-                    continue;
                 }
             }
-            break;
         }
+        menuService.menu();
     }
 
     private int getMenuItem() {

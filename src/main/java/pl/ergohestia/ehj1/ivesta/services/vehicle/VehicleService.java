@@ -1,34 +1,40 @@
 package pl.ergohestia.ehj1.ivesta.services.vehicle;
 
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
 import pl.ergohestia.ehj1.ivesta.services.Service;
+import pl.ergohestia.ehj1.ivesta.ui.VehicleEditor;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 
+import static java.lang.System.in;
+
+
+@NoArgsConstructor
 public class VehicleService implements Service<VehicleDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private static final Logger LOG = LoggerFactory.getLogger(VehicleService.class);
 
     private final VehicleDao vehicleDao = new VehicleDao();
-    private List<VehicleDto> vehicleDtoList;
-
-    public VehicleService() {
-    }
+    private Collection<VehicleDto> vehicleDtoList;
+    VehicleValidator validator = new VehicleValidator();
 
     public VehicleService(List<VehicleDto> vehicleDtoList) {
         this.vehicleDtoList = vehicleDtoList;
     }
 
-    public void LoadVehicle() {
+    public void loadVehicle() {
         VehiclesLoader vehiclesLoader = new VehiclesLoader();
         vehicleDtoList = vehiclesLoader.getListOfVehicles();
-        List<VehicleDto> validList = saveValidVehicles();
+        Collection<VehicleDto> validList = saveValidVehicles();
         for (VehicleDto vehicleDto : validList) {
             LOG.info("Added vehicle to database: " + vehicleDto);
             vehicleDao.save(vehicleDto);
@@ -36,31 +42,56 @@ public class VehicleService implements Service<VehicleDto> {
         SYSOUT.info("Ilość pojazdów dodanych do bazy danych: " + vehicleDtoList.size());
     }
 
-    public void editVehicles(){
-        getVehicleDtoList();//TODO
+    public void editVehicles() {
+        Scanner scanner = new Scanner(in);
+        vehicleDtoList = getVehicleDtoList();
+        List<VehicleDto> list = new ArrayList(vehicleDtoList);
+        printVehicles(list);
+        SYSOUT.info("Podaj numer pojazdu, który chciałbyś edytować lub wpisz 0 aby zakończyć edycję:");
+        String input = scanner.nextLine();
+        int number = Integer.parseInt(getNumberFromUser(scanner, input));
+        while (number > list.size()) {
+            SYSOUT.warn("Podany numer nie istnieje! Maksymalny numer to : " + list.size());
+            number = Integer.parseInt(getNumberFromUser(scanner, input));
+        }
+        if (number == 0) {
+            SYSOUT.info("Edycja zakończona");
+        } else {
+            VehicleEditor vehicleEditor = new VehicleEditor(list.get(number - 1));
+            vehicleDao.update(vehicleEditor.editVehicle(in));
+        }
+    }
 
+    private String getNumberFromUser(Scanner scanner, String input) {
+        while (!Service.isNumeric(input)) {
+            SYSOUT.warn("Niepoprawny numer: " + input + ". Podaj numer ponownie");
+            input = scanner.nextLine();
+        }
+        return input;
     }
 
     public Collection<VehicleDto> getVehicleDtoList() {
         return vehicleDao.findAll();
     }
 
-
-    private List<VehicleDto> saveValidVehicles() {
+    private Collection<VehicleDto> saveValidVehicles() {
+        Collection<VehicleDto> finalCollection = new ArrayList<>();
         for (VehicleDto vehicleDto : vehicleDtoList) {
+            vehicleDto = validator.validateConfigOfYearAndMethodProduction(vehicleDto);
             VehicleValidator vehicleValidator = new VehicleValidator(vehicleDto);
+
             if (vehicleValidator.isVehicleValid()) {
-                SYSOUT.info(vehicleDto + " is valid");
+                SYSOUT.info("Vehicle is valid: " + vehicleDto);
+                LOG.info("Vehicle will be saved in db: " + vehicleDto);
+                finalCollection.add(vehicleDto);
             } else {
-                LOG.warn("Vehicle has been removed: " + vehicleDto);
                 SYSOUT.warn("Usunięto pojazd z niepoprawnymi danymi: " + vehicleDto);
-                vehicleDtoList.remove(vehicleDto);
             }
         }
-        return vehicleDtoList;
+        return finalCollection;
     }
 
-    public List<VehicleDto> getVehiclesList() {
+    public Collection<VehicleDto> getVehiclesList() {
         return vehicleDtoList;
     }
 
@@ -72,5 +103,13 @@ public class VehicleService implements Service<VehicleDto> {
     @Override
     public void addElement(VehicleDto vehicleDto) {
         vehicleDtoList.add(vehicleDto);
+    }
+
+    private void printVehicles(List<VehicleDto> list) {
+        int i = 1;
+        for (VehicleDto vehicleDto : list) {
+            SYSOUT.info(i + ". " + vehicleDto);
+            i++;
+        }
     }
 }

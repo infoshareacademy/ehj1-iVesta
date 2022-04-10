@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
+import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
 import java.io.InputStream;
 import java.util.List;
