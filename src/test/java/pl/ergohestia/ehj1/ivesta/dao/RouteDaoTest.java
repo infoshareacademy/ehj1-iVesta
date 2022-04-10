@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.dao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
@@ -11,13 +12,18 @@ import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RouteDaoTest {
 
-    private RouteDao sut = new RouteDao();
-    private RouteService routeService = new RouteService();
+
+
+    private final RouteDao sut = new RouteDao();
+    private final DriverDao sut2 = new DriverDao();
+    private final RouteService routeService = new RouteService();
     EntityManager em = HibernateUtils.getEntityManager();
 
     @AfterEach
@@ -117,5 +123,31 @@ class RouteDaoTest {
                 TransportType.PASSENGERS,
                 20,
                 LocalDate.parse("2022-04-20"));
+    }
+
+    @Test
+    void shouldAddDriverIdToRouteDriver() {
+        // given
+        sut.save(new RouteDto("Gdańsk","Warszawa",200, TransportType.PASSENGERS,100,LocalDate.parse("2022-04-22")));
+        Collection<RouteDto> result = sut.findAll();
+        List<UUID> routeId = result.stream().map(RouteDto::getId).toList();
+        UUID resultUUID = routeId.get(0);
+
+        sut2.save(new DriverDto("TEST_NAME", "TEST_LAST_NAME", "TEST_ADDRESS", "TEST_PHONE", "TEST_LICENSE", 5, 3000));
+        Collection<DriverDto> result2 = sut2.findAll();
+        List<UUID> driverId = result2.stream().map(DriverDto::getId).toList();
+        UUID resultDriverUUID = driverId.get(0);
+
+        System.out.println(resultDriverUUID+ " "+resultUUID);
+
+        // when
+        sut.addDriverToRoute(resultUUID,resultDriverUUID);
+        Collection<RouteDto> result3 = sut.findAll();
+
+
+        // then
+        System.out.println(result3);
+        //zmianę widać na tabeli w bazie danych, w teście będzie null
+
     }
 }

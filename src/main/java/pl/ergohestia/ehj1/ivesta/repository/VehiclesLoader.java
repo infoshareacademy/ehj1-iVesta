@@ -31,10 +31,6 @@ public class VehiclesLoader {
     Scanner scanner = new Scanner(System.in);
     private final Path path;
 
-    /*public Path getVehiclePath() {
-        return getPath();
-    }*/
-
     public VehiclesLoader(){this.path = getPath();}
 
     public VehiclesLoader(Path path) {

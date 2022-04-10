@@ -6,6 +6,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class DriverDto {
     private UUID id;
     private String name;

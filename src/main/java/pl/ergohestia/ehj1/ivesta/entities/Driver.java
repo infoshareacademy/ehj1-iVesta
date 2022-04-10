@@ -1,4 +1,5 @@
 package pl.ergohestia.ehj1.ivesta.entities;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,6 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
-import java.util.List;
 
 @Entity
 @Table(name = "drivers")
@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "drivers.findAll", query = "from Driver"),
-        @NamedQuery(name = "drivers.findAvailable", query = "FROM Driver d WHERE d.id NOT IN (SELECT DISTINCT r.driver.id FROM Route r)")
+        @NamedQuery(name = "drivers.availableForCurrentDate", query = "from Driver d where d.id not in (select r.driver.id from Route r where r.date = :date)")
 })
 
 public class Driver {
@@ -52,6 +52,7 @@ public class Driver {
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
 
+
     @OneToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
@@ -65,7 +66,8 @@ public class Driver {
                   String phoneNumber,
                   String license,
                   Integer numberOfCourses,
-                  Integer numberOfKilometres) {
+                  Integer numberOfKilometres)
+    {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
