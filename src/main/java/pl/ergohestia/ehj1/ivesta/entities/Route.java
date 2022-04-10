@@ -46,6 +46,7 @@ public class Route {
     private Integer transportVolume;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "driver_id")
     private Driver driver;
 
     public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
