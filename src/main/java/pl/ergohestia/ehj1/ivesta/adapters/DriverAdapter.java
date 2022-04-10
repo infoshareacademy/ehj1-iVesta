@@ -8,17 +8,18 @@ public class DriverAdapter {
         if (driver == null) {
             return null;
         }
-        DriverDto driverDto = new DriverDto(driver.getName(),
+        DriverDto driverDto = new DriverDto(
+                driver.getName(),
                 driver.getLastName(),
                 driver.getAddress(),
                 driver.getPhoneNumber(),
                 driver.getLicense(),
                 driver.getNumberOfCourses(),
-                driver.getNumberOfKilometres()
-        );
+                driver.getNumberOfKilometres());
         driverDto.setId(driver.getId());
         return driverDto;
     }
+
     public Driver convertToDriver(DriverDto driverDto){
         if (driverDto == null) {
             return null;
@@ -30,8 +31,7 @@ public class DriverAdapter {
                 driverDto.getPhoneNumber(),
                 driverDto.getLicense(),
                 driverDto.getNumberOfCourses(),
-                driverDto.getNumberOfKilometres()
-        );
+                driverDto.getNumberOfKilometres());
         driver.setId(driverDto.getId());
         return driver;
     }

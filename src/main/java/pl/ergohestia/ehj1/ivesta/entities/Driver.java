@@ -1,4 +1,5 @@
 package pl.ergohestia.ehj1.ivesta.entities;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -71,6 +72,3 @@ public class Driver {
         this.numberOfKilometres = numberOfKilometres;
     }
 }
-
-
-

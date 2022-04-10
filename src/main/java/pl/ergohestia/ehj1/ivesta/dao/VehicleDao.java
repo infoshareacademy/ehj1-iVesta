@@ -6,9 +6,7 @@ import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 public class VehicleDao implements Dao<VehicleDto> {

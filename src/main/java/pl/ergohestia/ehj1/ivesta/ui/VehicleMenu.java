@@ -12,28 +12,32 @@ import java.util.Scanner;
 
 public class VehicleMenu {
 
-    private Logger log = LoggerFactory.getLogger(MenuService.class);
+    private Logger log = LoggerFactory.getLogger(VehicleMenu.class);
     private Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
     private InputScannerProvider in = new InputScannerProvider();
 
     VehicleService vehicleService = new VehicleService();
+    MenuService menuService;
 
-    public void runVehicleMenu(){
+    public void runVehicleMenu(MenuService menuService){
+        this.menuService = menuService;
         printMenu(vehicleMenu.getMenuItems());
         serviceVehicleMenu();
+        menuService.menu();
     }
 
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
             "2. Wyświetl wszystkie dostępne pojazdy.",
-            "3. Załaduj nowe pojazdy",
-            "4. Edycja danych pojazdu");
+            "3. Załaduj nowe pojazdy.",
+            "4. Edycja danych pojazdu",
+            "5. Powrót do menu głównego.");
 
     private void printVehicles() {
         logSubMenu(1);
         Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
-        for (VehicleDto vehicle : vehicles) {
-            SYSOUT.info(String.valueOf(vehicle));
+        for (VehicleDto vehicleDto : vehicles) {
+            SYSOUT.info(String.valueOf(vehicleDto));
         }
     }
 
@@ -68,6 +72,8 @@ public class VehicleMenu {
                 case 1 -> printVehicles();
                 case 2 -> printAvailableVehicles();
                 case 3 -> loadNewVehicles();
+                case 4 -> editVehicles();
+                case 5 -> menuService.menu();
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                     continue;
