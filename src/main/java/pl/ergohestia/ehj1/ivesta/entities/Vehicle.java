@@ -19,8 +19,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle"),
-        @NamedQuery(name = "vehicles.availableForCurrentDate", query = "from Vehicle where Vehicle.id not in (select r.vehicle.id from Route r where r.date = :date)")
+        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle")
 })
 public class Vehicle {
 

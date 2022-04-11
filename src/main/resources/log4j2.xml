@@ -2,10 +2,10 @@
 <Configuration status="WARN" monitorInterval="30">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="%msg%n" disableAnsi="false"/>
+            <PatternLayout pattern="%msg%n" disableAnsi="false" charset="UTF-8"/>
         </Console>
         <RollingFile name="RollingFile" fileName="logs/currentLog.log" filePattern="logs/logs-%i.log.gz">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] | %-5level %logger [%line] - %msg%n%throwable"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] | %-5level %logger [%line] - %msg%n%throwable" charset="UTF-8"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 KB" />
             </Policies>

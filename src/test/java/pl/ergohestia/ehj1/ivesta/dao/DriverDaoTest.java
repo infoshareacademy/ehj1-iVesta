@@ -36,7 +36,6 @@ class DriverDaoTest {
         // then
         assertThat(dtoResultCollection).isNotNull();
         assertThat(dtoResultCollection.size()).isEqualTo(1);
-
     }
 
     @Test

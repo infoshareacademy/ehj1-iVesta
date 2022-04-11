@@ -53,7 +53,7 @@ public class RoutesLoader {
         SYSOUT.info("Podaj ilość osób lub masę towaru w kg");
         Integer transportVolume = loadPositiveNumber(scanner);
 
-        SYSOUT.info("Podaj datę transportu w formacie dd/mm/rrrr:");
+        SYSOUT.info("Podaj datę transportu w formacie yyyy-mm-dd:");
         LocalDate date = loadCorrectDate(scanner);
 
         return new RouteDto(startAddress, destinationAddress, routeLength, transportTypeInput, transportVolume, date);
@@ -87,7 +87,7 @@ public class RoutesLoader {
 
     private LocalDate loadCorrectDate(Scanner scanner) {
         scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         boolean isCorrect = false;
         LocalDate correctDate = null;
         while (!isCorrect) {
