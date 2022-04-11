@@ -16,12 +16,24 @@ public class Main {
     private void run(){
         MenuService menuService = new MenuService().init();
 
-        log.info("App starting.");
+        printLogo();
 
         SYSOUT.info("Witaj w aplikacji iVesta!");
 
         menuService.menu();
 
         log.info("Exit successful.");
+    }
+
+    private void printLogo() {
+        SYSOUT.info("""
+                $$\\ $$\\    $$\\                       $$\\                
+                \\__|$$ |   $$ |                      $$ |               
+                $$\\ $$ |   $$ | $$$$$$\\   $$$$$$$\\ $$$$$$\\    $$$$$$\\   
+                $$ |\\$$\\  $$  |$$  __$$\\ $$  _____|\\_$$  _|   \\____$$\\  
+                $$ | \\$$\\$$  / $$$$$$$$ |\\$$$$$$\\    $$ |     $$$$$$$ | 
+                $$ |  \\$$$  /  $$   ____| \\____$$\\   $$ |$$\\ $$  __$$ | 
+                $$ |   \\$  /   \\$$$$$$$\\ $$$$$$$  |  \\$$$$  |\\$$$$$$$ | 
+                \\__|    \\_/     \\_______|\\_______/    \\____/  \\_______|""");
     }
 }
