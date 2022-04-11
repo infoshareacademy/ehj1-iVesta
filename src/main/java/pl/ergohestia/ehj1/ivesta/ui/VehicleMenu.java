@@ -2,10 +2,9 @@ package pl.ergohestia.ehj1.ivesta.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.services.VehicleService;
+import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,34 +19,43 @@ public class VehicleMenu {
     VehicleService vehicleService = new VehicleService();
     MenuService menuService;
 
-    public void runVehicleMenu(MenuService menuService){
+    public void runVehicleMenu(MenuService menuService) {
         this.menuService = menuService;
         serviceVehicleMenu();
     }
 
     private final Menu vehicleMenu = new Menu(
             "1. Wyświetl wszystkie pojazdy.",
-            "2. Wyświetl wszystkie dostępne pojazdy.",
+            "2. Wyświetl wszystkie pojazdy bez przydzielonych kierowców.",
             "3. Załaduj nowe pojazdy.",
-            "4. Powrót do menu głównego.");
+            "4. Edycja danych pojazdu.",
+            "5. Powrót do menu głównego.");
 
-    private void subVehicleMenuNo1() {
+    private void printVehicles() {
         logSubMenu(1);
         Collection<VehicleDto> vehicles = vehicleService.getVehicleDtoList();
+        if (vehicles.size() == 0){
+            SYSOUT.info("Brak pojazdów do wyswietlenia");
+        }
         for (VehicleDto vehicleDto : vehicles) {
             SYSOUT.info(String.valueOf(vehicleDto));
         }
     }
 
-    private void subVehicleMenuNo2(
+    private void printAvailableVehicles(
             //TODO implementacja dla wyświetlania pojazdów bez kierowcy
     ) {
         logSubMenu(2);
     }
 
-    private void subVehicleMenuNo3() {
+    private void loadNewVehicles() {
         logSubMenu(3);
-        vehicleService.LoadVehicle();
+        vehicleService.loadVehicle();
+    }
+
+    private void editVehicles() {
+        logSubMenu(4);
+        vehicleService.editVehicles();
     }
 
     private void logSubMenu(int index) {
@@ -58,15 +66,17 @@ public class VehicleMenu {
     }
 
     private void serviceVehicleMenu() {
-        int item = 0;
-        while (item != 4) {
+        int item;
+        boolean isEnd = false;
+        while (!isEnd) {
             printMenu(vehicleMenu.getMenuItems());
             item = getMenuItem();
             switch (item) {
-                case 1 -> subVehicleMenuNo1();
-                case 2 -> subVehicleMenuNo2();
-                case 3 -> subVehicleMenuNo3();
-                case 4 -> logSubMenu(4);
+                case 1 -> printVehicles();
+                case 2 -> printAvailableVehicles();
+                case 3 -> loadNewVehicles();
+                case 4 -> editVehicles();
+                case 5 -> isEnd = true;
                 default -> {
                     log.info("User incorrectly wrote " + item + " in menu");
                 }

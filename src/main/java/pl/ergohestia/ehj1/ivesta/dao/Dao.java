@@ -1,7 +1,5 @@
 package pl.ergohestia.ehj1.ivesta.dao;
 
-import pl.ergohestia.ehj1.ivesta.model.DriverDto;
-
 import java.util.Collection;
 import java.util.UUID;
 

@@ -19,7 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "drivers.findAll", query = "from Driver"),
-        @NamedQuery(name = "drivers.findAvailable", query = "FROM Driver d WHERE d.id NOT IN (SELECT DISTINCT r.driver.id FROM Route r)")
+        @NamedQuery(name = "drivers.availableForCurrentDate", query = "from Driver d where d.id not in (select r.driver.id from Route r where r.date = :date)")
 })
 
 public class Driver {
@@ -52,11 +52,12 @@ public class Driver {
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
 
+
     @OneToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)
     private Vehicle vehicle;
 
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
     public Driver(String name,

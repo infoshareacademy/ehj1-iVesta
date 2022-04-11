@@ -3,7 +3,6 @@ package pl.ergohestia.ehj1.ivesta.ui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.model.Menu;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
@@ -17,6 +16,7 @@ public class MenuService {
     private InputScannerProvider in = new InputScannerProvider();
 
     DriverService driverService;
+    RoutesMenu routesMenu;
     RouteService routeService;
     VehicleMenu vehicleMenu;
     RoutesLoader routesLoader;
@@ -25,6 +25,7 @@ public class MenuService {
     public MenuService init() {
         driverService = new DriverService();
         routeService = new RouteService();
+        routesMenu = new RoutesMenu();
         vehicleMenu = new VehicleMenu();
         routesLoader = new RoutesLoader().init();
         driverMenu = new DriverMenu();
@@ -32,9 +33,9 @@ public class MenuService {
     }
 
     private Menu mainMenu = new Menu(
-            "1. Wyświetl kierowców.",
+            "1. Obsługa kierowców.",
             "2. Obsługa pojazdów.",
-            "3. Zaplanuj trasę.",
+            "3. Obsługa tras.",
             "4. Wyjdź z aplikacji.");
 
     private void subMenuDriver() {
@@ -49,17 +50,7 @@ public class MenuService {
 
     private void subMenuRoute() {
         logSubMenu(3);
-        RouteDto routeDto = routesLoader.loadRoute(in.getInputStream());
-        log.debug("Loaded route: {}", routeDto);
-
-        routeDto = routesLoader.addVehicleToRoute(in.getScanner(), routeDto);
-        if (routeDto.getVehicle() == null){
-            SYSOUT.info("Brak pojazdow w bazie.");
-        } else {
-            SYSOUT.info("Wybrany samochód: {}", routeDto.getVehicle().toString());
-        }
-        SYSOUT.info("Dodano trasę: {}",routeDto);
-        menu();
+        routesMenu.runRoutesMenu(this);
     }
 
     private void logSubMenu(int index) {
@@ -83,13 +74,15 @@ public class MenuService {
                 case 1 -> subMenuDriver();
                 case 2 -> subMenuVehicle();
                 case 3 -> subMenuRoute();
-                case 4 -> logSubMenu(4);
-                default -> {
-                    log.info("User incorrectly wrote " + item + " in menu");
-                }
+                case 4 -> {
+                item = 4;}
+            default -> {
+                log.info("User incorrectly wrote " + item + " in menu");
             }
         }
     }
+
+}
 
     private void printMenu(List<String> menuItems) {
         for (String item : menuItems) {

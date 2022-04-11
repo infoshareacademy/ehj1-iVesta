@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -45,15 +46,22 @@ public class Route {
     @Column(name = "transport_volume")
     private Integer transportVolume;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    private LocalDate date;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
-    public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
+    public Route(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume, LocalDate date) {
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
         this.routeLength = routeLength;
         this.transportType = transportType;
         this.transportVolume = transportVolume;
+        this.date = date;
     }
 }

@@ -10,4 +10,5 @@ public class HibernateUtils {
     public static EntityManager getEntityManager() {
         return em;
     }
+
 }

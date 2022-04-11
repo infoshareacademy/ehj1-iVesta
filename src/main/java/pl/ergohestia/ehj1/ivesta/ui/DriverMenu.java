@@ -10,6 +10,7 @@ import pl.ergohestia.ehj1.ivesta.services.DriverService;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,12 +47,22 @@ public class DriverMenu {
 
     private void subMenuShowAvailableDrivers() {
         logSubMenu(2);
-        List<DriverDto> list = driverService.getAvailableDrivers();
+        SYSOUT.info("Podaj date w formacie yyyy-mm-dd");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        List<DriverDto> list = driverService.findByDate(LocalDate.parse(input));
+        if (list.size() == 0){
+            SYSOUT.warn("Brak dostępnych kierowców na podany rok");
+        }else {
+            list.forEach(driverDto-> SYSOUT.info(String.valueOf(driverDto)));
+        }
+
+        /*List<DriverDto> list = driverService.getAvailableDrivers();
         if (!(list == null) && !list.isEmpty()) {
             list.stream().map(DriverDto::toString).forEach(SYSOUT::info);
         } else {
             SYSOUT.info("Brak dostępnych kierowców.");
-        }
+        }*/
     }
 
     private void subMenuEditDrivers() {

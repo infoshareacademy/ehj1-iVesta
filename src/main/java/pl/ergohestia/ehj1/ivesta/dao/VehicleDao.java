@@ -6,30 +6,35 @@ import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 public class VehicleDao implements Dao<VehicleDto> {
 
-    private final EntityManager em = HibernateUtils.getEntityManager();
-    private final VehicleAdapter vehicleAdapter = new VehicleAdapter();
+    private EntityManager em = HibernateUtils.getEntityManager();
+    private VehicleAdapter vehicleAdapter = new VehicleAdapter();
 
     @Override
     public VehicleDto find(UUID id) {
-        return vehicleAdapter.convertToVehicleDto(em.find(Vehicle.class, id));
+        em.getTransaction().begin();
+        Vehicle vehicle = findVehicle(id);
+        em.getTransaction().commit();
+        return vehicleAdapter.convertToVehicleDto(vehicle);
+    }
+
+    private Vehicle findVehicle(UUID id) {
+        return em.find(Vehicle.class, id);
     }
 
     @Override
     public Collection<VehicleDto> findAll() {
         em.getTransaction().begin();
-        List<VehicleDto> vehicles = em.createNamedQuery("vehicle.findAll", Vehicle.class)
+        Collection<VehicleDto> vehiclesDto = em.createNamedQuery("vehicle.findAll", Vehicle.class)
                 .getResultStream()
                 .map(vehicleAdapter::convertToVehicleDto)
                 .toList();
         em.getTransaction().commit();
-        return vehicles;
+        return vehiclesDto;
 
     }
 
@@ -55,7 +60,7 @@ public class VehicleDao implements Dao<VehicleDto> {
     @Override
     public void delete(VehicleDto vehicleDto) {
         em.getTransaction().begin();
-        em.remove(vehicleAdapter.convertToVehicle(vehicleDto));
+        em.remove(findVehicle(vehicleDto.getId()));
         em.getTransaction().commit();
     }
 }
