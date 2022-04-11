@@ -115,10 +115,7 @@ public class RoutesLoader {
     }
 
     public RouteDto addDriverToRoute(Scanner in, RouteDto routeDto) {
-        Scanner scanner = new Scanner(System.in);
-        SYSOUT.info("Wprowadź datę w formacie yyyy-mm-dd");
-        String date = scanner.nextLine();
-        List<DriverDto> drivers = driverService.findByDate(LocalDate.parse(date));
+        List<DriverDto> drivers = driverService.findByDate(routeDto.getDate());
         if (!drivers.isEmpty()) {
             SYSOUT.info("Wybierz numer kierowcy z poniższej listy:");
             IntStream.range(0, drivers.size()).forEach(i -> SYSOUT.info("{}. {}", (i + 1), drivers.get(i)));
