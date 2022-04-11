@@ -4,11 +4,14 @@ import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.ergohestia.ehj1.ivesta.dao.VehicleDao;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehiclesLoader;
+import pl.ergohestia.ehj1.ivesta.services.ProperDateValidator;
 import pl.ergohestia.ehj1.ivesta.services.Service;
 import pl.ergohestia.ehj1.ivesta.ui.VehicleEditor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,6 +55,7 @@ public class VehicleService implements Service<VehicleDto> {
         int number = Integer.parseInt(getNumberFromUser(scanner, input));
         while (number > list.size()) {
             SYSOUT.warn("Podany numer nie istnieje! Maksymalny numer to : " + list.size());
+            input = scanner.nextLine();
             number = Integer.parseInt(getNumberFromUser(scanner, input));
         }
         if (number == 0) {
@@ -94,6 +98,13 @@ public class VehicleService implements Service<VehicleDto> {
     public Collection<VehicleDto> getVehiclesList() {
         return vehicleDtoList;
     }
+
+    /*public List<VehicleDto> findVehicleByDate(LocalDate date) {
+        if (dateValidator.isValid(String.valueOf(date).replace("-",""))) {
+            return vehicleDao.findVehicleByDate(date);
+        } else SYSOUT.warn("Date must be in format: YYYY-MM-DD");
+        return null;
+    }*/
 
     @Override
     public void printElements() {

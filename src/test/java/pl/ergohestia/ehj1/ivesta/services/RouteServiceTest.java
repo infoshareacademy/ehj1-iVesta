@@ -7,7 +7,7 @@ import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,7 +32,7 @@ class RouteServiceTest {
         // given
 
         // when
-        List<RouteDto> result = sut.getRoutes();
+        Collection<RouteDto> result = sut.getRoutes();
 
         // then
         assertThat(result).isEmpty();
@@ -45,7 +45,7 @@ class RouteServiceTest {
 
         // when
         sut.addElement(testRouteDto);
-        List<RouteDto> result = sut.getRoutes();
+        Collection<RouteDto> result = sut.getRoutes();
 
         // then
         assertThat(result).hasSize(1);

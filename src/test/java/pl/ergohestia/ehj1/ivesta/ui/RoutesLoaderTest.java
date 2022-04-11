@@ -1,5 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.ui;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -57,7 +59,8 @@ class RoutesLoaderTest {
         Integer testRouteLength = 200;
         TransportType testTransportType = TransportType.PASSENGERS;
         Integer testTransportVolume = 20;
-        return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume);
+        LocalDate testDate = LocalDate.ofEpochDay(2020-01-01);
+        return new RouteDto(testStartAddress, testDestinationAddress, testRouteLength, testTransportType, testTransportVolume,testDate);
     }
 
     public List<VehicleDto> prepareTestVehiclesDtoCollection() {

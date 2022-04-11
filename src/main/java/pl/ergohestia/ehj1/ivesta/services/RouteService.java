@@ -3,11 +3,12 @@ package pl.ergohestia.ehj1.ivesta.services;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.ergohestia.ehj1.ivesta.dao.RouteDao;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 @Slf4j
@@ -15,14 +16,15 @@ public class RouteService implements Service<RouteDto> {
 
     private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
 
-    private final List<RouteDto> routeList;
+    private Collection<RouteDto> routeList;
+    private RouteDao routeDao = new RouteDao();
 
     public RouteService() {
         this.routeList = new ArrayList<>();
     }
 
-    public List<RouteDto> getRoutes() {
-        return routeList;
+    public Collection<RouteDto> getRoutes() {
+        return routeDao.findAll();
     }
 
     public TransportType convertToTransportType(String input) {
@@ -43,13 +45,8 @@ public class RouteService implements Service<RouteDto> {
         routeList.add(routeDto);
     }
 
-    public void addDriverToRoute(UUID routeId, UUID driverId) {
-        if (routeId == null) {
-            SYSOUT.warn("Wrong route ID.");
-        } else if (driverId == null) {
-            SYSOUT.warn("Wrong driver ID.");
-        } else addDriverToRoute(routeId, driverId);
-        SYSOUT.info("Driver was added to route.");
+    public void saveRoute(RouteDto routeDto) {
+        routeDao.save(routeDto);
     }
 }
 

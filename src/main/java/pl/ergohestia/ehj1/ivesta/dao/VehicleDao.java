@@ -1,12 +1,16 @@
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
+import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.utils.HibernateUtils;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class VehicleDao implements Dao<VehicleDto> {
@@ -63,4 +67,15 @@ public class VehicleDao implements Dao<VehicleDto> {
         em.remove(findVehicle(vehicleDto.getId()));
         em.getTransaction().commit();
     }
+
+    /*public List<VehicleDto> findVehicleByDate(LocalDate date) {
+        em.getTransaction().begin();
+        List<VehicleDto> result = em.createNamedQuery("vehicles.availableForCurrentDate", Vehicle.class)
+                .setParameter("date", date)
+                .getResultStream()
+                .map(vehicleAdapter::convertToVehicleDto)
+                .toList();
+        em.getTransaction().commit();
+        return result;
+    }*/
 }

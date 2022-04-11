@@ -19,7 +19,8 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle")
+        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle"),
+        @NamedQuery(name = "vehicles.availableForCurrentDate", query = "from Vehicle where Vehicle.id not in (select r.vehicle.id from Route r where r.date = :date)")
 })
 public class Vehicle {
 
@@ -69,8 +70,11 @@ public class Vehicle {
     @Column(nullable = false, name = "weight_limit")
     private double weightLimit;
 
-    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
+
+    @OneToOne(mappedBy = "vehicle")
+    private Driver driver;
 
     public Vehicle(String brand,
                    String vehicleCategory,

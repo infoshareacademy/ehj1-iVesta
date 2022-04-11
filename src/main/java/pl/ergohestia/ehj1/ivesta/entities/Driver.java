@@ -54,10 +54,10 @@ public class Driver {
 
 
     @OneToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)
     private Vehicle vehicle;
 
-    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
     public Driver(String name,
@@ -66,8 +66,7 @@ public class Driver {
                   String phoneNumber,
                   String license,
                   Integer numberOfCourses,
-                  Integer numberOfKilometres)
-    {
+                  Integer numberOfKilometres) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;

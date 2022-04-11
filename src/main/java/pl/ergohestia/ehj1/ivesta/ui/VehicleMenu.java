@@ -6,6 +6,7 @@ import pl.ergohestia.ehj1.ivesta.model.Menu;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
@@ -42,10 +43,18 @@ public class VehicleMenu {
         }
     }
 
-    private void printAvailableVehicles(
-            //TODO implementacja dla wyświetlania pojazdów bez kierowcy
-    ) {
+    private void printAvailableVehicles() {
         logSubMenu(2);
+        /*SYSOUT.info("Podaj date w formacie yyyy-mm-dd");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        List<VehicleDto> list = vehicleService.findByDate(LocalDate.parse(input));
+        if (list.size() == 0){
+            SYSOUT.warn("Brak dostępnych pojazdów na podaną datę");
+        }else {
+            list.forEach(vehicleDto-> SYSOUT.info(String.valueOf(vehicleDto)));
+        }*/
+
     }
 
     private void loadNewVehicles() {
