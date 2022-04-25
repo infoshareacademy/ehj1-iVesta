@@ -12,41 +12,8 @@ import java.util.Collection;
 import java.util.UUID;
 
 @Slf4j
-public class RouteService implements Service<RouteDto> {
+@org.springframework.stereotype.Service
+public class RouteService {
 
-    private static final Logger SYSOUT = LoggerFactory.getLogger("SYSOUT");
-
-    private Collection<RouteDto> routeList;
-    private RouteDao routeDao = new RouteDao();
-
-    public RouteService() {
-        this.routeList = new ArrayList<>();
-    }
-
-    public Collection<RouteDto> getRoutes() {
-        return routeDao.findAll();
-    }
-
-    public TransportType convertToTransportType(String input) {
-        return switch (input) {
-            case "o" -> TransportType.PASSENGERS;
-            case "t" -> TransportType.CARGO;
-            default -> throw new IllegalStateException("Unexpected value: " + input);
-        };
-    }
-
-    @Override
-    public void printElements() {
-        routeList.forEach(x -> SYSOUT.info(String.valueOf(x)));
-    }
-
-    @Override
-    public void addElement(RouteDto routeDto) {
-        routeList.add(routeDto);
-    }
-
-    public void saveRoute(RouteDto routeDto) {
-        routeDao.save(routeDto);
-    }
 }
 
