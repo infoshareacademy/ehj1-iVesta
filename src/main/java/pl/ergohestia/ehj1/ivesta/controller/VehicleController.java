@@ -23,7 +23,7 @@ public class VehicleController {
 
     @GetMapping
     List<VehicleDto> getVehicle() {
-        throw new RuntimeException();
+        return vehicleService.findAll();
     }
 
     @GetMapping("/{id}")
