@@ -33,5 +33,14 @@ public class VehicleService{
         return vehicleRepository.findById(id)
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find vehicle."));
     }
+
+    public VehicleDto addVehicle(Vehicle vehicle) {
+        Vehicle savedVehicle = vehicleRepository.save(vehicle);
+        return vehicleAdapter.convertToVehicleDto(savedVehicle);
+    }
+
+    public void deleteById(UUID id) {
+        vehicleRepository.deleteById(id);
+    }
 //todo
 }

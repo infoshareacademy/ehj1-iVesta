@@ -33,13 +33,13 @@ public class VehicleController {
     }
 
     @PostMapping
-    ResponseEntity<VehicleDto> addNewVehicle(@RequestBody VehicleDto vehicleDto) {
-        throw new RuntimeException();
+    public VehicleDto addNewVehicle(@RequestBody Vehicle vehicle) {
+        return vehicleService.addVehicle(vehicle);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteVehicle(@PathVariable UUID id) {
-        throw new RuntimeException();
+    public void deleteVehicle(@PathVariable UUID id) {
+        vehicleService.deleteById(id);
     }
 
     @PutMapping("/{id}")
