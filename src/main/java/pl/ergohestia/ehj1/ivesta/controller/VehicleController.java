@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
@@ -27,8 +28,8 @@ public class VehicleController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<VehicleDto> getVehicle(@PathVariable UUID id) {
-        throw new RuntimeException();
+    public Vehicle getVehicleById(@PathVariable UUID id) {
+        return vehicleService.getVehicleById(id);
     }
 
     @PostMapping
