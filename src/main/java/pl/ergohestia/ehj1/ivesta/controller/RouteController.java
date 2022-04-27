@@ -27,7 +27,7 @@ public class RouteController {
         throw new RuntimeException();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     ResponseEntity<RouteDto> getRoute(@PathVariable UUID id){
         throw new RuntimeException();
     }
@@ -38,7 +38,7 @@ public class RouteController {
         throw new RuntimeException();
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     ResponseEntity<?> deleteRoute(@PathVariable UUID id){
         throw new RuntimeException();
     }

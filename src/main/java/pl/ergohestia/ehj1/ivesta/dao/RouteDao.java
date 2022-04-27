@@ -1,3 +1,4 @@
+/*
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
@@ -68,3 +69,4 @@ public class RouteDao implements Dao<RouteDto> {
         return routeAdapter.convertToRouteDto(route);
     }
 }
+*/

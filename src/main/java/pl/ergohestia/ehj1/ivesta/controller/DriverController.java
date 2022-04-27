@@ -20,7 +20,6 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-
     @GetMapping
     List<DriverDto> getDrivers(){
         throw new RuntimeException();

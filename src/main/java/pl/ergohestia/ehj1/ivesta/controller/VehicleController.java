@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.services.vehicle.VehicleService;
+import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,27 +22,27 @@ public class VehicleController {
     }
 
     @GetMapping
-    List<VehicleDto> getVehicle(){
+    List<VehicleDto> getVehicle() {
         throw new RuntimeException();
     }
 
-    @GetMapping("{/id}")
-    ResponseEntity<VehicleDto> getVehicle(@PathVariable UUID id){
+    @GetMapping("/{id}")
+    ResponseEntity<VehicleDto> getVehicle(@PathVariable UUID id) {
         throw new RuntimeException();
     }
 
     @PostMapping
-    ResponseEntity<VehicleDto> addNewVehicle(@RequestBody VehicleDto vehicleDto
-    ){
+    ResponseEntity<VehicleDto> addNewVehicle(@RequestBody VehicleDto vehicleDto) {
         throw new RuntimeException();
     }
-    @DeleteMapping("{/id}")
-    ResponseEntity<?> deleteVehicle(@PathVariable UUID id){
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteVehicle(@PathVariable UUID id) {
         throw new RuntimeException();
     }
-    @PutMapping("{/id}")
-    ResponseEntity<VehicleDto> updateVehicle(@PathVariable UUID id, @RequestBody VehicleDto vehicleDto
-    ){
+
+    @PutMapping("/{id}")
+    ResponseEntity<VehicleDto> updateVehicle(@PathVariable UUID id, @RequestBody VehicleDto vehicleDto) {
         throw new RuntimeException();
     }
 }

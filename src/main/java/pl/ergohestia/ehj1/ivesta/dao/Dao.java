@@ -1,3 +1,4 @@
+/*
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import java.util.Collection;
@@ -14,4 +15,4 @@ public interface Dao<T> {
     T update(T t);
 
     void delete(T t);
-}
+}*/

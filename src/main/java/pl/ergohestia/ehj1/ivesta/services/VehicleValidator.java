@@ -1,8 +1,7 @@
-package pl.ergohestia.ehj1.ivesta.services.vehicle;
+package pl.ergohestia.ehj1.ivesta.services;
 
 import lombok.NoArgsConstructor;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.services.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class VehicleValidator {
 
     public void validateYearProduction() {
         String year = vehicleDto.getProductionYear();
-        if ((year.length() != 4) || !Service.isNumeric(year)) {
+        if ((year.length() != 4)) {
             addParameterToNotValidParametersList("Production year");
         }
     }
@@ -70,7 +69,7 @@ public class VehicleValidator {
     public VehicleDto validateConfigOfYearAndMethodProduction(VehicleDto vehicleDto) {
         String productionMethod = vehicleDto.getProductionMethod();
         String productionYear = vehicleDto.getProductionYear();
-        if (Service.isNumeric(productionMethod)) {
+        if (true) {
             vehicleDto.setProductionYear(productionMethod);
             vehicleDto.setProductionMethod(productionYear);
         }

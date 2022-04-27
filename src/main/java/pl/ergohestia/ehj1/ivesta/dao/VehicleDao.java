@@ -1,3 +1,4 @@
+/*
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
@@ -64,3 +65,4 @@ public class VehicleDao implements Dao<VehicleDto> {
         em.getTransaction().commit();
     }
 }
+*/

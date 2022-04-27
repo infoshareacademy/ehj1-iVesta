@@ -11,16 +11,5 @@ import java.util.UUID;
 
 @Service
 public class DriverService{
-
-    private final List<Driver> drivers = new ArrayList<>();
-
-    public List<Driver> getAll() {
-        return List.copyOf(drivers);
-    }
-
-    public Optional<Driver> findById(UUID id) {
-        return drivers.stream()
-                .filter(driver -> driver.getId().equals(id))
-                .findFirst();
-    }
+    //TODO
 }

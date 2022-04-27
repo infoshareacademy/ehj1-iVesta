@@ -1,3 +1,4 @@
+/*
 package pl.ergohestia.ehj1.ivesta.utils;
 
 import javax.persistence.EntityManager;
@@ -12,3 +13,4 @@ public class HibernateUtils {
     }
 
 }
+*/

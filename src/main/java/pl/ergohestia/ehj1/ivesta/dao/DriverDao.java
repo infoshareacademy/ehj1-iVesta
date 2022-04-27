@@ -1,3 +1,4 @@
+/*
 package pl.ergohestia.ehj1.ivesta.dao;
 
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
@@ -9,7 +10,6 @@ import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public class DriverDao implements Dao<DriverDto> {
@@ -42,16 +42,6 @@ public class DriverDao implements Dao<DriverDto> {
         return drivers;
     }
 
-    /*public Collection<DriverDto> findAvailable() {
-        em.getTransaction().begin();
-        List<DriverDto> drivers = em.createNamedQuery("drivers.findAvailableDrivers",Driver.class)
-                .getResultStream()
-                .map(adapter::convertToDriverDto)
-                .toList();
-        em.getTransaction().commit();
-        return drivers;
-    }*/
-
     @Override
     public DriverDto update(DriverDto driverDto) {
         em.getTransaction().begin();
@@ -78,3 +68,4 @@ public class DriverDao implements Dao<DriverDto> {
         return result;
     }
 }
+*/
