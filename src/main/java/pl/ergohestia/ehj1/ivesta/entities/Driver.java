@@ -17,11 +17,6 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-@NamedQueries({
-        @NamedQuery(name = "drivers.findAll", query = "from Driver"),
-        @NamedQuery(name = "drivers.availableForCurrentDate", query = "from Driver d where d.id not in (select r.driver.id from Route r where r.date = :date)")
-})
-
 public class Driver {
 
     @Id
@@ -51,7 +46,6 @@ public class Driver {
 
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
-
 
     @OneToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)

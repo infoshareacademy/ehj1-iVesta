@@ -18,9 +18,6 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-@NamedQueries({
-        @NamedQuery(name = "route.findAll", query = "from Route")
-})
 public class Route {
 
     @Id

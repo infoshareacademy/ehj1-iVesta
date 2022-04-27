@@ -18,9 +18,6 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
-@NamedQueries({
-        @NamedQuery(name = "vehicle.findAll", query = "from Vehicle")
-})
 public class Vehicle {
 
     @Id

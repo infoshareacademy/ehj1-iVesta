@@ -34,10 +34,12 @@ public class DriverController {
     ResponseEntity<DriverDto> addNewDriver(@RequestBody DriverDto driverDto){
         throw new RuntimeException();
     }
+
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteDriver(@PathVariable UUID id){
         throw new RuntimeException();
     }
+
     @PutMapping("/{id}")
     ResponseEntity<DriverDto> updateDriver(@PathVariable UUID id, @RequestBody DriverDto driverDto){
         throw new RuntimeException();
