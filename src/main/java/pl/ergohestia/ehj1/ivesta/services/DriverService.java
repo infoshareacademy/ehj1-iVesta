@@ -26,10 +26,7 @@ public class DriverService {
 
     private Driver findById(UUID id) {
         return driverRepository.findById(id)
-                .stream()
-                .filter(driver -> driver.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %d not found.", id)));
+                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
     }
 
     public List<DriverDto> getAllDrivers() {
@@ -39,12 +36,9 @@ public class DriverService {
                 .toList();
     }
 
-    public Optional<DriverDto> getDriverById(UUID id) {
-        return driverRepository.findById(id)
-                .stream()
-                .filter(driver -> driver.getId().equals(id))
-                .findFirst()
-                .map(driverAdapter::convertToDriverDto);
+    public DriverDto getDriverById(UUID id) {
+        var driver = findById(id);
+        return driverAdapter.convertToDriverDto(driver);
     }
 
     public DriverDto addDriver(Driver driver) {
@@ -64,26 +58,26 @@ public class DriverService {
     }
 
     private Driver updateDriverData(Driver foundDriver, DriverDto driverDto) {
-        String name = foundDriver.getName();
-        String lastName = foundDriver.getLastName();
-        String address = foundDriver.getAddress();
-        String phoneNumber = foundDriver.getPhoneNumber();
-        String license = foundDriver.getLicense();
+        String name = driverDto.getName();
+        String lastName = driverDto.getLastName();
+        String address = driverDto.getAddress();
+        String phoneNumber = driverDto.getPhoneNumber();
+        String license = driverDto.getLicense();
 
-        if (!name.isBlank()) {
+        if (name != null && !name.isBlank()) {
             foundDriver.setName(name);
         }
-        if (!lastName.isBlank()) {
-            foundDriver.setLastName(driverDto.getLastName());
+        if (lastName != null && !lastName.isBlank()) {
+            foundDriver.setLastName(lastName);
         }
-        if (!address.isBlank()) {
-            foundDriver.setAddress(driverDto.getAddress());
+        if (address != null && !address.isBlank()) {
+            foundDriver.setAddress(address);
         }
-        if (!phoneNumber.isBlank()) {
-            foundDriver.setPhoneNumber(driverDto.getPhoneNumber());
+        if (phoneNumber != null && !phoneNumber.isBlank()) {
+            foundDriver.setPhoneNumber(phoneNumber);
         }
-        if (!license.isBlank()) {
-            foundDriver.setLicense(driverDto.getLicense());
+        if (license != null && !license.isBlank()) {
+            foundDriver.setLicense(license);
         }
         return foundDriver;
     }

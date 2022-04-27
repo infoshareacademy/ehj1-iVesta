@@ -28,10 +28,8 @@ public class DriverController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<DriverDto> getDriver(@PathVariable UUID id) {
-        return driverService.getDriverById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public DriverDto getDriver(@PathVariable UUID id) {
+        return driverService.getDriverById(id);
     }
 
     @PostMapping
@@ -50,12 +48,12 @@ public class DriverController {
         return driverService.updateDriverById(id, driverDto);
     }
 
-    @PutMapping("/{id}/activate")
+    @PutMapping("/activate/{id}")
     ResponseEntity<DriverDto> setStatusToActive(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.TRUE));
     }
 
-    @PutMapping("/{id}/deactivate")
+    @PutMapping("/deactivate/{id}")
     ResponseEntity<DriverDto> setStatusToInactive(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.FALSE));
     }
