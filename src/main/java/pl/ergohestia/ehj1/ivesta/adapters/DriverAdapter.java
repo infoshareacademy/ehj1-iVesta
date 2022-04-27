@@ -1,10 +1,8 @@
 package pl.ergohestia.ehj1.ivesta.adapters;
 
-import org.springframework.stereotype.Component;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 
-@Component
 public class DriverAdapter {
     public DriverDto convertToDriverDto(Driver driver) {
         if (driver == null) {
@@ -13,29 +11,23 @@ public class DriverAdapter {
         DriverDto driverDto = new DriverDto(
                 driver.getName(),
                 driver.getLastName(),
-                driver.getAddress(),
                 driver.getPhoneNumber(),
                 driver.getLicense(),
-                driver.getActive(),
-                driver.getNumberOfCourses(),
-                driver.getNumberOfKilometres());
+                driver.getActive());
         driverDto.setId(driver.getId());
         return driverDto;
     }
 
-    public Driver convertToDriver(DriverDto driverDto){
+    public Driver convertToDriver(DriverDto driverDto) {
         if (driverDto == null) {
             return null;
         }
         Driver driver = new Driver(
                 driverDto.getName(),
                 driverDto.getLastName(),
-                driverDto.getAddress(),
                 driverDto.getPhoneNumber(),
                 driverDto.getLicense(),
-                driverDto.getActive(),
-                driverDto.getNumberOfCourses(),
-                driverDto.getNumberOfKilometres());
+                driverDto.getActive());
         driver.setId(driverDto.getId());
         return driver;
     }
