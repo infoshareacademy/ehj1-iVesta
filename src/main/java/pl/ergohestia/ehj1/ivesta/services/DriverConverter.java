@@ -12,11 +12,8 @@ public class DriverConverter {
         try {
             driverDto.setName(csvRecord.get(0));
             driverDto.setLastName(csvRecord.get(1));
-            driverDto.setAddress(csvRecord.get(2));
             driverDto.setPhoneNumber(csvRecord.get(3));
             driverDto.setLicense(csvRecord.get(4));
-            driverDto.setNumberOfCourses(Math.abs(Integer.parseInt(csvRecord.get(5))));
-            driverDto.setNumberOfKilometres(Math.abs(Integer.parseInt(csvRecord.get(6))));
         } catch (NumberFormatException | NullPointerException e) {
             log.warn("Cannot read csv record: columns have incorrect values.", e);
         }

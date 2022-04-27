@@ -11,27 +11,21 @@ public class DriverAdapter {
         DriverDto driverDto = new DriverDto(
                 driver.getName(),
                 driver.getLastName(),
-                driver.getAddress(),
                 driver.getPhoneNumber(),
-                driver.getLicense(),
-                driver.getNumberOfCourses(),
-                driver.getNumberOfKilometres());
+                driver.getLicense());
         driverDto.setId(driver.getId());
         return driverDto;
     }
 
-    public Driver convertToDriver(DriverDto driverDto){
+    public Driver convertToDriver(DriverDto driverDto) {
         if (driverDto == null) {
             return null;
         }
         Driver driver = new Driver(
                 driverDto.getName(),
                 driverDto.getLastName(),
-                driverDto.getAddress(),
                 driverDto.getPhoneNumber(),
-                driverDto.getLicense(),
-                driverDto.getNumberOfCourses(),
-                driverDto.getNumberOfKilometres());
+                driverDto.getLicense());
         driver.setId(driverDto.getId());
         return driver;
     }

@@ -10,15 +10,8 @@ public class VehicleAdapter {
                 vehicle.getBrand(),
                 vehicle.getVehicleCategory(),
                 vehicle.getModel(),
-                vehicle.getVehicleType(),
-                vehicle.getProductionMethod(),
-                vehicle.getProductionYear(),
-                vehicle.getEngineCapacity(),
-                vehicle.getEnginePower(),
-                vehicle.getHybridEnginePower(),
                 vehicle.getNumberOfSeats(),
                 vehicle.getFuelType(),
-                vehicle.getFuelConsumption(),
                 vehicle.getWeightLimit());
         vehicleDto.setId(vehicle.getId());
         return vehicleDto;
@@ -30,15 +23,8 @@ public class VehicleAdapter {
                 vehicleDto.getBrand(),
                 vehicleDto.getVehicleCategory(),
                 vehicleDto.getModel(),
-                vehicleDto.getVehicleType(),
-                vehicleDto.getProductionMethod(),
-                vehicleDto.getProductionYear(),
-                vehicleDto.getEngineCapacity(),
-                vehicleDto.getEnginePower(),
-                vehicleDto.getHybridEnginePower(),
                 vehicleDto.getNumberOfSeats(),
                 vehicleDto.getFuelType(),
-                vehicleDto.getFuelConsumption(),
                 vehicleDto.getWeightLimit());
         vehicle.setId(vehicleDto.getId());
         return vehicle;
