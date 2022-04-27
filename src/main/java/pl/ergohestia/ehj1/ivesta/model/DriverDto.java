@@ -14,6 +14,7 @@ public class DriverDto {
     private String address;
     private String phoneNumber;
     private String license;
+    private Boolean active;
     private Integer numberOfCourses;
     private Integer numberOfKilometres;
 
@@ -22,6 +23,7 @@ public class DriverDto {
                      String address,
                      String phoneNumber,
                      String license,
+                     Boolean active,
                      Integer numberOfCourses,
                      Integer numberOfKilometres) {
         this.name = name;
@@ -29,6 +31,7 @@ public class DriverDto {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.license = license;
+        this.active = active;
         this.numberOfCourses = numberOfCourses;
         this.numberOfKilometres = numberOfKilometres;
     }

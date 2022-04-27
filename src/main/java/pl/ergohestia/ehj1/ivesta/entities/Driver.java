@@ -47,6 +47,9 @@ public class Driver {
     @Column(name = "number_of_kilometres")
     private Integer numberOfKilometres;
 
+    @Column
+    private Boolean active;
+
     @OneToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)
     private Vehicle vehicle;
@@ -59,6 +62,7 @@ public class Driver {
                   String address,
                   String phoneNumber,
                   String license,
+                  Boolean active,
                   Integer numberOfCourses,
                   Integer numberOfKilometres) {
         this.name = name;
@@ -66,6 +70,7 @@ public class Driver {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.license = license;
+        this.active = active;
         this.numberOfCourses = numberOfCourses;
         this.numberOfKilometres = numberOfKilometres;
     }
