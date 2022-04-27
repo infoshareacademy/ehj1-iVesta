@@ -60,10 +60,12 @@ public class Driver {
     public Driver(String name,
                   String lastName,
                   String phoneNumber,
-                  String license) {
+                  String license,
+                  Boolean active) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.license = license;
+        this.active = active;
     }
 }

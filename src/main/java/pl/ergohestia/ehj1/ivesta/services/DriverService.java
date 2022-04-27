@@ -60,7 +60,6 @@ public class DriverService {
     private Driver updateDriverData(Driver foundDriver, DriverDto driverDto) {
         String name = driverDto.getName();
         String lastName = driverDto.getLastName();
-        String address = driverDto.getAddress();
         String phoneNumber = driverDto.getPhoneNumber();
         String license = driverDto.getLicense();
 
@@ -69,9 +68,6 @@ public class DriverService {
         }
         if (lastName != null && !lastName.isBlank()) {
             foundDriver.setLastName(lastName);
-        }
-        if (address != null && !address.isBlank()) {
-            foundDriver.setAddress(address);
         }
         if (phoneNumber != null && !phoneNumber.isBlank()) {
             foundDriver.setPhoneNumber(phoneNumber);
