@@ -6,9 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-
+@Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
