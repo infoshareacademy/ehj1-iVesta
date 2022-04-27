@@ -43,7 +43,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<VehicleDto> updateVehicle(@PathVariable UUID id, @RequestBody VehicleDto vehicleDto) {
-        throw new RuntimeException();
+    public VehicleDto updateVehicle(@PathVariable UUID id, @RequestBody VehicleDto vehicleDto) {
+        return vehicleService.updateVehicle(id, vehicleDto);
     }
 }
