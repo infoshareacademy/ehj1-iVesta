@@ -16,7 +16,6 @@ import java.util.UUID;
 @Table(name = "vehicles")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Vehicle {
 
@@ -60,5 +59,19 @@ public class Vehicle {
         this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
         this.weightLimit = weightLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", vehicleCategory='" + vehicleCategory + '\'' +
+                ", model='" + model + '\'' +
+                ", numberOfSeats=" + numberOfSeats +
+                ", fuelType='" + fuelType + '\'' +
+                ", weightLimit=" + weightLimit +
+                ", route=" + route +
+                '}';
     }
 }

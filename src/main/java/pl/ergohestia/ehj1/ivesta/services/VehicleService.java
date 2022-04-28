@@ -54,15 +54,8 @@ public class VehicleService {
                 foundVehicle.setBrand(vehicleDto.getBrand());
                 foundVehicle.setVehicleCategory(vehicleDto.getVehicleCategory());
                 foundVehicle.setModel(vehicleDto.getModel());
-                foundVehicle.setVehicleType(vehicleDto.getVehicleType());
-                foundVehicle.setProductionMethod(vehicleDto.getProductionMethod());
-                foundVehicle.setProductionYear(vehicleDto.getProductionYear());
-                foundVehicle.setEngineCapacity(vehicleDto.getEngineCapacity());
-                foundVehicle.setEnginePower(vehicleDto.getEnginePower());
-                foundVehicle.setHybridEnginePower(vehicleDto.getHybridEnginePower());
                 foundVehicle.setNumberOfSeats(vehicleDto.getNumberOfSeats());
                 foundVehicle.setFuelType(vehicleDto.getFuelType());
-                foundVehicle.setFuelConsumption(vehicleDto.getFuelConsumption());
                 foundVehicle.setWeightLimit(vehicleDto.getWeightLimit());
     }
 }
