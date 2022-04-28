@@ -1,10 +1,10 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -27,21 +27,26 @@ public class Vehicle {
     private UUID id;
 
     @Column
+    @JsonProperty("marka")
     private String brand;
 
-    @Column(nullable = false, name = "vehicle_category")
+    @Column(name = "vehicle_category")
+    @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
 
     @Column
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
+    @JsonProperty("liczba-miejsc-ogolem")
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
+    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
     @Column(nullable = false, name = "weight_limit")
+    @JsonProperty("max-ladownosc")
     private double weightLimit;
 
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
