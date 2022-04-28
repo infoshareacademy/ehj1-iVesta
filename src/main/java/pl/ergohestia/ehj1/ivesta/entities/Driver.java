@@ -32,8 +32,8 @@ public class Driver {
     @Column(nullable = false, name = "last_name")
     private String lastName;
 
-    @Column
-    private String address;
+    /*@Column
+    private String address;*/
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -41,7 +41,7 @@ public class Driver {
     @Column
     private String license;
 
-    @Column(name = "number_of_courses")
+    /*@Column(name = "number_of_courses")
     private Integer numberOfCourses;
 
     @Column(name = "number_of_kilometres")
@@ -49,24 +49,18 @@ public class Driver {
 
     @OneToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)
-    private Vehicle vehicle;
+    private Vehicle vehicle;*/
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
     public Driver(String name,
                   String lastName,
-                  String address,
                   String phoneNumber,
-                  String license,
-                  Integer numberOfCourses,
-                  Integer numberOfKilometres) {
+                  String license) {
         this.name = name;
         this.lastName = lastName;
-        this.address = address;
         this.phoneNumber = phoneNumber;
         this.license = license;
-        this.numberOfCourses = numberOfCourses;
-        this.numberOfKilometres = numberOfKilometres;
     }
 }

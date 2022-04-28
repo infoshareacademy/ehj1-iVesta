@@ -21,8 +21,6 @@ public class VehicleValidator {
         validateSeats();
         validateVehicleCategory();
         validateWeightLimit();
-        validateYearProduction();
-        validateVehicleType();
 
         return getNotValidParameters().isEmpty();
     }
@@ -30,13 +28,6 @@ public class VehicleValidator {
     public void validateSeats() {
         if (vehicleDto.getNumberOfSeats() <= 0) {
             addParameterToNotValidParametersList("Seats");
-        }
-    }
-
-    public void validateYearProduction() {
-        String year = vehicleDto.getProductionYear();
-        if ((year.length() != 4)) {
-            addParameterToNotValidParametersList("Production year");
         }
     }
 
@@ -52,12 +43,6 @@ public class VehicleValidator {
         }
     }
 
-    public void validateVehicleType(){
-        if(vehicleDto.getVehicleType() == null){
-            addParameterToNotValidParametersList("Vehicle type");
-        }
-    }
-
     public List<String> getNotValidParameters() {
         return this.notValidParameters;
     }
@@ -65,16 +50,4 @@ public class VehicleValidator {
     private void addParameterToNotValidParametersList(String parameter) {
         this.notValidParameters.add(parameter);
     }
-
-    public VehicleDto validateConfigOfYearAndMethodProduction(VehicleDto vehicleDto) {
-        String productionMethod = vehicleDto.getProductionMethod();
-        String productionYear = vehicleDto.getProductionYear();
-        if (true) {
-            vehicleDto.setProductionYear(productionMethod);
-            vehicleDto.setProductionMethod(productionYear);
-        }
-        return vehicleDto;
-    }
-
-
 }
