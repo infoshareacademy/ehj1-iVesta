@@ -44,18 +44,16 @@ public class VehicleService {
     }
 
     public VehicleDto updateVehicle(UUID id, VehicleDto vehicleDto) {
-        Vehicle vehicle = getVehicleById(id);
-        updateVehicleData(vehicle, vehicleDto);
-        Vehicle updateVehicle = vehicleRepository.save(vehicle);
-        return vehicleAdapter.convertToVehicleDto(updateVehicle);
-    }
-    private void updateVehicleData(Vehicle foundVehicle, VehicleDto vehicleDto){
-                foundVehicle.setId(vehicleDto.getId());
-                foundVehicle.setBrand(vehicleDto.getBrand());
-                foundVehicle.setVehicleCategory(vehicleDto.getVehicleCategory());
-                foundVehicle.setModel(vehicleDto.getModel());
-                foundVehicle.setNumberOfSeats(vehicleDto.getNumberOfSeats());
-                foundVehicle.setFuelType(vehicleDto.getFuelType());
-                foundVehicle.setWeightLimit(vehicleDto.getWeightLimit());
+        return vehicleRepository.findById(id)
+                .map(vehicle -> {
+                    vehicle.setBrand(vehicleDto.getBrand());
+                    vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());
+                    vehicle.setModel(vehicleDto.getModel());
+                    vehicle.setFuelType(vehicleDto.getFuelType());
+                    vehicle.setNumberOfSeats(vehicleDto.getNumberOfSeats());
+                    vehicle.setWeightLimit(vehicleDto.getWeightLimit());
+                    return vehicleAdapter.convertToVehicleDto(vehicleRepository.save(vehicle));
+          })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED));
     }
 }

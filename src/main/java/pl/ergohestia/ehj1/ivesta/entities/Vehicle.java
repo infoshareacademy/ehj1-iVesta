@@ -23,7 +23,7 @@ public class Vehicle {
     @GeneratedValue(generator = "uuid-generator")
     @GenericGenerator(name = "uuid-generator", strategy = "uuid2")
     @Type(type = "uuid-char")
-    @Column(length = 36, updatable = false, nullable = false)
+    @Column(length = 36, updatable = false)
     private UUID id;
 
     @Column
