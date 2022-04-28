@@ -54,6 +54,6 @@ public class VehicleService {
                     vehicle.setWeightLimit(vehicleDto.getWeightLimit());
                     return vehicleAdapter.convertToVehicleDto(vehicleRepository.save(vehicle));
           })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED,"Nothing was changed."));
     }
 }
