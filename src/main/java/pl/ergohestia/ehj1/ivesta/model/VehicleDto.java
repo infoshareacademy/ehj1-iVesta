@@ -37,14 +37,13 @@ public class VehicleDto {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-    public VehicleDto(UUID id,
+    public VehicleDto(
                       String brand,
                       String vehicleCategory,
                       String model,
                       int numberOfSeats,
                       String fuelType,
                       double weightLimit) {
-        this.id = id;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
