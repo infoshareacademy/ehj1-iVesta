@@ -22,12 +22,12 @@ public class VehicleController {
     }
 
     @GetMapping
-    List<VehicleDto> getVehicle() {
+    List<VehicleDto> getVehicles() {
         throw new RuntimeException();
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<VehicleDto> getVehicle(@PathVariable UUID id) {
+    public VehicleDto getVehicle(@PathVariable UUID id) {
         throw new RuntimeException();
     }
 
