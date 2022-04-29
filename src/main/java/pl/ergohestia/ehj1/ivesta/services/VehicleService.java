@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehicleRepository;
 
@@ -31,16 +32,17 @@ public class VehicleService {
 
     public Vehicle getVehicleById(UUID id) {
         return vehicleRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find vehicle."));
+                .orElseThrow(() -> new ResourceNotFound("Vehicle not found."));
     }
 
     public VehicleDto addVehicle(Vehicle vehicle) {
         Vehicle savedVehicle = vehicleRepository.save(vehicle);
         return vehicleAdapter.convertToVehicleDto(savedVehicle);
     }
-
     public void deleteById(UUID id) {
-        vehicleRepository.deleteById(id);
+        if(vehicleRepository.existsById(id)){
+            vehicleRepository.deleteById(id);
+        }else throw new ResourceNotFound("Invalid Id was provided");
     }
 
     public VehicleDto updateVehicle(UUID id, VehicleDto vehicleDto) {
