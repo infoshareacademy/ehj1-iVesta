@@ -1,11 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
-import pl.ergohestia.ehj1.ivesta.model.DriverDto;
+import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
+import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
+import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
 import java.util.List;
@@ -23,33 +25,33 @@ public class RouteController {
     }
 
     @GetMapping
-    List<RouteDto> getRoutes(){
-        throw new RuntimeException();
+    public List<RouteDto> getRoutes() {
+        return routeService.getAllRoutes();
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<RouteDto> getRoute(@PathVariable UUID id){
-        throw new RuntimeException();
+    public RouteDto getRoute(@PathVariable UUID id) {
+        return routeService.getRouteById(id);
     }
 
     @PostMapping
-    ResponseEntity<RouteDto> addNewRoute(@RequestBody RouteDto routeDto
-    ){
-        throw new RuntimeException();
+    public ResponseEntity<RouteDto> addNewRoute(@RequestBody Route route) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeService.addRoute(route));
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteRoute(@PathVariable UUID id){
-        throw new RuntimeException();
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteRoute(@PathVariable UUID id) {
+        routeService.deleteRouteById(id);
     }
 
     @PutMapping("/{id}/assignDriver")
-    ResponseEntity<RouteDto> addDriverToRoute(@PathVariable UUID id, @RequestBody DriverDto driverDto){
-        throw new RuntimeException();
+    public RouteDto addDriverToRoute(@PathVariable UUID id, @RequestBody DriverAssociation driver) {
+        return routeService.addDriverToRoute(id, driver);
     }
 
     @PutMapping("/{id}/assignVehicle")
-    ResponseEntity<RouteDto> addVehicleToRoute(@PathVariable UUID id, @RequestBody Vehicle vehicle){
-        throw new RuntimeException();
+    public RouteDto addVehicleToRoute(@PathVariable UUID id, @RequestBody VehicleAssociation vehicle) {
+        return routeService.addVehicleToRoute(id, vehicle);
     }
 }
