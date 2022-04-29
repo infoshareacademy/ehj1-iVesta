@@ -23,7 +23,7 @@ public class Route {
     @Id
     @GeneratedValue(generator = "uuid-generator")
     @GenericGenerator(name = "uuid-generator", strategy = "uuid2")
-    @Type(type = "uuid-char")
+//    @Type(type = "uuid-char")
     @Column(length = 36, updatable = false, nullable = false)
     private UUID id;
 
