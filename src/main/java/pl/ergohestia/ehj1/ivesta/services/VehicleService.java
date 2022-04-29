@@ -24,7 +24,9 @@ public class VehicleService {
     }
 
     public List<VehicleDto> findAll() {
-        return vehicleRepository.findAll()
+        if(vehicleRepository.findAll().isEmpty()){
+            throw new ResourceNotFound("There are no vehicles in repository");
+        }else return vehicleRepository.findAll()
                 .stream()
                 .map(vehicleAdapter::convertToVehicleDto)
                 .toList();
