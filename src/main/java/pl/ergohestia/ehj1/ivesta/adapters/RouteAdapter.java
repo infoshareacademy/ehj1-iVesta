@@ -1,8 +1,10 @@
 package pl.ergohestia.ehj1.ivesta.adapters;
 
+import org.springframework.stereotype.Component;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
+@Component
 public class RouteAdapter {
     DriverAdapter driverAdapter = new DriverAdapter();
     VehicleAdapter vehicleAdapter = new VehicleAdapter();
