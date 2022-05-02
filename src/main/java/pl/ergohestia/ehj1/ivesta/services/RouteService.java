@@ -10,7 +10,7 @@ import pl.ergohestia.ehj1.ivesta.controller.VehicleController;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
-import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
@@ -50,7 +50,7 @@ public class RouteService {
 
     private Route findById(UUID id) {
         return routeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound(format("Route with id %d not found.", id)));
+                .orElseThrow(() -> new ResourceNotFound(format("Route with id %s not found.", id)));
     }
 
     public RouteDto getRouteById(UUID id) {
