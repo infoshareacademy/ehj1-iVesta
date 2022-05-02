@@ -6,9 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-
+@Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
@@ -36,14 +37,13 @@ public class VehicleDto {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-    public VehicleDto(UUID id,
+    public VehicleDto(
                       String brand,
                       String vehicleCategory,
                       String model,
                       int numberOfSeats,
                       String fuelType,
                       double weightLimit) {
-        this.id = id;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
