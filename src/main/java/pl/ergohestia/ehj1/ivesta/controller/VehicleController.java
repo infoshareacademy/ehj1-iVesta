@@ -1,7 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
@@ -13,7 +12,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/vehicles")
 public class VehicleController {
-
 
     private final VehicleService vehicleService;
 

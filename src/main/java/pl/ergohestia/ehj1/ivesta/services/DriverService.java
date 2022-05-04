@@ -8,7 +8,6 @@ import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.repository.DriverRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static java.lang.String.format;
@@ -24,7 +23,7 @@ public class DriverService {
         this.driverAdapter = driverAdapter;
     }
 
-    private Driver findById(UUID id) {
+    public Driver findById(UUID id) {
         return driverRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
     }
