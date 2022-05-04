@@ -29,16 +29,16 @@ public class RouteService {
     private final RouteAdapter routeAdapter;
     private final DriverAdapter driverAdapter;
     private final VehicleAdapter vehicleAdapter;
-    private final DriverController driverController;
-    private final VehicleController vehicleController;
+    private final VehicleService vehicleService;
+    private final DriverService driverService;
 
-    public RouteService(RouteRepository routeRepository, RouteAdapter routeAdapter, DriverAdapter driverAdapter, VehicleAdapter vehicleAdapter, DriverController driverController, VehicleController vehicleController) {
+    public RouteService(RouteRepository routeRepository, RouteAdapter routeAdapter, DriverAdapter driverAdapter, VehicleAdapter vehicleAdapter, VehicleService vehicleService, DriverService driverService) {
         this.routeRepository = routeRepository;
         this.routeAdapter = routeAdapter;
         this.driverAdapter = driverAdapter;
         this.vehicleAdapter = vehicleAdapter;
-        this.driverController = driverController;
-        this.vehicleController = vehicleController;
+        this.vehicleService = vehicleService;
+        this.driverService = driverService;
     }
 
     public List<RouteDto> getAllRoutes() {
@@ -69,7 +69,7 @@ public class RouteService {
 
     public RouteDto addDriverToRoute(UUID id, DriverAssociation driverAssociation) {
         Route route = findById(id);
-        Driver driver = driverAdapter.convertToDriver(driverController.getDriver(driverAssociation.getDriverId()));
+        Driver driver = driverService.findById(driverAssociation.getDriverId());
         route.setDriver(driver);
         Route routeWithDriver = routeRepository.save(route);
         return routeAdapter.convertToRouteDto(routeWithDriver);
@@ -77,7 +77,7 @@ public class RouteService {
 
     public RouteDto addVehicleToRoute(UUID id, VehicleAssociation vehicleAssociation) {
         Route route = findById(id);
-        Vehicle vehicle = vehicleAdapter.convertToVehicle(vehicleController.getVehicle(vehicleAssociation.getVehicleId()));
+        Vehicle vehicle = vehicleService.getVehicleById(vehicleAssociation.getVehicleId());
         route.setVehicle(vehicle);
         Route routeWithVehicle = routeRepository.save(route);
         return routeAdapter.convertToRouteDto(routeWithVehicle);

@@ -13,7 +13,6 @@ import java.util.UUID;
 @RequestMapping("/api/vehicles")
 public class VehicleController {
 
-
     private final VehicleService vehicleService;
 
     @Autowired

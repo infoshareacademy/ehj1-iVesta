@@ -23,7 +23,7 @@ public class DriverService {
         this.driverAdapter = driverAdapter;
     }
 
-    private Driver findById(UUID id) {
+    public Driver findById(UUID id) {
         return driverRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
     }
