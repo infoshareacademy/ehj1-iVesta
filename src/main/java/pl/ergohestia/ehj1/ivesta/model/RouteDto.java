@@ -38,6 +38,6 @@ public class RouteDto {
         this.date = date;
     }
 
-    public RouteDto(String testStartAddress, String testDestinationAddress, Integer testRouteLength, TransportType testTransportType, Integer testTransportVolume) {
+    public RouteDto(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
     }
 }
