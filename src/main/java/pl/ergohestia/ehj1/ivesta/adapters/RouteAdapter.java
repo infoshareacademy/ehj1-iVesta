@@ -1,6 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.adapters;
 
 import org.springframework.stereotype.Component;
+import pl.ergohestia.ehj1.ivesta.controller.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
@@ -38,6 +39,21 @@ public class RouteAdapter {
         route.setId(routeDto.getId());
         route.setDriver(driverAdapter.convertToDriver(routeDto.getDriver()));
         route.setVehicle(vehicleAdapter.convertToVehicle(routeDto.getVehicle()));
+        return route;
+    }
+
+    public Route convertRouteRequestToRoute(RouteRequest routeRequest) {
+        if (routeRequest == null) return null;
+        Route route = new Route(
+                routeRequest.getStartAddress(),
+                routeRequest.getDestinationAddress(),
+                routeRequest.getRouteLength(),
+                routeRequest.getTransportType(),
+                routeRequest.getTransportVolume(),
+                routeRequest.getDate());
+        route.setId(routeRequest.getId());
+        route.setDriver(driverAdapter.convertToDriver(routeRequest.getDriver()));
+        route.setVehicle(vehicleAdapter.convertToVehicle(routeRequest.getVehicle()));
         return route;
     }
 }
