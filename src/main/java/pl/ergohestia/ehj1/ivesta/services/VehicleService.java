@@ -43,7 +43,7 @@ public class VehicleService {
     public void deleteById(UUID id) {
         if(vehicleRepository.existsById(id)){
             vehicleRepository.deleteById(id);
-        }else throw new ResourceNotFound("Invalid Id was provided");
+        }else throw new ResourceNotFound("Id does not exist in database.");
     }
 
     public VehicleDto updateVehicle(UUID id, VehicleDto vehicleDto) {
