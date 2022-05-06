@@ -1,4 +1,4 @@
-package pl.ergohestia.ehj1.ivesta.controller.request;
+package pl.ergohestia.ehj1.ivesta.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

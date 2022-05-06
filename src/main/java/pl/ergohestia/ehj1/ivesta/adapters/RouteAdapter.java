@@ -1,7 +1,7 @@
 package pl.ergohestia.ehj1.ivesta.adapters;
 
 import org.springframework.stereotype.Component;
-import pl.ergohestia.ehj1.ivesta.controller.request.RouteRequest;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
