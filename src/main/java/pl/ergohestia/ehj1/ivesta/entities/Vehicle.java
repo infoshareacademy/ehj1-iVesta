@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,6 +41,7 @@ public class Vehicle {
 
     @Column(nullable = false, name = "number_of_seats")
     @JsonProperty("liczba-miejsc-ogolem")
+    @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
@@ -47,6 +50,7 @@ public class Vehicle {
 
     @Column(nullable = false, name = "weight_limit")
     @JsonProperty("max-ladownosc")
+    @Min(0)
     private double weightLimit;
 
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
