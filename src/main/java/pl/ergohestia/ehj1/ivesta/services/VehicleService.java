@@ -30,8 +30,9 @@ public class VehicleService {
                     .toList();
     }
 
-    public Vehicle getVehicleById(UUID id) {
+    public VehicleDto getVehicleById(UUID id) {
         return vehicleRepository.findById(id)
+                .map(vehicleAdapter::convertToVehicleDto)
                 .orElseThrow(() -> new ResourceNotFound("Vehicle not found."));
     }
 
