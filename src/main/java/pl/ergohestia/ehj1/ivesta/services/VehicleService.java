@@ -24,16 +24,15 @@ public class VehicleService {
     }
 
     public List<VehicleDto> findAll() {
-        if(vehicleRepository.findAll().isEmpty()){
-            throw new ResourceNotFound("There are no vehicles in repository");
-        }else return vehicleRepository.findAll()
-                .stream()
-                .map(vehicleAdapter::convertToVehicleDto)
-                .toList();
+            return vehicleRepository.findAll()
+                    .stream()
+                    .map(vehicleAdapter::convertToVehicleDto)
+                    .toList();
     }
 
-    public Vehicle getVehicleById(UUID id) {
+    public VehicleDto getVehicleById(UUID id) {
         return vehicleRepository.findById(id)
+                .map(vehicleAdapter::convertToVehicleDto)
                 .orElseThrow(() -> new ResourceNotFound("Vehicle not found."));
     }
 
@@ -44,18 +43,30 @@ public class VehicleService {
     public void deleteById(UUID id) {
         if(vehicleRepository.existsById(id)){
             vehicleRepository.deleteById(id);
-        }else throw new ResourceNotFound("Invalid Id was provided");
+        }else throw new ResourceNotFound("Id does not exist in database.");
     }
 
     public VehicleDto updateVehicle(UUID id, VehicleDto vehicleDto) {
         return vehicleRepository.findById(id)
                 .map(vehicle -> {
-                    vehicle.setBrand(vehicleDto.getBrand());
-                    vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());
-                    vehicle.setModel(vehicleDto.getModel());
-                    vehicle.setFuelType(vehicleDto.getFuelType());
-                    vehicle.setNumberOfSeats(vehicleDto.getNumberOfSeats());
-                    vehicle.setWeightLimit(vehicleDto.getWeightLimit());
+                    if (vehicleDto.getBrand() != null && !vehicleDto.getBrand().isBlank()){
+                    vehicle.setBrand(vehicleDto.getBrand());}
+
+                    if (vehicleDto.getVehicleCategory() != null && !vehicleDto.getVehicleCategory().isBlank()){
+                    vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());}
+
+                    if (vehicleDto.getModel() != null && !vehicleDto.getModel().isBlank()){
+                    vehicle.setModel(vehicleDto.getModel());}
+
+                    if (vehicleDto.getFuelType() != null && !vehicleDto.getFuelType().isBlank()){
+                    vehicle.setFuelType(vehicleDto.getFuelType());}
+
+                    if (vehicleDto.getNumberOfSeats() != 0){
+                    vehicle.setNumberOfSeats(vehicleDto.getNumberOfSeats());}
+
+                    if (vehicleDto.getWeightLimit() != 0){
+                    vehicle.setWeightLimit(vehicleDto.getWeightLimit());}
+
                     return vehicleAdapter.convertToVehicleDto(vehicleRepository.save(vehicle));
           })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED,"Nothing was changed."));
