@@ -3,12 +3,17 @@ package pl.ergohestia.ehj1.ivesta.services;
 import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
+import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.repository.DriverRepository;
+import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -17,10 +22,12 @@ public class DriverService {
 
     private final DriverRepository driverRepository;
     private final DriverAdapter driverAdapter;
+    private final RouteRepository routeRepository;
 
-    public DriverService(DriverRepository driverRepository, DriverAdapter driverAdapter) {
+    public DriverService(DriverRepository driverRepository, DriverAdapter driverAdapter, RouteRepository routeRepository) {
         this.driverRepository = driverRepository;
         this.driverAdapter = driverAdapter;
+        this.routeRepository = routeRepository;
     }
 
     public Driver findById(UUID id) {
@@ -82,5 +89,26 @@ public class DriverService {
         driver.setActive(status);
         Driver newDriver = driverRepository.save(driver);
         return driverAdapter.convertToDriverDto(newDriver);
+    }
+
+    public List<DriverDto> getAvailableDrivers(String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr);
+        List<Driver> allDrivers = driverRepository.findAll();
+        List<Driver> availableDrivers = new java.util.ArrayList<>(List.copyOf(allDrivers));
+        List<Route> routes = routeRepository.findAllByDriverNotNullAndDate(date);
+
+        for (Route route : routes) {
+            UUID id = route.getDriver().getId();
+            for (Driver driver : allDrivers) {
+                if (id.equals(driver.getId())) {
+                    availableDrivers.remove(driver);
+                }
+            }
+        }
+
+        return availableDrivers
+                .stream()
+                .map(driverAdapter::convertToDriverDto)
+                .toList();
     }
 }
