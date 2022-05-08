@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.ergohestia.ehj1.ivesta.model.IncompleteRouteDto;
 import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
@@ -54,5 +55,11 @@ public class RouteController {
     @PutMapping("/{id}/assignVehicle")
     public RouteDto addVehicleToRoute(@PathVariable UUID id, @RequestBody VehicleAssociation vehicle) {
         return routeService.addVehicleToRoute(id, vehicle);
+    }
+
+    @GetMapping("/incompleteRoutes")
+    public ResponseEntity<List<IncompleteRouteDto>> getRoutesWithoutVehiclesOrDrivers() {
+        var incompleteRoutes = routeService.getRoutesWithoutVehiclesOrDrivers();
+        return ResponseEntity.ok(incompleteRoutes);
     }
 }
