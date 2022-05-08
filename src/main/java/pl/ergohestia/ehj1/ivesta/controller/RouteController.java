@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.ergohestia.ehj1.ivesta.entities.Route;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,12 +36,12 @@ public class RouteController {
     }
 
     @PostMapping
-    public ResponseEntity<RouteDto> addNewRoute(@RequestBody Route route) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(routeService.addRoute(route));
+    public ResponseEntity<RouteDto> addNewRoute(@RequestBody @Valid RouteRequest routeRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeService.addRoute(routeRequest));
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoute(@PathVariable UUID id) {
         routeService.deleteRouteById(id);
     }

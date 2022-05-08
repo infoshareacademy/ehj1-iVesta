@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
-import pl.ergohestia.ehj1.ivesta.controller.DriverController;
-import pl.ergohestia.ehj1.ivesta.controller.VehicleController;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
@@ -58,7 +57,8 @@ public class RouteService {
         return routeAdapter.convertToRouteDto(route);
     }
 
-    public RouteDto addRoute(Route route) {
+    public RouteDto addRoute(RouteRequest routeRequest) {
+        Route route = routeAdapter.convertRouteRequestToRoute(routeRequest);
         Route savedRoute = routeRepository.save(route);
         return routeAdapter.convertToRouteDto(savedRoute);
     }
