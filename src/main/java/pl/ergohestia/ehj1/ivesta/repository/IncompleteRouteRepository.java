@@ -3,7 +3,6 @@ package pl.ergohestia.ehj1.ivesta.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import pl.ergohestia.ehj1.ivesta.model.IncompleteRouteDto;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 
 import java.util.List;
 
@@ -11,15 +10,15 @@ import java.util.List;
 public class IncompleteRouteRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final IncompleteRouteDtoMapper incompleteRouteDtoMapper;
+    private final IncompleteRouteDtoRowMapper incompleteRouteDtoRowMapper;
 
-    public IncompleteRouteRepository(JdbcTemplate jdbcTemplate, IncompleteRouteDtoMapper incompleteRouteDtoMapper) {
+    public IncompleteRouteRepository(JdbcTemplate jdbcTemplate, IncompleteRouteDtoRowMapper incompleteRouteDtoRowMapper) {
         this.jdbcTemplate = jdbcTemplate;
-        this.incompleteRouteDtoMapper = incompleteRouteDtoMapper;
+        this.incompleteRouteDtoRowMapper = incompleteRouteDtoRowMapper;
     }
 
     public List<IncompleteRouteDto> getIncompleteRoutes() {
         String sql = "SELECT * FROM routes r WHERE r.driver_id IS NULL OR r.vehicle_id IS NULL";
-        return jdbcTemplate.query(sql, incompleteRouteDtoMapper);
+        return jdbcTemplate.query(sql, incompleteRouteDtoRowMapper);
     }
 }
