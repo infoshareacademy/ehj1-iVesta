@@ -7,6 +7,7 @@ import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.repository.DriverRepository;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 
@@ -67,7 +68,7 @@ public class DriverService {
         String name = driverDto.getName();
         String lastName = driverDto.getLastName();
         String phoneNumber = driverDto.getPhoneNumber();
-        String license = driverDto.getLicense();
+        LicenseType license = driverDto.getLicense();
 
         if (name != null && !name.isBlank()) {
             foundDriver.setName(name);
@@ -78,7 +79,7 @@ public class DriverService {
         if (phoneNumber != null && !phoneNumber.isBlank()) {
             foundDriver.setPhoneNumber(phoneNumber);
         }
-        if (license != null && !license.isBlank()) {
+        if (license != null) {
             foundDriver.setLicense(license);
         }
         return foundDriver;

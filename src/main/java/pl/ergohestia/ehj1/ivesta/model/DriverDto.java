@@ -12,13 +12,13 @@ public class DriverDto {
     private String name;
     private String lastName;
     private String phoneNumber;
-    private String license;
+    private LicenseType license;
     private Boolean active;
 
     public DriverDto(String name,
                      String lastName,
                      String phoneNumber,
-                     String license,
+                     LicenseType license,
                      Boolean active) {
         this.name = name;
         this.lastName = lastName;

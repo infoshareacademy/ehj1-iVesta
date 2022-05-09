@@ -9,7 +9,7 @@ public class VehicleAdapter {
         if (vehicle == null) return null;
         VehicleDto vehicleDto = new VehicleDto(
                 vehicle.getBrand(),
-                vehicle.getVehicleCategory(),
+                vehicle.getLicense(),
                 vehicle.getModel(),
                 vehicle.getNumberOfSeats(),
                 vehicle.getFuelType(),
@@ -22,7 +22,7 @@ public class VehicleAdapter {
         if (vehicleDto == null) return null;
         Vehicle vehicle = new Vehicle(
                 vehicleDto.getBrand(),
-                vehicleDto.getVehicleCategory(),
+                vehicleDto.getLicense(),
                 vehicleDto.getModel(),
                 vehicleDto.getNumberOfSeats(),
                 vehicleDto.getFuelType(),
