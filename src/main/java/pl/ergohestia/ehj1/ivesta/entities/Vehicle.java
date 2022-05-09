@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.springframework.validation.annotation.Validated;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -29,27 +29,23 @@ public class Vehicle {
     private UUID id;
 
     @Column
-    @JsonProperty("marka")
     private String brand;
 
-    @Column(name = "vehicle_category")
-    @JsonProperty("kategoria-pojazdu")
-    private String vehicleCategory;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private LicenseType license;
 
     @Column
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
-    @JsonProperty("liczba-miejsc-ogolem")
     @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
-    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
     @Column(nullable = false, name = "weight_limit")
-    @JsonProperty("max-ladownosc")
     @Min(0)
     private double weightLimit;
 
@@ -57,13 +53,13 @@ public class Vehicle {
     private List<Route> route;
 
     public Vehicle(String brand,
-                   String vehicleCategory,
+                   LicenseType vehicleLicense,
                    String model,
                    int numberOfSeats,
                    String fuelType,
                    double weightLimit) {
         this.brand = brand;
-        this.vehicleCategory = vehicleCategory;
+        this.license = vehicleLicense;
         this.model = model;
         this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
@@ -75,7 +71,7 @@ public class Vehicle {
         return "Vehicle{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
-                ", vehicleCategory='" + vehicleCategory + '\'' +
+                ", vehicleCategory='" + license + '\'' +
                 ", model='" + model + '\'' +
                 ", numberOfSeats=" + numberOfSeats +
                 ", fuelType='" + fuelType + '\'' +

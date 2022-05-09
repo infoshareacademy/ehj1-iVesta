@@ -32,7 +32,7 @@ public class VehicleValidator {
     }
 
     public void validateVehicleCategory() {
-        if (vehicleDto.getVehicleCategory() == null) {
+        if (vehicleDto.getLicense() == null) {
             addParameterToNotValidParametersList("Vehicle category");
         }
     }
