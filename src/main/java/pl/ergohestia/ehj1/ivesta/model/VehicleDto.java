@@ -19,33 +19,27 @@ public class VehicleDto {
 
     private UUID id;
 
-    @JsonProperty("marka")
     private String brand;
 
-    @JsonProperty("kategoria-pojazdu")
-    private String vehicleCategory;
+    private LicenseType license;
 
-    @JsonProperty("model")
     private String model;
 
-    @JsonProperty("liczba-miejsc-ogolem")
     private int numberOfSeats;
 
-    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
-    @JsonProperty("max-ladownosc")
     private double weightLimit;
 
     public VehicleDto(
-                      String brand,
-                      String vehicleCategory,
-                      String model,
-                      int numberOfSeats,
-                      String fuelType,
-                      double weightLimit) {
+            String brand,
+            LicenseType license,
+            String model,
+            int numberOfSeats,
+            String fuelType,
+            double weightLimit) {
         this.brand = brand;
-        this.vehicleCategory = vehicleCategory;
+        this.license = license;
         this.model = model;
         this.numberOfSeats = numberOfSeats;
         this.fuelType = fuelType;
