@@ -6,6 +6,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.VehicleRepository;
 
@@ -52,8 +53,8 @@ public class VehicleService {
                     if (vehicleDto.getBrand() != null && !vehicleDto.getBrand().isBlank()){
                     vehicle.setBrand(vehicleDto.getBrand());}
 
-                    if (vehicleDto.getVehicleCategory() != null && !vehicleDto.getVehicleCategory().isBlank()){
-                    vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());}
+                    if (vehicleDto.getLicense() != null){
+                    vehicle.setLicense(vehicleDto.getLicense());}
 
                     if (vehicleDto.getModel() != null && !vehicleDto.getModel().isBlank()){
                     vehicle.setModel(vehicleDto.getModel());}
@@ -70,5 +71,13 @@ public class VehicleService {
                     return vehicleAdapter.convertToVehicleDto(vehicleRepository.save(vehicle));
           })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED,"Nothing was changed."));
+    }
+
+    public List<VehicleDto> findAllByLicense(LicenseType license) {
+
+        return vehicleRepository.findAllByLicense(license)
+                .stream()
+                .map(vehicleAdapter::convertToVehicleDto)
+                .toList();
     }
 }
