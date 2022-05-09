@@ -49,12 +49,14 @@ public class DriverController {
     }
 
     @PutMapping("/activate/{id}")
-    ResponseEntity<DriverDto> setStatusToActive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.TRUE));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStatusToActive(@PathVariable UUID id) {
+        driverService.setStatus(id, Boolean.TRUE);
     }
 
     @PutMapping("/deactivate/{id}")
-    ResponseEntity<DriverDto> setStatusToInactive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.FALSE));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStatusToInactive(@PathVariable UUID id) {
+        driverService.setStatus(id, Boolean.FALSE);
     }
 }
