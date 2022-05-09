@@ -6,6 +6,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
@@ -93,6 +94,14 @@ public class VehicleService {
         }
 
         return availableVehicles
+                .stream()
+                .map(vehicleAdapter::convertToVehicleDto)
+                .toList();
+    }
+
+    public List<VehicleDto> findAllByLicense(LicenseType license) {
+
+        return vehicleRepository.findAllByLicense(license)
                 .stream()
                 .map(vehicleAdapter::convertToVehicleDto)
                 .toList();

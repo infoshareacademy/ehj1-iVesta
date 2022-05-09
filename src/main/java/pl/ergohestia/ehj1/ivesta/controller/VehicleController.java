@@ -3,6 +3,7 @@ package pl.ergohestia.ehj1.ivesta.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
@@ -49,4 +50,10 @@ public class VehicleController {
     List<VehicleDto> getAvailableVehicles(@PathVariable String date) {
         return vehicleService.getAvailableVehicles(date);
     }
+
+    @GetMapping("/license/{license}")
+    public List<VehicleDto> getVehicleByLicense(@PathVariable LicenseType license) {
+        return vehicleService.findAllByLicense(license);
+    }
+
 }
