@@ -8,6 +8,7 @@ import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,5 +57,10 @@ public class DriverController {
     @PutMapping("/deactivate/{id}")
     ResponseEntity<DriverDto> setStatusToInactive(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.FALSE));
+    }
+
+    @GetMapping("/availableDrivers/{date}")
+    List<DriverDto> getAvailableDrivers(@PathVariable String date){
+        return driverService.getAvailableDrivers(date);
     }
 }
