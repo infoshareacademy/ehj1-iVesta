@@ -2,7 +2,6 @@ package pl.ergohestia.ehj1.ivesta.configs;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
-import pl.ergohestia.ehj1.ivesta.repository.DriverHeaders;
 
 import java.nio.file.Path;
 
@@ -15,7 +14,7 @@ public class DriverConfig {
 
     protected static final CSVFormat DRIVERS_CSV_FORMAT = CSVFormat.RFC4180.builder()
             .setDelimiter(CSV_DELIMITER)
-            .setHeader(DriverHeaders.class)
+            .setHeader()
             .setSkipHeaderRecord(true)
             .build();
 
