@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.repository.DriverRepository;
 
@@ -21,11 +22,6 @@ public class DriverService {
     public DriverService(DriverRepository driverRepository, DriverAdapter driverAdapter) {
         this.driverRepository = driverRepository;
         this.driverAdapter = driverAdapter;
-    }
-
-    public Driver findById(UUID id) {
-        return driverRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
     }
 
     public List<DriverDto> getAllDrivers() {
@@ -56,6 +52,18 @@ public class DriverService {
         return driverAdapter.convertToDriverDto(newDriver);
     }
 
+    public DriverDto setStatus(UUID id, Availability availability) {
+        var driver = findById(id);
+        driver.setAvailability(availability);
+        Driver newDriver = driverRepository.save(driver);
+        return driverAdapter.convertToDriverDto(newDriver);
+    }
+
+    private Driver findById(UUID id) {
+        return driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
+    }
+
     private Driver updateDriverData(Driver foundDriver, DriverDto driverDto) {
         String name = driverDto.getName();
         String lastName = driverDto.getLastName();
@@ -75,12 +83,5 @@ public class DriverService {
             foundDriver.setLicense(license);
         }
         return foundDriver;
-    }
-
-    public DriverDto setStatus(UUID id, Boolean status) {
-        var driver = findById(id);
-        driver.setActive(status);
-        Driver newDriver = driverRepository.save(driver);
-        return driverAdapter.convertToDriverDto(newDriver);
     }
 }

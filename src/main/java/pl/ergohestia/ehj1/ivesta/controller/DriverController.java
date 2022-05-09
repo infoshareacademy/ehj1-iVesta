@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
@@ -51,12 +52,12 @@ public class DriverController {
     @PutMapping("/activate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStatusToActive(@PathVariable UUID id) {
-        driverService.setStatus(id, Boolean.TRUE);
+        driverService.setStatus(id, Availability.ACTIVE);
     }
 
     @PutMapping("/deactivate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStatusToInactive(@PathVariable UUID id) {
-        driverService.setStatus(id, Boolean.FALSE);
+        driverService.setStatus(id, Availability.INACTIVE);
     }
 }

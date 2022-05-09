@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 
 import javax.persistence.*;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Driver {
     private Integer numberOfKilometres;*/
 
     @Column
-    private Boolean active;
+    private Availability availability;
 
     /*@OneToOne
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id", unique = true)
@@ -61,11 +62,11 @@ public class Driver {
                   String lastName,
                   String phoneNumber,
                   String license,
-                  Boolean active) {
+                  Availability availability) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.license = license;
-        this.active = active;
+        this.availability = availability;
     }
 }

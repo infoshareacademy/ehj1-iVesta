@@ -13,17 +13,17 @@ public class DriverDto {
     private String lastName;
     private String phoneNumber;
     private String license;
-    private Boolean active;
+    private Availability availability;
 
     public DriverDto(String name,
                      String lastName,
                      String phoneNumber,
                      String license,
-                     Boolean active) {
+                     Availability availability) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.license = license;
-        this.active = active;
+        this.availability = availability;
     }
 }
