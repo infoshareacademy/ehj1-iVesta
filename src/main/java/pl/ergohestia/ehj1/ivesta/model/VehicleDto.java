@@ -8,6 +8,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.UUID;
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,6 +21,11 @@ import java.util.UUID;
 public class VehicleDto {
 
     private UUID id;
+
+    @JsonProperty("availability")
+    @Column(name ="vehicle_status")
+    @Enumerated(EnumType.STRING)
+    private Availability availability;
 
     @JsonProperty("marka")
     private String brand;
@@ -37,13 +45,14 @@ public class VehicleDto {
     @JsonProperty("max-ladownosc")
     private double weightLimit;
 
-    public VehicleDto(
+    public VehicleDto(Availability availability,
                       String brand,
                       String vehicleCategory,
                       String model,
                       int numberOfSeats,
                       String fuelType,
                       double weightLimit) {
+        this.availability = availability;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
