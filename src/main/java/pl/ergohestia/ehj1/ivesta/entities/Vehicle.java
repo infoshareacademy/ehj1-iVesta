@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.springframework.validation.annotation.Validated;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -27,6 +27,11 @@ public class Vehicle {
     @Type(type = "uuid-char")
     @Column(length = 36, updatable = false, nullable = false)
     private UUID id;
+
+    @Column(name ="vehicle_status")
+    @Enumerated(EnumType.STRING)
+    @JsonProperty("availability")
+    private Availability availability;
 
     @Column
     @JsonProperty("marka")
@@ -53,15 +58,18 @@ public class Vehicle {
     @Min(0)
     private double weightLimit;
 
+
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
-    public Vehicle(String brand,
+    public Vehicle(Availability availability,
+                   String brand,
                    String vehicleCategory,
                    String model,
                    int numberOfSeats,
                    String fuelType,
                    double weightLimit) {
+        this.availability = availability;
         this.brand = brand;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
@@ -74,6 +82,7 @@ public class Vehicle {
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
+                ", availability=" + availability +
                 ", brand='" + brand + '\'' +
                 ", vehicleCategory='" + vehicleCategory + '\'' +
                 ", model='" + model + '\'' +
