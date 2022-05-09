@@ -38,7 +38,7 @@ public class DriverController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDriver(@PathVariable UUID id) {
         driverService.deleteDriverById(id);
     }
