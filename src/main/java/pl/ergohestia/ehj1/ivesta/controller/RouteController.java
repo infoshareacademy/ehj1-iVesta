@@ -1,13 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.ergohestia.ehj1.ivesta.model.IncompleteRouteDto;
-import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
@@ -58,8 +58,8 @@ public class RouteController {
     }
 
     @GetMapping("/incompleteRoutes")
-    public ResponseEntity<List<IncompleteRouteDto>> getRoutesWithoutVehiclesOrDrivers() {
-        var incompleteRoutes = routeService.getRoutesWithoutVehiclesOrDrivers();
+    public ResponseEntity<List<RouteDto>> getRoutesWithoutVehiclesOrDrivers(@RequestParam boolean withoutDriver, @RequestParam boolean withoutVehicle, Pageable pageable) {
+        var incompleteRoutes = routeService.getIncompleteRoutes(withoutDriver, withoutVehicle, pageable);
         return ResponseEntity.ok(incompleteRoutes);
     }
 }
