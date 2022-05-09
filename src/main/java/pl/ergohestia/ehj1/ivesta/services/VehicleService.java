@@ -4,11 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
+import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.repository.VehicleRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,10 +20,12 @@ public class VehicleService {
 
     private final VehicleRepository vehicleRepository;
     private final VehicleAdapter vehicleAdapter;
+    private final RouteRepository routeRepository;
 
-    public VehicleService(VehicleRepository vehicleRepository, VehicleAdapter vehicleAdapter) {
+    public VehicleService(VehicleRepository vehicleRepository, VehicleAdapter vehicleAdapter, RouteRepository routeRepository) {
         this.vehicleRepository = vehicleRepository;
         this.vehicleAdapter = vehicleAdapter;
+        this.routeRepository = routeRepository;
     }
 
     public List<VehicleDto> findAll() {
@@ -70,5 +75,26 @@ public class VehicleService {
                     return vehicleAdapter.convertToVehicleDto(vehicleRepository.save(vehicle));
           })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_MODIFIED,"Nothing was changed."));
+    }
+
+    public List<VehicleDto> getAvailableVehicles(String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr);
+        List<Vehicle> allVehicles = vehicleRepository.findAll();
+        List<Vehicle> availableVehicles = new java.util.ArrayList<>(List.copyOf(allVehicles));
+        List<Route> routes = routeRepository.findAllByVehicleNotNullAndDate(date);
+
+        for (Route route : routes) {
+            UUID id = route.getVehicle().getId();
+            for (Vehicle vehicle : allVehicles) {
+                if (id.equals(vehicle.getId())) {
+                    availableVehicles.remove(vehicle);
+                }
+            }
+        }
+
+        return availableVehicles
+                .stream()
+                .map(vehicleAdapter::convertToVehicleDto)
+                .toList();
     }
 }

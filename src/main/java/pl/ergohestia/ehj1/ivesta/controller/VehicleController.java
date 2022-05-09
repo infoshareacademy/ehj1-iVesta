@@ -44,4 +44,9 @@ public class VehicleController {
     public VehicleDto updateVehicle(@PathVariable UUID id, @RequestBody VehicleDto vehicleDto) {
         return vehicleService.updateVehicle(id, vehicleDto);
     }
+
+    @GetMapping("/availableVehicles/{date}")
+    List<VehicleDto> getAvailableVehicles(@PathVariable String date) {
+        return vehicleService.getAvailableVehicles(date);
+    }
 }

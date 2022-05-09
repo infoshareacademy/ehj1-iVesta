@@ -13,4 +13,5 @@ public interface RouteRepository extends JpaRepository<Route, UUID> {
 
     List<Route> findAllByDriverNotNullAndDate(LocalDate date);
 
+    List<Route> findAllByVehicleNotNullAndDate(LocalDate date);
 }
