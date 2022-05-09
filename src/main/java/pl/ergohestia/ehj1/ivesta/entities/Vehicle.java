@@ -32,7 +32,6 @@ public class Vehicle {
     private String brand;
 
     @Column
-    @Enumerated(EnumType.STRING)
     private LicenseType license;
 
     @Column

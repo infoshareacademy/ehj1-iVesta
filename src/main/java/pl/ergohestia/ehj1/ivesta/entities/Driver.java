@@ -38,14 +38,7 @@ public class Driver {
     private String phoneNumber;
 
     @Column
-    @Enumerated(EnumType.STRING)
     private LicenseType license;
-
-    /*@Column(name = "number_of_courses")
-    private Integer numberOfCourses;
-
-    @Column(name = "number_of_kilometres")
-    private Integer numberOfKilometres;*/
 
     @Column
     private Availability availability;
