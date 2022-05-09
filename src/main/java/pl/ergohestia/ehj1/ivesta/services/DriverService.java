@@ -5,8 +5,8 @@ import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.repository.DriverRepository;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
@@ -14,7 +14,6 @@ import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -29,11 +28,6 @@ public class DriverService {
         this.driverRepository = driverRepository;
         this.driverAdapter = driverAdapter;
         this.routeRepository = routeRepository;
-    }
-
-    public Driver findById(UUID id) {
-        return driverRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
     }
 
     public List<DriverDto> getAllDrivers() {
@@ -64,6 +58,18 @@ public class DriverService {
         return driverAdapter.convertToDriverDto(newDriver);
     }
 
+    public DriverDto setStatus(UUID id, Availability availability) {
+        var driver = findById(id);
+        driver.setAvailability(availability);
+        Driver newDriver = driverRepository.save(driver);
+        return driverAdapter.convertToDriverDto(newDriver);
+    }
+
+    private Driver findById(UUID id) {
+        return driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound(format("Driver with id %s not found.", id)));
+    }
+
     private Driver updateDriverData(Driver foundDriver, DriverDto driverDto) {
         String name = driverDto.getName();
         String lastName = driverDto.getLastName();
@@ -83,13 +89,6 @@ public class DriverService {
             foundDriver.setLicense(license);
         }
         return foundDriver;
-    }
-
-    public DriverDto setStatus(UUID id, Boolean status) {
-        var driver = findById(id);
-        driver.setActive(status);
-        Driver newDriver = driverRepository.save(driver);
-        return driverAdapter.convertToDriverDto(newDriver);
     }
 
     public List<DriverDto> getAvailableDrivers(String dateStr) {

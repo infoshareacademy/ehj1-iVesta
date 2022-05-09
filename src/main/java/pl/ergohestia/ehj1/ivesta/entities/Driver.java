@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
@@ -40,8 +41,14 @@ public class Driver {
     @Enumerated(EnumType.STRING)
     private LicenseType license;
 
+    /*@Column(name = "number_of_courses")
+    private Integer numberOfCourses;
+
+    @Column(name = "number_of_kilometres")
+    private Integer numberOfKilometres;*/
+
     @Column
-    private Boolean active;
+    private Availability availability;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
@@ -50,11 +57,11 @@ public class Driver {
                   String lastName,
                   String phoneNumber,
                   LicenseType license,
-                  Boolean active) {
+                  Availability availability) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.license = license;
-        this.active = active;
+        this.availability = availability;
     }
 }

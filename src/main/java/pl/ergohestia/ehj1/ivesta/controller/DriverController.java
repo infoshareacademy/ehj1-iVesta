@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
@@ -39,7 +40,7 @@ public class DriverController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDriver(@PathVariable UUID id) {
         driverService.deleteDriverById(id);
     }
@@ -50,13 +51,15 @@ public class DriverController {
     }
 
     @PutMapping("/activate/{id}")
-    ResponseEntity<DriverDto> setStatusToActive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.TRUE));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStatusToActive(@PathVariable UUID id) {
+        driverService.setStatus(id, Availability.ACTIVE);
     }
 
     @PutMapping("/deactivate/{id}")
-    ResponseEntity<DriverDto> setStatusToInactive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.FALSE));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStatusToInactive(@PathVariable UUID id) {
+        driverService.setStatus(id, Availability.INACTIVE);
     }
 
     @GetMapping("/availableDrivers/{date}")
