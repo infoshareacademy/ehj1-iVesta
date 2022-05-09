@@ -1,20 +1,20 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
-import pl.ergohestia.ehj1.ivesta.model.IncompleteRouteDto;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.repository.IncompleteRouteRepository;
-import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 
 import java.util.List;
@@ -32,16 +32,14 @@ public class RouteService {
     private final VehicleAdapter vehicleAdapter;
     private final VehicleService vehicleService;
     private final DriverService driverService;
-    private final IncompleteRouteRepository incompleteRouteRepository;
 
-    public RouteService(RouteRepository routeRepository, RouteAdapter routeAdapter, DriverAdapter driverAdapter, VehicleAdapter vehicleAdapter, VehicleService vehicleService, DriverService driverService, IncompleteRouteRepository incompleteRouteRepository) {
+    public RouteService(RouteRepository routeRepository, RouteAdapter routeAdapter, DriverAdapter driverAdapter, VehicleAdapter vehicleAdapter, VehicleService vehicleService, DriverService driverService) {
         this.routeRepository = routeRepository;
         this.routeAdapter = routeAdapter;
         this.driverAdapter = driverAdapter;
         this.vehicleAdapter = vehicleAdapter;
         this.vehicleService = vehicleService;
         this.driverService = driverService;
-        this.incompleteRouteRepository = incompleteRouteRepository;
     }
 
     public List<RouteDto> getAllRoutes() {
@@ -87,7 +85,18 @@ public class RouteService {
         return routeAdapter.convertToRouteDto(routeWithVehicle);
     }
 
-    public List<IncompleteRouteDto> getRoutesWithoutVehiclesOrDrivers() {
-        return incompleteRouteRepository.getIncompleteRoutes();
+    public List<RouteDto> getIncompleteRoutes(boolean withoutDriver, boolean withoutVehicle, Pageable pageable) {
+        Page<Route> incompleteRoutes;
+        if (withoutVehicle && !withoutDriver) {
+            incompleteRoutes = routeRepository.findAllByDriverIsNotNullAndVehicleIsNull(pageable);
+        } else if (!withoutVehicle && withoutDriver) {
+            incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNotNull(pageable);
+        } else {
+            incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNull(pageable);
+        }
+        return incompleteRoutes
+                .stream()
+                .map(routeAdapter::convertToRouteDto)
+                .toList();
     }
 }
