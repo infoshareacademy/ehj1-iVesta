@@ -11,7 +11,6 @@ import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,18 +40,6 @@ public class DriverController {
         return ResponseEntity.status(HttpStatus.CREATED).body(driverService.addDriver(driver));
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteDriver(@PathVariable UUID id) {
-        try {
-            driverService.deleteDriverById(id);
-        }
-        catch (EmptyResultDataAccessException exception) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Driver not found.", exception);
-        }
-    }
-
     @PutMapping("/{id}")
     public DriverDto updateDriver(@PathVariable UUID id, @RequestBody DriverDto driverDto) {
         return driverService.updateDriverById(id, driverDto);
@@ -61,13 +48,13 @@ public class DriverController {
     @PutMapping("/activate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStatusToActive(@PathVariable UUID id) {
-        driverService.setStatus(id, Availability.ACTIVE);
+        driverService.setDriverStatus(id, Availability.ACTIVE);
     }
 
     @PutMapping("/deactivate/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus( HttpStatus.NO_CONTENT)
     public void setStatusToInactive(@PathVariable UUID id) {
-        driverService.setStatus(id, Availability.INACTIVE);
+        driverService.setDriverStatus(id, Availability.INACTIVE);
     }
 
     @GetMapping("/availableDrivers/{date}")
