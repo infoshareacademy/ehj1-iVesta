@@ -25,10 +25,10 @@ VALUES ('56d60854-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9001', 3, 'C', 2000)
        ('604bdfbc-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny M', 8, 'B', 1500),
        ('619d1bce-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny L', 8, 'B', 1500),
        ('633ab108-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny XL', 8, 'B', 1500),
-       ('82015ae2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 100', 3, 'C+E', 15000),
-       ('84560de2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 70', 3, 'C+E', 15000),
-       ('8638c37a-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 60', 3, 'C+E', 15000),
-       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 50', 3, 'C+E', 15000);
+       ('82015ae2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 100', 3, 'C_E', 15000),
+       ('84560de2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 70', 3, 'C_E', 15000),
+       ('8638c37a-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 60', 3, 'C_E', 15000),
+       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 50', 3, 'C_E', 15000);
 
 
 
