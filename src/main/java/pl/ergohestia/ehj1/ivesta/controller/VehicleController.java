@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
+import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
@@ -54,5 +55,9 @@ public class VehicleController {
     @PutMapping("/deactivate/{id}")
     ResponseEntity<VehicleDto> setStatusToInactive(@PathVariable UUID id,Availability availability) {
         return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.INACTIVE));
+    }
+    @GetMapping("/cargo/{transport}")
+    List<VehicleDto> getVehicleByTransportType(@PathVariable String transport){
+        return vehicleService.getVehicleByCargoType(transport);
     }
 }
