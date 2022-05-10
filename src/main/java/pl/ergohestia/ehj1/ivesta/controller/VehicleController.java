@@ -1,7 +1,10 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
@@ -38,7 +41,13 @@ public class VehicleController {
 
     @DeleteMapping("/{id}")
     public void deleteVehicle(@PathVariable UUID id) {
-        vehicleService.deleteById(id);
+        try {
+            vehicleService.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Vehicle not found.", exception);
+        }
     }
 
     @PutMapping("/{id}")
