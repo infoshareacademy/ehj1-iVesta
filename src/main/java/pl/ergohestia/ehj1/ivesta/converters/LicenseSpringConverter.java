@@ -3,7 +3,7 @@ package pl.ergohestia.ehj1.ivesta.converters;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 
