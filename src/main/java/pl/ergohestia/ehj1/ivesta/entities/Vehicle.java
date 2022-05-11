@@ -1,12 +1,12 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import pl.ergohestia.ehj1.ivesta.converters.LicenseHibernateConverter;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
@@ -32,6 +32,7 @@ public class Vehicle {
     private String brand;
 
     @Column
+    @Convert(converter = LicenseHibernateConverter.class)
     private LicenseType license;
 
     @Column
