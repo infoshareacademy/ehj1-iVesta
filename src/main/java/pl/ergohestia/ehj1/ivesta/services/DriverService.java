@@ -47,10 +47,6 @@ public class DriverService {
         return driverAdapter.convertToDriverDto(newDriver);
     }
 
-    public void deleteDriverById(UUID id) {
-        driverRepository.deleteById(id);
-    }
-
     public DriverDto updateDriverById(UUID id, DriverDto driverDto) {
         var driver = findById(id);
         var updatedDriver = updateDriverData(driver, driverDto);
@@ -58,11 +54,35 @@ public class DriverService {
         return driverAdapter.convertToDriverDto(newDriver);
     }
 
-    public DriverDto setStatus(UUID id, Availability availability) {
+    public DriverDto setDriverStatus(UUID id, Availability availability) {
         var driver = findById(id);
+        if (!availability.equals(Availability.ACTIVE)) {
+            removeDeactivatedDriverFromRoutes(driver);
+        }
         driver.setAvailability(availability);
         Driver newDriver = driverRepository.save(driver);
         return driverAdapter.convertToDriverDto(newDriver);
+    }
+
+    public List<DriverDto> getAvailableDrivers(String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr);
+        List<Driver> allDrivers = driverRepository.findAll();
+        List<Driver> availableDrivers = new java.util.ArrayList<>(List.copyOf(allDrivers));
+        List<Route> routes = routeRepository.findAllByDriverNotNullAndDate(date);
+
+        for (Route route : routes) {
+            UUID id = route.getDriver().getId();
+            for (Driver driver : allDrivers) {
+                if (id.equals(driver.getId())) {
+                    availableDrivers.remove(driver);
+                }
+            }
+        }
+
+        return availableDrivers
+                .stream()
+                .map(driverAdapter::convertToDriverDto)
+                .toList();
     }
 
     private Driver findById(UUID id) {
@@ -91,24 +111,11 @@ public class DriverService {
         return foundDriver;
     }
 
-    public List<DriverDto> getAvailableDrivers(String dateStr) {
-        LocalDate date = LocalDate.parse(dateStr);
-        List<Driver> allDrivers = driverRepository.findAll();
-        List<Driver> availableDrivers = new java.util.ArrayList<>(List.copyOf(allDrivers));
-        List<Route> routes = routeRepository.findAllByDriverNotNullAndDate(date);
-
-        for (Route route : routes) {
-            UUID id = route.getDriver().getId();
-            for (Driver driver : allDrivers) {
-                if (id.equals(driver.getId())) {
-                    availableDrivers.remove(driver);
-                }
-            }
+    private void removeDeactivatedDriverFromRoutes(Driver driver) {
+        List<Route> routesList = routeRepository.findAllByDriver(driver);
+        for (Route route : routesList) {
+            route.setDriver(null);
+            routeRepository.save(route);
         }
-
-        return availableDrivers
-                .stream()
-                .map(driverAdapter::convertToDriverDto)
-                .toList();
     }
 }
