@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
-import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
