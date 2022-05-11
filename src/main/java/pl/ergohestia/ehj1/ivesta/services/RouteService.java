@@ -9,7 +9,7 @@ import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
-import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
