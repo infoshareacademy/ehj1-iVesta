@@ -93,8 +93,10 @@ public class RouteService {
             incompleteRoutes = routeRepository.findAllByDriverIsNotNullAndVehicleIsNull(pageable);
         } else if (!withoutVehicle && withoutDriver) {
             incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNotNull(pageable);
-        } else {
+        } else if (withoutVehicle && withoutDriver) {
             incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNull(pageable);
+        } else {
+            incompleteRoutes = routeRepository.findAllBydriverIsNotNullAndVehicleIsNotNull(pageable);
         }
         return incompleteRoutes
                 .stream()

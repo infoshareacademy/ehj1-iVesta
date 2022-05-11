@@ -16,7 +16,7 @@ public interface RouteRepository extends JpaRepository<Route, UUID> {
     Page<Route> findAllByDriverIsNullAndVehicleIsNull(Pageable pageable);
     Page<Route> findAllByDriverIsNotNullAndVehicleIsNull(Pageable pageable);
     Page<Route> findAllByDriverIsNullAndVehicleIsNotNull(Pageable pageable);
+    Page<Route> findAllBydriverIsNotNullAndVehicleIsNotNull(Pageable pageable);
 
     List<Route> findAllByDriverNotNullAndDate(LocalDate date);
-
 }
