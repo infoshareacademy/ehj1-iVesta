@@ -2,6 +2,7 @@ package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,5 +63,11 @@ public class RouteController {
     @PutMapping("/{id}/assignVehicle")
     public RouteDto addVehicleToRoute(@PathVariable UUID id, @RequestBody VehicleAssociation vehicle) {
         return routeService.addVehicleToRoute(id, vehicle);
+    }
+
+    @GetMapping("/incompleteRoutes")
+    public ResponseEntity<List<RouteDto>> getRoutesWithoutVehiclesOrDrivers(@RequestParam boolean withoutDriver, @RequestParam boolean withoutVehicle, Pageable pageable) {
+        var incompleteRoutes = routeService.getIncompleteRoutes(withoutDriver, withoutVehicle, pageable);
+        return ResponseEntity.ok(incompleteRoutes);
     }
 }
