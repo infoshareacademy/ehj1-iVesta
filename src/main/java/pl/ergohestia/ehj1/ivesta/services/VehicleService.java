@@ -85,11 +85,13 @@ public class VehicleService {
     }
 
     public List<VehicleDto> getVehicleByCargoType(String transport) {
-        List<VehicleDto> result = null;
+        List<VehicleDto> result;
         if (transport.equalsIgnoreCase("cargo")) {
             result = vehicleRepository.findAlCargoTransporters().stream().map(vehicleAdapter::convertToVehicleDto).collect(Collectors.toList());
         } else if (transport.equalsIgnoreCase("passengers")) {
             result = vehicleRepository.findAllBusses().stream().map(vehicleAdapter::convertToVehicleDto).collect(Collectors.toList());
+        }else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Improper request parameter.");
         }
         return result;
     }
