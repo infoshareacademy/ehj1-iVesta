@@ -1,13 +1,14 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
-import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
@@ -44,7 +45,13 @@ public class RouteController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoute(@PathVariable UUID id) {
-        routeService.deleteRouteById(id);
+        try {
+            routeService.deleteRouteById(id);
+        }
+        catch (EmptyResultDataAccessException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Route not found.", exception);
+        }
     }
 
     @PutMapping("/{id}/assignDriver")
