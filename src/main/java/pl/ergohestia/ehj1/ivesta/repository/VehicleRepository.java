@@ -13,9 +13,9 @@ import java.util.UUID;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, UUID> {
 
-    @Query("SELECT v FROM Vehicle v WHERE v.weightLimit >= 15000")
+    @Query("SELECT v FROM Vehicle v WHERE v.weightLimit >= 15000 AND v.availability = 'active'")
     List<Vehicle> findAlCargoTransporters();
 
-    @Query("SELECT v FROM Vehicle v WHERE v.numberOfSeats > 6")
+    @Query("SELECT v FROM Vehicle v WHERE v.numberOfSeats > 6 AND v.availability = 'active'")
     List<Vehicle> findAllBusses();
 }
