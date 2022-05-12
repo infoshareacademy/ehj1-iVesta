@@ -1,9 +1,12 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
@@ -43,7 +46,13 @@ public class RouteController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoute(@PathVariable UUID id) {
-        routeService.deleteRouteById(id);
+        try {
+            routeService.deleteRouteById(id);
+        }
+        catch (EmptyResultDataAccessException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Route not found.", exception);
+        }
     }
 
     @PutMapping("/{id}/assignDriver")
@@ -54,5 +63,11 @@ public class RouteController {
     @PutMapping("/{id}/assignVehicle")
     public RouteDto addVehicleToRoute(@PathVariable UUID id, @RequestBody VehicleAssociation vehicle) {
         return routeService.addVehicleToRoute(id, vehicle);
+    }
+
+    @GetMapping("/incompleteRoutes")
+    public ResponseEntity<List<RouteDto>> getRoutesWithoutVehiclesOrDrivers(@RequestParam boolean withoutDriver, @RequestParam boolean withoutVehicle, Pageable pageable) {
+        var incompleteRoutes = routeService.getIncompleteRoutes(withoutDriver, withoutVehicle, pageable);
+        return ResponseEntity.ok(incompleteRoutes);
     }
 }

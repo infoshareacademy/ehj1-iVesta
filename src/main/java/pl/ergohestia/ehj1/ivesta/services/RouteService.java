@@ -1,19 +1,21 @@
 package pl.ergohestia.ehj1.ivesta.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.RouteAdapter;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
-import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
-import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
-import pl.ergohestia.ehj1.ivesta.exceptions.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
+import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 
 import java.util.List;
@@ -70,7 +72,8 @@ public class RouteService {
 
     public RouteDto addDriverToRoute(UUID id, DriverAssociation driverAssociation) {
         Route route = findById(id);
-        Driver driver = driverService.findById(driverAssociation.getDriverId());
+        DriverDto driverDto = driverService.getDriverById(driverAssociation.getDriverId());
+        Driver driver = driverAdapter.convertToDriver(driverDto);
         route.setDriver(driver);
         Route routeWithDriver = routeRepository.save(route);
         return routeAdapter.convertToRouteDto(routeWithDriver);
@@ -82,5 +85,22 @@ public class RouteService {
         route.setVehicle(vehicleAdapter.convertToVehicle(vehicle));
         Route routeWithVehicle = routeRepository.save(route);
         return routeAdapter.convertToRouteDto(routeWithVehicle);
+    }
+
+    public List<RouteDto> getIncompleteRoutes(boolean withoutDriver, boolean withoutVehicle, Pageable pageable) {
+        Page<Route> incompleteRoutes;
+        if (withoutVehicle && !withoutDriver) {
+            incompleteRoutes = routeRepository.findAllByDriverIsNotNullAndVehicleIsNull(pageable);
+        } else if (!withoutVehicle && withoutDriver) {
+            incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNotNull(pageable);
+        } else if (withoutVehicle && withoutDriver) {
+            incompleteRoutes = routeRepository.findAllByDriverIsNullAndVehicleIsNull(pageable);
+        } else {
+            incompleteRoutes = routeRepository.findAllBydriverIsNotNullAndVehicleIsNotNull(pageable);
+        }
+        return incompleteRoutes
+                .stream()
+                .map(routeAdapter::convertToRouteDto)
+                .toList();
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.validation.annotation.Validated;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 
 import javax.persistence.*;
@@ -42,6 +43,11 @@ public class Vehicle {
     private String vehicleCategory;
 
     @Column
+    @Enumerated(EnumType.STRING)
+    private LicenseType license;
+
+
+    @Column
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
@@ -58,12 +64,12 @@ public class Vehicle {
     @Min(0)
     private double weightLimit;
 
-
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
-    public Vehicle(Availability availability,
-                   String brand,
+    public Vehicle(String brand,
+                   Availability availability,
+                   LicenseType vehicleLicense,
                    String vehicleCategory,
                    String model,
                    int numberOfSeats,
@@ -71,6 +77,7 @@ public class Vehicle {
                    double weightLimit) {
         this.availability = availability;
         this.brand = brand;
+        this.license = vehicleLicense;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
         this.numberOfSeats = numberOfSeats;

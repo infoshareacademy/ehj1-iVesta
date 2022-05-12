@@ -1,10 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
@@ -37,24 +40,25 @@ public class DriverController {
         return ResponseEntity.status(HttpStatus.CREATED).body(driverService.addDriver(driver));
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteDriver(@PathVariable UUID id) {
-        driverService.deleteDriverById(id);
-    }
-
     @PutMapping("/{id}")
     public DriverDto updateDriver(@PathVariable UUID id, @RequestBody DriverDto driverDto) {
         return driverService.updateDriverById(id, driverDto);
     }
 
     @PutMapping("/activate/{id}")
-    ResponseEntity<DriverDto> setStatusToActive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.TRUE));
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setStatusToActive(@PathVariable UUID id) {
+        driverService.setDriverStatus(id, Availability.ACTIVE);
     }
 
     @PutMapping("/deactivate/{id}")
-    ResponseEntity<DriverDto> setStatusToInactive(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(driverService.setStatus(id, Boolean.FALSE));
+    @ResponseStatus( HttpStatus.NO_CONTENT)
+    public void setStatusToInactive(@PathVariable UUID id) {
+        driverService.setDriverStatus(id, Availability.INACTIVE);
+    }
+
+    @GetMapping("/availableDrivers/{date}")
+    List<DriverDto> getAvailableDrivers(@PathVariable String date){
+        return driverService.getAvailableDrivers(date);
     }
 }
