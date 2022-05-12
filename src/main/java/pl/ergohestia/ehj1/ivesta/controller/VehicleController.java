@@ -1,10 +1,9 @@
 package pl.ergohestia.ehj1.ivesta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
@@ -68,7 +67,7 @@ public class VehicleController {
         return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.ACTIVE));
     }
     @PutMapping("/deactivate/{id}")
-    ResponseEntity<VehicleDto> setStatusToInactive(@PathVariable UUID id,Availability availability) {
+    ResponseEntity<VehicleDto> setStatusToInactive(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.INACTIVE));
     }
 }
