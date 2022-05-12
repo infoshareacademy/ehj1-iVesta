@@ -6,8 +6,9 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
-import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.repository.VehicleRepository;
@@ -55,12 +56,15 @@ public class VehicleService {
     public VehicleDto updateVehicle(UUID id, VehicleDto vehicleDto) {
         return vehicleRepository.findById(id)
                 .map(vehicle -> {
+                        vehicle.setAvailability(vehicleDto.getAvailability());
                     if (vehicleDto.getBrand() != null && !vehicleDto.getBrand().isBlank()){
                     vehicle.setBrand(vehicleDto.getBrand());}
 
                     if (vehicleDto.getLicense() != null){
                     vehicle.setLicense(vehicleDto.getLicense());}
 
+                    if (vehicleDto.getVehicleCategory() != null && !vehicleDto.getVehicleCategory().isBlank()){
+                    vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());}
                     if (vehicleDto.getModel() != null && !vehicleDto.getModel().isBlank()){
                     vehicle.setModel(vehicleDto.getModel());}
 
@@ -105,5 +109,12 @@ public class VehicleService {
                 .stream()
                 .map(vehicleAdapter::convertToVehicleDto)
                 .toList();
+    }
+
+    public VehicleDto setVehicleStatus(UUID id, Availability availability) {
+        var vehicleDto = getVehicleById(id);
+        vehicleDto.setAvailability(availability);
+        updateVehicle(id,vehicleDto);
+        return vehicleDto;
     }
 }
