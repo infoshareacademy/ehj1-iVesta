@@ -16,7 +16,6 @@ import java.util.UUID;
 @Table(name = "routes")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Route {
 
@@ -45,11 +44,11 @@ public class Route {
 
     private LocalDate date;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
@@ -60,5 +59,20 @@ public class Route {
         this.transportType = transportType;
         this.transportVolume = transportVolume;
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", startAddress='" + startAddress + '\'' +
+                ", destinationAddress='" + destinationAddress + '\'' +
+                ", routeLength=" + routeLength +
+                ", transportType=" + transportType +
+                ", transportVolume=" + transportVolume +
+                ", date=" + date +
+                ", vehicle=" + vehicle +
+                ", driver=" + driver +
+                '}';
     }
 }
