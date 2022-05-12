@@ -118,4 +118,11 @@ public class DriverService {
             routeRepository.save(route);
         }
     }
+    public void deleteById(UUID id) {
+        Driver driver = driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("Id: " + id + " does not exist in database."));
+        driver.getRoute()
+                .forEach(route -> route.setDriver(null));
+        driverRepository.delete(driver);
+    }
 }
