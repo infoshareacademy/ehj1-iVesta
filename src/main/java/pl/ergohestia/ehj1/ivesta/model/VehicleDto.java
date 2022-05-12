@@ -20,12 +20,13 @@ public class VehicleDto {
     private UUID id;
 
     @JsonProperty("availability")
-    @Column(name ="vehicle_status")
-    @Enumerated(EnumType.STRING)
     private Availability availability;
 
     @JsonProperty("marka")
     private String brand;
+
+    @JsonProperty("kategoria-pojazdu")
+    private String vehicleCategory;
 
     @JsonProperty("license")
     private LicenseType license;
