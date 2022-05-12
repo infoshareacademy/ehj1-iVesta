@@ -1,6 +1,5 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -28,7 +28,7 @@ public class Vehicle {
     @Column(length = 36, updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name ="vehicle_status")
+    @Column(name = "vehicle_status")
     @Enumerated(EnumType.STRING)
     @JsonProperty("availability")
     private Availability availability = Availability.ACTIVE;
@@ -40,6 +40,11 @@ public class Vehicle {
     @Column(name = "vehicle_category")
     @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private LicenseType license;
+
 
     @Column
     private String model;
@@ -58,12 +63,12 @@ public class Vehicle {
     @Min(0)
     private double weightLimit;
 
-
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;
 
-    public Vehicle(Availability availability,
-                   String brand,
+    public Vehicle(String brand,
+                   Availability availability,
+                   LicenseType vehicleLicense,
                    String vehicleCategory,
                    String model,
                    int numberOfSeats,
@@ -71,6 +76,7 @@ public class Vehicle {
                    double weightLimit) {
         this.availability = availability;
         this.brand = brand;
+        this.license = vehicleLicense;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
         this.numberOfSeats = numberOfSeats;
@@ -85,6 +91,7 @@ public class Vehicle {
                 ", availability=" + availability +
                 ", brand='" + brand + '\'' +
                 ", vehicleCategory='" + vehicleCategory + '\'' +
+                ", license=" + license +
                 ", model='" + model + '\'' +
                 ", numberOfSeats=" + numberOfSeats +
                 ", fuelType='" + fuelType + '\'' +

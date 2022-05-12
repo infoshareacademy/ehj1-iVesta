@@ -15,7 +15,7 @@ public class DriverAdapter {
                 driver.getLastName(),
                 driver.getPhoneNumber(),
                 driver.getLicense(),
-                driver.getActive());
+                driver.getAvailability());
         driverDto.setId(driver.getId());
         return driverDto;
     }
@@ -29,7 +29,7 @@ public class DriverAdapter {
                 driverDto.getLastName(),
                 driverDto.getPhoneNumber(),
                 driverDto.getLicense(),
-                driverDto.getActive());
+                driverDto.getAvailability());
         driver.setId(driverDto.getId());
         return driver;
     }
