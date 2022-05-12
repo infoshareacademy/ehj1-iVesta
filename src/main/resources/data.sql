@@ -1,6 +1,6 @@
 INSERT INTO drivers(ID, LAST_NAME, LICENSE, NAME)
 VALUES ('9e01475a-c61e-11ec-9d64-0242ac120002', 'Sram', 'A', 'Janusz'),
-       ('9e014a34-c61e-11ec-9d64-0242ac12000', 'Jachaś', 'C_E', 'Domino'),
+       ('9e014a34-c61e-11ec-9d64-0242ac12000', 'Jachaś', 'C+E', 'Domino'),
        ('9e015b82-c61e-11ec-9d64-0242ac12000', 'Bomba', 'B', 'Tytus'),
        ('9e01598e-c61e-11ec-9d64-0242ac12000', 'Koczkodan', 'A', 'Sniezny'),
        ('9e01597e-c61e-11ec-9d64-0242ac12000', 'Bomba', 'B', 'Bogdan'),
@@ -25,10 +25,10 @@ VALUES ('56d60854-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9001', 3, 'C', 2000)
        ('604bdfbc-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny M', 8, 'B', 1500),
        ('619d1bce-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny L', 8, 'B', 1500),
        ('633ab108-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny XL', 8, 'B', 1500),
-       ('82015ae2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 100', 3, 'C_E', 15000),
-       ('84560de2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 70', 3, 'C_E', 15000),
-       ('8638c37a-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 60', 3, 'C_E', 15000),
-       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 50', 3, 'C_E', 15000);
+       ('82015ae2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 100', 3, 'C+E', 15000),
+       ('84560de2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 70', 3, 'C+E', 15000),
+       ('8638c37a-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 60', 3, 'C+E', 15000),
+       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 50', 3, 'C+E', 15000);
 
 
 

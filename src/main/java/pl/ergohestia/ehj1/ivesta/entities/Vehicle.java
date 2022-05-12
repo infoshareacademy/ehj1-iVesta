@@ -1,11 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import pl.ergohestia.ehj1.ivesta.converters.LicenseHibernateConverter;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
@@ -30,36 +32,29 @@ public class Vehicle {
 
     @Column(name = "vehicle_status")
     @Enumerated(EnumType.STRING)
-    @JsonProperty("availability")
-    private Availability availability = Availability.ACTIVE;
+    private Availability availability;
 
     @Column
-    @JsonProperty("marka")
     private String brand;
 
     @Column(name = "vehicle_category")
-    @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
 
     @Column
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = LicenseHibernateConverter.class)
     private LicenseType license;
-
 
     @Column
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
-    @JsonProperty("liczba-miejsc-ogolem")
     @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
-    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
     @Column(nullable = false, name = "weight_limit")
-    @JsonProperty("max-ladownosc")
     @Min(0)
     private double weightLimit;
 
