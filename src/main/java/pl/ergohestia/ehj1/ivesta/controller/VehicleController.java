@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
-import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
 
