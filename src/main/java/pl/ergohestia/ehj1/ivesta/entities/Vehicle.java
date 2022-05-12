@@ -1,14 +1,13 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.springframework.validation.annotation.Validated;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
+import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -29,10 +28,10 @@ public class Vehicle {
     @Column(length = 36, updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name ="vehicle_status")
+    @Column(name = "vehicle_status")
     @Enumerated(EnumType.STRING)
     @JsonProperty("availability")
-    private Availability availability;
+    private Availability availability = Availability.ACTIVE;
 
     @Column
     @JsonProperty("marka")
@@ -92,6 +91,7 @@ public class Vehicle {
                 ", availability=" + availability +
                 ", brand='" + brand + '\'' +
                 ", vehicleCategory='" + vehicleCategory + '\'' +
+                ", license=" + license +
                 ", model='" + model + '\'' +
                 ", numberOfSeats=" + numberOfSeats +
                 ", fuelType='" + fuelType + '\'' +
