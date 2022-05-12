@@ -8,8 +8,10 @@ public class VehicleAdapter {
     public VehicleDto convertToVehicleDto(Vehicle vehicle) {
         if (vehicle == null) return null;
         VehicleDto vehicleDto = new VehicleDto(
+                vehicle.getAvailability(),
                 vehicle.getBrand(),
                 vehicle.getLicense(),
+                vehicle.getVehicleCategory(),
                 vehicle.getModel(),
                 vehicle.getNumberOfSeats(),
                 vehicle.getFuelType(),
@@ -22,11 +24,14 @@ public class VehicleAdapter {
         if (vehicleDto == null) return null;
         Vehicle vehicle = new Vehicle(
                 vehicleDto.getBrand(),
+                vehicleDto.getAvailability(),
                 vehicleDto.getLicense(),
+                vehicleDto.getVehicleCategory(),
                 vehicleDto.getModel(),
                 vehicleDto.getNumberOfSeats(),
                 vehicleDto.getFuelType(),
                 vehicleDto.getWeightLimit());
+
         vehicle.setId(vehicleDto.getId());
         return vehicle;
     }

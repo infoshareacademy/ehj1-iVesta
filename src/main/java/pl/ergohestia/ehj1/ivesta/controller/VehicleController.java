@@ -3,9 +3,11 @@ package pl.ergohestia.ehj1.ivesta.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.ergohestia.ehj1.ivesta.entities.Vehicle;
+import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 import pl.ergohestia.ehj1.ivesta.services.VehicleService;
@@ -60,4 +62,12 @@ public class VehicleController {
         return vehicleService.findAllByLicense(license);
     }
 
+    @PutMapping("/activate/{id}")
+    ResponseEntity<VehicleDto> setStatusToActive(@PathVariable UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.ACTIVE));
+    }
+    @PutMapping("/deactivate/{id}")
+    ResponseEntity<VehicleDto> setStatusToInactive(@PathVariable UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.INACTIVE));
+    }
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public enum Availability {
     @JsonProperty("active")
     ACTIVE,
-
     @JsonProperty("inactive")
     INACTIVE
 }
