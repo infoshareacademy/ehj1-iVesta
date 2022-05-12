@@ -11,6 +11,7 @@ public class VehicleAdapter {
                 vehicle.getAvailability(),
                 vehicle.getBrand(),
                 vehicle.getLicense(),
+                vehicle.getVehicleCategory(),
                 vehicle.getModel(),
                 vehicle.getNumberOfSeats(),
                 vehicle.getFuelType(),
@@ -22,13 +23,15 @@ public class VehicleAdapter {
     public Vehicle convertToVehicle(VehicleDto vehicleDto) {
         if (vehicleDto == null) return null;
         Vehicle vehicle = new Vehicle(
-                vehicleDto.getAvailability(),
                 vehicleDto.getBrand(),
+                vehicleDto.getAvailability(),
                 vehicleDto.getLicense(),
+                vehicleDto.getVehicleCategory(),
                 vehicleDto.getModel(),
                 vehicleDto.getNumberOfSeats(),
                 vehicleDto.getFuelType(),
                 vehicleDto.getWeightLimit());
+
         vehicle.setId(vehicleDto.getId());
         return vehicle;
     }
