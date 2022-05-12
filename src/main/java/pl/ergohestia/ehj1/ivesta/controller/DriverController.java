@@ -35,6 +35,16 @@ public class DriverController {
         return driverService.getDriverById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteVehicle(@PathVariable UUID id) {
+        try {
+            driverService.deleteById(id);
+        } catch (EmptyResultDataAccessException exception) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Driver not found.", exception);
+        }
+    }
+
     @PostMapping
     ResponseEntity<DriverDto> addNewDriver(@RequestBody Driver driver) {
         return ResponseEntity.status(HttpStatus.CREATED).body(driverService.addDriver(driver));
@@ -52,13 +62,13 @@ public class DriverController {
     }
 
     @PutMapping("/deactivate/{id}")
-    @ResponseStatus( HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void setStatusToInactive(@PathVariable UUID id) {
         driverService.setDriverStatus(id, Availability.INACTIVE);
     }
 
     @GetMapping("/availableDrivers/{date}")
-    List<DriverDto> getAvailableDrivers(@PathVariable String date){
+    List<DriverDto> getAvailableDrivers(@PathVariable String date) {
         return driverService.getAvailableDrivers(date);
     }
 }
