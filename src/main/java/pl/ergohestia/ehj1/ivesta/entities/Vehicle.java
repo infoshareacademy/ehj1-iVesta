@@ -32,36 +32,29 @@ public class Vehicle {
 
     @Column(name = "vehicle_status")
     @Enumerated(EnumType.STRING)
-    @JsonProperty("availability")
-    private Availability availability = Availability.ACTIVE;
+    private Availability availability;
 
     @Column
-    @JsonProperty("marka")
     private String brand;
 
     @Column(name = "vehicle_category")
-    @JsonProperty("kategoria-pojazdu")
     private String vehicleCategory;
 
     @Column
     @Convert(converter = LicenseHibernateConverter.class)
     private LicenseType license;
 
-
     @Column
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
-    @JsonProperty("liczba-miejsc-ogolem")
     @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
-    @JsonProperty("rodzaj-paliwa")
     private String fuelType;
 
     @Column(nullable = false, name = "weight_limit")
-    @JsonProperty("max-ladownosc")
     @Min(0)
     private double weightLimit;
 
