@@ -31,7 +31,7 @@ public class Vehicle {
     @Column(name ="vehicle_status")
     @Enumerated(EnumType.STRING)
     @JsonProperty("availability")
-    private Availability availability;
+    private Availability availability = Availability.ACTIVE;
 
     @Column
     @JsonProperty("marka")
