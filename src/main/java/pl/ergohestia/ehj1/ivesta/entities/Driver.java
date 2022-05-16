@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import pl.ergohestia.ehj1.ivesta.converters.LicenseHibernateConverter;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
@@ -37,14 +38,8 @@ public class Driver {
     private String phoneNumber;
 
     @Column
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = LicenseHibernateConverter.class)
     private LicenseType license;
-
-    /*@Column(name = "number_of_courses")
-    private Integer numberOfCourses;
-
-    @Column(name = "number_of_kilometres")
-    private Integer numberOfKilometres;*/
 
     @Column
     @Enumerated(EnumType.STRING)

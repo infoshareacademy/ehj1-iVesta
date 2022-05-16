@@ -57,6 +57,11 @@ public class VehicleController {
         return vehicleService.updateVehicle(id, vehicleDto);
     }
 
+    @GetMapping("/availableVehicles/{date}")
+    List<VehicleDto> getAvailableVehicles(@PathVariable String date) {
+        return vehicleService.getAvailableVehicles(date);
+    }
+
     @GetMapping("/license/{license}")
     public List<VehicleDto> getVehicleByLicense(@PathVariable LicenseType license) {
         return vehicleService.findAllByLicense(license);

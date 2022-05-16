@@ -1,7 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum LicenseType {
     AM,
@@ -10,7 +9,7 @@ public enum LicenseType {
     A,
     B,
     B1,
-    
+
     @JsonProperty("B+E")
     B_E,
     C,
