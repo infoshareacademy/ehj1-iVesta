@@ -9,6 +9,7 @@ import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
 import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
 
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -33,6 +34,7 @@ public class RouteRequest {
     @NotNull
     @Min(1)
     private Integer transportVolume;
+    @FutureOrPresent
     @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate date;
