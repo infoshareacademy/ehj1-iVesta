@@ -1,9 +1,6 @@
 package pl.ergohestia.ehj1.ivesta.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import pl.ergohestia.ehj1.ivesta.model.TransportType;
@@ -18,6 +15,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"vehicle", "driver"})
 public class Route {
 
     @Id
