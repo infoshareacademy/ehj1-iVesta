@@ -18,7 +18,6 @@ import java.util.UUID;
 @Table(name = "drivers")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Driver {
 
@@ -43,6 +42,7 @@ public class Driver {
     private LicenseType license;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Availability availability;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -58,5 +58,18 @@ public class Driver {
         this.phoneNumber = phoneNumber;
         this.license = license;
         this.availability = availability;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", license=" + license +
+                ", availability=" + availability +
+                ", route=" + route +
+                '}';
     }
 }

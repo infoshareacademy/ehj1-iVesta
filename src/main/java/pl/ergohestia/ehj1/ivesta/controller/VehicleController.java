@@ -75,4 +75,8 @@ public class VehicleController {
     ResponseEntity<VehicleDto> setStatusToInactive(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(vehicleService.setVehicleStatus((id),Availability.INACTIVE));
     }
+    @GetMapping("/cargo/{transport}")
+    List<VehicleDto> getVehicleByTransportType(@PathVariable String transport){
+        return vehicleService.getVehicleByCargoType(transport);
+    }
 }
