@@ -128,7 +128,7 @@ public class DriverService {
                     .forEach(route -> route.setDriver(null));
             driverRepository.delete(driver);
         } else {
-            throw new UnableToDeleteResource("Unable to delete driver with status set to 'active.");
+            throw new UnableToDeleteResource("Unable to delete driver with status set to 'active'.");
         }
     }
 }
