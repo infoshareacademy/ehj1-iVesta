@@ -5,6 +5,7 @@ import pl.ergohestia.ehj1.ivesta.adapters.DriverAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
+import pl.ergohestia.ehj1.ivesta.exception.UnableToDeleteResource;
 import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.DriverDto;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
@@ -118,11 +119,16 @@ public class DriverService {
             routeRepository.save(route);
         }
     }
+
     public void deleteById(UUID id) {
         Driver driver = driverRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFound("Id: " + id + " does not exist in database."));
-        driver.getRoute()
-                .forEach(route -> route.setDriver(null));
-        driverRepository.delete(driver);
+        if (driver.getAvailability().equals(Availability.INACTIVE)) {
+            driver.getRoute()
+                    .forEach(route -> route.setDriver(null));
+            driverRepository.delete(driver);
+        } else {
+            throw new UnableToDeleteResource("Unable to delete driver with status set to 'active.");
+        }
     }
 }
