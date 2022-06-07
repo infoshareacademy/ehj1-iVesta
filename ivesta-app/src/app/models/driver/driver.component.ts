@@ -1,5 +1,5 @@
 export interface DriverComponent  {
-  id: number | undefined;
+  id: string | undefined;
   name: string | undefined;
   lastName: string | undefined;
   phone: number | undefined;

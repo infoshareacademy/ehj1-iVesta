@@ -14,7 +14,8 @@ export class DriversComponent implements OnInit {
   constructor(private driverService: DriverHtmlService) { }
 
   ngOnInit(): void {
-    this.fetchDrivers();
+    //this.fetchDriversById("0cf1f588-c61f-11ec-9d64-0242ac120002");
+    this.deleteDriverById('0cf1f588-c61f-11ec-9d64-0242ac120002');
   }
   fetchDrivers(){
     this.driverService.fetch().subscribe(response=>{
@@ -22,4 +23,14 @@ export class DriversComponent implements OnInit {
     })
     console.log(this.drivers)
   }
+
+  fetchDriversById(driverId: string){
+    this.driverService.fetchDriverById(driverId).subscribe(response =>{
+      this.drivers= [response];
+    })
+  }
+  deleteDriverById(driverId: string){
+    this.driverService.delete(driverId).subscribe();
+  }
+
 }
