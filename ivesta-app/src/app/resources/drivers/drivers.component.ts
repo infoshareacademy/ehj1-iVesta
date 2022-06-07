@@ -30,7 +30,6 @@ export class DriversComponent implements OnInit {
       this.drivers= [response];
     })
   }
-  //todo Zaimplementować deleta
   deleteDriverById(driverId: string){
     this.driverService.delete(driverId).subscribe(()=>{
       this.fetchDrivers();

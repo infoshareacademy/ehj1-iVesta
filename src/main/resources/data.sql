@@ -1,5 +1,5 @@
-INSERT INTO drivers(ID, LAST_NAME, LICENSE, NAME, )
-VALUES ('9e01475a-c61e-11ec-9d64-0242ac120002', 'Sram', 'A', 'Janusz',),
+INSERT INTO drivers(ID, LAST_NAME, LICENSE, NAME)
+VALUES ('9e01475a-c61e-11ec-9d64-0242ac120002', 'Sram', 'A', 'Janusz'),
        ('9e014a34-c61e-11ec-9d64-0242ac12000', 'Jachaś', 'C+E', 'Domino'),
        ('9e015b82-c61e-11ec-9d64-0242ac12000', 'Bomba', 'B', 'Tytus'),
        ('9e01598e-c61e-11ec-9d64-0242ac12000', 'Koczkodan', 'A', 'Sniezny'),
