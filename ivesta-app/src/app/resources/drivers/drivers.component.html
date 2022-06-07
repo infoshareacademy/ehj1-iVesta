@@ -1,0 +1,24 @@
+<p>drivers works!</p>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Telefon</th>
+    <th>Licencje</th>
+    <th>Dostępność</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let driver of drivers">
+    <th>{{driver.id}}</th>
+    <th>{{driver.name}}</th>
+    <th>{{driver.lastName}}</th>
+    <th>{{driver.phone}}</th>
+    <th>{{driver.license}}</th>
+    <th>{{driver.availability}}</th>
+  </tr>
+  </tbody>
+</table>
+
