@@ -1,0 +1,17 @@
+.container{
+  padding: 30px;
+  margin-top: 5px;
+
+  box-sizing: border-box;
+  height: 99vh;
+  }
+.navbar{
+  padding: 10px;
+  background-color: #D8E1E9;
+}
+.btn-group{
+
+}
+.btn{
+  color: black;
+}

@@ -1,25 +1,11 @@
 <div class="container">
   <h3>iVesta</h3>
-
-<nav class="navbar navbar-expand-sm bg-light navbar-dark">
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <button routerLink="vehicles">
-      Vehicles
-    </button>
-  </li>
-  <li class="nav-item">
-    <button routerLink="drivers">
-      Drivers
-    </button>
-  </li>
-  <li class="nav-item">
-    <button routerLink="routes">
-      Routes
-    </button>
-  </li>
-  </ul>
+<nav class="navbar navbar-expand-sm">
+  <div class="btn-group col-md-6" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" routerLink="drivers">Drivers</button>
+    <button type="button" class="btn btn-secondary" routerLink="routes">Routes</button>
+    <button type="button" class="btn btn-secondary" routerLink="vehicles">Vehicles</button>
+  </div>
 </nav>
-
 <router-outlet></router-outlet>
 </div>

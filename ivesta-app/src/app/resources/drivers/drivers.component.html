@@ -1,4 +1,4 @@
-<table>
+<table class="driver-table">
   <thead>
   <tr>
     <th>ID</th>
@@ -17,7 +17,11 @@
     <th>{{driver.phone}}</th>
     <th>{{driver.license}}</th>
     <th>{{driver.availability}}</th>
+    <button class="btn">Edit</button>
+    <button class="btn">Remove</button>
   </tr>
   </tbody>
 </table>
-
+<nav class="bottom-nav bottom-100">
+  <button class="btn" (click)="fetchDrivers()">Show all</button>
+</nav>
