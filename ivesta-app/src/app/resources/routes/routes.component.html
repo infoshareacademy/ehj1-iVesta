@@ -1,1 +1,25 @@
 <p>routes works!</p>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Start</th>
+        <th>Destiantion</th>
+        <th>Length</th>
+        <th>Transport type</th>
+        <th>Transport volume</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let route of routes">
+        <th>{{route.id}}</th>
+        <th>{{route.startAddress}}</th>
+        <th>{{route.destinationAddress}}</th>
+        <th>{{route.length}}</th>
+        <th>{{route.transportType}}</th>
+        <th>{{route.transportVolume}}</th>
+        <th>{{route.date}}</th>
+    </tr>
+    </tbody>
+</table>
