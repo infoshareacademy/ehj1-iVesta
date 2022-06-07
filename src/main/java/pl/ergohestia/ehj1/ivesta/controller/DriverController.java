@@ -13,7 +13,7 @@ import pl.ergohestia.ehj1.ivesta.services.DriverService;
 
 import java.util.List;
 import java.util.UUID;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/drivers")
 public class DriverController {
