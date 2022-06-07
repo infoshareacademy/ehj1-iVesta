@@ -16,10 +16,10 @@ export class DriverHtmlService {
   }
 
   fetchDriverById(driverId: string) {
-    return this.http.get<DriverComponent>(DRIVERS_API_PATH+`/${driverId}`);
+    return this.http.get<DriverComponent>(`${DRIVERS_API_PATH}/${driverId}`);
   }
 
-  delete(removeCandidateId: string){
-    return this.http.delete(DRIVERS_API_PATH+`/${removeCandidateId}`);
+  delete(driverId: string){
+    return this.http.delete(`${DRIVERS_API_PATH}/${driverId}`);
   }
 }

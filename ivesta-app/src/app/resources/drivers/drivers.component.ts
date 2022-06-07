@@ -14,8 +14,9 @@ export class DriversComponent implements OnInit {
   constructor(private driverService: DriverHtmlService) { }
 
   ngOnInit(): void {
+    this.fetchDrivers();
     //this.fetchDriversById("0cf1f588-c61f-11ec-9d64-0242ac120002");
-    this.deleteDriverById('0cf1f588-c61f-11ec-9d64-0242ac120002');
+    //this.deleteDriverById('0cf1f588-c61f-11ec-9d64-0242ac120002');
   }
   fetchDrivers(){
     this.driverService.fetch().subscribe(response=>{
@@ -29,8 +30,11 @@ export class DriversComponent implements OnInit {
       this.drivers= [response];
     })
   }
+  //todo Zaimplementować deleta
   deleteDriverById(driverId: string){
-    this.driverService.delete(driverId).subscribe();
+    this.driverService.delete(driverId).subscribe(()=>{
+      this.fetchDrivers();
+    })
   }
 
 }
