@@ -1,1 +1,13 @@
-<p>Tutej będzie formularz do nowego drivera.</p>
+<h1>Dodaj nowego kierowcę:</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h6>Podaj imię:</h6>
+  <input type="text" name="name" class="form-control" formControlName="name">
+  <h6>Podaj nazwisko:</h6>
+  <input type="text" name="lastName" class="form-control" formControlName="lastName">
+  <h6>Podaj numer telefonu:</h6>
+  <input type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber">
+  <h6>Podaj rodaj posiadanych prawojazdy:</h6>
+  <input type="text" name="license" class="form-control" formControlName="license">
+  <button (submit)="submit()">Dodaj kierowcę</button>
+
+</form>

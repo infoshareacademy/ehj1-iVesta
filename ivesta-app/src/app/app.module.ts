@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddDriverComponent } from './resources/drivers/add-driver/add-driver.component';
 import { EditDriverComponent } from './resources/drivers/edit-driver/edit-driver.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import { EditDriverComponent } from './resources/drivers/edit-driver/edit-driver
     AddDriverComponent,
     EditDriverComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
