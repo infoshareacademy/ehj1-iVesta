@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DriverHtmlService} from "./driverServices/driver-html.service";
 import {DriverComponent} from "../../models/driver/driver.component"
-import {hide} from "@popperjs/core";
 
 @Component({
   selector: 'app-drivers',
@@ -12,12 +11,11 @@ export class DriversComponent implements OnInit {
 
   drivers: DriverComponent[] = [];
 
+
   constructor(private driverService: DriverHtmlService) {
   }
 
   ngOnInit(): void {
-    //this.fetchDriversById("0cf1f588-c61f-11ec-9d64-0242ac120002");
-    //this.deleteDriverById('0cf1f588-c61f-11ec-9d64-0242ac120002');
   }
 
   fetchDrivers() {
@@ -32,9 +30,10 @@ export class DriversComponent implements OnInit {
     })
   }
 
-  deleteDriverById(removeCandidate: DriverComponent) {
+  deleteDriverById(removeCandidate: string) {
     this.driverService.delete(removeCandidate).subscribe(() => {
       this.fetchDrivers();
+      console.log("Klikniete")
     })
   }
   setTableVisible(){

@@ -6,6 +6,7 @@ import {DriversComponent} from './resources/drivers/drivers.component';
 import {RoutesComponent} from './resources/routes/routes.component';
 import {VehiclesComponent} from './resources/vehicles/vehicles/vehicles.component';
 import {HttpClientModule} from "@angular/common/http";
+import {DriverHtmlService} from "./resources/drivers/driverServices/driver-html.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DriverHtmlService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

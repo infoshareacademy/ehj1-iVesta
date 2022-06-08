@@ -19,7 +19,7 @@ export class DriverHtmlService {
     return this.http.get<DriverComponent>(`${DRIVERS_API_PATH}/${driverId}`);
   }
 
-  delete(removeCandidate: DriverComponent){
-    return this.http.delete(`${DRIVERS_API_PATH}/${removeCandidate.id}`);
+  delete(removeCandidate: string){
+    return this.http.delete(`${DRIVERS_API_PATH}/${removeCandidate}`);
   }
 }
