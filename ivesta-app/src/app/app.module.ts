@@ -8,13 +8,17 @@ import { RoutesComponent } from './resources/routes/routes.component';
 import { VehiclesComponent } from './resources/vehicles/vehicles.component';
 import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddDriverComponent } from './resources/drivers/add-driver/add-driver.component';
+import { EditDriverComponent } from './resources/drivers/edit-driver/edit-driver.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DriversComponent,
     RoutesComponent,
-    VehiclesComponent
+    VehiclesComponent,
+    AddDriverComponent,
+    EditDriverComponent
   ],
   imports: [
     BrowserModule,
