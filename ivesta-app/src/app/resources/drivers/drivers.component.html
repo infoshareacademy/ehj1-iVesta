@@ -1,4 +1,4 @@
-<table class="driver-table">
+<table id="driver-table" class="driver-table" [style.display]="'none'">
   <thead>
   <tr>
     <th>ID</th>
@@ -23,5 +23,6 @@
   </tbody>
 </table>
 <nav class="bottom-nav bottom-100">
-  <button class="btn" (click)="fetchDrivers()">Show all</button>
+  <button class="btn" (click)="setTableVisible();fetchDrivers()">Show all</button>
+  <button class="btn" (click)="setTableInvisible()">Hide all</button>
 </nav>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DriverHtmlService} from "./driverServices/driver-html.service";
 import {DriverComponent} from "../../models/driver/driver.component"
+import {hide} from "@popperjs/core";
 
 @Component({
   selector: 'app-drivers',
@@ -35,5 +36,13 @@ export class DriversComponent implements OnInit {
     this.driverService.delete(removeCandidate).subscribe(() => {
       this.fetchDrivers();
     })
+  }
+  setTableVisible(){
+    const driverTable = <HTMLInputElement>document.getElementById("driver-table");
+    driverTable.style.display ='block';
+  }
+  setTableInvisible(){
+    const driverTable = <HTMLInputElement>document.getElementById("driver-table");
+    driverTable.style.display ='none';
   }
 }
