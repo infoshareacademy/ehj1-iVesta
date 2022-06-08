@@ -41,7 +41,7 @@ public class Driver {
     @Convert(converter = LicenseHibernateConverter.class)
     private LicenseType license;
 
-    @Column
+    @Column(name="status")
     @Enumerated(EnumType.STRING)
     private Availability availability = Availability.ACTIVE;
 
