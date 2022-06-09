@@ -25,7 +25,7 @@ public class VehicleAdapter {
         Vehicle vehicle = new Vehicle(
                 vehicleDto.getBrand(),
                 vehicleDto.getAvailability(),
-                vehicleDto.getLicense(),
+                vehicleDto.getLicenseVehicles(),
                 vehicleDto.getVehicleCategory(),
                 vehicleDto.getModel(),
                 vehicleDto.getNumberOfSeats(),

@@ -64,8 +64,8 @@ public class VehicleService {
                     if (vehicleDto.getBrand() != null && !vehicleDto.getBrand().isBlank()) {
                         vehicle.setBrand(vehicleDto.getBrand());
                     }
-                    if (vehicleDto.getLicense() != null) {
-                        vehicle.setLicense(vehicleDto.getLicense());
+                    if (vehicleDto.getLicenseVehicles() != null) {
+                        vehicle.setLicense(vehicleDto.getLicenseVehicles());
                     }
                     if (vehicleDto.getVehicleCategory() != null && !vehicleDto.getVehicleCategory().isBlank()) {
                         vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());

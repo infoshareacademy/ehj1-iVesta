@@ -14,13 +14,13 @@ public class DriverDto {
     private String name;
     private String lastName;
     private String phoneNumber;
-    private LicenseType license;
+    private List<LicenseType> license;
     private Availability availability;
 
     public DriverDto(String name,
                      String lastName,
                      String phoneNumber,
-                     LicenseType license,
+                     List<LicenseType> license,
                      Availability availability) {
         this.name = name;
         this.lastName = lastName;

@@ -55,14 +55,14 @@ public class DriverService {
         return driverAdapter.convertToDriverDto(newDriver);
     }
 
-    public DriverDto setDriverStatus(UUID id, Availability availability) {
+    public void setDriverStatus(UUID id, Availability availability) {
         var driver = findById(id);
         if (!availability.equals(Availability.ACTIVE)) {
             removeDeactivatedDriverFromRoutes(driver);
         }
         driver.setAvailability(availability);
         Driver newDriver = driverRepository.save(driver);
-        return driverAdapter.convertToDriverDto(newDriver);
+        driverAdapter.convertToDriverDto(newDriver);
     }
 
     public List<DriverDto> getAvailableDrivers(String dateStr) {
@@ -95,7 +95,7 @@ public class DriverService {
         String name = driverDto.getName();
         String lastName = driverDto.getLastName();
         String phoneNumber = driverDto.getPhoneNumber();
-        LicenseType license = driverDto.getLicense();
+        List<LicenseType> license = driverDto.getLicense();
 
         if (name != null && !name.isBlank()) {
             foundDriver.setName(name);

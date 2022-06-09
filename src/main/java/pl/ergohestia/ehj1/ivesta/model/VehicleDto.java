@@ -29,7 +29,7 @@ public class VehicleDto {
     private String vehicleCategory;
 
     @JsonProperty("license")
-    private LicenseType license;
+    private LicenseType licenseVehicles;
 
     @JsonProperty("model")
     private String model;
@@ -45,7 +45,7 @@ public class VehicleDto {
 
     public VehicleDto(Availability availability,
                       String brand,
-                      LicenseType license,
+                      LicenseType licenseVehicles,
                       String vehicleCategory,
                       String model,
                       int numberOfSeats,
@@ -53,7 +53,7 @@ public class VehicleDto {
                       double weightLimit) {
         this.availability = availability;
         this.brand = brand;
-        this.license = license;
+        this.licenseVehicles = licenseVehicles;
         this.vehicleCategory = vehicleCategory;
         this.model = model;
         this.numberOfSeats = numberOfSeats;

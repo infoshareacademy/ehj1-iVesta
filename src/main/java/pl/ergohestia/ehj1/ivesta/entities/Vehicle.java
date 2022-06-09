@@ -47,14 +47,14 @@ public class Vehicle {
     @Column
     private String model;
 
-    @Column(nullable = false, name = "number_of_seats")
+    @Column(name = "number_of_seats")
     @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
     private String fuelType;
 
-    @Column(nullable = false, name = "weight_limit")
+    @Column(name = "weight_limit")
     @Min(0)
     private double weightLimit;
 

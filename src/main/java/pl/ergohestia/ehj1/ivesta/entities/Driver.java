@@ -29,10 +29,10 @@ public class Driver {
     @Column(length = 36, updatable = false, nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-    @Column(nullable = false, name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "phone_number")
@@ -40,7 +40,7 @@ public class Driver {
 
     @Column
     @Convert(converter = LicenseHibernateConverter.class)
-    private LicenseType license;
+    private List<LicenseType> license;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -52,7 +52,7 @@ public class Driver {
     public Driver(String name,
                   String lastName,
                   String phoneNumber,
-                  LicenseType license,
+                  List<LicenseType> license,
                   Availability availability) {
         this.name = name;
         this.lastName = lastName;
