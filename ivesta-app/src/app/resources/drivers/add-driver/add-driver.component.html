@@ -6,8 +6,14 @@
   <input type="text" name="lastName" class="form-control" formControlName="lastName">
   <h6>Podaj numer telefonu:</h6>
   <input type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber">
-  <h6>Podaj rodaj posiadanych prawojazdy:</h6>
-  <input type="text" name="license" class="form-control" formControlName="license">
-  <button (submit)="submit()">Dodaj kierowcę</button>
+  <h6>Wybierz posiadane licencje:</h6>
+  <mat-form-field>
+    <mat-select class="form-control" formControlName="license">
+    <mat-label>Add licence</mat-label>
+      <mat-option value="C">C</mat-option>
+      <mat-option value="C+E">C+E</mat-option>
+    </mat-select>
+  </mat-form-field>
 
+  <button (submit)="submit()">Dodaj kierowcę</button>
 </form>

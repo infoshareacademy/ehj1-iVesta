@@ -1,6 +1,8 @@
 package pl.ergohestia.ehj1.ivesta.model;
 
 import lombok.*;
+
+import java.util.List;
 import java.util.UUID;
 
 @Data

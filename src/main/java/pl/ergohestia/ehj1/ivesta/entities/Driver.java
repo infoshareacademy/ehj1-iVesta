@@ -11,6 +11,7 @@ import pl.ergohestia.ehj1.ivesta.model.Availability;
 import pl.ergohestia.ehj1.ivesta.model.LicenseType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +44,7 @@ public class Driver {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Availability availability;
+    private Availability availability=Availability.ACTIVE;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;

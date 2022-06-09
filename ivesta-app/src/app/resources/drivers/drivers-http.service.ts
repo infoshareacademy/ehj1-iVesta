@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Driver} from "../../model/driver";
+import {DriverCandidate} from "../../model/driver-candidate";
 
 const DRIVERS_API_PATH = 'http://localhost:8080/api/drivers';
 
@@ -21,5 +22,8 @@ export class DriversHttpService {
 
   delete(removeCandidate: string){
     return this.http.delete(`${DRIVERS_API_PATH}/${removeCandidate}`);
+  }
+  create(driver: DriverCandidate){
+    return this.http.post<Driver>(DRIVERS_API_PATH, driver);
   }
 }

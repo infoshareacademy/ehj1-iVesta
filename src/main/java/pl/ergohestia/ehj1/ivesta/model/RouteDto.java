@@ -37,7 +37,4 @@ public class RouteDto {
         this.transportVolume = transportVolume;
         this.date = date;
     }
-
-    public RouteDto(String startAddress, String destinationAddress, Integer routeLength, TransportType transportType, Integer transportVolume) {
-    }
 }
