@@ -24,6 +24,7 @@ export class AddDriverComponent implements OnInit {
     lastName: [],
     phoneNumber: [],
     license: [this.license],
+    availability:[]
   });
 
   submit() {

@@ -44,7 +44,7 @@ public class Driver {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Availability availability=Availability.ACTIVE;
+    private Availability availability = Availability.ACTIVE;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Route> route;

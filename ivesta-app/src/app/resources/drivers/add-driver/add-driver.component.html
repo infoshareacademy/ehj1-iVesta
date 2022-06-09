@@ -14,6 +14,14 @@
       <mat-option value="C+E">C+E</mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <mat-select class="form-control" formControlName="availability">
+      <mat-label>Set status</mat-label>
+      <mat-option value="active">Active</mat-option>
+      <mat-option value="inactive">Inactive</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <button (submit)="submit()">Dodaj kierowcę</button>
+
+  <button class="btn" (submit)="submit()">Dodaj kierowcę</button>
 </form>
