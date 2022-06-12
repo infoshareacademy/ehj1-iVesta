@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Driver} from "../../model/driver";
 import {DriversHttpService} from "./drivers-http.service";
-import {DriverCandidate} from "../../model/driver-candidate";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-drivers',
@@ -10,12 +10,16 @@ import {DriverCandidate} from "../../model/driver-candidate";
 })
 export class DriversComponent implements OnInit {
 
-  drivers: Driver[]=[];
+  drivers: Driver[] = [];
+  addDriversClicked: boolean = false;
 
-  constructor(private driverService: DriversHttpService) { }
+
+  constructor(private driverService: DriversHttpService) {
+  }
 
   ngOnInit(): void {
   }
+
   fetchDrivers() {
     this.driverService.fetch().subscribe(response => {
       this.drivers = response;
@@ -34,20 +38,30 @@ export class DriversComponent implements OnInit {
       console.log("Klikniete")
     })
   }
-  createNewDriver(driver: DriverCandidate){
-    this.driverService.create(driver).subscribe(()=>{
-      this.fetchDrivers();
-    })
+
+  setTableVisible() {
+    const driverTable = <HTMLInputElement>document.getElementById("driver-table");
+    driverTable.style.display = 'block';
   }
 
-  setTableVisible(){
+  setTableInvisible() {
     const driverTable = <HTMLInputElement>document.getElementById("driver-table");
-    driverTable.style.display ='block';
+    driverTable.style.display = 'none';
   }
-  setTableInvisible(){
-    const driverTable = <HTMLInputElement>document.getElementById("driver-table");
-    driverTable.style.display ='none';
+
+  addDriverVisible() {
+    this.addDriversClicked = true;
+  }
+
+  addDriverInvisible() {
+    this.addDriversClicked = false;
+  }
+
+  editDriverAddVisible() {
+    this.addDriversClicked = true;
+  }
+
+  editDriverAddInvisible() {
+    this.addDriversClicked = false;
   }
 }
-
-

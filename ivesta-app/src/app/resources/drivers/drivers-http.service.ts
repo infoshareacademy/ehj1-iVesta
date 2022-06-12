@@ -26,4 +26,8 @@ export class DriversHttpService {
   create(driver: DriverCandidate){
     return this.http.post<Driver>(DRIVERS_API_PATH, driver);
   }
+
+  update(driver: DriverCandidate,driverId: string){
+    return this.http.put<Driver>(`${DRIVERS_API_PATH}/${driverId}`,driver)
+  }
 }

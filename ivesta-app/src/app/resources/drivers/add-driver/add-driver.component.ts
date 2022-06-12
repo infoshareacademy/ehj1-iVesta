@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {License} from "../../../model/license";
 import {DriverCandidate} from "../../../model/driver-candidate";
 import {DriversHttpService} from "../drivers-http.service";
@@ -12,9 +12,11 @@ import {Driver} from "../../../model/driver";
 })
 
 export class AddDriverComponent implements OnInit {
-  license: License[]=[];
-  drivers: Driver[]=[];
-  constructor(private formBuilder: FormBuilder, private driverService: DriversHttpService){ }
+  license: License[] = [];
+  drivers: Driver[] = [];
+
+  constructor(private formBuilder: FormBuilder, private driverService: DriversHttpService) {
+  }
 
   ngOnInit(): void {
   }
@@ -24,7 +26,7 @@ export class AddDriverComponent implements OnInit {
     lastName: [],
     phoneNumber: [],
     license: [this.license],
-    availability:[]
+    availability: []
   });
 
   submit() {
@@ -32,16 +34,16 @@ export class AddDriverComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    console.log('this.form.value', JSON.stringify(this.form.value)); // SEND TO BACKEND
-    console.log('this.form.errors', this.form.errors);
     this.createNewDriver(this.form.value)
     this.form.reset();
   }
-  createNewDriver(driver: DriverCandidate){
-    this.driverService.create(driver).subscribe(()=>{
+
+  createNewDriver(driver: DriverCandidate) {
+    this.driverService.create(driver).subscribe(() => {
       this.fetchDrivers();
     })
   }
+
   fetchDrivers() {
     this.driverService.fetch().subscribe(response => {
       this.drivers = response;
