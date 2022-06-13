@@ -9,8 +9,6 @@ import {RoutesHttpService} from "./routes-http.service";
 })
 export class RoutesComponent implements OnInit {
 
-
-
   routes: Route[] = [];
 
   constructor(private routeService: RoutesHttpService) { }
@@ -24,4 +22,7 @@ export class RoutesComponent implements OnInit {
     });
   }
 
+  deleteRouteById(removeCandidate: string) {
+    this.routeService.delete(removeCandidate).subscribe(()=>this.fetchRoutes())
+  }
 }

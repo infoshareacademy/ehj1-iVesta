@@ -1,5 +1,5 @@
 export interface Route {
-  id: number;
+  id: string;
   startAddress: string;
   destinationAddress: string;
   length: number;
