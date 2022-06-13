@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Route} from "../../model/route";
+import {RoutesHttpService} from "./routes-http.service";
 
 @Component({
   selector: 'app-routes',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesComponent implements OnInit {
 
-  constructor() { }
+
+
+  routes: Route[] = [];
+
+  constructor(private routeService: RoutesHttpService) { }
 
   ngOnInit(): void {
+    this.fetchRoutes();
+  }
+  fetchRoutes() {
+    this.routeService.fetch().subscribe(response => {
+      this.routes = response;
+    });
   }
 
 }
