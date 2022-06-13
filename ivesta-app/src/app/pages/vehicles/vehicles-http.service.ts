@@ -9,7 +9,7 @@ const VEHICLES_API_PATH='http://localhost:8080/api/vehicles';
 })
 export class VehiclesHttpService {
 
-  constructor(private http: HttpClient){ }
+  constructor(private http: HttpClient) { }
 
   fetch(){
     return this.http.get<Vehicle[]>(VEHICLES_API_PATH);

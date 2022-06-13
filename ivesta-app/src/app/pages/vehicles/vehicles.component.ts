@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Vehicle} from "../../model/vehicle";
+import{VehiclesHttpService} from "./vehicles-http.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiclesComponent implements OnInit {
 
-  constructor() { }
+  vehicles: Vehicle[] = [];
+
+  constructor(private vehicleService: VehiclesHttpService) { }
 
   ngOnInit(): void {
+    this.fetchVehicles();
+  }
+
+  fetchVehicles() {
+    this.vehicleService.fetch().subscribe(response => {
+      this.vehicles = response;
+    })
   }
 
 }
