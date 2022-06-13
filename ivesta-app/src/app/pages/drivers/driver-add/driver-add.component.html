@@ -1,54 +1,59 @@
 <ng-container id="driverAdd">
-  <h1>Dodaj nowego kierowcę:</h1>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="row">
-      <div class="form-group col col-md-6">
-        <label for="input-name">Driver name</label>
-        <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
-               placeholder="Driver name">
-      </div>
-      <div class="row">
-        <div class="form-group col col-md-6">
-          <label for="input-lastname">Driver surname</label>
-          <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
-                 placeholder="Driver surname">
+  <div id="driver-card" class="card text-center" style="width: 50rem;">
+    <div class="card-body">
+      <h1>Dodaj nowego kierowcę:</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="form-group col col-md-5">
+            <label for="input-name">Driver name</label>
+            <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
+                   placeholder="Driver name">
+          </div>
+          <div class="form-group col col-md-5">
+            <label for="input-lastname">Driver surname</label>
+            <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
+                   placeholder="Driver surname">
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="phoneNumber">Phone number</label>
+            <input id="phoneNumber" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
+                   placeholder="Driver phone number">
+          </div>
+        </div>
+        <div class="checkbox-list>">
+          <div class="set-license form row">
+            <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
+              <mat-label>Select license</mat-label>
+              <mat-select class="form-control" formControlName="license">
+                <mat-label>Add licence</mat-label>
+                <mat-option>None</mat-option>
+                <mat-option value="C">C</mat-option>
+                <mat-option value="C+E">C+E</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="col">
+              <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
+                <mat-label>Select status</mat-label>
+                <mat-select class="form-control" formControlName="availability">
+                  <mat-label>None</mat-label>
+                  <mat-option value="active">Active</mat-option>
+                  <mat-option value="inactive">Inactive</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-secondary" routerLink="..">Powrót</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" (submit)="submit()">Dodaj kierowcę.</button>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="form-group col-md-3">
-      <label for="phoneNumber">Phone number</label>
-      <input id="phoneNumber" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
-             placeholder="Driver phone number">
-    </div>
-    <div class="checkbox-list>">
-      <div class="set-license form row">
-        <mat-form-field class="picked-license-avia col-md-3" appearance="fill">
-          <mat-label>Select license</mat-label>
-          <mat-select class="form-control" formControlName="license">
-            <mat-label>Add licence</mat-label>
-            <mat-option>None</mat-option>
-            <mat-option value="C">C</mat-option>
-            <mat-option value="C+E">C+E</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
-          <mat-label>Select status</mat-label>
-          <mat-select class="form-control" formControlName="availability">
-            <mat-label>None</mat-label>
-            <mat-option value="active">Active</mat-option>
-            <mat-option value="inactive">Inactive</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button class="btn btn-secondary" routerLink="..">Powrót</button>
-      </div>
-      <div class="col">
-        <button class="btn btn-primary" (submit)="submit()">Dodaj kierowcę.</button>
-      </div>
-    </div>
-
-  </form>
+  </div>
 </ng-container>
