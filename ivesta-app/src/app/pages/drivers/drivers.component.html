@@ -2,10 +2,9 @@
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-outline-dark btn-sm" routerLink="add">Add driver</button>
   </div>
-  <table id="driver-table" class="table table-striped" data-toggle="collapse">
+  <table id="driver-table" class="table table-bordered table-hover" data-toggle="collapse">
     <thead>
     <tr>
-      <th>ID</th>
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>Telefon</th>
@@ -15,7 +14,6 @@
     </thead>
     <tbody>
     <tr *ngFor="let driver of drivers ">
-      <th>{{driver.id}}</th>
       <th>{{driver.name}}</th>
       <th>{{driver.lastName}}</th>
       <th>{{driver.phoneNumber}}</th>
