@@ -6,7 +6,7 @@
   <tr>
 
     <th>Start</th>
-    <th>Destiantion</th>
+    <th>Destination</th>
     <th>Length</th>
     <th>Transport type</th>
     <th>Transport volume</th>
@@ -15,12 +15,12 @@
   </thead>
   <tbody>
   <tr *ngFor="let route of routes">
-    <th>{{route.startAddress}}</th>
-    <th>{{route.destinationAddress}}</th>
-    <th>{{route.routeLength}}</th>
-    <th>{{route.transportType}}</th>
-    <th>{{route.transportVolume}}</th>
-    <th>{{route.date}}</th>
+    <td>{{route.startAddress}}</td>
+    <td>{{route.destinationAddress}}</td>
+    <td>{{route.routeLength}}</td>
+    <td>{{route.transportType}}</td>
+    <td>{{route.transportVolume}}</td>
+    <td>{{route.date}}</td>
     <button class="btn" routerLink="{{route.id}}">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
            viewBox="0 0 16 16">

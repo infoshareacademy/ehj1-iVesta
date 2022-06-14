@@ -1,1 +1,69 @@
-<p>edit-route works!</p>
+<ng-container id="routeAdd">
+  <div id="route-card" class="card text-center" style="width: 50rem;">
+    <div class="card-body">
+      <h1>Edytuj trasę:</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="form-group col col-md-5">
+            <label for="input-start-address"></label>
+            <input id="input-start-address" type="text" name="startAddress" class="form-control"
+                   formControlName="startAddress"
+                   placeholder={{route.startAddress}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col col-md-5">
+            <label for="input-destination-address"></label>
+            <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
+                   formControlName="destinationAddress"
+                   placeholder={{route.destinationAddress}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="routeLength"></label>
+            <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
+                   placeholder={{route.routeLength}}>
+          </div>
+        </div>
+        <div class="checkbox-list>">
+          <div class="set-transport-type form row">
+            <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
+              <mat-label>Select transport type</mat-label>
+              <mat-select class="form-control" formControlName="transportType">
+                <mat-label>Add transport type</mat-label>
+                <mat-option>None</mat-option>
+                <mat-option value="PASSENGERS">passengers</mat-option>
+                <mat-option value="CARGO">cargo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="transportVolume"></label>
+            <input id="transportVolume" type="text" name="transportVolume" class="form-control"
+                   formControlName="transportVolume"
+                   placeholder={{route.transportVolume}}>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="date"></label>
+            <input id="date" type="text" name="date" class="form-control" formControlName="date"
+                   placeholder={{route.date}}>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-secondary" routerLink="..">Powrót</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" (submit)="submit()">Uaktualnij trasę</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
