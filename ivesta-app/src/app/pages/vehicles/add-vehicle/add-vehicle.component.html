@@ -1,7 +1,7 @@
 <ng-container id="driverAdd">
   <div id="driver-card" class="card text-center" style="width: 50rem;">
     <div class="card-body">
-      <h1>Dodaj nowego kierowcę:</h1>
+      <h1>Dodaj nowy pojazd:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
           <label for="input-marka">Marka</label>
@@ -61,7 +61,7 @@
             <button class="btn btn-secondary" routerLink="..">Powrót</button>
           </div>
           <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">Dodaj kierowcę.</button>
+            <button class="btn btn-primary" (submit)="submit()">Dodaj pojazd.</button>
           </div>
         </div>
       </form>

@@ -37,6 +37,7 @@ export class AddVehicleComponent implements OnInit {
       return;
     }
     this.createNewVehicle(this.form.value)
+    console.log(this.form.value)
     this.form.reset();
   }
 
@@ -48,6 +49,5 @@ export class AddVehicleComponent implements OnInit {
     this.vehicleService.fetch().subscribe( response => {
       this.vehicle = response;
     })
-    console.log(this.vehicle);
   }
 }

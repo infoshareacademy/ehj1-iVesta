@@ -10,7 +10,7 @@ import {Driver} from "../../../model/driver";
   styleUrls: ['./edit-driver.component.css']
 })
 export class EditDriverComponent implements OnInit {
-  license: string | undefined;
+  license: string;
   driver: Driver;
 
   driverId = this.activatedRoute.snapshot.params['id'];
@@ -23,7 +23,6 @@ export class EditDriverComponent implements OnInit {
       .subscribe(res => {
         this.driver = res;
       })
-    console.log(this.licenseValue)
   }
 
   form = this.formBuilder.group({
@@ -34,9 +33,7 @@ export class EditDriverComponent implements OnInit {
   });
 
   submit() {
-    console.log(this.form.value)
     this.httpService.update(this.form.value, this.driverId).subscribe();
+    this.form.reset();
   }
-
-  licenseValue = <HTMLInputElement><unknown>document.getElementsByClassName("mat-select-6");
 }

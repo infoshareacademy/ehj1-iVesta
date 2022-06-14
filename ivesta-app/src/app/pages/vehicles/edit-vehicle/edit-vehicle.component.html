@@ -1,1 +1,61 @@
-<p>edit-vehicle works!</p>
+<ng-container id="driverEdit">
+  <div id="driver-card" class="card text-center" style="width: 50rem;">
+    <div class="card-body">
+      <h1>Dodaj nowego kierowcę:</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <label for="input-marka">Marka</label>
+          <input id="input-marka" type="text" name="marka" class="form-control" formControlName="marka"
+                 placeholder="Marka">
+        </div>
+        <div class=row>
+          <label for="input-model">Model</label>
+          <input id="input-model" type="text" name="model" class="form-control" formControlName="model"
+                 placeholder="Model">
+        </div>
+        <div class="row">
+          <label for="kategoriaPojazdu">Kategoria pojazdu</label>
+          <input id="kategoriaPojazdu" type="text" name="vehicleCategory" class="form-control"
+                 formControlName="kategoria-pojazdu"
+                 placeholder="Kategoria">
+        </div>
+        <div class="row">
+          <label for="liczbaMiejsc">Liczba miejsc</label>
+          <input id="liczbaMiejsc" type="text" name="numberOfSeats" class="form-control" formControlName="liczba-miejsc-ogolem"
+                 placeholder="Liczba miejsc">
+        </div>
+        <div class="row">
+          <label for="rodzajPaliwa">Rodzaj paliwa</label>
+          <input id="rodzajPaliwa" type="text" name="fuelType" class="form-control" formControlName="rodzaj-paliwa"
+                 placeholder="Rodzaj paliwa">
+        </div>
+        <div class="row">
+          <label for="maxLadownosc">Ładowność</label>
+          <input id="maxLadownosc" type="text" name="weightLimit" class="form-control" formControlName="max-ladownosc"
+                 placeholder="Ładowność">
+        </div>
+        <div class="checkbox-list>">
+          <div class="set-license form row">
+            <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
+              <mat-label>Select license</mat-label>
+              <mat-select class="form-control" formControlName="license">
+                <mat-label>Add licence</mat-label>
+                <mat-option>None</mat-option>
+                <mat-option value="C">C</mat-option>
+                <mat-option value="C+E">C+E</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-secondary" routerLink="..">Powrót</button>
+          </div>
+          <div class="col">
+            <button type="button submit"  class="btn btn-primary">Uaktualnij.</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
