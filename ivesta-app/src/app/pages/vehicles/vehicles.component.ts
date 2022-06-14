@@ -23,4 +23,7 @@ export class VehiclesComponent implements OnInit {
     })
   }
 
+  deleteVehicleById(removeCandidate: string) {
+    this.vehicleService.delete(removeCandidate).subscribe(()=>this.fetchVehicles())
+  }
 }

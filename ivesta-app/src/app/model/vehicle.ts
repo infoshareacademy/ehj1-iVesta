@@ -1,5 +1,5 @@
 export interface Vehicle {
-  id: number;
+  id: string;
   marka: string;
   model: string;
   "kategoria-pojazdu": string;
