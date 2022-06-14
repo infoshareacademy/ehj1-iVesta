@@ -48,7 +48,6 @@ public class Vehicle {
     private String model;
 
     @Column(nullable = false, name = "number_of_seats")
-    @Min(value = 1)
     private int numberOfSeats;
 
     @Column(name = "fuel_type")
