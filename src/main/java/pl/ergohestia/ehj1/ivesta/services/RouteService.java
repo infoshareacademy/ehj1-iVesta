@@ -10,14 +10,13 @@ import pl.ergohestia.ehj1.ivesta.adapters.VehicleAdapter;
 import pl.ergohestia.ehj1.ivesta.entities.Driver;
 import pl.ergohestia.ehj1.ivesta.entities.Route;
 import pl.ergohestia.ehj1.ivesta.exception.ResourceNotFound;
-import pl.ergohestia.ehj1.ivesta.model.DriverDto;
-import pl.ergohestia.ehj1.ivesta.model.RouteDto;
-import pl.ergohestia.ehj1.ivesta.model.VehicleDto;
+import pl.ergohestia.ehj1.ivesta.model.*;
 import pl.ergohestia.ehj1.ivesta.repository.RouteRepository;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
 import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,6 +65,13 @@ public class RouteService {
         return routeAdapter.convertToRouteDto(savedRoute);
     }
 
+    public RouteDto updateRouteById(UUID id, RouteDto routeDto) {
+        var route = findById(id);
+        var updatedRoute = updateRouteData(route, routeDto);
+        Route newRoute = routeRepository.save(updatedRoute);
+        return routeAdapter.convertToRouteDto(newRoute);
+    }
+
     public void deleteRouteById(UUID id) {
         routeRepository.deleteById(id);
     }
@@ -102,5 +108,34 @@ public class RouteService {
                 .stream()
                 .map(routeAdapter::convertToRouteDto)
                 .toList();
+    }
+
+    private Route updateRouteData(Route foundRoute, RouteDto routeDto) {
+        String startAddress = routeDto.getStartAddress();
+        String destinationAddress = routeDto.getDestinationAddress();
+        Integer routeLength = routeDto.getRouteLength();
+        TransportType transportType = routeDto.getTransportType();
+        Integer transportVolume = routeDto.getTransportVolume();
+        LocalDate date = routeDto.getDate();
+
+        if (startAddress != null && !startAddress.isBlank()) {
+            foundRoute.setStartAddress(startAddress);
+        }
+        if (destinationAddress != null && !destinationAddress.isBlank()) {
+            foundRoute.setDestinationAddress(destinationAddress);
+        }
+        if (routeLength != null) {
+            foundRoute.setRouteLength(routeLength);
+        }
+        if (transportType != null) {
+            foundRoute.setTransportType(transportType);
+        }
+        if (transportVolume != null) {
+            foundRoute.setTransportVolume(transportVolume);
+        }
+        if (date != null) {
+            foundRoute.setDate(date);
+        }
+        return foundRoute;
     }
 }
