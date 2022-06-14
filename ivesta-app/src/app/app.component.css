@@ -1,4 +1,9 @@
 .container{
-  height: 99vh;
+  height: 100%;
 border: #e5383b;
+}
+.btn{
+  background-color: #e5383b;
+  color: white;
+  text-decoration: none;
 }

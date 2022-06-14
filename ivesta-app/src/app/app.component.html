@@ -1,15 +1,15 @@
 <div class="container">
-  <app-header></app-header>
-  <nav class="navbar navbar-expand-sm">
-    <div class="btn-group col-md-6" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary" routerLink="home">Home</button>
-      <button type="button" class="btn btn-secondary" routerLink="/drivers">Drivers</button>
-      <button type="button" class="btn btn-secondary" routerLink="/routes">Routes</button>
-      <button type="button" class="btn btn-secondary" routerLink="/vehicles">Vehicles</button>
-    </div>
-  </nav>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <div class="border border-1">
+    <app-header></app-header>
+    <nav class="navbar navbar-expand-sm">
+      <div class="btn-group col-md-6" role="group" aria-label="Basic example">
+        <button type="button" class="btn" routerLink="home">Home</button>
+        <button type="button" class="btn" routerLink="/drivers">Drivers</button>
+        <button type="button" class="btn" routerLink="/routes">Routes</button>
+        <button type="button" class="btn" routerLink="/vehicles">Vehicles</button>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
 </div>
-
-
