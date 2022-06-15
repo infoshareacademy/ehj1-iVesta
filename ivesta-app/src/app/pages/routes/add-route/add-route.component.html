@@ -1,1 +1,73 @@
-<p>add-route works!</p>
+<ng-container id="routeAdd">
+  <div id="route-card" class="card text-center" style="width: 50rem;">
+    <div class="card-body">
+      <h1>Dodaj nową trasę:</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="form-group col col-md-5" [class.was-validated]="form.controls['startAddress'].touched">
+            <label for="input-start-address"></label>
+            <input id="input-start-address" type="text" name="startAddress" class="form-control"
+                   required
+                   formControlName="startAddress"
+                   placeholder="Start address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col col-md-5" [class.was-validated]="form.controls['destinationAddress'].touched">
+            <label for="input-destination-address"></label>
+            <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
+                   required
+                   formControlName="destinationAddress"
+                   placeholder="Destination address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5" [class.was-validated]="form.controls['routeLength'].touched">
+            <label for="routeLength"></label>
+            <input id="routeLength" type="number" min="1" name="routeLength" class="form-control" formControlName="routeLength"
+                   required
+                   placeholder="Route length">
+          </div>
+        </div>
+        <div class="checkbox-list>">
+          <div class="set-transport-type form row" [class.was-validated]="form.controls['transportType'].touched">
+            <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
+              <mat-label>Select transport type</mat-label>
+              <mat-select class="form-control" formControlName="transportType">
+                <mat-option value="PASSENGERS">passengers</mat-option>
+                <mat-option value="CARGO">cargo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5" [class.was-validated]="form.controls['transportVolume'].touched">
+            <label for="transportVolume"></label>
+            <input id="transportVolume" type="number" min="1" name="transportVolume" class="form-control"
+                   required
+                   formControlName="transportVolume"
+                   placeholder="Transport volume">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5" [class.was-validated]="form.controls['date'].touched">
+            <label for="date"></label>
+            <input id="date" type="text" name="date" class="form-control"
+                   required
+                   formControlName="date"
+                   placeholder="Date [yyyy-mm-dd]">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-secondary" routerLink="..">Powrót</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" (submit)="submit()">Dodaj trasę</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>

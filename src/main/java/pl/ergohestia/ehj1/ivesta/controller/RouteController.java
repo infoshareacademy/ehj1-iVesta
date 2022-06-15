@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.model.RouteDto;
 import pl.ergohestia.ehj1.ivesta.request.DriverAssociation;
+import pl.ergohestia.ehj1.ivesta.request.RouteRequest;
 import pl.ergohestia.ehj1.ivesta.request.VehicleAssociation;
 import pl.ergohestia.ehj1.ivesta.services.RouteService;
 
@@ -42,6 +42,11 @@ public class RouteController {
     @PostMapping
     public ResponseEntity<RouteDto> addNewRoute(@RequestBody @Valid RouteRequest routeRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(routeService.addRoute(routeRequest));
+    }
+
+    @PutMapping("/{id}")
+    public RouteDto updateRoute(@PathVariable UUID id, @RequestBody RouteDto routeDto) {
+        return routeService.updateRouteById(id, routeDto);
     }
 
     @DeleteMapping("/{id}")

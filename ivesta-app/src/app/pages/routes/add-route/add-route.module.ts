@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AddRouteRoutingModule } from './add-route-routing.module';
 import { AddRouteComponent } from './add-route.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import { AddRouteComponent } from './add-route.component';
   ],
   imports: [
     CommonModule,
-    AddRouteRoutingModule
+    AddRouteRoutingModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class AddRouteModule { }
