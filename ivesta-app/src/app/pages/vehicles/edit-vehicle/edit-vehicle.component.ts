@@ -18,6 +18,9 @@ export class EditVehicleComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private httpService: VehiclesHttpService) { }
 
   ngOnInit(): void {
+    this.httpService.fetchDriverById(this.vehicleId).subscribe(res =>{
+      this.vehicle=res
+    })
   }
   form = this.formBuilder.group({
     marka: [],

@@ -18,17 +18,17 @@ export class VehiclesHttpService {
   }
 
   fetchDriverById(vehicleId: string) {
-    return this.http.get<Driver>(`${VEHICLES_API_PATH}/${vehicleId}`);
+    return this.http.get<Vehicle>(`${VEHICLES_API_PATH}/${vehicleId}`);
   }
 
   delete(removeCandidate: string){
     return this.http.delete(`${VEHICLES_API_PATH}/${removeCandidate}`);
   }
   create(vehicle: VehicleCandidate){
-    return this.http.post<Driver>(VEHICLES_API_PATH, vehicle);
+    return this.http.post<Vehicle>(VEHICLES_API_PATH, vehicle);
   }
 
   update(vehicle: VehicleCandidate,vehicleId: string){
-    return this.http.put<Driver>(`${VEHICLES_API_PATH}/${vehicleId}`,vehicle)
+    return this.http.put<Vehicle>(`${VEHICLES_API_PATH}/${vehicleId}`,vehicle)
   }
 }
