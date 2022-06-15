@@ -17,27 +17,27 @@
           <label for="kategoriaPojazdu">Kategoria pojazdu</label>
           <input id="kategoriaPojazdu" type="text" name="vehicleCategory" class="form-control"
                  formControlName="kategoria-pojazdu"
-                 placeholder="Kategoria pojazdu">
+                 placeholder="{{vehicle['kategoria-pojazdu']}}">
         </div>
         <div class="row">
           <label for="liczbaMiejsc">Liczba miejsc</label>
           <input id="liczbaMiejsc" type="text" name="numberOfSeats" class="form-control" formControlName="liczba-miejsc-ogolem"
-                 placeholder="Liczba miejsc">
+                 placeholder="{{vehicle['liczba-miejsc-ogolem']}}">
         </div>
         <div class="row">
           <label for="rodzajPaliwa">Rodzaj paliwa</label>
           <input id="rodzajPaliwa" type="text" name="fuelType" class="form-control" formControlName="rodzaj-paliwa"
-                 placeholder="Rodzaj paliwa">
+                 placeholder="{{vehicle['rodzaj-paliwa']}}">
         </div>
         <div class="row">
           <label for="maxLadownosc">Ładowność</label>
           <input id="maxLadownosc" type="text" name="weightLimit" class="form-control" formControlName="max-ladownosc"
-                 placeholder="Ładowność">
+                 placeholder="{{vehicle['max-ladownosc']}}">
         </div>
         <div class="checkbox-list>">
           <div class="set-license form row">
             <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
-              <mat-label>Select license</mat-label>
+              <mat-label>Select license (current: {{vehicle.license}})</mat-label>
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Add licence</mat-label>
                 <mat-option>None</mat-option>
