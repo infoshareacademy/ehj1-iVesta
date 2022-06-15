@@ -24,8 +24,10 @@ export class DriversComponent implements OnInit {
   }
 
   deleteDriverById(removeCandidate: string) {
-    this.driverService.delete(removeCandidate).subscribe(() => {
-      this.fetchDrivers();
-    })
+    if (confirm("Czy jesteś pewien?")) {
+      this.driverService.delete(removeCandidate).subscribe(() => {
+        this.fetchDrivers();
+      })
+    }
   }
 }

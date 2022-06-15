@@ -15,11 +15,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let driver of drivers ">
-      <th>{{driver.name}}</th>
-      <th>{{driver.lastName}}</th>
-      <th>{{driver.phoneNumber}}</th>
-      <th>{{driver.license}}</th>
-      <th>{{driver.availability}}</th>
+      <th>{{driver?.name}}</th>
+      <th>{{driver?.lastName}}</th>
+      <th>{{driver?.phoneNumber}}</th>
+      <th>{{driver?.license}}</th>
+      <th>{{driver?.availability}}</th>
       <button class="btn" routerLink="{{driver.id}}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
              viewBox="0 0 16 16">

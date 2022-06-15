@@ -1,3 +1,6 @@
+import {Vehicle} from "./vehicle";
+import {Driver} from "./driver";
+
 export interface Route {
   id: string;
   startAddress: string;
@@ -6,4 +9,6 @@ export interface Route {
   transportType: string;
   transportVolume: string;
   date: string;
+  vehicle: Vehicle;
+  driver: Driver;
 }

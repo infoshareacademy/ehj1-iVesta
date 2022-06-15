@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Vehicle} from "../../model/vehicle";
-import{VehiclesHttpService} from "./vehicles-http.service";
+import {VehiclesHttpService} from "./vehicles-http.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -11,7 +11,8 @@ export class VehiclesComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
 
-  constructor(private vehicleService: VehiclesHttpService) { }
+  constructor(private vehicleService: VehiclesHttpService) {
+  }
 
   ngOnInit(): void {
     this.fetchVehicles();
@@ -24,6 +25,8 @@ export class VehiclesComponent implements OnInit {
   }
 
   deleteVehicleById(removeCandidate: string) {
-    this.vehicleService.delete(removeCandidate).subscribe(()=>this.fetchVehicles())
+    if (confirm("Czy jesteś pewien?")) {
+      this.vehicleService.delete(removeCandidate).subscribe(() => this.fetchVehicles())
+    }
   }
 }

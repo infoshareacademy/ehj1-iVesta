@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Route} from "../../model/route";
 import {RoutesHttpService} from "./routes-http.service";
 
@@ -11,11 +11,13 @@ export class RoutesComponent implements OnInit {
 
   routes: Route[] = [];
 
-  constructor(private routeService: RoutesHttpService) { }
+  constructor(private routeService: RoutesHttpService) {
+  }
 
   ngOnInit(): void {
     this.fetchRoutes();
   }
+
   fetchRoutes() {
     this.routeService.fetch().subscribe(response => {
       this.routes = response;
@@ -23,6 +25,8 @@ export class RoutesComponent implements OnInit {
   }
 
   deleteRouteById(removeCandidate: string) {
-    this.routeService.delete(removeCandidate).subscribe(()=>this.fetchRoutes())
+    if (confirm("Czy jesteś pewien?")) {
+      this.routeService.delete(removeCandidate).subscribe(() => this.fetchRoutes())
+    }
   }
 }
