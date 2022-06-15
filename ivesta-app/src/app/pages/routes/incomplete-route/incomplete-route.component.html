@@ -1,0 +1,26 @@
+<table class="table table-bordered table-hover" data-toggle="collapse">
+  <thead>
+  <tr>
+    <th>Start</th>
+    <th>Destination</th>
+    <th>Length</th>
+    <th>Transport type</th>
+    <th>Transport volume</th>
+    <th>Date</th>
+    <th>Kierowca</th>
+    <th>Pojazd</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let route of routes">
+    <td>{{route?.startAddress}}</td>
+    <td>{{route?.destinationAddress}}</td>
+    <td>{{route?.routeLength}}</td>
+    <td>{{route?.transportType}}</td>
+    <td>{{route?.transportVolume}}</td>
+    <td>{{route?.date}}</td>
+    <td>{{route.driver?.name }} {{route.driver?.lastName}}</td>
+    <td>{{route.vehicle?.marka}}</td>
+  </tr>
+  </tbody>
+</table>
