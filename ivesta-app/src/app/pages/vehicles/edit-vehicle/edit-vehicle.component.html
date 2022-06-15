@@ -41,8 +41,7 @@
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Add licence</mat-label>
                 <mat-option>None</mat-option>
-                <mat-option value="C">C</mat-option>
-                <mat-option value="C+E">C+E</mat-option>
+                <mat-option *ngFor=" let licens of licenses">{{licens}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
