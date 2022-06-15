@@ -1,5 +1,5 @@
 <ng-container id="driverEdit">
-  <div id="driver-card" class="card text-center" style="width: 50rem;">
+  <div id="driver-card" class="card text-center shadow" style="width: 50rem;">
     <div class="card-body">
       <h1>Dodaj nowego kierowcę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
@@ -41,14 +41,14 @@
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Add licence</mat-label>
                 <mat-option>None</mat-option>
-                <mat-option *ngFor=" let licens of licenses">{{licens}}</mat-option>
+                <mat-option *ngFor=" let license of licenseName">{{license}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            <button class="btn btn-primary" routerLink="..">Powrót</button>
           </div>
           <div class="col">
             <button type="button submit"  class="btn btn-primary">Uaktualnij.</button>
