@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Route} from "../../../model/route";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
@@ -6,7 +6,7 @@ import {RoutesHttpService} from "../routes-http.service";
 import {Driver} from "../../../model/driver";
 import {Vehicle} from "../../../model/vehicle";
 import {DriversHttpService} from "../../drivers/drivers-http.service";
-import {filter} from "rxjs";
+import {VehiclesHttpService} from "../../vehicles/vehicles-http.service";
 
 @Component({
   selector: 'app-edit-route',
@@ -20,29 +20,28 @@ export class EditRouteComponent implements OnInit {
   avVehicle: Vehicle[]=[];
 
   routeId = this.activatedRoute.snapshot.params['id'];
-  private routeDate: string;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpDriverService: DriversHttpService, private httpRouteService: RoutesHttpService) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpDriverService: DriversHttpService, private httpVehicles: VehiclesHttpService) { }
 
   ngOnInit(){
     this.httpService.fetchRouteById(this.routeId)
       .subscribe(res => {
         this.avRoute = res;
-        console.log(this.avRoute)
       })
-    this.availableDrivers();
   }
 
 
   availableDrivers(){
-    this.httpDriverService.getAvailableDriversForGivenDate(this.routeDate).subscribe((response) =>{
+    this.httpDriverService.getAvailableDriversForGivenDate(this.avRoute.date).subscribe((response) =>{
       this.avDriver = response;
     })
   }
 
-  showResult(){
-    console.log(this.avRoute)
+  availableVehicles(){
+    this.httpVehicles.getAvailableVehiclesForGivenDate(this.avRoute.date).subscribe((response) =>{
+      this.avVehicle = response;
+    })
   }
 
   submit() {
