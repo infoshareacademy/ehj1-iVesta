@@ -29,7 +29,9 @@ export class EditRouteComponent implements OnInit {
     routeLength: [],
     transportType: [],
     transportVolume: [],
-    date: []
+    date: [],
+    driver:[],
+    vehicle:[]
   });
 
   submit() {

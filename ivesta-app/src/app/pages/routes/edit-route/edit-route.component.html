@@ -8,7 +8,7 @@
             <label for="input-start-address"></label>
             <input id="input-start-address" type="text" name="startAddress" class="form-control"
                    formControlName="startAddress"
-                   placeholder={{route.startAddress}}>
+                   placeholder="{{route?.startAddress}}">
           </div>
         </div>
         <div class="row">
@@ -16,14 +16,14 @@
             <label for="input-destination-address"></label>
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
                    formControlName="destinationAddress"
-                   placeholder={{route.destinationAddress}}>
+                   placeholder="{{route?.destinationAddress}}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
             <label for="routeLength"></label>
             <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
-                   placeholder={{route.routeLength}}>
+                   placeholder="{{route?.routeLength}}">
           </div>
         </div>
         <div class="checkbox-list>">
@@ -44,14 +44,29 @@
             <label for="transportVolume"></label>
             <input id="transportVolume" type="text" name="transportVolume" class="form-control"
                    formControlName="transportVolume"
-                   placeholder={{route.transportVolume}}>
+                   placeholder="{{route?.transportVolume}}">
+          </div>
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="route-driver"></label>
+            <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
+                   placeholder="{{route?.driver?.name}} {{route?.driver?.lastName}}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
-            <label for="date"></label>
-            <input id="date" type="text" name="date" class="form-control" formControlName="date"
-                   placeholder={{route.date}}>
+            <label for="route-vehicle"></label>
+            <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
+                   placeholder="{{route?.vehicle?.marka}} {{route?.vehicle?.model}}">
           </div>
         </div>
         <br>

@@ -9,7 +9,7 @@
             <input id="input-start-address" type="text" name="startAddress" class="form-control"
                    required
                    formControlName="startAddress"
-                   placeholder="Start address">
+                   placeholder="Adres początkowy">
           </div>
         </div>
         <div class="row">
@@ -18,24 +18,26 @@
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
                    required
                    formControlName="destinationAddress"
-                   placeholder="Destination address">
+                   placeholder="Adres końcowy">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5" [class.was-validated]="form.controls['routeLength'].touched">
             <label for="routeLength"></label>
-            <input id="routeLength" type="number" min="1" name="routeLength" class="form-control" formControlName="routeLength"
+            <input id="routeLength" type="number" min="1" name="routeLength" class="form-control"
+                   formControlName="routeLength"
                    required
-                   placeholder="Route length">
+                   placeholder="Długość trasy">
           </div>
         </div>
+        <br>
         <div class="checkbox-list>">
           <div class="set-transport-type form row" [class.was-validated]="form.controls['transportType'].touched">
             <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
-              <mat-label>Select transport type</mat-label>
+              <mat-label>Wybierz rodzaj transportu:</mat-label>
               <mat-select class="form-control" formControlName="transportType">
-                <mat-option value="PASSENGERS">passengers</mat-option>
-                <mat-option value="CARGO">cargo</mat-option>
+                <mat-option value="PASSENGERS">Transport osób</mat-option>
+                <mat-option value="CARGO">Transport towarów</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -49,13 +51,16 @@
                    placeholder="Transport volume">
           </div>
         </div>
+        <br>
         <div class="row">
-          <div class="form-group col-md-5" [class.was-validated]="form.controls['date'].touched">
-            <label for="date"></label>
-            <input id="date" type="text" name="date" class="form-control"
-                   required
-                   formControlName="date"
-                   placeholder="Date [yyyy-mm-dd]">
+          <div class="form-group col-md-5">
+            <mat-form-field appearance="fill">
+              <mat-label>Wybierz datę dostawy</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
         </div>
         <br>

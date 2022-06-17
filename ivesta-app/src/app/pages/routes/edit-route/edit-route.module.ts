@@ -6,6 +6,9 @@ import { EditRouteComponent } from './edit-route.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import {MatSelectModule} from "@angular/material/select";
     EditRouteRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule
   ]
 })
 export class EditRouteModule { }

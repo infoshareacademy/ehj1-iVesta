@@ -30,4 +30,12 @@ export class DriversHttpService {
   update(driver: DriverCandidate,driverId: string){
     return this.http.put<Driver>(`${DRIVERS_API_PATH}/${driverId}`,driver)
   }
+
+  activateDriver(driverId: string){
+    return this.http.put(`${DRIVERS_API_PATH}/activate/${driverId}`,driverId)
+
+  }
+  deactivateDriver(driverId: string){
+    return this.http.put(`${DRIVERS_API_PATH}/deactivate/${driverId}`,driverId)
+  }
 }
