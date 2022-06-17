@@ -68,12 +68,34 @@
                    placeholder="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
           </div>
         </div>
+
+        <div id="available-drivers-for-date">
+          <label class="sbw_light">Dostępni kierowcy:</label><br/>
+          <select (click)="availableDrivers()">
+            <option *ngFor="let driver of avDriver" [value]="driver.name">
+              {{driver.name}} {{driver.lastName}}
+            </option>
+          </select>
+        </div>
+
         <div class="row">
           <div class="form-group col-md-5">
             <label for="route-vehicle"></label>
             <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
                    placeholder="{{avRoute?.vehicle?.marka}} {{avRoute?.vehicle?.model}}">
           </div>
+
+          <div id="available-vehicles-for-date">
+            <div class="form-group col-md-5">
+              <label class="sbw_light">Dostępne pojazdy:</label><br/>
+              <select (click)="availableVehicles()">
+                <option *ngFor="let vehicle of avVehicle">
+                  {{vehicle.marka}} {{vehicle.model}}
+                </option>
+              </select>
+            </div>
+          </div>
+
         </div>
         <br>
         <div class="row">
@@ -89,6 +111,3 @@
   </div>
   <br>
 </ng-container>
-
-<button class="button" (click)="availableDrivers()">Kliknij mnie</button>
-<button class="button" (click)="availableVehicles()">Kliknij mnie</button>

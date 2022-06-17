@@ -58,6 +58,5 @@ export class EditRouteComponent implements OnInit {
     driver:[],
     vehicle:[]
   });
-
   //todo ustawic datę na obecną a nie -1
 }
