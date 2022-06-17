@@ -24,10 +24,4 @@ export class IncompleteRouteComponent implements OnInit {
       this.routes = res;
     })
   }
-
-  echAvailableDriver() {
-    let date = this.routes.map((data) => {
-      return data.date[0]
-    })
-  }
 }
