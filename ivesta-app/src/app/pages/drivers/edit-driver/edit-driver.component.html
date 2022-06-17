@@ -36,8 +36,8 @@
             <mat-label>Select status</mat-label>
             <mat-select class="form-control" formControlName="availability">
               <mat-label>None</mat-label>
-              <mat-option value="active">Active</mat-option>
-              <mat-option value="inactive">Inactive</mat-option>
+              <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
+              <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

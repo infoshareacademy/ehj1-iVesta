@@ -30,10 +30,20 @@ export class EditDriverComponent implements OnInit {
     lastName: [],
     phoneNumber: [],
     license: [],
+    availability: []
   });
 
   submit() {
     this.httpService.update(this.form.value, this.driverId).subscribe();
+    console.log(this.form.value)
     this.form.reset();
+  }
+
+  setStatusToActive() {
+    this.httpService.activateDriver(this.driverId).subscribe();
+  }
+
+  setStatusToInactive() {
+    this.httpService.deactivateDriver(this.driverId).subscribe();
   }
 }
