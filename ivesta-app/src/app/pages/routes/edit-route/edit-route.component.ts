@@ -3,6 +3,10 @@ import {Route} from "../../../model/route";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
 import {RoutesHttpService} from "../routes-http.service";
+import {Driver} from "../../../model/driver";
+import {Vehicle} from "../../../model/vehicle";
+import {DriversHttpService} from "../../drivers/drivers-http.service";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-edit-route',
@@ -10,17 +14,39 @@ import {RoutesHttpService} from "../routes-http.service";
   styleUrls: ['./edit-route.component.css']
 })
 export class EditRouteComponent implements OnInit {
-  route: Route;
+
+  avRoute: Route;
+  avDriver: Driver[]=[];
+  avVehicle: Vehicle[]=[];
 
   routeId = this.activatedRoute.snapshot.params['id'];
+  private routeDate: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
+  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpDriverService: DriversHttpService, private httpRouteService: RoutesHttpService) { }
+
+  ngOnInit(){
     this.httpService.fetchRouteById(this.routeId)
       .subscribe(res => {
-        this.route = res;
+        this.avRoute = res;
+        console.log(this.avRoute)
       })
+    this.availableDrivers();
+  }
+
+
+  availableDrivers(){
+    this.httpDriverService.getAvailableDriversForGivenDate(this.routeDate).subscribe((response) =>{
+      this.avDriver = response;
+    })
+  }
+
+  showResult(){
+    console.log(this.avRoute)
+  }
+
+  submit() {
+    this.httpService.update(this.form.value, this.routeId).subscribe();
   }
 
   form = this.formBuilder.group({
@@ -34,9 +60,5 @@ export class EditRouteComponent implements OnInit {
     vehicle:[]
   });
 
-  submit() {
-    console.log(this.form.value)
-    this.httpService.update(this.form.value, this.routeId).subscribe();
-  }
-
+  //todo ustawic datę na obecną a nie -1
 }

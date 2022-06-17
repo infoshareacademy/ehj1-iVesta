@@ -1,6 +1,6 @@
 <ng-container id="driverAdd">
   <div id="edit-driver-card" class="card text-center shadow" style="width: 50rem;">
-    <h1>Dodaj nowego kierowcę:</h1>
+    <h1>Edytuj kierowcę:</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="row">
         <div class="form-group col col-md-6">
@@ -33,7 +33,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
-            <mat-label>Select status</mat-label>
+            <mat-label>Wybierz status:</mat-label>
             <mat-select class="form-control" formControlName="availability">
               <mat-label>None</mat-label>
               <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>

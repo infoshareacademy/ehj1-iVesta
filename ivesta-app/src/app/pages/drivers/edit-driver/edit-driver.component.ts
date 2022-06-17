@@ -39,6 +39,8 @@ export class EditDriverComponent implements OnInit {
     this.form.reset();
   }
 
+  //TODO - update drivera po submicie a nie po kliknieciu
+
   setStatusToActive() {
     this.httpService.activateDriver(this.driverId).subscribe();
   }

@@ -8,7 +8,7 @@
             <label for="input-start-address"></label>
             <input id="input-start-address" type="text" name="startAddress" class="form-control"
                    formControlName="startAddress"
-                   placeholder="{{route?.startAddress}}">
+                   placeholder="{{avRoute?.startAddress}}">
           </div>
         </div>
         <div class="row">
@@ -16,16 +16,17 @@
             <label for="input-destination-address"></label>
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
                    formControlName="destinationAddress"
-                   placeholder="{{route?.destinationAddress}}">
+                   placeholder="{{avRoute?.destinationAddress}}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
             <label for="routeLength"></label>
             <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
-                   placeholder="{{route?.routeLength}}">
+                   placeholder="{{avRoute?.routeLength}}">
           </div>
         </div>
+        <br>
         <div class="checkbox-list>">
           <div class="set-transport-type form row">
             <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
@@ -44,29 +45,34 @@
             <label for="transportVolume"></label>
             <input id="transportVolume" type="text" name="transportVolume" class="form-control"
                    formControlName="transportVolume"
-                   placeholder="{{route?.transportVolume}}">
+                   placeholder="{{avRoute?.transportVolume}}">
           </div>
         </div>
-        <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        <br>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <mat-form-field appearance="fill">
+              <mat-label>{{avRoute?.date}}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
 
         <div class="row">
           <div class="form-group col-md-5">
             <label for="route-driver"></label>
             <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
-                   placeholder="{{route?.driver?.name}} {{route?.driver?.lastName}}">
+                   placeholder="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
             <label for="route-vehicle"></label>
             <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
-                   placeholder="{{route?.vehicle?.marka}} {{route?.vehicle?.model}}">
+                   placeholder="{{avRoute?.vehicle?.marka}} {{avRoute?.vehicle?.model}}">
           </div>
         </div>
         <br>
@@ -81,4 +87,9 @@
       </form>
     </div>
   </div>
+  <br>
+
+
+
+
 </ng-container>

@@ -43,7 +43,8 @@ const material =[
     MatNativeDateModule,
     MatInputModule
   ],
-  providers: [MatDatepickerModule,MatNativeDateModule],
+  providers: [MatDatepickerModule,
+    MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -38,4 +38,8 @@ export class DriversHttpService {
   deactivateDriver(driverId: string){
     return this.http.put(`${DRIVERS_API_PATH}/deactivate/${driverId}`,driverId)
   }
+
+  getAvailableDriversForGivenDate(date: string){
+    return this.http.get<Driver[]>(`${DRIVERS_API_PATH}/availableDrivers/${date}`)
+  }
 }
