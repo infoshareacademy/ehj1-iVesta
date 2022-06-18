@@ -3,43 +3,46 @@
     <h1>Edytuj kierowcę:</h1>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="row">
-        <div class="form-group col col-md-6">
-          <label for="input-name">Driver name</label>
+        <div class="form-group col col-md-5">
+          <label for="input-name">Imię:</label>
           <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
                  placeholder={{driver.name}}>
         </div>
-        <div class="row">
-          <div class="form-group col col-md-6">
-            <label for="input-lastname">Driver surname</label>
-            <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
-                   placeholder={{driver.lastName}}>
-          </div>
+        <div class="form-group col col-md-5">
+          <label for="input-lastname">Nazwisko</label>
+          <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
+                 placeholder={{driver.lastName}}>
         </div>
       </div>
-      <div class="form-group col-md-3">
-        <label for="phone">Phone number</label>
-        <input id="phone" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
-               placeholder={{driver.phoneNumber}}>
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label for="phone">Telefon</label>
+          <input id="phone" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
+                 placeholder={{driver.phoneNumber}}>
+        </div>
       </div>
-      <div class="checkbox-list>">
-        <div class="set-license form row">
-          <mat-form-field class="picked-license-avia col-md-3" appearance="fill">
-            <mat-label>Select license</mat-label>
-            <mat-select class="form-control" formControlName="license">
-              <mat-label>Add licence</mat-label>
-              <mat-option>None</mat-option>
-              <mat-option value="C">C</mat-option>
-              <mat-option value="C+E">C+E</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
-            <mat-label>Wybierz status:</mat-label>
-            <mat-select class="form-control" formControlName="availability">
-              <mat-label>None</mat-label>
-              <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
-              <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
-            </mat-select>
-          </mat-form-field>
+      <br>
+      <div class="row">
+        <div class="checkbox-list>">
+          <div class="set-license form row">
+            <mat-form-field class="picked-license-avia col-md-3" appearance="fill">
+              <mat-label>Zmień licencję</mat-label>
+              <mat-select class="form-control" formControlName="license">
+                <mat-label>Add licence</mat-label>
+                <mat-option>None</mat-option>
+                <mat-option value="C">C</mat-option>
+                <mat-option value="C+E">C+E</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
+              <mat-label>Zmień status:</mat-label>
+              <mat-select class="form-control" formControlName="availability">
+                <mat-label>None</mat-label>
+                <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
+                <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -50,6 +53,7 @@
           <button class="btn btn-primary" (submit)="submit()">Uaktualnij dane kierowcy.</button>
         </div>
       </div>
+      <br>
     </form>
   </div>
 </ng-container>

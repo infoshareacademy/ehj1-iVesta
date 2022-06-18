@@ -29,6 +29,8 @@ export class EditRouteComponent implements OnInit {
       .subscribe(res => {
         this.avRoute = res;
       })
+    this.availableDrivers()
+    this.availableVehicles()
   }
 
 

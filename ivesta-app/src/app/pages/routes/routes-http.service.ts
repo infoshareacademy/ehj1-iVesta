@@ -42,6 +42,5 @@ export class RoutesHttpService {
       map(allRequests => allRequests.flat()),
 
     )
-
   }
 }
