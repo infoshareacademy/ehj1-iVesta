@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Route} from "../../model/route";
 import {RouteCandidate} from "../../model/route-candidate";
 import {forkJoin, map} from "rxjs";
+import {VehicleCandidate} from "../../model/vehicle-candidate";
 
 const ROUTES_API_PATH = 'http://localhost:8080/api/routes';
 
@@ -40,7 +41,14 @@ export class RoutesHttpService {
       this.http.get<[Route]>(`${ROUTES_API_PATH}/incompleteRoutes?withoutDriver=true&withoutVehicle=false`)
     ]).pipe(
       map(allRequests => allRequests.flat()),
-
     )
+  }
+
+  addVehicleToRoute(vehicle: VehicleCandidate, routeId: string){
+    return this.http.put<Route>(`${ROUTES_API_PATH}/${routeId}/assignVehicle`,vehicle)
+  }
+
+  addDriverToRoute(driver: string, routeId: string){
+    return this.http.put<Route>(`${ROUTES_API_PATH}/${routeId}/assignDriver`,driver)
   }
 }

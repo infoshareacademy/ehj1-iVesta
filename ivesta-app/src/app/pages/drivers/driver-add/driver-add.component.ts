@@ -28,6 +28,7 @@ export class DriverAddComponent implements OnInit {
   });
 
   submit() {
+    console.log(this.form.value)
     this.form.markAllAsTouched();
     if (!this.form.valid) {
       return;
@@ -47,5 +48,21 @@ export class DriverAddComponent implements OnInit {
       this.drivers = response;
     })
   }
-
+  LICENSES =[
+    {name:'A1'},
+    {name:'A2'},
+    {name:'A'},
+    {name:'B'},
+    {name:'B1'},
+    {name:'B+E'},
+    {name:'C'},
+    {name:'C1'},
+    {name:'C1+E'},
+    {name:'C+E'},
+    {name:'D'},
+    {name:'D1'},
+    {name:'D1+E'},
+    {name:'D+E'},
+    {name:'T'},
+  ]
 }

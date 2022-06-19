@@ -1,5 +1,5 @@
 <ng-container id="routeAdd">
-  <div id="route-card" class="card text-center shadow" style="width: 50rem;">
+  <div id="route-card" class="card text-center shadow" style="width: 50rem">
     <div class="card-body">
       <h1>Edytuj trasę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
@@ -55,55 +55,42 @@
               <mat-label>{{avRoute?.date}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="date">
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
-
         <div class="row">
-          <div class="form-group col-md-5">
+          <div class="col col-md-6">
+          <div class="form-group form-control">
             <label for="route-driver"></label>
             <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
                    placeholder="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
+            <br>
+            <button class="btn btn-primary" routerLink="{{avRoute.id}}/addDriver">Dodaj kierowcę!</button>
           </div>
-        </div>
-
-        <div id="available-drivers-for-date">
-          <label class="sbw_light">Dostępni kierowcy:</label><br/>
-          <select (click)="availableDrivers()">
-            <option *ngFor="let driver of avDriver" [value]="driver.name">
-              {{driver.name}} {{driver.lastName}}
-            </option>
-          </select>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-5">
-            <label for="route-vehicle"></label>
-            <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
-                   placeholder="{{avRoute?.vehicle?.marka}} {{avRoute?.vehicle?.model}}">
           </div>
 
-          <div id="available-vehicles-for-date">
-            <div class="form-group col-md-5">
-              <label class="sbw_light">Dostępne pojazdy:</label><br/>
-              <select (click)="availableVehicles()">
-                <option *ngFor="let vehicle of avVehicle">
-                  {{vehicle.marka}} {{vehicle.model}}
-                </option>
-              </select>
+          <div class="col col-md-6">
+            <div class="form-group form-control">
+              <label for="route-vehicle"></label>
+              <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
+                     placeholder="{{avRoute?.vehicle?.marka}} {{avRoute?.vehicle?.model}}">
+              <br>
+              <button class="btn btn-primary" routerLink="{{avRoute.id}}/addVehicle">Dodaj pojazd!</button>
             </div>
           </div>
-
         </div>
+
         <br>
         <div class="row">
           <div class="col">
             <button class="btn btn-secondary" routerLink="..">Powrót</button>
           </div>
           <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">Uaktualnij trasę</button>
+            <button class="btn btn-primary" (submit)="submit">
+              Uaktualnij trasę
+            </button>
           </div>
         </div>
       </form>

@@ -38,6 +38,21 @@ export class EditVehicleComponent implements OnInit {
     console.log(this.form.value)
     this.form.reset();
   }
-
-  licenseName = [ 'AM', 'A1', 'A2', 'A', 'B', 'B1', 'B+E', 'C', 'C1', 'C1+E', 'C+E', 'D', 'D1', 'D1+E', 'D+E', 'T']
+  LICENSES =[
+    {name:'A1'},
+    {name:'A2'},
+    {name:'A'},
+    {name:'B'},
+    {name:'B1'},
+    {name:'B+E'},
+    {name:'C'},
+    {name:'C1'},
+    {name:'C1+E'},
+    {name:'C+E'},
+    {name:'D'},
+    {name:'D1'},
+    {name:'D1+E'},
+    {name:'D+E'},
+    {name:'T'},
+  ]
 }

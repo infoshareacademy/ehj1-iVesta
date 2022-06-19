@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Driver} from "../../model/driver";
 import {DriversHttpService} from "./drivers-http.service";
 

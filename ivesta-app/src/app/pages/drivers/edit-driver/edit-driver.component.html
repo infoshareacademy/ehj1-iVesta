@@ -30,10 +30,10 @@
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Add licence</mat-label>
                 <mat-option>None</mat-option>
-                <mat-option value="C">C</mat-option>
-                <mat-option value="C+E">C+E</mat-option>
+                <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
               </mat-select>
             </mat-form-field>
+
             <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
               <mat-label>Zmień status:</mat-label>
               <mat-select class="form-control" formControlName="availability">
