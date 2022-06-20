@@ -49,6 +49,7 @@ export class EditDriverComponent implements OnInit {
     this.httpService.deactivateDriver(this.driverId).subscribe();
   }
   LICENSES =[
+    {name:'AM'},
     {name:'A1'},
     {name:'A2'},
     {name:'A'},

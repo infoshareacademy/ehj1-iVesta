@@ -28,7 +28,7 @@ export class EditRouteComponent implements OnInit {
 
   submit() {
     this.httpService.update(this.form.value, this.routeId).subscribe();
-    console.log(this.form.value)
+    this.form.reset();
   }
 
   form = this.formBuilder.group({

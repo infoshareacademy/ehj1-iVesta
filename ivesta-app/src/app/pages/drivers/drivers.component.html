@@ -9,17 +9,17 @@
       <th>Imię</th>
       <th>Nazwisko</th>
       <th>Telefon</th>
-      <th>Licencje</th>
+      <th>Prawo jazdy</th>
       <th>Dostępność</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let driver of drivers ">
-      <th>{{driver?.name}}</th>
-      <th>{{driver?.lastName}}</th>
-      <th>{{driver?.phoneNumber}}</th>
-      <th>{{driver?.license}}</th>
-      <th>{{driver?.availability}}</th>
+      <td>{{driver?.name}}</td>
+      <td>{{driver?.lastName}}</td>
+      <td>{{driver?.phoneNumber}}</td>
+      <td>{{driver?.license}}</td>
+      <td>{{driver?.availability}}</td>
       <button class="btn" routerLink="{{driver.id}}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
              viewBox="0 0 16 16">

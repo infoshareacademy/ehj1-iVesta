@@ -1,6 +1,6 @@
 <div class="container">
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button id="add-vehicle" class="btn btn-outline-dark btn-sm" routerLink="add">Add vehicle</button>
+    <button id="add-vehicle" class="btn btn-outline-dark btn-sm" routerLink="add">Dodaj pojazd</button>
   </div>
   <br>
   <table class="table table-bordered table-hover" data-toggle="collapse">
@@ -9,7 +9,7 @@
       <th>Marka</th>
       <th>Model</th>
       <th>Kategoria</th>
-      <th>Licencja</th>
+      <th>Prawo jazdy</th>
       <th>Liczba miejsc</th>
       <th>Rodzaj paliwa</th>
       <th>Limit załadunku</th>
@@ -18,14 +18,14 @@
     </thead>
     <tbody>
     <tr *ngFor="let vehicle of vehicles">
-      <th>{{vehicle.marka}}</th>
-      <th>{{vehicle.model}}</th>
-      <th>{{vehicle["kategoria-pojazdu"]}}</th>
-      <th>{{vehicle.license}}</th>
-      <th>{{vehicle["liczba-miejsc-ogolem"]}}</th>
-      <th>{{vehicle["rodzaj-paliwa"]}}</th>
-      <th>{{vehicle["max-ladownosc"]}}</th>
-      <th>{{vehicle.availability}}</th>
+      <td>{{vehicle.marka}}</td>
+      <td>{{vehicle.model}}</td>
+      <td>{{vehicle["kategoria-pojazdu"]}}</td>
+      <td>{{vehicle.license}}</td>
+      <td>{{vehicle["liczba-miejsc-ogolem"]}}</td>
+      <td>{{vehicle["rodzaj-paliwa"]}}</td>
+      <td>{{vehicle["max-ladownosc"]}}</td>
+      <td>{{vehicle.availability}}</td>
       <button class="btn" routerLink="{{vehicle.id}}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
              viewBox="0 0 16 16">

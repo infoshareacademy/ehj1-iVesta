@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="card shadow" style="width: 30rem">
+    <div class="card-body">
+      <div class="row">
+        <div class="col col-md-12">
+          <div class="form-group form-control">
+            <label for="route-vehicle"></label>
+            <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
+                   placeholder="{{avRoute?.vehicle?.marka}} {{avRoute?.vehicle?.model}}">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col col-md-12">
+          <br>
+          <button class="btn btn-primary" (click)="availableVehicles()">Pobierz dostępne pojazdy</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col col-md-12">
+          <div id="available-vehicles-for-date">
+            <br>
+            <div class=" form-control form-group col-md-12">
+              <label class="sbw_light">Dostępne pojazdy:</label><br/>
+              <select formControlName="vehicleId">>
+                <option *ngFor="let vehicle of avVehicle" [value]=vehicle.id>
+                  {{vehicle.marka}} {{vehicle.model}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+          <button class="btn btn-primary" (submit)="submit">
+            Zapisz pojazd
+          </button>
+        </div>
+        <div class="col col-md-6">
+          <button class="btn btn-secondary float-end" routerLink="../..">Powrót</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

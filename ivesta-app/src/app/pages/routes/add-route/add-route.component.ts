@@ -44,7 +44,6 @@ export class AddRouteComponent implements OnInit {
   fetchRoutes() {
     this.routeService.fetch().subscribe(response => {
       this.routes = response;
-      console.log(this.routes);
     })
   }
 

@@ -7,19 +7,19 @@
           <div class="form-group col col-md-5">
             <label for="input-name">Imię</label>
             <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
-                   placeholder="Driver name">
+                   placeholder="Imię">
           </div>
           <div class="form-group col col-md-5">
             <label for="input-lastname">Nazwisko</label>
             <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
-                   placeholder="Driver surname">
+                   placeholder="Nazwisko">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-5">
             <label for="phoneNumber">Telefon</label>
             <input id="phoneNumber" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
-                   placeholder="Driver phone number">
+                   placeholder="Telefon">
           </div>
         </div>
         <br>
@@ -28,8 +28,8 @@
             <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
               <mat-label>Kat. prawojazdy</mat-label>
               <mat-select class="form-control" formControlName="license">
-                <mat-label>Add licence</mat-label>
-                <mat-option>None</mat-option>
+                <mat-label>Wybierz</mat-label>
+                <mat-option>Brak</mat-option>
                 <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
 
               </mat-select>
@@ -38,9 +38,9 @@
               <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
                 <mat-label>Status</mat-label>
                 <mat-select class="form-control" formControlName="availability">
-                  <mat-label>None</mat-label>
-                  <mat-option value="active">Active</mat-option>
-                  <mat-option value="inactive">Inactive</mat-option>
+                  <mat-label>Brak</mat-label>
+                  <mat-option value="active">Aktywny</mat-option>
+                  <mat-option value="inactive">Nieaktywny</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

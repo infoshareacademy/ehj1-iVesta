@@ -49,6 +49,7 @@ export class DriverAddComponent implements OnInit {
     })
   }
   LICENSES =[
+    {name:'AM'},
     {name:'A1'},
     {name:'A2'},
     {name:'A'},

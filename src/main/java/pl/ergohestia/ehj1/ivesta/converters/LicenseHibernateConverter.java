@@ -13,6 +13,7 @@ public class LicenseHibernateConverter implements AttributeConverter<LicenseType
             return null;
         return switch (licenseType) {
             case A -> "A";
+            case AM -> "AM";
             case B -> "B";
             case C -> "C";
             case D -> "D";
