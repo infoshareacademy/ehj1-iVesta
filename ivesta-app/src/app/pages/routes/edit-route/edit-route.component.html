@@ -20,19 +20,6 @@
                    value="{{avRoute?.destinationAddress}}">
           </div>
         </div>
-        <div class="row">
-          <div class="form-group col">
-            <label for="routeLength"></label>
-            <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
-                   value="{{avRoute?.routeLength}}">
-          </div>
-          <div class="form-group col">
-            <label for="transportVolume"></label>
-            <input id="transportVolume" type="text" name="transportVolume" class="form-control"
-                   formControlName="transportVolume"
-                   value="{{avRoute?.transportVolume}}">
-          </div>
-        </div>
         <br>
         <div class="checkbox-list>">
           <div class="set-transport-type form row">
@@ -44,6 +31,14 @@
               </mat-select>
             </mat-form-field>
             <div class="form-group col">
+              <label for="transportVolume"></label>
+              <input id="transportVolume" type="text" name="transportVolume" class="form-control"
+                     formControlName="transportVolume"
+                     value="{{avRoute?.transportVolume}}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col">
               <mat-form-field appearance="fill">
                 <mat-label>Wybierz datę</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date" value="{{avRoute?.date}}">
@@ -52,8 +47,14 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
+            <div class="form-group col">
+              <label for="routeLength"></label>
+              <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
+                     value="{{avRoute?.routeLength}}">
+            </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col col">
             <div class="form-group form-control">
