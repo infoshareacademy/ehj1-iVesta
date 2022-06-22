@@ -1,32 +1,31 @@
-INSERT INTO drivers(ID, AVAILABILITY, LAST_NAME, LICENSE, NAME)
-VALUES ('9e014a34-c61e-11ec-9d64-0242ac12000', 'ACTIVE', 'Jachaś', 'C+E', 'Domino'),
-       ('9e01598e-c61e-11ec-9d64-0242ac12000', 'ACTIVE', 'Koczkodan', 'A', 'Sniezny'),
-       ('9e01597e-c61e-11ec-9d64-0242ac12000', 'ACTIVE', 'Bomba', 'B', 'Bogdan'),
-       ('9b9b67fc-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Noomi', 'B', 'Rapace'),
-       ('ad2d0fac-c61e-11ec-9d64-0242ac120002', 'INACTIVE', 'Logan', 'C', 'Marshall-Green'),
-       ('afb81afa-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Michael', 'B', 'Fassbender'),
-       ('b1f999ba-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Charlize', 'B', 'Theron'),
-       ('0cf1f588-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Sienna', 'C', 'Miller'),
-       ('0e891a8e-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Tom', 'B', 'Holland'),
-       ('13041ece-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Eddie', 'B', 'Redmayne'),
-       ('149164a4-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Katherine', 'B', 'Waterston'),
-       ('166196a0-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Alison', 'B', 'Sudol'),
-       ('182c7e96-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Dan', 'A', 'Fogler'),
-       ('19a6a4cc-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'James', 'B', 'McAvoy'),
-       ('1b8e4c90-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Anya', 'A', 'Taylor-Joy');
+INSERT INTO drivers(ID, AVAILABILITY, LAST_NAME, LICENSE, NAME, PHONE_NUMBER)
+VALUES ('9e014a34-c61e-11ec-9d64-0242ac12000', 'ACTIVE', 'Jachaś', 'C+E', 'Dominik', '123456789'),
+       ('9e01597e-c61e-11ec-9d64-0242ac12000', 'ACTIVE', 'Bomba', 'B', 'Bogdan', '123456775'),
+       ('9b9b67fc-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Rapace', 'B', 'Noomi', '123456777'),
+       ('ad2d0fac-c61e-11ec-9d64-0242ac120002', 'INACTIVE', 'Logan', 'C', 'Marshall-Green', '123456776'),
+       ('afb81afa-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Fassbender', 'B', 'Michael', '123456787'),
+       ('b1f999ba-c61e-11ec-9d64-0242ac120002', 'ACTIVE', 'Theron', 'B', 'Charlize', '123456786'),
+       ('0cf1f588-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Miller', 'C', 'Sienna', '123456785'),
+       ('0e891a8e-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Holland', 'B', 'Tom', '123456784'),
+       ('13041ece-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Redmayne', 'B', 'Eddie', '123456783'),
+       ('149164a4-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Waterston', 'B', 'Katherine', '123456782'),
+       ('166196a0-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Sudol', 'B', 'Alison', '123456781'),
+       ('182c7e96-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'Fogler', 'A', 'Dan', '123456780'),
+       ('19a6a4cc-c61f-11ec-9d64-0242ac120002', 'ACTIVE', 'McAvoy', 'B', 'James', '123456779'),
+       ('1b8e4c90-c61f-11ec-9d64-0242ac120002', 'INACTIVE', 'Taylor-Joy', 'A', 'Anya', '123456778');
 
-INSERT INTO vehicles(ID, BRAND, MODEL, NUMBER_OF_SEATS, LICENSE, WEIGHT_LIMIT)
-VALUES ('56d60854-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9001', 3, 'C', 2000),
-       ('59096968-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9002', 2, 'C', 2000),
-       ('5aae7452-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9003', 2, 'C', 2000),
-       ('5c1f1d46-c621-11ec-9d64-0242ac120002', 'Man', 'XYZ 9004', 2, 'C', 2000),
-       ('604bdfbc-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny M', 8, 'B', 1500),
-       ('619d1bce-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny L', 8, 'B', 1500),
-       ('633ab108-c621-11ec-9d64-0242ac120002', 'Toyota', 'Super X Extra Mocny XL', 8, 'B', 1500),
-       ('82015ae2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 100', 3, 'C+E', 15000),
-       ('84560de2-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 70', 3, 'C+E', 15000),
-       ('8638c37a-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 60', 3, 'C+E', 15000),
-       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'Volvo', 'Mocarny 50', 3, 'C+E', 15000);
+INSERT INTO vehicles(ID, VEHICLE_STATUS, VEHICLE_CATEGORY, FUEL_TYPE, BRAND, MODEL, NUMBER_OF_SEATS, LICENSE, WEIGHT_LIMIT)
+VALUES ('56d60854-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Man', 'XYZ 9001', 3, 'C', 2000),
+       ('59096968-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Man', 'XYZ 9002', 2, 'C', 2000),
+       ('5aae7452-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Man', 'XYZ 9003', 2, 'C', 2000),
+       ('5c1f1d46-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Man', 'XYZ 9004', 2, 'C', 2000),
+       ('604bdfbc-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'PASSENGERS', 'diesel', 'Ford', 'Transit', 8, 'B', 1500),
+       ('619d1bce-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'PASSENGERS', 'diesel', 'Mercedes', 'Sprinter', 8, 'B', 1500),
+       ('633ab108-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'PASSENGERS', 'diesel', 'Opel', 'Vivaro', 8, 'B', 1500),
+       ('82015ae2-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Volvo', 'FH', 3, 'C+E', 15000),
+       ('84560de2-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'Scania', 'CR19H', 3, 'C+E', 15000),
+       ('8638c37a-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'MAN', 'TGA', 3, 'C+E', 15000),
+       ('87fc1c70-c621-11ec-9d64-0242ac120002', 'ACTIVE', 'CARGO', 'diesel', 'DAF', 'XF106', 3, 'C+E', 15000);
 
 
 
