@@ -22,14 +22,16 @@ export class EditVehicleComponent implements OnInit {
       this.vehicle=res
     })
   }
+
   form = this.formBuilder.group({
-    marka: [],
+    brand: [],
     model: [],
-    "kategoria-pojazdu": [],
+    vehicleCategory: [],
     license: [],
-    "liczba-miejsc-ogolem": [],
-    "rodzaj-paliwa": [],
-    "max-ladownosc": []
+    numberOfSeats: [],
+    fuelType: [],
+    weightLimit: [],
+    availability: []
   });
 
   submit(){
@@ -55,4 +57,10 @@ export class EditVehicleComponent implements OnInit {
     {name:'D+E'},
     {name:'T'},
   ]
+  FUEL_TYPE = [
+    {name: 'benzyna'},
+    {name: 'diesel'},
+    {name: 'LPG'},
+    {name: 'CNG'}
+  ];
 }

@@ -11,8 +11,6 @@
                    formControlName="startAddress"
                    placeholder="Adres początkowy">
           </div>
-        </div>
-        <div class="row">
           <div class="form-group col col-md-5" [class.was-validated]="form.controls['destinationAddress'].touched">
             <label for="input-destination-address"></label>
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
@@ -32,10 +30,10 @@
         </div>
         <br>
         <div class="checkbox-list>">
-          <div class="set-transport-type form row" [class.was-validated]="form.controls['transportType'].touched">
+          <div class="set-transport-type form row">
             <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
               <mat-label>Wybierz rodzaj transportu:</mat-label>
-              <mat-select class="form-control" formControlName="transportType">
+              <mat-select class="form-control" formControlName="transportType" required>
                 <mat-option value="PASSENGERS">Transport osób</mat-option>
                 <mat-option value="CARGO">Transport towarów</mat-option>
               </mat-select>
@@ -56,7 +54,7 @@
           <div class="form-group col-md-5">
             <mat-form-field appearance="fill">
               <mat-label>Wybierz datę dostawy</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date">
+              <input matInput [matDatepicker]="picker" formControlName="date" required>
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>

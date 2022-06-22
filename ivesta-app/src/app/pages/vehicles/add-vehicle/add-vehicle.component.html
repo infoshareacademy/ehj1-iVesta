@@ -18,7 +18,7 @@
         <div class="row">
           <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
             <mat-label>Kategoria pojazdu</mat-label>
-            <mat-select class="form-control" formControlName="vehicleCategory">
+            <mat-select class="form-control" formControlName="vehicleCategory" required>
               <mat-option value="passengers">Osobowy</mat-option>
               <mat-option value="cargo">Ciężarowy</mat-option>
             </mat-select>
@@ -26,7 +26,7 @@
           <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill"
                           [class.was-validated]="form.controls['fuelType'].touched">
             <mat-label>Rodzaj paliwa</mat-label>
-            <mat-select class="form-control" formControlName="fuelType">
+            <mat-select class="form-control" formControlName="fuelType" required>
               <mat-option [value]="fuelType.name" *ngFor="let fuelType of FUEL_TYPE">{{fuelType.name}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -51,13 +51,13 @@
             <div class="set-license form row">
               <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
                 <mat-label>Wymagana licencja</mat-label>
-                <mat-select class="form-control" formControlName="license">
+                <mat-select class="form-control" formControlName="license" required>
                   <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
                 <mat-label>Wybierz status</mat-label>
-                <mat-select class="form-control" formControlName="availability">
+                <mat-select class="form-control" formControlName="availability" required>
                   <mat-option value="active">Aktywny</mat-option>
                   <mat-option value="inactive">Nieaktywny</mat-option>
                 </mat-select>
