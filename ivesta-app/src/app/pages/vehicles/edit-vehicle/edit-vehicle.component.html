@@ -7,25 +7,25 @@
           <div class="form-group col col-md-5">
             <label for="input-marka"></label>
             <input id="input-marka" type="text" name="brand" class="form-control" formControlName="brand"
-                   placeholder="{{vehicle.marka}}">
+                   value="{{vehicle?.marka}}">
           </div>
           <div class="form-group col col-md-5">
             <label for="input-model"></label>
             <input id="input-model" type="text" name="model" class="form-control" formControlName="model"
-                   placeholder="{{vehicle.model}}">
+                   value="{{vehicle?.model}}">
           </div>
         </div>
         <div class="row">
           <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
             <mat-label>Kategoria pojazdu</mat-label>
-            <mat-select class="form-control" formControlName="vehicleCategory">
+            <mat-select class="form-control" formControlName="vehicleCategory" value="{{vehicle?.['kategoria-pojazdu']}}">
               <mat-option value="passengers">Osobowy</mat-option>
               <mat-option value="cargo">Ciężarowy</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
             <mat-label>Rodzaj paliwa</mat-label>
-            <mat-select class="form-control" formControlName="fuelType">
+            <mat-select class="form-control" formControlName="fuelType" value="{{vehicle?.['rodzaj-paliwa']}}">
               <mat-option [value]="fuelType.name" *ngFor="let fuelType of FUEL_TYPE">{{fuelType.name}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -35,13 +35,13 @@
             <label for="liczbaMiejsc"></label>
             <input id="liczbaMiejsc" type="number" min="1" name="numberOfSeats" class="form-control"
                    formControlName="numberOfSeats"
-                   placeholder="{{vehicle['liczba-miejsc-ogolem']}}">
+                   value="{{vehicle?.['liczba-miejsc-ogolem']}}">
           </div>
           <div class="form-group col col-md-5">
             <label for="maxLadownosc"></label>
             <input id="maxLadownosc" type="number" min="1" name="weightLimit" class="form-control"
                    formControlName="weightLimit"
-                   required placeholder="{{vehicle['max-ladownosc']}}">
+                   value="{{vehicle?.['max-ladownosc']}}">
           </div>
         </div>
         <br>
@@ -50,13 +50,13 @@
             <div class="set-license form row">
               <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
                 <mat-label>Wymagana licencja</mat-label>
-                <mat-select class="form-control" formControlName="license">
+                <mat-select class="form-control" formControlName="license" value="{{vehicle?.license}}">
                   <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
                 <mat-label>Wybierz status</mat-label>
-                <mat-select class="form-control" formControlName="availability">
+                <mat-select class="form-control" formControlName="availability" value="{{vehicle?.availability}}">
                   <mat-option value="active">Aktywny</mat-option>
                   <mat-option value="inactive">Nieaktywny</mat-option>
                 </mat-select>
