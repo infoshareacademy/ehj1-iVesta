@@ -6,7 +6,7 @@
           <div class="form-group form-control">
             <label for="route-driver"></label>
             <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
-                   placeholder="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
+                   value="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
           </div>
         </div>
         <div class="row">
@@ -21,7 +21,7 @@
             <div id="available-drivers-for-date">
               <br>
               <div class="form-control form-group col-md-12">
-                <label class="sbw_light">Dostępni ierowcy:</label><br/>
+                <label class="sbw_light">Dostępni kierowcy:</label><br/>
                 <select formControlName="driverId">
                   <option *ngFor="let driver of avDriver" [value]=driver.id>
                     {{driver.name}} {{driver.lastName}}
@@ -34,13 +34,13 @@
       </div>
       <br>
       <div class="row">
+        <div class="col col-md-6 float-end">
+          <button class="btn btn-secondary float-end" routerLink="../..">Powrót</button>
+        </div>
         <div class="col col-md-6">
           <button class="btn btn-primary" (submit)="submit">
             Zapisz kierowcę
           </button>
-        </div>
-        <div class="col col-md-6 float-end">
-          <button class="btn btn-secondary float-end" routerLink="../..">Powrót</button>
         </div>
       </div>
     </div>

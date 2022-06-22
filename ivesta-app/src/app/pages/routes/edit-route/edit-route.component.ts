@@ -17,9 +17,10 @@ export class EditRouteComponent implements OnInit {
   avRoute: Route;
   routeId = this.activatedRoute.snapshot.params['id'];
 
-  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpDriverService: DriversHttpService, private httpVehicles: VehiclesHttpService) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder, private httpDriverService: DriversHttpService, private httpVehicles: VehiclesHttpService) {
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.httpService.fetchRouteById(this.routeId)
       .subscribe(res => {
         this.avRoute = res;
@@ -38,8 +39,8 @@ export class EditRouteComponent implements OnInit {
     transportType: [],
     transportVolume: [],
     date: [],
-    driver:[],
-    vehicle:[],
+    driver: [],
+    vehicle: [],
   });
   //todo ustawic datę na obecną a nie -1
 }

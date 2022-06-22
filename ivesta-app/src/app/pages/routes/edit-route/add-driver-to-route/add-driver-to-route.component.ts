@@ -14,10 +14,11 @@ import {DriversHttpService} from "../../../drivers/drivers-http.service";
 export class AddDriverToRouteComponent implements OnInit {
 
   avRoute: Route;
-  avDriver: Driver[]=[];
+  avDriver: Driver[] = [];
   routeId = this.activatedRoute.snapshot.params['id'];
 
-  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpDriverService: DriversHttpService) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder, private httpDriverService: DriversHttpService) {
+  }
 
   ngOnInit(): void {
     this.httpService.fetchRouteById(this.routeId)
@@ -26,14 +27,14 @@ export class AddDriverToRouteComponent implements OnInit {
       })
   }
 
-  availableDrivers(){
-    this.httpDriverService.getAvailableDriversForGivenDate(this.avRoute.date).subscribe((response) =>{
+  availableDrivers() {
+    this.httpDriverService.getAvailableDriversForGivenDate(this.avRoute.date).subscribe((response) => {
       this.avDriver = response;
     })
   }
 
-  addDriverToRoute(driverId: string){
-    this.httpService.addDriverToRoute(driverId,this.routeId).subscribe();
+  addDriverToRoute(driverId: string) {
+    this.httpService.addDriverToRoute(driverId, this.routeId).subscribe();
   }
 
   submit() {

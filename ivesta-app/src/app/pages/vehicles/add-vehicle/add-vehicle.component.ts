@@ -39,6 +39,7 @@ export class AddVehicleComponent implements OnInit {
     this.createNewVehicle(this.form.value)
     console.log(this.form.value)
     this.form.reset();
+    alert('Pojazd został dodany');
   }
 
   createNewVehicle(vehicle: VehicleCandidate){
@@ -66,5 +67,12 @@ export class AddVehicleComponent implements OnInit {
     {name:'D1+E'},
     {name:'D+E'},
     {name:'T'},
+  ]
+
+  FUEL_TYPE = [
+    {name: 'benzyna'},
+    {name: 'diesel'},
+    {name: 'LPG'},
+    {name: 'CNG'}
   ]
 }
