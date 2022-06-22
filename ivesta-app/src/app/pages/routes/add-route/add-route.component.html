@@ -1,19 +1,17 @@
 <ng-container id="routeAdd">
-  <div id="route-card" class="card text-center shadow" style="width: 50rem;">
+  <div id="route-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Dodaj nową trasę:</div>
     <div class="card-body">
-      <h1>Dodaj nową trasę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-          <div class="form-group col col-md-5" [class.was-validated]="form.controls['startAddress'].touched">
+          <div class="form-group col" [class.was-validated]="form.controls['startAddress'].touched">
             <label for="input-start-address"></label>
             <input id="input-start-address" type="text" name="startAddress" class="form-control"
                    required
                    formControlName="startAddress"
                    placeholder="Adres początkowy">
           </div>
-        </div>
-        <div class="row">
-          <div class="form-group col col-md-5" [class.was-validated]="form.controls['destinationAddress'].touched">
+          <div class="form-group col" [class.was-validated]="form.controls['destinationAddress'].touched">
             <label for="input-destination-address"></label>
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
                    required
@@ -22,28 +20,14 @@
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-md-5" [class.was-validated]="form.controls['routeLength'].touched">
+          <div class="form-group col" [class.was-validated]="form.controls['routeLength'].touched">
             <label for="routeLength"></label>
             <input id="routeLength" type="number" min="1" name="routeLength" class="form-control"
                    formControlName="routeLength"
                    required
                    placeholder="Długość trasy">
           </div>
-        </div>
-        <br>
-        <div class="checkbox-list>">
-          <div class="set-transport-type form row" [class.was-validated]="form.controls['transportType'].touched">
-            <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
-              <mat-label>Wybierz rodzaj transportu:</mat-label>
-              <mat-select class="form-control" formControlName="transportType">
-                <mat-option value="PASSENGERS">Transport osób</mat-option>
-                <mat-option value="CARGO">Transport towarów</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-5" [class.was-validated]="form.controls['transportVolume'].touched">
+          <div class="form-group col" [class.was-validated]="form.controls['transportVolume'].touched">
             <label for="transportVolume"></label>
             <input id="transportVolume" type="number" min="1" name="transportVolume" class="form-control"
                    required
@@ -52,24 +36,33 @@
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="form-group col-md-5">
-            <mat-form-field appearance="fill">
-              <mat-label>Wybierz datę dostawy</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+          <div class="checkbox-list">
+            <div class="set-transport-type row" [class.was-validated]="form.controls['transportType'].touched">
+              <mat-form-field class="picked-transport-type-avia col" appearance="fill">
+                <mat-label>Wybierz rodzaj transportu:</mat-label>
+                <mat-select class="form-control" formControlName="transportType">
+                  <mat-option value="PASSENGERS">Transport osób</mat-option>
+                  <mat-option value="CARGO">Transport towarów</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="col">
+                <mat-label>Wybierz datę dostawy</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
           </div>
-        </div>
         <br>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-secondary" routerLink="..">Powrót</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">Dodaj trasę</button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (submit)="submit()">Dodaj trasę</button>
+            </div>
           </div>
         </div>
         <br>

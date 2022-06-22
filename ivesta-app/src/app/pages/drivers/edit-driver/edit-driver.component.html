@@ -1,58 +1,61 @@
 <ng-container id="driverAdd">
-  <div id="edit-driver-card" class="card text-center shadow" style="width: 50rem;">
-    <h1>Edytuj kierowcę:</h1>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="row">
-        <div class="form-group col col-md-5">
-          <label for="input-name">Imię:</label>
-          <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
-                 placeholder={{driver.name}}>
-        </div>
-        <div class="form-group col col-md-5">
-          <label for="input-lastname">Nazwisko</label>
-          <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
-                 placeholder={{driver.lastName}}>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-3">
-          <label for="phone">Telefon</label>
-          <input id="phone" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
-                 placeholder={{driver.phoneNumber}}>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="checkbox-list>">
-          <div class="set-license form row">
-            <mat-form-field class="picked-license-avia col-md-3" appearance="fill">
-              <mat-label>Zmień licencję</mat-label>
-              <mat-select class="form-control" formControlName="license">
-                <mat-label>Wybierz</mat-label>
-                <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="set-status picked-license-avia col-md-3" appearance="fill">
-              <mat-label>Zmień status:</mat-label>
-              <mat-select class="form-control" formControlName="availability">
-                <mat-label>Wybierz</mat-label>
-                <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
-                <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
-              </mat-select>
-            </mat-form-field>
+  <div id="edit-driver-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Edytuj kierowcę:</div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="form-group col">
+            <label for="input-name">Imię:</label>
+            <input id="input-name" type="text" name="name" class="form-control" formControlName="name"
+                   placeholder={{driver.name}}>
+          </div>
+          <div class="form-group col">
+            <label for="input-lastname">Nazwisko</label>
+            <input id="input-lastname" type="text" name="lastName" class="form-control" formControlName="lastName"
+                   placeholder={{driver.lastName}}>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button class="btn btn-secondary" routerLink="..">Powrót</button>
+        <div class="row">
+          <div class="form-group col">
+            <label for="phone">Telefon</label>
+            <input id="phone" type="text" name="phoneNumber" class="form-control" formControlName="phoneNumber"
+                   placeholder={{driver.phoneNumber}}>
+          </div>
         </div>
-        <div class="col">
-          <button class="btn btn-primary" (submit)="submit()">Uaktualnij dane kierowcy</button>
+        <br>
+        <div class="row">
+          <div class="checkbox-list>">
+            <div class="set-license form row">
+              <mat-form-field class="picked-license-avia col" appearance="fill">
+                <mat-label>Zmień licencję</mat-label>
+                <mat-select class="form-control" formControlName="license">
+                  <mat-label>Wybierz</mat-label>
+                  <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+                <mat-label>Zmień status:</mat-label>
+                <mat-select class="form-control" formControlName="availability">
+                  <mat-label>Wybierz</mat-label>
+                  <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
+                  <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-      </div>
-      <br>
-    </form>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (submit)="submit()">Uaktualnij dane kierowcy</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </ng-container>

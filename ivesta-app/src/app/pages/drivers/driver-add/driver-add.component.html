@@ -1,17 +1,17 @@
 <ng-container id="driverAdd">
-  <div id="driver-add-card" class="card text-center shadow" style="width: 50rem;">
+  <div id="driver-add-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Dodaj nowego kierowcę:</div>
     <div class="card-body">
-      <h1>Dodaj nowego kierowcę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-          <div class="form-group col col-md-5" [class.was-validated]="form.controls['name'].touched">
+          <div class="form-group col col" [class.was-validated]="form.controls['name'].touched">
             <label for="input-name"></label>
             <input id="input-name" type="text" name="name" class="form-control"
                    formControlName="name"
                    required
                    placeholder="Imię">
           </div>
-          <div class="form-group col col-md-5" [class.was-validated]="form.controls['lastName'].touched">
+          <div class="form-group col col" [class.was-validated]="form.controls['lastName'].touched">
             <label for="input-lastname"></label>
             <input id="input-lastname" type="text" name="lastName" class="form-control"
                    formControlName="lastName"
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-md-5" [class.was-validated]="form.controls['phoneNumber'].touched">
+          <div class="form-group col" [class.was-validated]="form.controls['phoneNumber'].touched">
             <label for="phoneNumber"></label>
             <input id="phoneNumber" type="text" name="phoneNumber" class="form-control"
                    formControlName="phoneNumber"
@@ -31,7 +31,7 @@
         <br>
         <div class="checkbox-list>">
           <div class="set-license form row">
-            <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
+            <mat-form-field class="picked-license-avia col" appearance="fill">
               <mat-label>Kat. prawojazdy</mat-label>
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Wybierz</mat-label>
@@ -40,7 +40,7 @@
               </mat-select>
             </mat-form-field>
             <div class="col">
-              <mat-form-field class="set-status picked-license-avia col-md-5" appearance="fill">
+              <mat-form-field class="set-status picked-license-avia col" appearance="fill">
                 <mat-label>Status</mat-label>
                 <mat-select class="form-control" formControlName="availability">
                   <mat-label>Wybierz</mat-label>
@@ -51,12 +51,14 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-secondary" routerLink="..">Powrót</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">Dodaj kierowcę</button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (submit)="submit()">Dodaj kierowcę</button>
+            </div>
           </div>
         </div>
       </form>

@@ -1,43 +1,51 @@
 <ng-container id="driverEdit">
-  <div id="driver-card" class="card text-center shadow" style="width: 50rem;">
+  <div id="driver-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Dodaj nowego kierowcę:</div>
     <div class="card-body">
-      <h1>Dodaj nowego kierowcę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-          <label for="input-marka">Marka</label>
-          <input id="input-marka" type="text" name="marka" class="form-control" formControlName="marka"
-                 placeholder="{{vehicle.marka}}">
-        </div>
-        <div class=row>
-          <label for="input-model">Model</label>
-          <input id="input-model" type="text" name="model" class="form-control" formControlName="model"
-                 placeholder="{{vehicle.model}}">
-        </div>
-        <div class="row">
-          <label for="kategoriaPojazdu">Kategoria pojazdu</label>
-          <input id="kategoriaPojazdu" type="text" name="vehicleCategory" class="form-control"
-                 formControlName="kategoria-pojazdu"
-                 placeholder="{{vehicle['kategoria-pojazdu']}}">
+          <div class="col">
+            <label for="input-marka">Marka</label>
+            <input id="input-marka" type="text" name="marka" class="form-control" formControlName="marka"
+                   placeholder="{{vehicle.marka}}">
+          </div>
+          <div class=col>
+            <label for="input-model">Model</label>
+            <input id="input-model" type="text" name="model" class="form-control" formControlName="model"
+                   placeholder="{{vehicle.model}}">
+          </div>
         </div>
         <div class="row">
-          <label for="liczbaMiejsc">Liczba miejsc</label>
-          <input id="liczbaMiejsc" type="text" name="numberOfSeats" class="form-control" formControlName="liczba-miejsc-ogolem"
-                 placeholder="{{vehicle['liczba-miejsc-ogolem']}}">
+          <div class="col">
+            <label for="kategoriaPojazdu">Kategoria pojazdu</label>
+            <input id="kategoriaPojazdu" type="text" name="vehicleCategory" class="form-control"
+                   formControlName="kategoria-pojazdu"
+                   placeholder="{{vehicle['kategoria-pojazdu']}}">
+          </div>
+          <div class="col">
+            <label for="liczbaMiejsc">Liczba miejsc</label>
+            <input id="liczbaMiejsc" type="text" name="numberOfSeats" class="form-control"
+                   formControlName="liczba-miejsc-ogolem"
+                   placeholder="{{vehicle['liczba-miejsc-ogolem']}}">
+          </div>
         </div>
         <div class="row">
-          <label for="rodzajPaliwa">Rodzaj paliwa</label>
-          <input id="rodzajPaliwa" type="text" name="fuelType" class="form-control" formControlName="rodzaj-paliwa"
-                 placeholder="{{vehicle['rodzaj-paliwa']}}">
+          <div class="col">
+            <label for="rodzajPaliwa">Rodzaj paliwa</label>
+            <input id="rodzajPaliwa" type="text" name="fuelType" class="form-control" formControlName="rodzaj-paliwa"
+                   placeholder="{{vehicle['rodzaj-paliwa']}}">
+          </div>
+          <div class="col">
+            <label for="maxLadownosc">Ładowność</label>
+            <input id="maxLadownosc" type="text" name="weightLimit" class="form-control" formControlName="max-ladownosc"
+                   placeholder="{{vehicle['max-ladownosc']}}">
+          </div>
         </div>
-        <div class="row">
-          <label for="maxLadownosc">Ładowność</label>
-          <input id="maxLadownosc" type="text" name="weightLimit" class="form-control" formControlName="max-ladownosc"
-                 placeholder="{{vehicle['max-ladownosc']}}">
-        </div>
+        <br>
         <div class="checkbox-list>">
           <div class="set-license form row">
             <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
-              <mat-label>Select license (current: {{vehicle.license}})</mat-label>
+              <mat-label>Zmień prawo jazdy (Aktualne: {{vehicle.license}})</mat-label>
               <mat-select class="form-control" formControlName="license">
                 <mat-label>Add licence</mat-label>
                 <mat-option>None</mat-option>
@@ -46,12 +54,14 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-primary" routerLink="..">Powrót</button>
-          </div>
-          <div class="col">
-            <button type="button submit"  class="btn btn-primary">Uaktualnij.</button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button type="button submit" class="btn btn-primary">Uaktualnij.</button>
+            </div>
           </div>
         </div>
       </form>

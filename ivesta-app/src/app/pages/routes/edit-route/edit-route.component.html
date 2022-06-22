@@ -1,16 +1,16 @@
-<ng-container id="routeAdd">
-  <div id="route-card" class="card text-center shadow" style="width: 50rem">
+<ng-container id="routeEdit">
+  <div id="route-card" class="card border-secondary text-center shadow" style="width: 50rem">
+    <div class="card-header">Edytuj trasę</div>
     <div class="card-body">
-      <h1>Edytuj trasę:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-          <div class="form-group col col-md-5">
+          <div class="form-group col">
             <label for="input-start-address"></label>
             <input id="input-start-address" type="text" name="startAddress" class="form-control"
                    formControlName="startAddress"
                    value="{{avRoute?.startAddress}}">
           </div>
-          <div class="form-group col col-md-5">
+          <div class="form-group col">
             <label for="input-destination-address"></label>
             <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
                    formControlName="destinationAddress"
@@ -18,26 +18,12 @@
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-md-5">
+          <div class="form-group col">
             <label for="routeLength"></label>
             <input id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
                    value="{{avRoute?.routeLength}}">
           </div>
-        </div>
-        <br>
-        <div class="checkbox-list>">
-          <div class="set-transport-type form row">
-            <mat-form-field class="picked-transport-type-avia col-md-5" appearance="fill">
-              <mat-label>Wybierz rodzaj transportu</mat-label>
-              <mat-select class="form-control" formControlName="transportType" value="{{avRoute?.transportType}}">
-                <mat-option value="PASSENGERS">passengers</mat-option>
-                <mat-option value="CARGO">cargo</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-5">
+          <div class="form-group col">
             <label for="transportVolume"></label>
             <input id="transportVolume" type="text" name="transportVolume" class="form-control"
                    formControlName="transportVolume"
@@ -45,29 +31,38 @@
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="form-group col-md-5">
-            <mat-form-field appearance="fill">
-              <mat-label>Wybierz datę</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date" value ="{{avRoute?.date}}">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+        <div class="checkbox-list>">
+          <div class="set-transport-type form row">
+            <mat-form-field class="picked-transport-type-avia col" appearance="fill">
+              <mat-label>Wybierz rodzaj transportu</mat-label>
+              <mat-select class="form-control" formControlName="transportType" value="{{avRoute?.transportType}}">
+                <mat-option value="PASSENGERS">passengers</mat-option>
+                <mat-option value="CARGO">cargo</mat-option>
+              </mat-select>
             </mat-form-field>
+            <div class="form-group col">
+              <mat-form-field appearance="fill">
+                <mat-label>Wybierz datę</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" value="{{avRoute?.date}}">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col col-md-6">
-          <div class="form-group form-control">
-            <label for="route-driver"></label>
-            <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
-                   value="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
-            <br>
-            <button class="btn btn-primary" routerLink="{{avRoute.id}}/addDriver">Dodaj kierowcę</button>
-          </div>
+          <div class="col col">
+            <div class="form-group form-control">
+              <label for="route-driver"></label>
+              <input id="route-driver" type="text" name="driver" class="form-control" formControlName="driver"
+                     value="{{avRoute?.driver?.name}} {{avRoute?.driver?.lastName}}">
+              <br>
+              <button class="btn btn-primary" routerLink="{{avRoute.id}}/addDriver">Dodaj kierowcę</button>
+            </div>
           </div>
 
-          <div class="col col-md-6">
+          <div class="col">
             <div class="form-group form-control">
               <label for="route-vehicle"></label>
               <input id="route-vehicle" type="text" name="vehicle" class="form-control" formControlName="vehicle"
@@ -77,16 +72,17 @@
             </div>
           </div>
         </div>
-
         <br>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-secondary" routerLink="..">Powrót</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">
-              Uaktualnij trasę
-            </button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (submit)="submit()">
+                Uaktualnij trasę
+              </button>
+            </div>
           </div>
         </div>
       </form>

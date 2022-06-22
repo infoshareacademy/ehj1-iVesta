@@ -1,7 +1,7 @@
 <ng-container id="driverAdd">
-  <div id="driver-card" class="card text-center shadow" style="width: 50rem;">
+  <div id="driver-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Dodaj nowy pojazd:</div>
     <div class="card-body">
-      <h1>Dodaj nowy pojazd:</h1>
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
           <div class="form-group col col-md-5" [class.was-validated]="form.controls['brand'].touched">
@@ -65,12 +65,14 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-secondary" routerLink="..">Powrót</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-primary" (submit)="submit()">Dodaj pojazd</button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-secondary" routerLink="..">Powrót</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (submit)="submit()">Dodaj pojazd</button>
+            </div>
           </div>
         </div>
       </form>
