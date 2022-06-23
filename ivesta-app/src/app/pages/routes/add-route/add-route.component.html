@@ -5,18 +5,28 @@
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
           <div class="form-group col" [class.was-validated]="form.controls['startAddress'].touched">
-            <label for="input-start-address"></label>
-            <input id="input-start-address" type="text" name="startAddress" class="form-control"
-                   required
-                   formControlName="startAddress"
-                   placeholder="Adres początkowy">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-start-address">Adres początkowy</mat-label>
+              <input matInput id="input-start-address" type="text" name="startAddress" class="form-control"
+                     required
+                     formControlName="startAddress">
+            </mat-form-field>
           </div>
           <div class="form-group col" [class.was-validated]="form.controls['destinationAddress'].touched">
-            <label for="input-destination-address"></label>
-            <input id="input-destination-address" type="text" name="destinationAddress" class="form-control"
-                   required
-                   formControlName="destinationAddress"
-                   placeholder="Adres końcowy">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-destination-address">Adres końcowy</mat-label>
+              <input matInput id="input-destination-address" type="text" name="destinationAddress" class="form-control"
+                     required
+                     formControlName="destinationAddress">
+            </mat-form-field>
+          </div>
+          <div class="form-group col" [class.was-validated]="form.controls['routeLength'].touched">
+            <mat-form-field appearance="fill">
+              <mat-label for="routeLength">Długość trasy</mat-label>
+              <input matInput id="routeLength" type="number" min="1" name="routeLength" class="form-control"
+                     formControlName="routeLength"
+                     required>
+            </mat-form-field>
           </div>
         </div>
         <br>
@@ -31,15 +41,13 @@
                 </mat-select>
               </mat-form-field>
               <div class="form-group col" [class.was-validated]="form.controls['transportVolume'].touched">
-                <label for="transportVolume"></label>
-                <input id="transportVolume" type="number" min="1" name="transportVolume" class="form-control"
-                       required
-                       formControlName="transportVolume"
-                       placeholder="Ilość osób/towaru w kg">
+                <mat-form-field appearance="fill">
+                  <mat-label for="input-transport-volume">Ilość osób/towaru [kg]</mat-label>
+                  <input matInput id="transportVolume" type="number" min="1" name="transportVolume" class="form-control"
+                         required
+                         formControlName="transportVolume">
+                </mat-form-field>
               </div>
-            </div>
-            <br>
-            <div class="row">
               <mat-form-field appearance="fill" class="col">
                 <mat-label>Wybierz datę dostawy</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date">
@@ -47,13 +55,6 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-              <div class="form-group col" [class.was-validated]="form.controls['routeLength'].touched">
-                <label for="routeLength"></label>
-                <input id="routeLength" type="number" min="1" name="routeLength" class="form-control"
-                       formControlName="routeLength"
-                       required
-                       placeholder="Długość trasy">
-              </div>
             </div>
           </div>
         </div>

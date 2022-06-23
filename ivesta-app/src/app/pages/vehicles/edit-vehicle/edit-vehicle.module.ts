@@ -6,18 +6,20 @@ import { EditVehicleComponent } from './edit-vehicle.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
   declarations: [
     EditVehicleComponent
   ],
-  imports: [
-    CommonModule,
-    EditVehicleRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        EditVehicleRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
+    ]
 })
 export class EditVehicleModule { }

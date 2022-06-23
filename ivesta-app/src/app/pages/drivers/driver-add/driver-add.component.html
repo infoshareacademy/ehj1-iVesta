@@ -5,44 +5,45 @@
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
           <div class="form-group col col" [class.was-validated]="form.controls['name'].touched">
-            <label for="input-name"></label>
-            <input id="input-name" type="text" name="name" class="form-control"
-                   formControlName="name"
-                   required
-                   placeholder="Imię">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-name">Imię</mat-label>
+              <input matInput id="input-name" type="text" name="name" class="form-control"
+                     formControlName="name"
+                     required>
+            </mat-form-field>
           </div>
           <div class="form-group col col" [class.was-validated]="form.controls['lastName'].touched">
-            <label for="input-lastname"></label>
-            <input id="input-lastname" type="text" name="lastName" class="form-control"
-                   formControlName="lastName"
-                   required
-                   placeholder="Nazwisko">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-lastname">Nazwisko</mat-label>
+              <input matInput id="input-lastname" type="text" name="lastName" class="form-control"
+                     formControlName="lastName"
+                     required>
+            </mat-form-field>
           </div>
-        </div>
-        <div class="row">
           <div class="form-group col" [class.was-validated]="form.controls['phoneNumber'].touched">
-            <label for="phoneNumber"></label>
-            <input id="phoneNumber" type="text" name="phoneNumber" class="form-control"
-                   formControlName="phoneNumber"
-                   required
-                   placeholder="Telefon">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-phone">Telefon</mat-label>
+              <input matInput id="phoneNumber" type="text" name="phoneNumber" class="form-control"
+                     formControlName="phoneNumber"
+                     required>
+            </mat-form-field>
           </div>
         </div>
         <br>
-        <div class="checkbox-list>">
-          <div class="set-license form row">
-            <mat-form-field class="picked-license-avia col" appearance="fill">
-              <mat-label>Kat. prawojazdy</mat-label>
-              <mat-select class="form-control" formControlName="license">
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+              <mat-label>Kategoria prawa jazdy</mat-label>
+              <mat-select class="form-control" formControlName="license" required>
                 <mat-label>Wybierz</mat-label>
                 <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
-
               </mat-select>
             </mat-form-field>
+          </div>
             <div class="col">
               <mat-form-field class="set-status picked-license-avia col" appearance="fill">
                 <mat-label>Status</mat-label>
-                <mat-select class="form-control" formControlName="availability">
+                <mat-select class="form-control" formControlName="availability" required>
                   <mat-label>Wybierz</mat-label>
                   <mat-option value="active">Aktywny</mat-option>
                   <mat-option value="inactive">Nieaktywny</mat-option>
@@ -50,7 +51,6 @@
               </mat-form-field>
             </div>
           </div>
-        </div>
         <div class="card-footer">
           <div class="row">
             <div class="col">

@@ -1,8 +1,9 @@
-.container{
-  height: 100%;
-border: #e5383b;
+.container {
+  min-height: 430px;
+  border: #e5383b;
 }
-.btn{
+
+.btn {
   background-color: #e5383b;
   color: white;
   text-decoration: none;

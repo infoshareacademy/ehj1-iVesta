@@ -6,18 +6,20 @@ import { DriverAddComponent } from './driver-add.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
   declarations: [
     DriverAddComponent
   ],
-  imports: [
-    CommonModule,
-    DriverAddRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        DriverAddRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
+    ]
 })
 export class DriverAddModule { }

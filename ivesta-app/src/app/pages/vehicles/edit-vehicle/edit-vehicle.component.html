@@ -1,55 +1,77 @@
-<ng-container id="driverEdit">
-  <div id="driver-card" class="card border-secondary text-center shadow" style="width: 50rem;">
-    <div class="card-header">Dodaj nowego kierowcę:</div>
+<ng-container id="vehicleEdit">
+  <div id="edit-vehicle-card" class="card border-secondary text-center shadow" style="width: 50rem;">
+    <div class="card-header">Edytuj pojazd</div>
     <div class="card-body">
       <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="row">
-          <div class="col">
-            <label for="input-marka">Marka</label>
-            <input id="input-marka" type="text" name="marka" class="form-control" formControlName="marka"
-                   placeholder="{{vehicle.marka}}">
+          <div class="form-group col">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-marka">Marka</mat-label>
+            <input matInput id="input-marka" type="text" name="marka" class="form-control" formControlName="marka"
+                   value="{{vehicle?.marka}}">
+            </mat-form-field>
           </div>
           <div class=col>
-            <label for="input-model">Model</label>
-            <input id="input-model" type="text" name="model" class="form-control" formControlName="model"
-                   placeholder="{{vehicle.model}}">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-model">Model</mat-label>
+            <input matInput id="input-model" type="text" name="model" class="form-control" formControlName="model"
+                   value="{{vehicle?.model}}">
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <label for="kategoriaPojazdu">Kategoria pojazdu</label>
-            <input id="kategoriaPojazdu" type="text" name="vehicleCategory" class="form-control"
-                   formControlName="kategoria-pojazdu"
-                   placeholder="{{vehicle['kategoria-pojazdu']}}">
+            <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+              <mat-label>Kategoria pojazdu</mat-label>
+              <mat-select class="form-control" formControlName="vehicleCategory" value="{{vehicle?.['kategoria-pojazdu']}}">
+                <mat-option value="PASSENGERS">Osobowy</mat-option>
+                <mat-option value="CARGO">Ciężarowy</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="col">
-            <label for="liczbaMiejsc">Liczba miejsc</label>
-            <input id="liczbaMiejsc" type="text" name="numberOfSeats" class="form-control"
+            <mat-form-field appearance="fill">
+              <mat-label for="input-liczbaMiejsc">Liczba miejsc</mat-label>
+            <input matInput id="input-liczbaMiejsc" type="number" min="1" name="numberOfSeats" class="form-control"
                    formControlName="liczba-miejsc-ogolem"
-                   placeholder="{{vehicle['liczba-miejsc-ogolem']}}">
+                   value="{{vehicle?.['liczba-miejsc-ogolem']}}">
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <label for="rodzajPaliwa">Rodzaj paliwa</label>
-            <input id="rodzajPaliwa" type="text" name="fuelType" class="form-control" formControlName="rodzaj-paliwa"
-                   placeholder="{{vehicle['rodzaj-paliwa']}}">
+            <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+            <mat-label>Rodzaj paliwa</mat-label>
+            <mat-select class="form-control" formControlName="fuelType" value="{{vehicle?.['rodzaj-paliwa']}}">
+              <mat-option [value]="fuelType.name" *ngFor="let fuelType of FUEL_TYPE">{{fuelType.name}}</mat-option>
+            </mat-select>
+            </mat-form-field>
           </div>
           <div class="col">
-            <label for="maxLadownosc">Ładowność</label>
-            <input id="maxLadownosc" type="text" name="weightLimit" class="form-control" formControlName="max-ladownosc"
-                   placeholder="{{vehicle['max-ladownosc']}}">
+            <mat-form-field appearance="fill">
+              <mat-label for="input-maxLadownosc">Ładowność</mat-label>
+            <input matInput id="input-maxLadownosc" type="number" min="1" name="weightLimit" class="form-control" formControlName="max-ladownosc"
+                   value="{{vehicle?.['max-ladownosc']}}">
+            </mat-form-field>
           </div>
         </div>
         <br>
-        <div class="checkbox-list>">
-          <div class="set-license form row">
-            <mat-form-field class="picked-license-avia col-md-5" appearance="fill">
-              <mat-label>Zmień prawo jazdy (Aktualne: {{vehicle.license}})</mat-label>
-              <mat-select class="form-control" formControlName="license">
-                <mat-label>Add licence</mat-label>
-                <mat-option>None</mat-option>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+              <mat-label>Wymagana kategoria prawa jazdy</mat-label>
+              <mat-select class="form-control" formControlName="license" value="{{vehicle?.license}}">
+                <mat-label>Wybierz</mat-label>
                 <mat-option [value]="license.name" *ngFor="let license of LICENSES">{{license.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="set-status picked-license-avia col" appearance="fill">
+              <mat-label>Status</mat-label>
+              <mat-select class="form-control" formControlName="availability" value="{{vehicle?.availability}}">
+                <mat-option value="active">Aktywny</mat-option>
+                <mat-option value="inactive">Nieaktywny</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -60,7 +82,7 @@
               <button class="btn btn-secondary" routerLink="..">Powrót</button>
             </div>
             <div class="col">
-              <button type="button submit" class="btn btn-primary">Uaktualnij.</button>
+              <button class="btn btn-primary" (submit)="submit()">Uaktualnij</button>
             </div>
           </div>
         </div>

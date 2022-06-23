@@ -33,6 +33,7 @@ export class AddRouteComponent implements OnInit {
     }
     this.createNewRoute(this.form.value)
     this.form.reset();
+    alert('Trasa została dodana');
   }
 
   createNewRoute(route: RouteCandidate) {

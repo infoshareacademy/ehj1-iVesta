@@ -37,8 +37,8 @@ export class EditVehicleComponent implements OnInit {
   submit(){
     console.log(this.form.value)
     this.httpService.update(this.form.value, this.vehicleId).subscribe();
-    console.log(this.form.value)
-    this.form.reset();
+    console.log(this.form.value);
+    alert('Dane pojazdu zostały zaktualizowane');
   }
   LICENSES =[
     {name:'A1'},

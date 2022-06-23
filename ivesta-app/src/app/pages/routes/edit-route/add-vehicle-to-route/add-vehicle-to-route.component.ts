@@ -42,6 +42,7 @@ export class AddVehicleToRouteComponent implements OnInit {
   submit() {
     this.addVehicleToRoute(this.form.value)
     this.form.reset();
+    alert('Pojazd został dodany do trasy');
   }
 
   form = this.formBuilder.group({
