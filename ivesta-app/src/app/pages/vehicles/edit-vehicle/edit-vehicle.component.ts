@@ -24,13 +24,13 @@ export class EditVehicleComponent implements OnInit {
   }
 
   form = this.formBuilder.group({
-    brand: [],
+    marka: [],
     model: [],
-    vehicleCategory: [],
+    "kategoria-pojazdu": [],
     license: [],
-    numberOfSeats: [],
-    fuelType: [],
-    weightLimit: [],
+    "liczba-miejsc-ogolem": [],
+    "rodzaj-paliwa": [],
+    "max-ladownosc": [],
     availability: []
   });
 

@@ -23,7 +23,7 @@
           <div class="col">
             <mat-form-field class="set-status picked-license-avia col" appearance="fill">
               <mat-label>Kategoria pojazdu</mat-label>
-              <mat-select class="form-control" formControlName="vehicleCategory" value="{{vehicle?.['kategoria-pojazdu']}}">
+              <mat-select class="form-control" formControlName="kategoria-pojazdu" value="{{vehicle?.['kategoria-pojazdu']}}">
                 <mat-option value="PASSENGERS">Osobowy</mat-option>
                 <mat-option value="CARGO">Ciężarowy</mat-option>
               </mat-select>
@@ -32,7 +32,7 @@
           <div class="col">
             <mat-form-field appearance="fill">
               <mat-label for="input-liczbaMiejsc">Liczba miejsc</mat-label>
-            <input matInput id="input-liczbaMiejsc" type="number" min="1" name="numberOfSeats" class="form-control"
+            <input matInput id="liczba-miejsc-ogolem" type="number" min="1" name="numberOfSeats" class="form-control"
                    formControlName="liczba-miejsc-ogolem"
                    value="{{vehicle?.['liczba-miejsc-ogolem']}}">
             </mat-form-field>
@@ -42,15 +42,15 @@
           <div class="col">
             <mat-form-field class="set-status picked-license-avia col" appearance="fill">
             <mat-label>Rodzaj paliwa</mat-label>
-            <mat-select class="form-control" formControlName="fuelType" value="{{vehicle?.['rodzaj-paliwa']}}">
+            <mat-select class="form-control" formControlName="rodzaj-paliwa" value="{{vehicle?.['rodzaj-paliwa']}}">
               <mat-option [value]="fuelType.name" *ngFor="let fuelType of FUEL_TYPE">{{fuelType.name}}</mat-option>
             </mat-select>
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field appearance="fill">
-              <mat-label for="input-maxLadownosc">Ładowność</mat-label>
-            <input matInput id="input-maxLadownosc" type="number" min="1" name="weightLimit" class="form-control" formControlName="max-ladownosc"
+              <mat-label for="max-ladownosc">Ładowność</mat-label>
+            <input matInput id="max-ladownosc" type="number" min="1" name="max-ladownosc" class="form-control" formControlName="max-ladownosc"
                    value="{{vehicle?.['max-ladownosc']}}">
             </mat-form-field>
           </div>
