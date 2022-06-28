@@ -9,7 +9,7 @@ import {DriversHttpService} from "./drivers-http.service";
 })
 export class DriversComponent implements OnInit {
 
-  drivers?: Driver[] = [];
+  drivers: Driver[] = [];
 
   constructor(private driverService: DriversHttpService) { }
 
@@ -35,4 +35,10 @@ export class DriversComponent implements OnInit {
       return "Aktywny"
     }return "Nieaktywny";
   }
+  checkIfCanDelete(status: string, removeCandidate: string){
+    if (status == 'active'){
+      return confirm("Nie można usunąć aktywnego pracownika.")
+    }return this.deleteDriverById(removeCandidate)
+  }
+
 }
