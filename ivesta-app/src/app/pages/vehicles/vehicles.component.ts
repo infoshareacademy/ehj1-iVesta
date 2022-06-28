@@ -41,4 +41,10 @@ export class VehiclesComponent implements OnInit {
       return "Ciężarowy"
     }return "Osobowy";
   }
+
+  checkIfCanDelete(status: string, removeCandidate: string){
+    if (status == 'active'){
+      return confirm("Nie można usunąć aktywnego pracownika.")
+    }return this.deleteVehicleById(removeCandidate)
+  }
 }
