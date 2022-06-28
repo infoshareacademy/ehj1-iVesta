@@ -50,9 +50,7 @@
               </div>
               <mat-form-field appearance="fill" class="col">
                 <mat-label>Wybierz datę dostawy</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <input matInput type="date" formControlName="date">
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>

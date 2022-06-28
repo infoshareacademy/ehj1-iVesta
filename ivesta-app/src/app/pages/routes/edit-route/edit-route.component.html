@@ -52,10 +52,7 @@
             <div class="form-group col">
               <mat-form-field appearance="fill">
                 <mat-label>Wybierz datę</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date" value="{{avRoute?.date}}">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput type="date" formControlName="date" value="{{avRoute?.date}}">
               </mat-form-field>
             </div>
         </div>
