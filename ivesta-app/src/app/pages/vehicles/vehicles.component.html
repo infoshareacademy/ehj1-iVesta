@@ -20,12 +20,12 @@
     <tr *ngFor="let vehicle of vehicles">
       <td>{{vehicle.marka}}</td>
       <td>{{vehicle.model}}</td>
-      <td>{{vehicle["kategoria-pojazdu"]}}</td>
+      <td>{{setTransportType(vehicle["kategoria-pojazdu"])}}</td>
       <td>{{vehicle.license}}</td>
       <td>{{vehicle["liczba-miejsc-ogolem"]}}</td>
       <td>{{vehicle["rodzaj-paliwa"]}}</td>
       <td>{{vehicle["max-ladownosc"]}}</td>
-      <td>{{vehicle.availability}}</td>
+      <td>{{setStatus(vehicle.availability)}}</td>
       <button class="btn" routerLink="{{vehicle.id}}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
              viewBox="0 0 16 16">

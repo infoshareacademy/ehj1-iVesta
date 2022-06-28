@@ -9,7 +9,7 @@ import {RoutesHttpService} from "./routes-http.service";
 })
 export class RoutesComponent implements OnInit {
 
-  routes: Route[] = [];
+  routes?: Route[] = [];
 
   constructor(private routeService: RoutesHttpService) {
   }
@@ -28,5 +28,10 @@ export class RoutesComponent implements OnInit {
     if (confirm("Czy jesteś pewien?")) {
       this.routeService.delete(removeCandidate).subscribe(() => this.fetchRoutes())
     }
+  }
+  setTransportType(type: string){
+    if (type == 'CARGO'){
+      return "Transport towarów"
+    }return "Transport osób";
   }
 }

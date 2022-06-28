@@ -9,7 +9,7 @@ import {DriversHttpService} from "./drivers-http.service";
 })
 export class DriversComponent implements OnInit {
 
-  drivers: Driver[] = [];
+  drivers?: Driver[] = [];
 
   constructor(private driverService: DriversHttpService) { }
 

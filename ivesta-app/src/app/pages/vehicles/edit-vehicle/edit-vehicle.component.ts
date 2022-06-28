@@ -63,4 +63,10 @@ export class EditVehicleComponent implements OnInit {
     {name: 'LPG'},
     {name: 'CNG'}
   ];
+
+  setStatus(status: string){
+    if (status == 'active'){
+      return "Aktywny"
+    }return "Nieaktywny";
+  }
 }

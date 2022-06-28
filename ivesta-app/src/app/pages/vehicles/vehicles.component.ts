@@ -9,7 +9,7 @@ import {VehiclesHttpService} from "./vehicles-http.service";
 })
 export class VehiclesComponent implements OnInit {
 
-  vehicles: Vehicle[] = [];
+  vehicles?: Vehicle[] = [];
 
   constructor(private vehicleService: VehiclesHttpService) {
   }
@@ -28,5 +28,17 @@ export class VehiclesComponent implements OnInit {
     if (confirm("Czy jesteś pewien?")) {
       this.vehicleService.delete(removeCandidate).subscribe(() => this.fetchVehicles())
     }
+  }
+
+  setStatus(status: string){
+    if (status == 'active'){
+      return "Aktywny"
+    }return "Nieaktywny";
+  }
+
+  setTransportType(type: string){
+    if (type == 'CARGO'){
+      return "Ciężarowy"
+    }return "Osobowy";
   }
 }
