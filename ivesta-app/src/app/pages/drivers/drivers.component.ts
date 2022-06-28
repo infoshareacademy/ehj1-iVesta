@@ -30,4 +30,9 @@ export class DriversComponent implements OnInit {
       })
     }
   }
+  setStatus(status: string){
+    if (status == 'active'){
+      return "Aktywny"
+    }return "Nieaktywny";
+  }
 }

@@ -44,7 +44,8 @@
                 <mat-label>Status:</mat-label>
                 <mat-select class="form-control" formControlName="availability" value="{{driver?.availability}}">
                   <mat-label>Wybierz</mat-label>
-                  <mat-option [value]="status.value" *ngFor="let status of AVAILABILITY">{{status.placeholder}}</mat-option>
+                  <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
+                  <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
