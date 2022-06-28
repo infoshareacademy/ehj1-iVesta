@@ -66,4 +66,8 @@ export class EditDriverComponent implements OnInit {
     {name:'D+E'},
     {name:'T'},
   ]
+  AVAILABILITY=[
+    {value:'active',placeholder:'Aktywny'},
+    {value:'active',placeholder:'Nieaktywny'}
+  ]
 }

@@ -8,7 +8,7 @@
             <mat-form-field appearance="fill">
               <mat-label for="input-name">Imię</mat-label>
               <input matInput id="input-name" type="text" name="name" class="form-control" formControlName="name"
-                     value={{driver?.name}}>
+                     value="{{driver?.name}}">
             </mat-form-field>
           </div>
           <div class="form-group col">
@@ -16,7 +16,7 @@
               <mat-label for="input-lastname">Nazwisko</mat-label>
               <input matInput id="input-lastname" type="text" name="lastName" class="form-control"
                      formControlName="lastName"
-                     value={{driver?.lastName}}>
+                     value="{{driver?.lastName}}">
             </mat-form-field>
           </div>
           <div class="form-group col">
@@ -24,7 +24,7 @@
               <mat-label for="input-phone">Telefon</mat-label>
               <input matInput id="phone" type="text" name="phoneNumber" class="form-control"
                      formControlName="phoneNumber"
-                     value={{driver?.phoneNumber}}>
+                     value="{{driver?.phoneNumber}}">
             </mat-form-field>
           </div>
         </div>
@@ -44,8 +44,7 @@
                 <mat-label>Status:</mat-label>
                 <mat-select class="form-control" formControlName="availability" value="{{driver?.availability}}">
                   <mat-label>Wybierz</mat-label>
-                  <mat-option value="active" (click)="setStatusToActive()">Aktywny</mat-option>
-                  <mat-option value="inactive" (click)="setStatusToInactive()">Niektywny</mat-option>
+                  <mat-option [value]="status.value" *ngFor="let status of AVAILABILITY">{{status.placeholder}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
