@@ -16,11 +16,12 @@ import {VehicleCandidate} from "../../../../model/vehicle-candidate";
 export class AddVehicleToRouteComponent implements OnInit {
 
   avRoute: Route;
-  avVehicle: Vehicle[]=[];
+  avVehicle: Vehicle[] = [];
 
   routeId = this.activatedRoute.snapshot.params['id'];
 
-  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder,private httpVehicles: VehiclesHttpService) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpService: RoutesHttpService, private formBuilder: FormBuilder, private httpVehicles: VehiclesHttpService) {
+  }
 
 
   ngOnInit(): void {
@@ -30,19 +31,19 @@ export class AddVehicleToRouteComponent implements OnInit {
       })
   }
 
-  availableVehicles(){
-    this.httpVehicles.getAvailableVehiclesForGivenDate(this.avRoute.date).subscribe((response) =>{
+  availableVehicles() {
+    this.httpVehicles.getAvailableVehiclesForGivenDate(this.avRoute.date).subscribe((response) => {
       this.avVehicle = response;
     })
   }
 
-  addVehicleToRoute(vehicleId: VehicleCandidate){
-    this.httpService.addVehicleToRoute(vehicleId,this.routeId).subscribe();
+  addVehicleToRoute(vehicleId: VehicleCandidate) {
+    this.httpService.addVehicleToRoute(vehicleId, this.routeId).subscribe();
   }
+
   submit() {
     this.addVehicleToRoute(this.form.value)
     this.form.reset();
-    alert('Pojazd został dodany do trasy');
   }
 
   form = this.formBuilder.group({

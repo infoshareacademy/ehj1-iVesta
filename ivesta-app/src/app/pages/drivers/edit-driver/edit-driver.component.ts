@@ -36,7 +36,6 @@ export class EditDriverComponent implements OnInit {
   submit() {
     this.httpService.update(this.form.value, this.driverId).subscribe();
     console.log(this.form.value);
-    alert('Dane kierowcy zostały zaktualizowane');
   }
 
   //TODO - update drivera po submicie a nie po kliknieciu

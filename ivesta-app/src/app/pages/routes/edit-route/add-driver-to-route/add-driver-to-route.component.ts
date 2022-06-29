@@ -40,7 +40,6 @@ export class AddDriverToRouteComponent implements OnInit {
   submit() {
     this.addDriverToRoute(this.form.value)
     this.form.reset();
-    alert('Kierowca został dodany do trasy');
   }
 
   form = this.formBuilder.group({

@@ -29,7 +29,6 @@ export class EditRouteComponent implements OnInit {
 
   submit() {
     this.httpService.update(this.form.value, this.routeId).subscribe();
-    alert('Trasa została zaktualizowana');
   }
 
   form = this.formBuilder.group({

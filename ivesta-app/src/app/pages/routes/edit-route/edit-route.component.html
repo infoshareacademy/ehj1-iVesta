@@ -26,7 +26,7 @@
           <div class="form-group col">
             <mat-form-field appearance="fill">
               <mat-label for="routeLength">Długość trasy</mat-label>
-            <input matInput id="routeLength" type="text" name="routeLength" class="form-control" formControlName="routeLength"
+            <input matInput id="routeLength" type="number" min="1" name="routeLength" class="form-control" formControlName="routeLength"
                    value="{{avRoute?.routeLength}}">
             </mat-form-field>
           </div>
@@ -44,7 +44,7 @@
             <div class="form-group col">
               <mat-form-field appearance="fill">
                 <mat-label for="input-transport-volume">Ilość osób/towaru [kg]</mat-label>
-              <input matInput id="input-transport-volume" type="text" name="transportVolume" class="form-control"
+              <input matInput id="input-transport-volume" type="number" min="1" name="transportVolume" class="form-control"
                      formControlName="transportVolume"
                      value="{{avRoute?.transportVolume}}">
               </mat-form-field>

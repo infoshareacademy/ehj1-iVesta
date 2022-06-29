@@ -39,7 +39,7 @@ export class AddVehicleComponent implements OnInit {
     this.createNewVehicle(this.form.value)
     console.log(this.form.value)
     this.form.reset();
-    alert('Pojazd został dodany');
+    this.form.markAsUntouched()
   }
 
   createNewVehicle(vehicle: VehicleCandidate){
